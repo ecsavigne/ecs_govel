@@ -2,7 +2,7 @@ package seeders
 
 import (
 	"fmt"
-	"new_whatsmeow/config"
+	"config"
 )
 
 type Seeders struct {

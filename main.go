@@ -1,8 +1,8 @@
 package main
 
 import (
-	"new_whatsmeow/app"
-	"new_whatsmeow/app/helpers/logg"
+	"app"
+	"app/helpers/logg"
 
 	"github.com/golang-module/carbon"
 	"github.com/joho/godotenv"

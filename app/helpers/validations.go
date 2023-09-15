@@ -1,7 +1,7 @@
 package helpers
 
 import (
-	"new_whatsmeow/app/models"
+	"app/models"
 	"strconv"
 )
 

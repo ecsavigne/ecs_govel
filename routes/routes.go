@@ -3,7 +3,7 @@ package routes
 import (
 	"github.com/gorilla/mux"
 
-	"new_whatsmeow/app/http/controllers"
+	"app/http/controllers"
 )
 
 var Router *mux.Router = new(mux.Router)
