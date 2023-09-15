@@ -16,7 +16,7 @@ import (
 var Database = new(DbInstance)
 
 type DbInstance struct {
-	*gorm.DB
+	DB    *gorm.DB
 	err   error
 	AppID string
 }
