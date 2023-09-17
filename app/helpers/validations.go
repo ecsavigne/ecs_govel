@@ -1,7 +1,7 @@
 package helpers
 
 // import (
-// 	"app/models"
+// 	"ecs_govel/app/models"
 // 	"strconv"
 // )
 

@@ -16,7 +16,7 @@ type Config struct {
 	Server struct {
 		Host    string `yaml:"host"`
 		Port    string `yaml:"port"`
-		AppID   string `yaml:"app_id"`
+		AppID   string `yaml:"ecs_govel/app_id"`
 		Timeout struct {
 			Write int `yaml:"write"`
 			Read  int `yaml:"read"`

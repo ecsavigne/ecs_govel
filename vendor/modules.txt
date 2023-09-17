@@ -1,12 +1,3 @@
-# github.com/gabriel-vasile/mimetype v1.4.2
-## explicit; go 1.20
-github.com/gabriel-vasile/mimetype
-github.com/gabriel-vasile/mimetype/internal/charset
-github.com/gabriel-vasile/mimetype/internal/json
-github.com/gabriel-vasile/mimetype/internal/magic
-# github.com/go-co-op/gocron v1.33.1
-## explicit; go 1.16
-github.com/go-co-op/gocron
 # github.com/gobuffalo/envy v1.7.0
 ## explicit
 github.com/gobuffalo/envy
@@ -20,9 +11,6 @@ github.com/gobuffalo/packr
 # github.com/golang-module/carbon v1.7.3
 ## explicit; go 1.14
 github.com/golang-module/carbon
-# github.com/google/uuid v1.3.1
-## explicit
-github.com/google/uuid
 # github.com/gorilla/mux v1.8.0
 ## explicit; go 1.12
 github.com/gorilla/mux
@@ -36,27 +24,23 @@ github.com/jinzhu/inflection
 # github.com/joho/godotenv v1.5.1
 ## explicit; go 1.12
 github.com/joho/godotenv
+# github.com/kr/pretty v0.3.0
+## explicit; go 1.12
 # github.com/lib/pq v1.1.1
 ## explicit
 github.com/lib/pq
 github.com/lib/pq/hstore
 github.com/lib/pq/oid
 github.com/lib/pq/scram
-# github.com/robfig/cron/v3 v3.0.1
-## explicit; go 1.12
-github.com/robfig/cron/v3
 # github.com/rogpeppe/go-internal v1.8.1
 ## explicit; go 1.16
 github.com/rogpeppe/go-internal/modfile
 github.com/rogpeppe/go-internal/module
 github.com/rogpeppe/go-internal/semver
-# go.uber.org/atomic v1.9.0
+# github.com/stretchr/testify v1.8.2
 ## explicit; go 1.13
-go.uber.org/atomic
-# golang.org/x/net v0.8.0
-## explicit; go 1.17
-golang.org/x/net/html
-golang.org/x/net/html/atom
+# gopkg.in/check.v1 v1.0.0-20201130134442-10cb98267c6c
+## explicit; go 1.11
 # gopkg.in/yaml.v2 v2.4.0
 ## explicit; go 1.15
 gopkg.in/yaml.v2

@@ -11,10 +11,10 @@ package repositories
 // 	"github.com/golang-module/carbon"
 // 	"google.golang.org/protobuf/proto"
 
-// 	"app/helpers"
-// 	"app/helpers/logg"
-// 	"app/models"
-// 	"app/structs"
+// 	"ecs_govel/app/helpers"
+// 	"ecs_govel/app/helpers/logg"
+// 	"ecs_govel/app/models"
+// 	"ecs_govel/app/structs"
 // 	"database/migrations"
 
 // 	"go.mau.fi/whatsmeow"

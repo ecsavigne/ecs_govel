@@ -37,7 +37,7 @@
 // 	flag.Parse()
 
 // 	// 3. init database
-// 	if os.Getenv("APP_ENV") == "local" {
+// 	if os.Getenv("ecs_govel/app_ENV") == "local" {
 // 		/*seeders.Seeder.ApplicationSeeder()
 // 		seeders.Seeder.CompaniesWhatsappSeeder()*/
 // 	}

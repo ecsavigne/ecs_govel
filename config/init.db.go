@@ -3,7 +3,6 @@ package config
 import (
 	"fmt"
 	"log"
-	"math/rand"
 	"os"
 	"strings"
 	"time"
@@ -13,13 +12,13 @@ import (
 	"github.com/joho/godotenv"
 )
 
-var Database = new(DbInstance)
-
 type DbInstance struct {
 	DB    *gorm.DB
 	err   error
 	AppID string
 }
+
+var Database = new(DbInstance)
 
 func init() {
 	godotenv.Load()
@@ -70,7 +69,7 @@ func (db *DbInstance) Init() {
 	db.DB.DB().SetMaxIdleConns(100)
 	db.DB.DB().SetMaxOpenConns(100)
 
-	rand.Seed(time.Now().UnixNano())
+	//rand.Seed(time.Now().UnixNano())
 
 	// Create tables if they dont exist or migrate schema if exist
 	// if !db.DB.HasTable(&migrations.User{}) {

@@ -1,8 +1,8 @@
 package seeders
 
 import (
+	"ecs_govel/config"
 	"fmt"
-	"config"
 )
 
 type Seeders struct {
