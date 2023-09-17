@@ -1,7 +1,7 @@
 package main
 
 import (
-	"ecs_govel/app"
+	app "ecs_govel/app"
 	"ecs_govel/app/helpers/logg"
 
 	"github.com/golang-module/carbon"
