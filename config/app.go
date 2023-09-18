@@ -27,7 +27,7 @@ func init() {
 	if errConfig != nil {
 		log.Fatalf("Error al cargar el archivo .ini: %v", errConfig)
 	}
-	cfgBDIni, errConfig = ini.Load("./config/app.ini")
+	cfgBDIni, errConfig = ini.Load("./config/db.ini")
 	if errConfig != nil {
 		log.Fatalf("Error al cargar el archivo .ini: %v", errConfig)
 	}
@@ -35,8 +35,7 @@ func init() {
 	sessionDataBase = cfgBDIni.Section("Env DataBase")
 	sessionApp = cfgAppIni.Section("App")
 	sessionServerWeb = cfgAppIni.Section("Servidor Web")
-	fmt.Println("Cargo VAr .ini")
-	configDB(sessionDataBase.Key("UrlEnv").String())
+	configDB(sessionDataBase.Key("UrlEnv").String(), sessionDataBase.Key("Driver").String())
 }
 
 func InitApp() {

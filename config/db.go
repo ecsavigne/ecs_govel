@@ -8,9 +8,12 @@ import (
 	"strings"
 	"time"
 
-	"github.com/jinzhu/gorm"
+	//"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/postgres"
 	"github.com/joho/godotenv"
+	"gorm.io/driver/mysql"
+	"gorm.io/driver/postgres"
+	"gorm.io/gorm"
 )
 
 type DbInstance struct {
@@ -21,7 +24,7 @@ type DbInstance struct {
 
 var Database = new(DbInstance)
 
-func configDB(pathEnv string) {
+func configDB(pathEnv, driverP string) {
 	logg.GeneralLogger.Printf("Cargando info Base Datos\n")
 	fmt.Printf("Cargando info Base Datos\n")
 	err_ := godotenv.Load(pathEnv)
@@ -31,7 +34,7 @@ func configDB(pathEnv string) {
 		return
 	}
 
-	driver := strings.ToLower(os.Getenv("DB_DRIVER"))
+	driver := strings.ToLower(driverP)
 	host := os.Getenv("DB_HOST")
 	port := os.Getenv("DB_PORT")
 	user := os.Getenv("DB_USER")
@@ -39,24 +42,30 @@ func configDB(pathEnv string) {
 	pass := os.Getenv("DB_PASSWD")
 	ssl := os.Getenv("DB_SSL_MODE")
 	ConnStr := ""
+	var err error
 	switch driver {
 	case "postgres":
-		ConnStr = fmt.Sprintf("host=%s port=%s user=%s dbname=%s password=%s sslmode=%s",
+		ConnStr = fmt.Sprintf("host=%s port=%s user=%s dbname=%s password=%s sslmode=%s TimeZone=Asia/Shanghais",
 			host, port, user, db, pass, ssl)
+		Database.DB, err = gorm.Open(postgres.Open(ConnStr), &gorm.Config{})
 		break
 	case "mysql":
-		ConnStr = fmt.Sprintf("host=%s port=%s user=%s dbname=%s password=%s sslmode=%s",
-			host, port, user, db, pass, ssl)
+		//dsn1 := "user:pass@tcp(127.0.0.1:3306)/dbname?charset=utf8mb4&parseTime=True&loc=Local"
+		ConnStr = fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=utf8mb4&parseTime=True&loc=Local",
+			user, pass, host, port, db)
+		//Database.DB, err =
+		Database.DB, err = gorm.Open(mysql.Open(ConnStr), &gorm.Config{})
 		break
 	}
 	fmt.Println(ConnStr)
-	var err error
-	Database.DB, err = gorm.Open(driver, ConnStr)
+	//Database.DB, err = gorm.Open(driver, ConnStr)
 	Database.err = err
 	if err != nil {
+		fmt.Println("Error")
 		logg.ErrorLogger.Println("Ocurrio um error", err)
 		return
 	}
+	fmt.Println("qqqqError")
 	logg.GeneralLogger.Printf("New %s conennection opened\n", driver)
 	Database.initDB()
 }
