@@ -1,6 +1,7 @@
 package config
 
 import (
+	"ecs_govel/app/helpers/logg"
 	"fmt"
 	"log"
 	"os"
@@ -20,8 +21,16 @@ type DbInstance struct {
 
 var Database = new(DbInstance)
 
-func init() {
-	godotenv.Load()
+func configDB(pathEnv string) {
+	logg.GeneralLogger.Printf("Cargando info Base Datos\n")
+	fmt.Printf("Cargando info Base Datos\n")
+	err_ := godotenv.Load(pathEnv)
+	if err_ != nil {
+		logg.ErrorLogger.Printf("Error: \033[31m%v\033[0m\n", err_)
+		fmt.Println("Error cargando Var ambiente: \033[31m", err_.Error(), "\033[0m")
+		return
+	}
+
 	driver := strings.ToLower(os.Getenv("DB_DRIVER"))
 	host := os.Getenv("DB_HOST")
 	port := os.Getenv("DB_PORT")
@@ -40,24 +49,23 @@ func init() {
 			host, port, user, db, pass, ssl)
 		break
 	}
-
-	log.Println(ConnStr)
-
+	fmt.Println(ConnStr)
 	var err error
 	Database.DB, err = gorm.Open(driver, ConnStr)
 	Database.err = err
 	if err != nil {
-		log.Println("Ocurrio um error", err)
+		logg.ErrorLogger.Println("Ocurrio um error", err)
+		return
 	}
-	log.Printf("New %s conennection opened\n", driver)
-	Database.Init()
+	logg.GeneralLogger.Printf("New %s conennection opened\n", driver)
+	Database.initDB()
 }
 
 func (db *DbInstance) GetDbInstance() *gorm.DB {
 	return Database.DB
 }
 
-func (db *DbInstance) Init() {
+func (db *DbInstance) initDB() {
 	//init1()
 	//db.DB = db.GetDbInstance()
 	if db.err != nil {

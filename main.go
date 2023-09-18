@@ -1,8 +1,8 @@
 package main
 
 import (
-	app "ecs_govel/app"
 	"ecs_govel/app/helpers/logg"
+	app "ecs_govel/config"
 
 	"github.com/golang-module/carbon"
 	"github.com/joho/godotenv"

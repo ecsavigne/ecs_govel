@@ -1,0 +1,59 @@
+General Logger:	2023/09/18 00:18:28 main.go:12: Starting app at 2023-08-09 00:18:28 
+Error Logger:	2023/09/18 00:18:28 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/18 00:18:28 init.app.go:63: Iniciando server --- 127.0.0.1:3333
+General Logger:	2023/09/18 00:23:21 init.app.go:76: Se preciono Ctrl + C, para finalizar la App
+Error Logger:	2023/09/18 00:27:39 init.db.go:51: Ocurrio um error sql: unknown driver "" (forgotten import?)
+General Logger:	2023/09/18 00:27:39 init.db.go:53: New  conennection opened
+Error Logger:	2023/09/18 00:29:02 init.db.go:51: Ocurrio um error sql: unknown driver "" (forgotten import?)
+General Logger:	2023/09/18 00:29:02 init.db.go:53: New  conennection opened
+Error Logger:	2023/09/18 00:29:31 init.db.go:52: Ocurrio um error sql: unknown driver "" (forgotten import?)
+General Logger:	2023/09/18 00:29:31 init.db.go:54: New  conennection opened
+Error Logger:	2023/09/18 00:30:04 init.db.go:53: Ocurrio um error sql: unknown driver "" (forgotten import?)
+General Logger:	2023/09/18 00:30:04 init.db.go:55: New  conennection opened
+Error Logger:	2023/09/18 00:31:05 init.db.go:55: Ocurrio um error sql: unknown driver "" (forgotten import?)
+General Logger:	2023/09/18 00:31:05 init.db.go:57: New  conennection opened
+Error Logger:	2023/09/18 00:31:25 init.db.go:55: Ocurrio um error sql: unknown driver "" (forgotten import?)
+General Logger:	2023/09/18 00:31:25 init.db.go:57: New  conennection opened
+Error Logger:	2023/09/18 00:32:51 init.db.go:55: Ocurrio um error sql: unknown driver "" (forgotten import?)
+General Logger:	2023/09/18 00:32:51 main.go:12: Starting app at 2023-08-09 00:32:51 
+Error Logger:	2023/09/18 00:32:51 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/18 00:32:51 init.app.go:56: Iniciando server --- 127.0.0.1:3333
+General Logger:	2023/09/18 00:33:24 init.app.go:69: Se preciono Ctrl + C, para finalizar la App
+Error Logger:	2023/09/18 00:37:39 init.db.go:28: Error: open .env: no such file or directory
+General Logger:	2023/09/18 00:37:39 main.go:12: Starting app at 2023-08-09 00:37:39 
+Error Logger:	2023/09/18 00:37:39 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/18 00:37:39 init.app.go:56: Iniciando server --- 127.0.0.1:3333
+General Logger:	2023/09/18 00:39:32 init.app.go:69: Se preciono Ctrl + C, para finalizar la App
+Error Logger:	2023/09/18 00:39:35 init.db.go:28: Error: [31mopen .env: no such file or directory[0m
+General Logger:	2023/09/18 00:39:35 main.go:12: Starting app at 2023-08-09 00:39:35 
+Error Logger:	2023/09/18 00:39:35 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/18 00:39:35 init.app.go:56: Iniciando server --- 127.0.0.1:3333
+Error Logger:	2023/09/18 00:39:46 init.db.go:28: Error: [31mopen .env: no such file or directory[0m
+General Logger:	2023/09/18 00:39:46 main.go:12: Starting app at 2023-08-09 00:39:46 
+Error Logger:	2023/09/18 00:39:46 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/18 00:39:46 init.app.go:56: Iniciando server --- 127.0.0.1:3333
+General Logger:	2023/09/18 00:39:46 init.app.go:59: Impossible initialice server: listen tcp 127.0.0.1:3333: bind: address already in use
+General Logger:	2023/09/18 00:50:41 init.app.go:69: Se preciono Ctrl + C, para finalizar la App
+Error Logger:	2023/09/18 00:52:34 db.go:27: Error: [31mopen .env: no such file or directory[0m
+General Logger:	2023/09/18 00:52:34 main.go:12: Starting app at 2023-08-09 00:52:34 
+Error Logger:	2023/09/18 00:52:34 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/18 00:52:34 init.app.go:56: Iniciando server --- 127.0.0.1:3333
+General Logger:	2023/09/18 00:52:34 init.app.go:59: Impossible initialice server: listen tcp 127.0.0.1:3333: bind: address already in use
+General Logger:	2023/09/18 00:52:56 init.app.go:69: Se preciono Ctrl + C, para finalizar la App
+Error Logger:	2023/09/18 00:54:37 db.go:27: Error: [31mopen .env: no such file or directory[0m
+General Logger:	2023/09/18 00:54:37 main.go:12: Starting app at 2023-08-09 00:54:37 
+Error Logger:	2023/09/18 00:54:37 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/18 00:54:37 init.app.go:56: Iniciando server --- 127.0.0.1:3333
+General Logger:	2023/09/18 00:54:53 init.app.go:69: Se preciono Ctrl + C, para finalizar la App
+General Logger:	2023/09/18 01:05:32 db.go:25: Cargando info Base Datos
+Error Logger:	2023/09/18 01:05:32 db.go:29: Error: [31mopen : no such file or directory[0m
+General Logger:	2023/09/18 01:05:32 main.go:12: Starting app at 2023-08-09 01:05:32 
+Error Logger:	2023/09/18 01:05:32 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/18 01:05:32 app.go:65: Iniciando server --- 127.0.0.1:3333
+General Logger:	2023/09/18 01:06:27 app.go:78: Se preciono Ctrl + C, para finalizar la App
+General Logger:	2023/09/18 01:06:29 db.go:25: Cargando info Base Datos
+Error Logger:	2023/09/18 01:06:29 db.go:29: Error: [31mopen : no such file or directory[0m
+General Logger:	2023/09/18 01:06:29 main.go:12: Starting app at 2023-08-09 01:06:29 
+Error Logger:	2023/09/18 01:06:29 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/18 01:06:29 app.go:65: Iniciando server --- 127.0.0.1:3333
+General Logger:	2023/09/18 01:07:11 app.go:78: Se preciono Ctrl + C, para finalizar la App
