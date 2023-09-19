@@ -6,7 +6,6 @@ import (
 	"log"
 	"os"
 	"strings"
-	"time"
 
 	//"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/postgres"
@@ -82,9 +81,9 @@ func (db *DbInstance) initDB() {
 	}
 
 	//Configiuracion de conecciones idle
-	db.DB.DB().SetConnMaxLifetime(30 * time.Minute)
-	db.DB.DB().SetMaxIdleConns(100)
-	db.DB.DB().SetMaxOpenConns(100)
+	// db.DB.DB().SetConnMaxLifetime(30 * time.Minute)
+	// db.DB.DB().SetMaxIdleConns(100)
+	// db.DB.DB().SetMaxOpenConns(100)
 
 	//rand.Seed(time.Now().UnixNano())
 

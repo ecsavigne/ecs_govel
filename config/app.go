@@ -35,11 +35,12 @@ func init() {
 	sessionDataBase = cfgBDIni.Section("Env DataBase")
 	sessionApp = cfgAppIni.Section("App")
 	sessionServerWeb = cfgAppIni.Section("Servidor Web")
-	configDB(sessionDataBase.Key("UrlEnv").String(), sessionDataBase.Key("Driver").String())
+	Database.AppID = cfgAppIni.Section("App").Key("AppID").String()
+	//configDB(sessionDataBase.Key("UrlEnv").String(), sessionDataBase.Key("Driver").String())
 }
 
 func InitApp() {
-	fmt.Println(Database.AppID)
+	fmt.Println("Id App:", Database.AppID)
 	// MAnejo de errores
 	defer func() {
 		if err := recover(); err != nil {
