@@ -16,8 +16,7 @@ Ej:
 # loadRoute
     Es el objeto pasado por parametro a la funcion con nombre igual al del fichero 
 # eje: 
-    el cuerpo seria algo como esto:
-# loadRoute.HandleFunc
-    ("/(Ruta)/", func(w http.ResponseWriter, r *http.Request) {
+el cuerpo seria algo como esto:
+    loadRoute.HandleFunc("/(Ruta)/", func(w http.ResponseWriter, r *http.Request) {
         http.ServeFile(w, r, "./page/index.html") // Sirve el archivo HTML 
     })
