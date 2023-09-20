@@ -7,6 +7,7 @@ import (
 	"os"
 	"regexp"
 	"strings"
+	"time"
 
 	//"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/postgres"
@@ -36,14 +37,13 @@ func configDB(pathEnv, driverP string) {
 		return
 	}
 	logg.GeneralLogger.Printf("Cargando info Base Datos\n")
-	fmt.Printf("Cargando info Base Datos de %s\n", pathEnv)
+	fmt.Printf("Cargando info Base Datos de: %s\n", pathEnv)
 	err_ := godotenv.Load(pathEnv)
 	if err_ != nil {
 		logg.ErrorLogger.Printf("Error: \033[31m%v\033[0m\n", err_)
 		fmt.Println("Error:Error: \033[31m cargando Var ambiente: ", err_.Error(), "\033[0m")
 		return
 	}
-	fmt.Println("111111111", driverP)
 	driver := strings.ToLower(driverP)
 	host := os.Getenv("DB_HOST")
 	port := os.Getenv("DB_PORT")
@@ -55,13 +55,13 @@ func configDB(pathEnv, driverP string) {
 	var err error
 	switch driver {
 	case "postgres":
-		fmt.Println("POSTGRESS")
+		fmt.Println("driver: POSTGRESS")
 		ConnStr = fmt.Sprintf("host=%s port=%s user=%s dbname=%s password=%s sslmode=%s TimeZone=Asia/Shanghais",
 			host, port, user, db, pass, ssl)
 		Database.DB, err = gorm.Open(postgres.Open(ConnStr), &gorm.Config{})
 		break
 	case "mysql":
-		fmt.Println("MYSQL")
+		fmt.Println("driver: MYSQL")
 		ConnStr = fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=utf8mb4&parseTime=True&loc=Local",
 			user, pass, host, port, db)
 		Database.DB, err = gorm.Open(mysql.Open(ConnStr), &gorm.Config{})
@@ -84,8 +84,11 @@ func configDB(pathEnv, driverP string) {
 		return
 	}
 
-	logg.GeneralLogger.Printf("New %s conennection opened\n", driver)
-	// Database.initDB()
+	logg.GeneralLogger.Printf("New (%s) conennection opened\n", driver)
+	fmt.Printf("New (%s) conennection opened\n", driver)
+
+	logg.GeneralLogger.Printf("\033[36mConfigurando coneccion y cargando Migration %s: \033[0m\n", driver)
+	fmt.Printf("\033[36mConfigurando coneccion y cargando Migration de:  %s \033[0m\n", "/database/migrations/*")
 }
 
 func (db *DbInstance) db() *sql.DB {
@@ -98,17 +101,12 @@ func (db *DbInstance) GetDbInstance() *gorm.DB {
 }
 
 func (db *DbInstance) initDB() {
-	// //init1()
-	// //db.DB = db.GetDbInstance()
-	// if db.err != nil {
-	// 	log.Println(db.err)
-	// }
+	// Configiuracion de conecciones idle
+	db.db().SetConnMaxLifetime(30 * time.Minute)
+	db.db().SetMaxIdleConns(20)
+	db.db().SetMaxOpenConns(20)
 
-	// //Configiuracion de conecciones idle
-	// db.DB.DB().SetConnMaxLifetime(30 * time.Minute)
-	//db.DB.DB().SetMaxIdleConns(100)
-	//db.DB.DB().SetMaxOpenConns(100)
-
+	// Cargar de Migration
 	//rand.Seed(time.Now().UnixNano())
 
 	// Create tables if they dont exist or migrate schema if exist

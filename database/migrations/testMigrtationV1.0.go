@@ -5,7 +5,7 @@ import (
 )
 
 // NOTA: Las migration tendaran el Nombre <Mxxxxxxx>
-type Application struct {
+type Test struct {
 	gorm.Model
 	// Owner       User
 	// AppName     string `gorm:"not null"`

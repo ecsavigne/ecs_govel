@@ -42,6 +42,8 @@ func init() {
 	configsIni.sessionApp = configsIni.cfgAppIni.Section("App")
 	Database.AppID = configsIni.sessionApp.Key("AppID").String()
 	configsIni.sessionWeb = configsIni.cfgAppIni.Section("Servidor Web")
+	configsIni.host = configsIni.sessionWeb.Key("Host").String()
+	configsIni.port, _ = configsIni.sessionWeb.Key("Port").Int()
 	configsIni.writeTimeout, _ = configsIni.sessionWeb.Key("WriteTimeout").Int()
 	configsIni.writeTimeout, _ = configsIni.sessionWeb.Key("ReadTimeout").Int()
 	configsIni.idleTimeout, _ = configsIni.sessionWeb.Key("IdleTimeout").Int()

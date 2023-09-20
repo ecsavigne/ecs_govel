@@ -25,15 +25,15 @@ func InitApp() {
 
 	server := &http.Server{
 		Handler:      routes.Router,
-		Addr:         fmt.Sprintf("%s:%s", configsIni.host, configsIni.port),
+		Addr:         fmt.Sprintf("%s:%d", configsIni.host, configsIni.port),
 		WriteTimeout: time.Second * time.Duration(configsIni.writeTimeout),
 		ReadTimeout:  time.Second * time.Duration(configsIni.readTimeout),
 		IdleTimeout:  time.Second * time.Duration(configsIni.idleTimeout),
 	}
-
+	fmt.Printf("Sever Web en: %s:%d\n", configsIni.host, configsIni.port)
 	// 10. run the http server paralelly in a goroutine to receive request
 	go func() {
-		logg.GeneralLogger.Printf("Iniciando server --- %s:%s\n", configsIni.host, configsIni.port)
+		logg.GeneralLogger.Printf("Iniciando server --- %s:%d\n", configsIni.host, configsIni.port)
 		if err := server.ListenAndServe(); err != nil && err != http.ErrServerClosed {
 			logMessage := "Impossible initialice server: " + err.Error()
 			logg.GeneralLogger.Println(logMessage)
