@@ -514,3 +514,30 @@ General Logger:	2023/09/19 14:00:04 app.go:65: Iniciando server --- 127.0.0.1:22
 General Logger:	2023/09/19 14:09:50 main.go:12: Starting app at 2023-08-10 14:09:50 
 Error Logger:	2023/09/19 14:09:50 main.go:16: [31mError loading env file[0m
 General Logger:	2023/09/19 14:09:50 app.go:65: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/09/20 19:54:33 main.go:12: Starting app at 2023-08-11 19:54:33 
+General Logger:	2023/09/20 19:54:33 main.go:12: Starting app at 2023-08-11 19:54:33 
+Error Logger:	2023/09/20 19:54:33 main.go:16: [31mError loading env file[0m
+Error Logger:	2023/09/20 19:54:33 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 19:54:33 main.go:12: Starting app at 2023-08-11 19:54:33 
+General Logger:	2023/09/20 19:54:33 main.go:12: Starting app at 2023-08-11 19:54:33 
+General Logger:	2023/09/20 19:54:33 main.go:12: Starting app at 2023-08-11 19:54:33 
+General Logger:	2023/09/20 19:54:33 main.go:12: Starting app at 2023-08-11 19:54:33 
+Error Logger:	2023/09/20 19:54:33 main.go:16: [31mError loading env file[0m
+Error Logger:	2023/09/20 19:54:33 main.go:16: [31mError loading env file[0m
+Error Logger:	2023/09/20 19:54:33 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 19:54:33 main.go:12: Starting app at 2023-08-11 19:54:33 
+Error Logger:	2023/09/20 19:54:33 main.go:16: [31mError loading env file[0m
+Error Logger:	2023/09/20 19:54:33 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 19:54:33 app.go:65: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/09/20 19:54:33 app.go:65: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/09/20 19:54:33 app.go:65: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/09/20 19:54:33 app.go:65: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/09/20 19:54:33 app.go:65: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/09/20 19:54:33 app.go:65: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/09/20 19:54:33 app.go:68: Impossible initialice server: listen tcp 127.0.0.1:2222: bind: address already in use
+General Logger:	2023/09/20 19:54:33 app.go:65: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/09/20 19:54:33 app.go:68: Impossible initialice server: listen tcp 127.0.0.1:2222: bind: address already in use
+General Logger:	2023/09/20 19:54:33 app.go:68: Impossible initialice server: listen tcp 127.0.0.1:2222: bind: address already in use
+General Logger:	2023/09/20 19:54:33 app.go:68: Impossible initialice server: listen tcp 127.0.0.1:2222: bind: address already in use
+General Logger:	2023/09/20 19:54:33 app.go:68: Impossible initialice server: listen tcp 127.0.0.1:2222: bind: address already in use
+General Logger:	2023/09/20 19:54:33 app.go:68: Impossible initialice server: listen tcp 127.0.0.1:2222: bind: address already in use
