@@ -11,9 +11,7 @@ import (
 var Router *mux.Router = new(mux.Router)
 
 func init() {
-	frontend(Router)
 	// Inicializ el grupo de routas que se desean
-
-	//index(Router)
-
+	// frontend(Router)
+	index(Router)
 }

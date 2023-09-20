@@ -514,3 +514,768 @@ General Logger:	2023/09/19 14:00:04 app.go:65: Iniciando server --- 127.0.0.1:22
 General Logger:	2023/09/19 14:09:50 main.go:12: Starting app at 2023-08-10 14:09:50 
 Error Logger:	2023/09/19 14:09:50 main.go:16: [31mError loading env file[0m
 General Logger:	2023/09/19 14:09:50 app.go:65: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/09/19 14:44:25 main.go:12: Starting app at 2023-08-10 14:44:25 
+Error Logger:	2023/09/19 14:44:25 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/19 14:44:25 app.go:65: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/09/19 14:47:02 main.go:12: Starting app at 2023-08-10 14:47:02 
+Error Logger:	2023/09/19 14:47:02 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/19 14:47:02 app.go:65: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/09/19 14:48:52 main.go:12: Starting app at 2023-08-10 14:48:52 
+Error Logger:	2023/09/19 14:48:52 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/19 14:48:52 app.go:65: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/09/19 14:50:54 main.go:12: Starting app at 2023-08-10 14:50:54 
+Error Logger:	2023/09/19 14:50:54 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/19 14:50:54 app.go:65: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/09/19 14:51:04 main.go:12: Starting app at 2023-08-10 14:51:04 
+Error Logger:	2023/09/19 14:51:04 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/19 14:51:04 app.go:65: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/09/19 16:53:05 main.go:12: Starting app at 2023-08-10 16:53:05 
+Error Logger:	2023/09/19 16:53:05 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/19 16:53:05 app.go:65: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/09/19 16:55:00 main.go:12: Starting app at 2023-08-10 16:55:00 
+Error Logger:	2023/09/19 16:55:00 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/19 16:55:00 app.go:65: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/09/19 16:55:21 main.go:12: Starting app at 2023-08-10 16:55:21 
+Error Logger:	2023/09/19 16:55:21 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/19 16:55:21 main.go:12: Starting app at 2023-08-10 16:55:21 
+Error Logger:	2023/09/19 16:55:21 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/19 16:55:21 app.go:65: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/09/19 16:55:21 app.go:65: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/09/19 16:55:21 app.go:68: Impossible initialice server: listen tcp 127.0.0.1:2222: bind: address already in use
+General Logger:	2023/09/19 16:57:38 main.go:12: Starting app at 2023-08-10 16:57:38 
+Error Logger:	2023/09/19 16:57:38 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/19 16:57:38 app.go:65: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/09/19 16:57:38 main.go:12: Starting app at 2023-08-10 16:57:38 
+Error Logger:	2023/09/19 16:57:38 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/19 16:57:38 main.go:12: Starting app at 2023-08-10 16:57:38 
+Error Logger:	2023/09/19 16:57:38 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/19 16:57:38 app.go:65: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/09/19 16:57:38 app.go:65: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/09/19 16:57:38 app.go:68: Impossible initialice server: listen tcp 127.0.0.1:2222: bind: address already in use
+General Logger:	2023/09/19 16:57:38 app.go:68: Impossible initialice server: listen tcp 127.0.0.1:2222: bind: address already in use
+General Logger:	2023/09/19 16:57:38 main.go:12: Starting app at 2023-08-10 16:57:38 
+Error Logger:	2023/09/19 16:57:38 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/19 16:57:38 app.go:65: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/09/19 16:58:48 main.go:12: Starting app at 2023-08-10 16:58:48 
+Error Logger:	2023/09/19 16:58:48 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/19 16:58:48 main.go:12: Starting app at 2023-08-10 16:58:48 
+Error Logger:	2023/09/19 16:58:48 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/19 16:58:48 app.go:65: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/09/19 16:58:48 app.go:65: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/09/19 16:58:48 app.go:68: Impossible initialice server: listen tcp 127.0.0.1:2222: bind: address already in use
+General Logger:	2023/09/19 16:59:43 main.go:12: Starting app at 2023-08-10 16:59:43 
+General Logger:	2023/09/19 16:59:43 main.go:12: Starting app at 2023-08-10 16:59:43 
+Error Logger:	2023/09/19 16:59:43 main.go:16: [31mError loading env file[0m
+Error Logger:	2023/09/19 16:59:43 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/19 16:59:43 main.go:12: Starting app at 2023-08-10 16:59:43 
+Error Logger:	2023/09/19 16:59:43 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/19 16:59:43 app.go:65: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/09/19 16:59:43 app.go:65: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/09/19 16:59:43 app.go:65: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/09/19 16:59:43 app.go:68: Impossible initialice server: listen tcp 127.0.0.1:2222: bind: address already in use
+General Logger:	2023/09/19 16:59:43 app.go:68: Impossible initialice server: listen tcp 127.0.0.1:2222: bind: address already in use
+General Logger:	2023/09/19 17:02:11 main.go:12: Starting app at 2023-08-10 17:02:11 
+Error Logger:	2023/09/19 17:02:11 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/19 17:02:11 app.go:65: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/09/19 17:02:57 main.go:12: Starting app at 2023-08-10 17:02:57 
+Error Logger:	2023/09/19 17:02:57 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/19 17:02:57 app.go:65: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/09/19 17:03:38 main.go:12: Starting app at 2023-08-10 17:03:38 
+Error Logger:	2023/09/19 17:03:38 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/19 17:03:38 app.go:65: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/09/19 17:03:38 main.go:12: Starting app at 2023-08-10 17:03:38 
+Error Logger:	2023/09/19 17:03:38 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/19 17:03:38 app.go:65: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/09/19 17:03:38 app.go:68: Impossible initialice server: listen tcp 127.0.0.1:2222: bind: address already in use
+General Logger:	2023/09/19 17:03:38 main.go:12: Starting app at 2023-08-10 17:03:38 
+Error Logger:	2023/09/19 17:03:38 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/19 17:03:38 app.go:65: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/09/19 17:03:38 app.go:68: Impossible initialice server: listen tcp 127.0.0.1:2222: bind: address already in use
+General Logger:	2023/09/19 17:04:33 main.go:12: Starting app at 2023-08-10 17:04:33 
+Error Logger:	2023/09/19 17:04:33 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/19 17:04:33 app.go:65: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/09/19 17:04:57 main.go:12: Starting app at 2023-08-10 17:04:57 
+Error Logger:	2023/09/19 17:04:57 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/19 17:04:57 app.go:65: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/09/19 17:04:57 main.go:12: Starting app at 2023-08-10 17:04:57 
+Error Logger:	2023/09/19 17:04:57 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/19 17:04:57 app.go:65: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/09/19 17:04:57 app.go:68: Impossible initialice server: listen tcp 127.0.0.1:2222: bind: address already in use
+General Logger:	2023/09/19 17:05:51 main.go:12: Starting app at 2023-08-10 17:05:51 
+General Logger:	2023/09/19 17:05:51 main.go:12: Starting app at 2023-08-10 17:05:51 
+Error Logger:	2023/09/19 17:05:51 main.go:16: [31mError loading env file[0m
+Error Logger:	2023/09/19 17:05:51 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/19 17:05:51 main.go:12: Starting app at 2023-08-10 17:05:51 
+Error Logger:	2023/09/19 17:05:51 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/19 17:05:51 app.go:65: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/09/19 17:05:51 app.go:65: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/09/19 17:05:51 app.go:65: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/09/19 17:05:51 app.go:68: Impossible initialice server: listen tcp 127.0.0.1:2222: bind: address already in use
+General Logger:	2023/09/19 17:05:51 app.go:68: Impossible initialice server: listen tcp 127.0.0.1:2222: bind: address already in use
+General Logger:	2023/09/19 17:06:27 main.go:12: Starting app at 2023-08-10 17:06:27 
+Error Logger:	2023/09/19 17:06:27 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/19 17:06:27 app.go:65: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/09/19 17:10:13 main.go:12: Starting app at 2023-08-10 17:10:13 
+General Logger:	2023/09/19 17:10:13 main.go:12: Starting app at 2023-08-10 17:10:13 
+Error Logger:	2023/09/19 17:10:13 main.go:16: [31mError loading env file[0m
+Error Logger:	2023/09/19 17:10:13 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/19 17:10:13 app.go:65: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/09/19 17:10:13 app.go:65: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/09/19 17:10:13 app.go:68: Impossible initialice server: listen tcp 127.0.0.1:2222: bind: address already in use
+General Logger:	2023/09/20 08:15:02 main.go:12: Starting app at 2023-08-11 08:15:02 
+Error Logger:	2023/09/20 08:15:02 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 08:15:02 app.go:65: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/09/20 08:15:45 main.go:12: Starting app at 2023-08-11 08:15:45 
+Error Logger:	2023/09/20 08:15:45 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 08:15:45 app.go:65: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/09/20 08:15:58 main.go:12: Starting app at 2023-08-11 08:15:58 
+Error Logger:	2023/09/20 08:15:58 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 08:15:58 app.go:65: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/09/20 08:21:17 main.go:12: Starting app at 2023-08-11 08:21:17 
+Error Logger:	2023/09/20 08:21:17 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 08:21:17 app.go:65: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/09/20 08:22:40 main.go:12: Starting app at 2023-08-11 08:22:40 
+Error Logger:	2023/09/20 08:22:40 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 08:22:49 main.go:12: Starting app at 2023-08-11 08:22:49 
+Error Logger:	2023/09/20 08:22:49 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 08:23:01 main.go:12: Starting app at 2023-08-11 08:23:01 
+Error Logger:	2023/09/20 08:23:01 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 08:23:13 main.go:12: Starting app at 2023-08-11 08:23:13 
+Error Logger:	2023/09/20 08:23:13 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 08:23:13 app.go:47: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/09/20 08:23:37 main.go:12: Starting app at 2023-08-11 08:23:37 
+Error Logger:	2023/09/20 08:23:37 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 08:23:37 app.go:47: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/09/20 08:23:59 main.go:12: Starting app at 2023-08-11 08:23:59 
+Error Logger:	2023/09/20 08:23:59 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 08:23:59 app.go:47: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/09/20 08:24:47 main.go:12: Starting app at 2023-08-11 08:24:47 
+Error Logger:	2023/09/20 08:24:47 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 08:24:47 app.go:47: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/09/20 08:25:06 main.go:12: Starting app at 2023-08-11 08:25:06 
+Error Logger:	2023/09/20 08:25:06 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 08:25:06 app.go:38: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/09/20 08:25:54 main.go:12: Starting app at 2023-08-11 08:25:54 
+Error Logger:	2023/09/20 08:25:54 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 08:25:54 main.go:12: Starting app at 2023-08-11 08:25:54 
+Error Logger:	2023/09/20 08:25:54 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 08:25:54 app.go:38: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/09/20 08:25:54 app.go:38: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/09/20 08:25:54 app.go:41: Impossible initialice server: listen tcp 127.0.0.1:2222: bind: address already in use
+General Logger:	2023/09/20 08:35:48 main.go:12: Starting app at 2023-08-11 08:35:48 
+Error Logger:	2023/09/20 08:35:48 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 08:35:48 main.go:12: Starting app at 2023-08-11 08:35:48 
+Error Logger:	2023/09/20 08:35:48 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 08:35:48 app.go:38: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/09/20 08:35:48 app.go:38: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/09/20 08:35:48 app.go:41: Impossible initialice server: listen tcp 127.0.0.1:2222: bind: address already in use
+General Logger:	2023/09/20 08:35:49 main.go:12: Starting app at 2023-08-11 08:35:49 
+Error Logger:	2023/09/20 08:35:49 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 08:35:49 app.go:38: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/09/20 08:38:34 main.go:12: Starting app at 2023-08-11 08:38:34 
+Error Logger:	2023/09/20 08:38:34 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 08:38:34 app.go:38: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/09/20 08:45:09 main.go:12: Starting app at 2023-08-11 08:45:09 
+Error Logger:	2023/09/20 08:45:09 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 08:45:09 app.go:38: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/09/20 08:45:26 main.go:12: Starting app at 2023-08-11 08:45:26 
+Error Logger:	2023/09/20 08:45:26 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 08:45:26 app.go:38: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/09/20 08:57:51 main.go:12: Starting app at 2023-08-11 08:57:51 
+Error Logger:	2023/09/20 08:57:51 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 08:57:51 app.go:38: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/09/20 08:58:45 main.go:12: Starting app at 2023-08-11 08:58:45 
+Error Logger:	2023/09/20 08:58:45 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 08:58:45 app.go:38: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/09/20 08:58:50 main.go:12: Starting app at 2023-08-11 08:58:50 
+Error Logger:	2023/09/20 08:58:50 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 08:58:50 app.go:38: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/09/20 08:58:51 main.go:12: Starting app at 2023-08-11 08:58:51 
+Error Logger:	2023/09/20 08:58:51 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 08:58:51 app.go:38: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/09/20 08:58:51 main.go:12: Starting app at 2023-08-11 08:58:51 
+Error Logger:	2023/09/20 08:58:51 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 08:58:51 app.go:38: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/09/20 09:01:46 main.go:12: Starting app at 2023-08-11 09:01:46 
+Error Logger:	2023/09/20 09:01:46 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 09:01:46 app.go:38: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/09/20 09:02:28 main.go:12: Starting app at 2023-08-11 09:02:28 
+Error Logger:	2023/09/20 09:02:28 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 09:02:28 app.go:38: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/09/20 09:02:28 main.go:12: Starting app at 2023-08-11 09:02:28 
+Error Logger:	2023/09/20 09:02:28 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 09:02:28 app.go:38: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/09/20 09:02:39 main.go:12: Starting app at 2023-08-11 09:02:39 
+Error Logger:	2023/09/20 09:02:39 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 09:02:39 app.go:38: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/09/20 09:02:43 main.go:12: Starting app at 2023-08-11 09:02:43 
+Error Logger:	2023/09/20 09:02:43 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 09:02:43 app.go:38: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/09/20 09:04:20 main.go:12: Starting app at 2023-08-11 09:04:20 
+Error Logger:	2023/09/20 09:04:20 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 09:04:20 app.go:38: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/09/20 09:04:23 main.go:12: Starting app at 2023-08-11 09:04:23 
+Error Logger:	2023/09/20 09:04:23 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 09:04:23 app.go:38: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/09/20 09:04:43 main.go:12: Starting app at 2023-08-11 09:04:43 
+Error Logger:	2023/09/20 09:04:43 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 09:04:43 app.go:38: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/09/20 09:05:07 main.go:12: Starting app at 2023-08-11 09:05:07 
+Error Logger:	2023/09/20 09:05:07 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 09:05:07 app.go:38: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/09/20 09:05:59 main.go:12: Starting app at 2023-08-11 09:05:59 
+Error Logger:	2023/09/20 09:05:59 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 09:05:59 app.go:38: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/09/20 09:06:32 main.go:12: Starting app at 2023-08-11 09:06:32 
+Error Logger:	2023/09/20 09:06:32 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 09:06:32 app.go:38: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/09/20 09:06:46 main.go:12: Starting app at 2023-08-11 09:06:46 
+Error Logger:	2023/09/20 09:06:46 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 09:06:46 app.go:38: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/09/20 09:06:53 main.go:12: Starting app at 2023-08-11 09:06:53 
+Error Logger:	2023/09/20 09:06:53 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 09:06:53 app.go:38: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/09/20 09:07:10 main.go:12: Starting app at 2023-08-11 09:07:10 
+Error Logger:	2023/09/20 09:07:10 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 09:07:10 app.go:38: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/09/20 09:07:10 main.go:12: Starting app at 2023-08-11 09:07:10 
+Error Logger:	2023/09/20 09:07:10 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 09:07:10 app.go:38: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/09/20 09:11:18 main.go:12: Starting app at 2023-08-11 09:11:18 
+Error Logger:	2023/09/20 09:11:18 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 09:11:18 app.go:38: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/09/20 09:11:43 main.go:12: Starting app at 2023-08-11 09:11:43 
+Error Logger:	2023/09/20 09:11:43 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 09:11:43 app.go:38: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/09/20 09:11:59 main.go:12: Starting app at 2023-08-11 09:11:59 
+Error Logger:	2023/09/20 09:11:59 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 09:11:59 app.go:38: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/09/20 09:12:01 main.go:12: Starting app at 2023-08-11 09:12:01 
+Error Logger:	2023/09/20 09:12:01 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 09:12:01 app.go:39: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/09/20 09:12:01 app.go:42: Impossible initialice server: listen tcp 127.0.0.1:2222: bind: address already in use
+General Logger:	2023/09/20 09:12:02 main.go:12: Starting app at 2023-08-11 09:12:02 
+Error Logger:	2023/09/20 09:12:02 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 09:12:02 app.go:39: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/09/20 09:12:08 main.go:12: Starting app at 2023-08-11 09:12:08 
+Error Logger:	2023/09/20 09:12:08 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 09:12:08 app.go:39: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/09/20 09:12:11 main.go:12: Starting app at 2023-08-11 09:12:11 
+Error Logger:	2023/09/20 09:12:11 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 09:12:11 app.go:39: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/09/20 09:18:52 main.go:12: Starting app at 2023-08-11 09:18:52 
+General Logger:	2023/09/20 09:18:52 main.go:12: Starting app at 2023-08-11 09:18:52 
+Error Logger:	2023/09/20 09:18:52 main.go:16: [31mError loading env file[0m
+Error Logger:	2023/09/20 09:18:52 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 09:18:52 app.go:39: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/09/20 09:18:52 app.go:39: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/09/20 09:18:52 app.go:42: Impossible initialice server: listen tcp 127.0.0.1:2222: bind: address already in use
+General Logger:	2023/09/20 09:18:53 main.go:12: Starting app at 2023-08-11 09:18:53 
+Error Logger:	2023/09/20 09:18:53 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 09:18:53 app.go:39: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/09/20 09:19:02 main.go:12: Starting app at 2023-08-11 09:19:02 
+Error Logger:	2023/09/20 09:19:02 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 09:19:02 app.go:39: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/09/20 09:19:04 main.go:12: Starting app at 2023-08-11 09:19:04 
+Error Logger:	2023/09/20 09:19:04 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 09:19:04 app.go:39: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/09/20 09:19:22 main.go:12: Starting app at 2023-08-11 09:19:22 
+Error Logger:	2023/09/20 09:19:22 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 09:19:22 app.go:39: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/09/20 09:19:28 main.go:12: Starting app at 2023-08-11 09:19:28 
+Error Logger:	2023/09/20 09:19:28 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 09:19:28 app.go:39: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/09/20 09:20:33 main.go:12: Starting app at 2023-08-11 09:20:33 
+Error Logger:	2023/09/20 09:20:33 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 09:20:33 app.go:39: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/09/20 09:22:09 main.go:12: Starting app at 2023-08-11 09:22:09 
+Error Logger:	2023/09/20 09:22:09 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 09:22:09 app.go:39: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/09/20 09:23:19 main.go:12: Starting app at 2023-08-11 09:23:19 
+General Logger:	2023/09/20 09:23:19 main.go:12: Starting app at 2023-08-11 09:23:19 
+Error Logger:	2023/09/20 09:23:19 main.go:16: [31mError loading env file[0m
+Error Logger:	2023/09/20 09:23:19 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 09:23:19 app.go:39: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/09/20 09:23:19 app.go:39: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/09/20 09:23:19 app.go:42: Impossible initialice server: listen tcp 127.0.0.1:2222: bind: address already in use
+General Logger:	2023/09/20 09:23:20 main.go:12: Starting app at 2023-08-11 09:23:20 
+Error Logger:	2023/09/20 09:23:20 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 09:23:20 app.go:39: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/09/20 09:23:24 main.go:12: Starting app at 2023-08-11 09:23:24 
+General Logger:	2023/09/20 09:23:24 main.go:12: Starting app at 2023-08-11 09:23:24 
+Error Logger:	2023/09/20 09:23:24 main.go:16: [31mError loading env file[0m
+Error Logger:	2023/09/20 09:23:24 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 09:23:24 app.go:39: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/09/20 09:23:24 app.go:39: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/09/20 09:23:24 app.go:42: Impossible initialice server: listen tcp 127.0.0.1:2222: bind: address already in use
+General Logger:	2023/09/20 09:23:25 main.go:12: Starting app at 2023-08-11 09:23:25 
+Error Logger:	2023/09/20 09:23:25 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 09:23:25 app.go:39: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/09/20 09:23:52 main.go:12: Starting app at 2023-08-11 09:23:52 
+Error Logger:	2023/09/20 09:23:52 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 09:23:52 app.go:39: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/09/20 09:24:39 main.go:12: Starting app at 2023-08-11 09:24:39 
+Error Logger:	2023/09/20 09:24:39 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 09:24:39 app.go:39: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/09/20 09:25:18 main.go:12: Starting app at 2023-08-11 09:25:18 
+Error Logger:	2023/09/20 09:25:18 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 09:25:18 app.go:39: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/09/20 09:26:15 main.go:12: Starting app at 2023-08-11 09:26:15 
+Error Logger:	2023/09/20 09:26:15 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 09:26:15 app.go:39: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/09/20 09:26:23 main.go:12: Starting app at 2023-08-11 09:26:23 
+Error Logger:	2023/09/20 09:26:23 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 09:26:23 app.go:39: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/09/20 09:26:27 main.go:12: Starting app at 2023-08-11 09:26:27 
+Error Logger:	2023/09/20 09:26:27 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 09:26:27 app.go:39: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/09/20 09:26:49 main.go:12: Starting app at 2023-08-11 09:26:49 
+Error Logger:	2023/09/20 09:26:49 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 09:26:49 app.go:39: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/09/20 09:27:37 main.go:12: Starting app at 2023-08-11 09:27:37 
+Error Logger:	2023/09/20 09:27:37 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 09:27:37 app.go:39: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/09/20 09:27:38 main.go:12: Starting app at 2023-08-11 09:27:38 
+Error Logger:	2023/09/20 09:27:38 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 09:27:41 main.go:12: Starting app at 2023-08-11 09:27:41 
+Error Logger:	2023/09/20 09:27:41 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 09:29:11 main.go:12: Starting app at 2023-08-11 09:29:11 
+Error Logger:	2023/09/20 09:29:11 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 09:29:26 main.go:12: Starting app at 2023-08-11 09:29:26 
+Error Logger:	2023/09/20 09:29:26 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 09:29:33 main.go:12: Starting app at 2023-08-11 09:29:33 
+Error Logger:	2023/09/20 09:29:33 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 09:30:26 main.go:12: Starting app at 2023-08-11 09:30:26 
+Error Logger:	2023/09/20 09:30:26 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 09:31:45 main.go:12: Starting app at 2023-08-11 09:31:45 
+Error Logger:	2023/09/20 09:31:45 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 09:32:05 main.go:12: Starting app at 2023-08-11 09:32:05 
+Error Logger:	2023/09/20 09:32:05 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 09:32:13 main.go:12: Starting app at 2023-08-11 09:32:13 
+Error Logger:	2023/09/20 09:32:13 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 09:33:56 main.go:12: Starting app at 2023-08-11 09:33:56 
+Error Logger:	2023/09/20 09:33:56 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 09:34:33 main.go:12: Starting app at 2023-08-11 09:34:33 
+Error Logger:	2023/09/20 09:34:33 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 11:21:06 main.go:12: Starting app at 2023-08-11 11:21:06 
+Error Logger:	2023/09/20 11:21:06 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 11:23:00 main.go:12: Starting app at 2023-08-11 11:23:00 
+Error Logger:	2023/09/20 11:23:00 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 11:46:20 main.go:12: Starting app at 2023-08-11 11:46:20 
+Error Logger:	2023/09/20 11:46:20 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 11:46:33 main.go:12: Starting app at 2023-08-11 11:46:33 
+Error Logger:	2023/09/20 11:46:33 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 11:46:45 main.go:12: Starting app at 2023-08-11 11:46:45 
+Error Logger:	2023/09/20 11:46:45 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 11:46:46 main.go:12: Starting app at 2023-08-11 11:46:46 
+Error Logger:	2023/09/20 11:46:46 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 11:47:09 main.go:12: Starting app at 2023-08-11 11:47:09 
+Error Logger:	2023/09/20 11:47:09 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 11:47:52 main.go:12: Starting app at 2023-08-11 11:47:52 
+Error Logger:	2023/09/20 11:47:52 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 11:47:52 app.go:39: Iniciando server --- :%!s(int=0)
+General Logger:	2023/09/20 11:47:52 app.go:42: Impossible initialice server: listen tcp: lookup tcp/%!s(int=0): nodename nor servname provided, or not known
+General Logger:	2023/09/20 11:48:05 main.go:12: Starting app at 2023-08-11 11:48:05 
+Error Logger:	2023/09/20 11:48:05 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 11:48:05 app.go:39: Iniciando server --- :%!s(int=0)
+General Logger:	2023/09/20 11:48:05 app.go:42: Impossible initialice server: listen tcp: lookup tcp/%!s(int=0): nodename nor servname provided, or not known
+General Logger:	2023/09/20 14:39:24 main.go:12: Starting app at 2023-08-11 14:39:24 
+Error Logger:	2023/09/20 14:39:24 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 14:39:24 app.go:39: Iniciando server --- :%!s(int=0)
+General Logger:	2023/09/20 14:39:24 app.go:42: Impossible initialice server: listen tcp: lookup tcp/%!s(int=0): nodename nor servname provided, or not known
+General Logger:	2023/09/20 14:40:09 main.go:12: Starting app at 2023-08-11 14:40:09 
+Error Logger:	2023/09/20 14:40:09 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 14:40:09 app.go:39: Iniciando server --- :%!s(int=0)
+General Logger:	2023/09/20 14:40:09 app.go:42: Impossible initialice server: listen tcp: lookup tcp/%!s(int=0): nodename nor servname provided, or not known
+General Logger:	2023/09/20 14:40:35 main.go:12: Starting app at 2023-08-11 14:40:35 
+Error Logger:	2023/09/20 14:40:35 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 14:40:35 app.go:39: Iniciando server --- :%!s(int=0)
+General Logger:	2023/09/20 14:40:35 app.go:42: Impossible initialice server: listen tcp: lookup tcp/%!s(int=0): nodename nor servname provided, or not known
+General Logger:	2023/09/20 14:40:52 main.go:12: Starting app at 2023-08-11 14:40:52 
+Error Logger:	2023/09/20 14:40:52 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 14:40:52 app.go:39: Iniciando server --- :%!s(int=0)
+General Logger:	2023/09/20 14:40:52 app.go:42: Impossible initialice server: listen tcp: lookup tcp/%!s(int=0): nodename nor servname provided, or not known
+General Logger:	2023/09/20 14:40:55 main.go:12: Starting app at 2023-08-11 14:40:55 
+Error Logger:	2023/09/20 14:40:55 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 14:40:55 app.go:39: Iniciando server --- :%!s(int=0)
+General Logger:	2023/09/20 14:40:55 app.go:42: Impossible initialice server: listen tcp: lookup tcp/%!s(int=0): nodename nor servname provided, or not known
+General Logger:	2023/09/20 14:41:25 main.go:12: Starting app at 2023-08-11 14:41:25 
+Error Logger:	2023/09/20 14:41:25 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 14:41:25 app.go:39: Iniciando server --- :%!s(int=0)
+General Logger:	2023/09/20 14:41:25 app.go:42: Impossible initialice server: listen tcp: lookup tcp/%!s(int=0): nodename nor servname provided, or not known
+General Logger:	2023/09/20 14:41:25 main.go:12: Starting app at 2023-08-11 14:41:25 
+Error Logger:	2023/09/20 14:41:25 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 14:41:25 app.go:39: Iniciando server --- :%!s(int=0)
+General Logger:	2023/09/20 14:41:25 app.go:42: Impossible initialice server: listen tcp: lookup tcp/%!s(int=0): nodename nor servname provided, or not known
+General Logger:	2023/09/20 14:41:25 main.go:12: Starting app at 2023-08-11 14:41:25 
+Error Logger:	2023/09/20 14:41:25 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 14:41:25 app.go:39: Iniciando server --- :%!s(int=0)
+General Logger:	2023/09/20 14:41:25 app.go:42: Impossible initialice server: listen tcp: lookup tcp/%!s(int=0): nodename nor servname provided, or not known
+General Logger:	2023/09/20 14:41:43 main.go:12: Starting app at 2023-08-11 14:41:43 
+Error Logger:	2023/09/20 14:41:43 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 14:41:43 app.go:39: Iniciando server --- :%!s(int=0)
+General Logger:	2023/09/20 14:41:43 app.go:42: Impossible initialice server: listen tcp: lookup tcp/%!s(int=0): nodename nor servname provided, or not known
+General Logger:	2023/09/20 14:41:44 main.go:12: Starting app at 2023-08-11 14:41:44 
+Error Logger:	2023/09/20 14:41:44 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 14:41:44 app.go:39: Iniciando server --- :%!s(int=0)
+General Logger:	2023/09/20 14:41:44 app.go:42: Impossible initialice server: listen tcp: lookup tcp/%!s(int=0): nodename nor servname provided, or not known
+General Logger:	2023/09/20 14:42:30 main.go:12: Starting app at 2023-08-11 14:42:30 
+Error Logger:	2023/09/20 14:42:30 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 14:42:30 app.go:39: Iniciando server --- :%!s(int=0)
+General Logger:	2023/09/20 14:42:30 app.go:42: Impossible initialice server: listen tcp: lookup tcp/%!s(int=0): nodename nor servname provided, or not known
+General Logger:	2023/09/20 14:42:47 main.go:12: Starting app at 2023-08-11 14:42:47 
+Error Logger:	2023/09/20 14:42:47 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 14:42:47 app.go:39: Iniciando server --- :%!s(int=0)
+General Logger:	2023/09/20 14:42:47 app.go:42: Impossible initialice server: listen tcp: lookup tcp/%!s(int=0): nodename nor servname provided, or not known
+General Logger:	2023/09/20 14:43:00 main.go:12: Starting app at 2023-08-11 14:43:00 
+Error Logger:	2023/09/20 14:43:00 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 14:43:00 app.go:39: Iniciando server --- :%!s(int=0)
+General Logger:	2023/09/20 14:43:00 app.go:42: Impossible initialice server: listen tcp: lookup tcp/%!s(int=0): nodename nor servname provided, or not known
+General Logger:	2023/09/20 14:43:02 main.go:12: Starting app at 2023-08-11 14:43:02 
+Error Logger:	2023/09/20 14:43:02 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 14:43:02 app.go:39: Iniciando server --- :%!s(int=0)
+General Logger:	2023/09/20 14:43:02 app.go:42: Impossible initialice server: listen tcp: lookup tcp/%!s(int=0): nodename nor servname provided, or not known
+General Logger:	2023/09/20 14:46:01 main.go:12: Starting app at 2023-08-11 14:46:01 
+Error Logger:	2023/09/20 14:46:01 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 14:46:01 db.go:32: Cargando info Base Datos
+Error Logger:	2023/09/20 14:46:01 db.go:36: Error: [31mopen : no such file or directory[0m
+General Logger:	2023/09/20 14:46:01 app.go:39: Iniciando server --- :%!s(int=0)
+General Logger:	2023/09/20 14:46:01 app.go:42: Impossible initialice server: listen tcp: lookup tcp/%!s(int=0): nodename nor servname provided, or not known
+General Logger:	2023/09/20 14:47:09 main.go:12: Starting app at 2023-08-11 14:47:09 
+Error Logger:	2023/09/20 14:47:09 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 14:47:09 db.go:32: Cargando info Base Datos
+Error Logger:	2023/09/20 14:47:09 db.go:36: Error: [31mopen : no such file or directory[0m
+General Logger:	2023/09/20 14:47:09 app.go:39: Iniciando server --- :%!s(int=0)
+General Logger:	2023/09/20 14:47:09 app.go:42: Impossible initialice server: listen tcp: lookup tcp/%!s(int=0): nodename nor servname provided, or not known
+General Logger:	2023/09/20 14:47:59 main.go:12: Starting app at 2023-08-11 14:47:59 
+Error Logger:	2023/09/20 14:47:59 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 14:47:59 db.go:32: Cargando info Base Datos
+Error Logger:	2023/09/20 14:47:59 db.go:36: Error: [31mopen : no such file or directory[0m
+General Logger:	2023/09/20 14:47:59 app.go:39: Iniciando server --- :%!s(int=0)
+General Logger:	2023/09/20 14:47:59 app.go:42: Impossible initialice server: listen tcp: lookup tcp/%!s(int=0): nodename nor servname provided, or not known
+General Logger:	2023/09/20 14:47:59 main.go:12: Starting app at 2023-08-11 14:47:59 
+Error Logger:	2023/09/20 14:47:59 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 14:47:59 db.go:32: Cargando info Base Datos
+Error Logger:	2023/09/20 14:47:59 db.go:36: Error: [31mopen : no such file or directory[0m
+General Logger:	2023/09/20 14:47:59 app.go:39: Iniciando server --- :%!s(int=0)
+General Logger:	2023/09/20 14:47:59 app.go:42: Impossible initialice server: listen tcp: lookup tcp/%!s(int=0): nodename nor servname provided, or not known
+General Logger:	2023/09/20 14:50:13 main.go:12: Starting app at 2023-08-11 14:50:13 
+Error Logger:	2023/09/20 14:50:13 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 14:50:13 db.go:32: Cargando info Base Datos
+General Logger:	2023/09/20 14:50:33 main.go:12: Starting app at 2023-08-11 14:50:33 
+Error Logger:	2023/09/20 14:50:33 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 14:50:33 db.go:32: Cargando info Base Datos
+General Logger:	2023/09/20 14:51:08 main.go:12: Starting app at 2023-08-11 14:51:08 
+Error Logger:	2023/09/20 14:51:08 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 14:51:08 db.go:32: Cargando info Base Datos
+General Logger:	2023/09/20 14:51:52 main.go:12: Starting app at 2023-08-11 14:51:52 
+Error Logger:	2023/09/20 14:51:52 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 14:51:52 db.go:32: Cargando info Base Datos
+General Logger:	2023/09/20 14:53:31 main.go:12: Starting app at 2023-08-11 14:53:31 
+Error Logger:	2023/09/20 14:53:31 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 14:53:31 db.go:32: Cargando info Base Datos
+General Logger:	2023/09/20 14:53:31 main.go:12: Starting app at 2023-08-11 14:53:31 
+Error Logger:	2023/09/20 14:53:31 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 14:53:31 db.go:32: Cargando info Base Datos
+General Logger:	2023/09/20 14:53:34 main.go:12: Starting app at 2023-08-11 14:53:34 
+Error Logger:	2023/09/20 14:53:34 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 14:53:34 db.go:32: Cargando info Base Datos
+General Logger:	2023/09/20 14:53:36 main.go:12: Starting app at 2023-08-11 14:53:36 
+Error Logger:	2023/09/20 14:53:36 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 14:53:36 db.go:32: Cargando info Base Datos
+General Logger:	2023/09/20 14:54:21 main.go:12: Starting app at 2023-08-11 14:54:21 
+Error Logger:	2023/09/20 14:54:21 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 14:54:21 db.go:32: Cargando info Base Datos
+General Logger:	2023/09/20 14:54:42 main.go:12: Starting app at 2023-08-11 14:54:42 
+Error Logger:	2023/09/20 14:54:42 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 14:54:42 db.go:32: Cargando info Base Datos
+General Logger:	2023/09/20 14:55:20 main.go:12: Starting app at 2023-08-11 14:55:20 
+Error Logger:	2023/09/20 14:55:20 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 14:55:20 db.go:32: Cargando info Base Datos
+General Logger:	2023/09/20 14:55:40 main.go:12: Starting app at 2023-08-11 14:55:40 
+Error Logger:	2023/09/20 14:55:40 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 14:55:40 db.go:32: Cargando info Base Datos
+General Logger:	2023/09/20 14:56:04 main.go:12: Starting app at 2023-08-11 14:56:04 
+Error Logger:	2023/09/20 14:56:04 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 14:56:04 db.go:32: Cargando info Base Datos
+General Logger:	2023/09/20 14:56:42 main.go:12: Starting app at 2023-08-11 14:56:42 
+Error Logger:	2023/09/20 14:56:42 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 14:56:42 db.go:32: Cargando info Base Datos
+General Logger:	2023/09/20 14:57:24 main.go:12: Starting app at 2023-08-11 14:57:24 
+Error Logger:	2023/09/20 14:57:24 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 14:57:24 db.go:32: Cargando info Base Datos
+General Logger:	2023/09/20 14:57:42 main.go:12: Starting app at 2023-08-11 14:57:42 
+Error Logger:	2023/09/20 14:57:42 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 14:57:42 db.go:32: Cargando info Base Datos
+General Logger:	2023/09/20 14:58:37 main.go:12: Starting app at 2023-08-11 14:58:37 
+Error Logger:	2023/09/20 14:58:37 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 14:58:37 db.go:32: Cargando info Base Datos
+General Logger:	2023/09/20 14:58:37 app.go:35: Iniciando server --- :%!s(int=0)
+General Logger:	2023/09/20 14:58:37 app.go:38: Impossible initialice server: listen tcp: lookup tcp/%!s(int=0): nodename nor servname provided, or not known
+General Logger:	2023/09/20 15:03:14 main.go:12: Starting app at 2023-08-11 15:03:14 
+Error Logger:	2023/09/20 15:03:14 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 15:03:14 db.go:35: Cargando info Base Datos
+General Logger:	2023/09/20 15:03:14 app.go:35: Iniciando server --- :%!s(int=0)
+General Logger:	2023/09/20 15:03:14 app.go:38: Impossible initialice server: listen tcp: lookup tcp/%!s(int=0): nodename nor servname provided, or not known
+General Logger:	2023/09/20 15:03:57 main.go:12: Starting app at 2023-08-11 15:03:57 
+Error Logger:	2023/09/20 15:03:57 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 15:03:57 db.go:36: Cargando info Base Datos
+General Logger:	2023/09/20 15:03:57 app.go:35: Iniciando server --- :%!s(int=0)
+General Logger:	2023/09/20 15:03:57 app.go:38: Impossible initialice server: listen tcp: lookup tcp/%!s(int=0): nodename nor servname provided, or not known
+General Logger:	2023/09/20 15:04:26 main.go:12: Starting app at 2023-08-11 15:04:26 
+Error Logger:	2023/09/20 15:04:26 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 15:04:26 db.go:36: Cargando info Base Datos
+General Logger:	2023/09/20 15:04:26 app.go:35: Iniciando server --- :%!s(int=0)
+General Logger:	2023/09/20 15:04:26 app.go:38: Impossible initialice server: listen tcp: lookup tcp/%!s(int=0): nodename nor servname provided, or not known
+General Logger:	2023/09/20 15:04:47 main.go:12: Starting app at 2023-08-11 15:04:47 
+Error Logger:	2023/09/20 15:04:47 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 15:04:47 db.go:37: Cargando info Base Datos
+General Logger:	2023/09/20 15:04:47 app.go:35: Iniciando server --- :%!s(int=0)
+General Logger:	2023/09/20 15:04:47 app.go:38: Impossible initialice server: listen tcp: lookup tcp/%!s(int=0): nodename nor servname provided, or not known
+General Logger:	2023/09/20 15:05:04 main.go:12: Starting app at 2023-08-11 15:05:04 
+Error Logger:	2023/09/20 15:05:04 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 15:05:04 db.go:37: Cargando info Base Datos
+General Logger:	2023/09/20 15:05:04 app.go:35: Iniciando server --- :%!s(int=0)
+General Logger:	2023/09/20 15:05:04 app.go:38: Impossible initialice server: listen tcp: lookup tcp/%!s(int=0): nodename nor servname provided, or not known
+General Logger:	2023/09/20 15:05:45 main.go:12: Starting app at 2023-08-11 15:05:45 
+Error Logger:	2023/09/20 15:05:45 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 15:05:45 db.go:37: Cargando info Base Datos
+General Logger:	2023/09/20 15:05:45 app.go:35: Iniciando server --- :%!s(int=0)
+General Logger:	2023/09/20 15:05:45 app.go:38: Impossible initialice server: listen tcp: lookup tcp/%!s(int=0): nodename nor servname provided, or not known
+General Logger:	2023/09/20 15:05:54 main.go:12: Starting app at 2023-08-11 15:05:54 
+Error Logger:	2023/09/20 15:05:54 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 15:05:54 db.go:37: Cargando info Base Datos
+Error Logger:	2023/09/20 15:05:54 db.go:72: Error: [31mDriver de BD no identificado[0m
+General Logger:	2023/09/20 15:05:54 app.go:35: Iniciando server --- :%!s(int=0)
+General Logger:	2023/09/20 15:05:54 app.go:38: Impossible initialice server: listen tcp: lookup tcp/%!s(int=0): nodename nor servname provided, or not known
+General Logger:	2023/09/20 15:06:25 main.go:12: Starting app at 2023-08-11 15:06:25 
+Error Logger:	2023/09/20 15:06:25 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 15:06:25 db.go:37: Cargando info Base Datos
+General Logger:	2023/09/20 15:06:25 app.go:35: Iniciando server --- :%!s(int=0)
+General Logger:	2023/09/20 15:06:25 app.go:38: Impossible initialice server: listen tcp: lookup tcp/%!s(int=0): nodename nor servname provided, or not known
+General Logger:	2023/09/20 15:06:43 main.go:12: Starting app at 2023-08-11 15:06:43 
+Error Logger:	2023/09/20 15:06:43 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 15:06:43 db.go:37: Cargando info Base Datos
+General Logger:	2023/09/20 15:06:43 app.go:35: Iniciando server --- :%!s(int=0)
+General Logger:	2023/09/20 15:06:43 app.go:38: Impossible initialice server: listen tcp: lookup tcp/%!s(int=0): nodename nor servname provided, or not known
+General Logger:	2023/09/20 15:08:24 main.go:12: Starting app at 2023-08-11 15:08:24 
+Error Logger:	2023/09/20 15:08:24 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 15:08:24 db.go:37: Cargando info Base Datos
+Error Logger:	2023/09/20 15:08:24 db.go:83: Ocurrio um error cannot parse `host=localhost port=33060 user=ecs dbname=curso password=xxxxx sslmode= TimeZone=Asia/Shanghais`: failed to configure TLS (sslmode is invalid)
+General Logger:	2023/09/20 15:08:24 app.go:35: Iniciando server --- :%!s(int=0)
+General Logger:	2023/09/20 15:08:24 app.go:38: Impossible initialice server: listen tcp: lookup tcp/%!s(int=0): nodename nor servname provided, or not known
+General Logger:	2023/09/20 15:08:44 main.go:12: Starting app at 2023-08-11 15:08:44 
+Error Logger:	2023/09/20 15:08:44 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 15:08:44 db.go:37: Cargando info Base Datos
+Error Logger:	2023/09/20 15:08:44 db.go:83: Ocurrio um error cannot parse `host=localhost port=33060 user=ecs dbname=curso password=xxxxx sslmode= TimeZone=Asia/Shanghais`: failed to configure TLS (sslmode is invalid)
+General Logger:	2023/09/20 15:08:44 app.go:35: Iniciando server --- :%!s(int=0)
+General Logger:	2023/09/20 15:08:44 app.go:38: Impossible initialice server: listen tcp: lookup tcp/%!s(int=0): nodename nor servname provided, or not known
+General Logger:	2023/09/20 18:50:46 main.go:12: Starting app at 2023-08-11 18:50:46 
+Error Logger:	2023/09/20 18:50:46 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 18:50:46 db.go:37: Cargando info Base Datos
+Error Logger:	2023/09/20 18:50:46 db.go:81: Ocurrio um error cannot parse `host=localhost port=33060 user=ecs dbname=curso password=xxxxx sslmode= TimeZone=Asia/Shanghais`: failed to configure TLS (sslmode is invalid)
+General Logger:	2023/09/20 18:50:46 app.go:35: Iniciando server --- :%!s(int=0)
+General Logger:	2023/09/20 18:50:46 app.go:38: Impossible initialice server: listen tcp: lookup tcp/%!s(int=0): nodename nor servname provided, or not known
+General Logger:	2023/09/20 18:50:58 main.go:12: Starting app at 2023-08-11 18:50:58 
+Error Logger:	2023/09/20 18:50:58 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 18:50:58 db.go:37: Cargando info Base Datos
+Error Logger:	2023/09/20 18:50:58 db.go:80: Ocurrio um error cannot parse `host=localhost port=33060 user=ecs dbname=curso password=xxxxx sslmode= TimeZone=Asia/Shanghais`: failed to configure TLS (sslmode is invalid)
+General Logger:	2023/09/20 18:50:58 app.go:35: Iniciando server --- :%!s(int=0)
+General Logger:	2023/09/20 18:50:58 app.go:38: Impossible initialice server: listen tcp: lookup tcp/%!s(int=0): nodename nor servname provided, or not known
+General Logger:	2023/09/20 18:51:37 main.go:12: Starting app at 2023-08-11 18:51:37 
+Error Logger:	2023/09/20 18:51:37 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 18:51:37 main.go:12: Starting app at 2023-08-11 18:51:37 
+General Logger:	2023/09/20 18:51:37 db.go:37: Cargando info Base Datos
+Error Logger:	2023/09/20 18:51:37 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 18:51:37 db.go:37: Cargando info Base Datos
+Error Logger:	2023/09/20 18:51:37 db.go:80: Ocurrio um error cannot parse `host=localhost port=33060 user=ecs dbname=curso password=xxxxx sslmode= TimeZone=Asia/Shanghais`: failed to configure TLS (sslmode is invalid)
+Error Logger:	2023/09/20 18:51:37 db.go:80: Ocurrio um error cannot parse `host=localhost port=33060 user=ecs dbname=curso password=xxxxx sslmode= TimeZone=Asia/Shanghais`: failed to configure TLS (sslmode is invalid)
+General Logger:	2023/09/20 18:51:37 app.go:35: Iniciando server --- :%!s(int=0)
+General Logger:	2023/09/20 18:51:37 app.go:35: Iniciando server --- :%!s(int=0)
+General Logger:	2023/09/20 18:51:37 app.go:38: Impossible initialice server: listen tcp: lookup tcp/%!s(int=0): nodename nor servname provided, or not known
+General Logger:	2023/09/20 18:51:37 app.go:38: Impossible initialice server: listen tcp: lookup tcp/%!s(int=0): nodename nor servname provided, or not known
+General Logger:	2023/09/20 18:58:34 main.go:12: Starting app at 2023-08-11 18:58:34 
+Error Logger:	2023/09/20 18:58:34 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 18:58:34 db.go:37: Cargando info Base Datos
+Error Logger:	2023/09/20 18:58:34 db.go:80: Ocurrio um error cannot parse `host=localhost port=33060 user=ecs dbname=curso password=xxxxx sslmode= TimeZone=Asia/Shanghais`: failed to configure TLS (sslmode is invalid)
+General Logger:	2023/09/20 18:58:34 app.go:35: Iniciando server --- :%!s(int=0)
+General Logger:	2023/09/20 18:58:34 app.go:38: Impossible initialice server: listen tcp: lookup tcp/%!s(int=0): nodename nor servname provided, or not known
+General Logger:	2023/09/20 19:00:27 main.go:12: Starting app at 2023-08-11 19:00:27 
+Error Logger:	2023/09/20 19:00:27 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 19:00:27 db.go:37: Cargando info Base Datos
+Error Logger:	2023/09/20 19:00:27 db.go:80: Ocurrio um error cannot parse `host=localhost port=33060 user=ecs dbname=curso password=xxxxx sslmode= TimeZone=Asia/Shanghais`: failed to configure TLS (sslmode is invalid)
+General Logger:	2023/09/20 19:00:27 app.go:35: Iniciando server --- :%!s(int=0)
+General Logger:	2023/09/20 19:00:27 app.go:38: Impossible initialice server: listen tcp: lookup tcp/%!s(int=0): nodename nor servname provided, or not known
+General Logger:	2023/09/20 19:00:27 main.go:12: Starting app at 2023-08-11 19:00:27 
+Error Logger:	2023/09/20 19:00:27 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 19:00:27 db.go:37: Cargando info Base Datos
+Error Logger:	2023/09/20 19:00:27 db.go:80: Ocurrio um error cannot parse `host=localhost port=33060 user=ecs dbname=curso password=xxxxx sslmode= TimeZone=Asia/Shanghais`: failed to configure TLS (sslmode is invalid)
+General Logger:	2023/09/20 19:00:27 app.go:35: Iniciando server --- :%!s(int=0)
+General Logger:	2023/09/20 19:00:27 app.go:38: Impossible initialice server: listen tcp: lookup tcp/%!s(int=0): nodename nor servname provided, or not known
+General Logger:	2023/09/20 19:00:49 main.go:12: Starting app at 2023-08-11 19:00:49 
+General Logger:	2023/09/20 19:00:49 main.go:12: Starting app at 2023-08-11 19:00:49 
+General Logger:	2023/09/20 19:00:49 main.go:12: Starting app at 2023-08-11 19:00:49 
+Error Logger:	2023/09/20 19:00:49 main.go:16: [31mError loading env file[0m
+Error Logger:	2023/09/20 19:00:49 main.go:16: [31mError loading env file[0m
+Error Logger:	2023/09/20 19:00:49 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 19:00:49 db.go:37: Cargando info Base Datos
+General Logger:	2023/09/20 19:00:49 db.go:37: Cargando info Base Datos
+General Logger:	2023/09/20 19:00:49 db.go:37: Cargando info Base Datos
+Error Logger:	2023/09/20 19:00:49 db.go:79: Ocurrio um error cannot parse `host=localhost port=33060 user=ecs dbname=curso password=xxxxx sslmode= TimeZone=Asia/Shanghais`: failed to configure TLS (sslmode is invalid)
+Error Logger:	2023/09/20 19:00:49 db.go:79: Ocurrio um error cannot parse `host=localhost port=33060 user=ecs dbname=curso password=xxxxx sslmode= TimeZone=Asia/Shanghais`: failed to configure TLS (sslmode is invalid)
+General Logger:	2023/09/20 19:00:49 app.go:35: Iniciando server --- :%!s(int=0)
+Error Logger:	2023/09/20 19:00:49 db.go:79: Ocurrio um error cannot parse `host=localhost port=33060 user=ecs dbname=curso password=xxxxx sslmode= TimeZone=Asia/Shanghais`: failed to configure TLS (sslmode is invalid)
+General Logger:	2023/09/20 19:00:49 app.go:35: Iniciando server --- :%!s(int=0)
+General Logger:	2023/09/20 19:00:49 app.go:35: Iniciando server --- :%!s(int=0)
+General Logger:	2023/09/20 19:00:49 app.go:38: Impossible initialice server: listen tcp: lookup tcp/%!s(int=0): nodename nor servname provided, or not known
+General Logger:	2023/09/20 19:00:49 app.go:38: Impossible initialice server: listen tcp: lookup tcp/%!s(int=0): nodename nor servname provided, or not known
+General Logger:	2023/09/20 19:00:49 app.go:38: Impossible initialice server: listen tcp: lookup tcp/%!s(int=0): nodename nor servname provided, or not known
+General Logger:	2023/09/20 19:01:35 main.go:12: Starting app at 2023-08-11 19:01:35 
+Error Logger:	2023/09/20 19:01:35 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 19:01:35 db.go:37: Cargando info Base Datos
+Error Logger:	2023/09/20 19:01:35 db.go:79: Ocurrio um error cannot parse `host=localhost port=33060 user=ecs dbname=curso password=xxxxx sslmode=false TimeZone=Asia/Shanghais`: failed to configure TLS (sslmode is invalid)
+General Logger:	2023/09/20 19:01:35 app.go:35: Iniciando server --- :%!s(int=0)
+General Logger:	2023/09/20 19:01:35 app.go:38: Impossible initialice server: listen tcp: lookup tcp/%!s(int=0): nodename nor servname provided, or not known
+General Logger:	2023/09/20 19:02:29 main.go:12: Starting app at 2023-08-11 19:02:29 
+Error Logger:	2023/09/20 19:02:29 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 19:02:29 db.go:37: Cargando info Base Datos
+Error Logger:	2023/09/20 19:02:29 db.go:79: Ocurrio um error cannot parse `host=localhost port=33060 user=ecs dbname=curso password=xxxxx sslmode=false TimeZone=Asia/Shanghais`: failed to configure TLS (sslmode is invalid)
+General Logger:	2023/09/20 19:02:29 app.go:35: Iniciando server --- :%!s(int=0)
+General Logger:	2023/09/20 19:02:29 app.go:38: Impossible initialice server: listen tcp: lookup tcp/%!s(int=0): nodename nor servname provided, or not known
+General Logger:	2023/09/20 19:02:56 main.go:12: Starting app at 2023-08-11 19:02:56 
+Error Logger:	2023/09/20 19:02:56 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 19:02:56 db.go:37: Cargando info Base Datos
+Error Logger:	2023/09/20 19:02:56 db.go:79: Ocurrio um error cannot parse `host=localhost port=33060 user=ecs dbname=curso password=xxxxx sslmode=false TimeZone=Asia/Shanghais`: failed to configure TLS (sslmode is invalid)
+General Logger:	2023/09/20 19:02:56 app.go:36: Iniciando server --- :%!s(int=0)
+General Logger:	2023/09/20 19:02:56 app.go:39: Impossible initialice server: listen tcp: lookup tcp/%!s(int=0): nodename nor servname provided, or not known
+General Logger:	2023/09/20 19:03:58 main.go:12: Starting app at 2023-08-11 19:03:58 
+Error Logger:	2023/09/20 19:03:58 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 19:03:58 db.go:37: Cargando info Base Datos
+Error Logger:	2023/09/20 19:03:58 db.go:79: Ocurrio um error cannot parse `host=localhost port=33060 user=ecs dbname=curso password=xxxxx sslmode=false TimeZone=Asia/Shanghais`: failed to configure TLS (sslmode is invalid)
+General Logger:	2023/09/20 19:03:58 app.go:36: Iniciando server --- :%!s(int=0)
+General Logger:	2023/09/20 19:03:58 app.go:39: Impossible initialice server: listen tcp: lookup tcp/%!s(int=0): nodename nor servname provided, or not known
+General Logger:	2023/09/20 19:04:12 main.go:12: Starting app at 2023-08-11 19:04:12 
+Error Logger:	2023/09/20 19:04:12 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 19:04:12 db.go:37: Cargando info Base Datos
+Error Logger:	2023/09/20 19:04:12 db.go:79: Ocurrio um error cannot parse `host=localhost port=33060 user=ecs dbname=curso password=xxxxx sslmode=false TimeZone=Asia/Shanghais`: failed to configure TLS (sslmode is invalid)
+General Logger:	2023/09/20 19:04:12 app.go:36: Iniciando server --- :%!s(int=0)
+General Logger:	2023/09/20 19:04:12 app.go:39: Impossible initialice server: listen tcp: lookup tcp/%!s(int=0): nodename nor servname provided, or not known
+General Logger:	2023/09/20 19:09:00 main.go:12: Starting app at 2023-08-11 19:09:00 
+Error Logger:	2023/09/20 19:09:00 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 19:09:00 db.go:37: Cargando info Base Datos
+Error Logger:	2023/09/20 19:09:00 db.go:79: Ocurrio um error cannot parse `host=localhost port=33060 user=ecs dbname=curso password=xxxxx sslmode=false TimeZone=Asia/Shanghais`: failed to configure TLS (sslmode is invalid)
+General Logger:	2023/09/20 19:09:00 app.go:36: Iniciando server --- :%!s(int=0)
+General Logger:	2023/09/20 19:09:00 app.go:39: Impossible initialice server: listen tcp: lookup tcp/%!s(int=0): nodename nor servname provided, or not known
+General Logger:	2023/09/20 19:09:23 main.go:12: Starting app at 2023-08-11 19:09:23 
+Error Logger:	2023/09/20 19:09:23 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 19:09:23 db.go:37: Cargando info Base Datos
+Error Logger:	2023/09/20 19:09:23 db.go:79: Ocurrio um error cannot parse `host=localhost port=33060 user=ecs dbname=curso password=xxxxx sslmode=false TimeZone=Asia/Shanghais`: failed to configure TLS (sslmode is invalid)
+General Logger:	2023/09/20 19:09:24 app.go:36: Iniciando server --- :%!s(int=0)
+General Logger:	2023/09/20 19:09:24 app.go:39: Impossible initialice server: listen tcp: lookup tcp/%!s(int=0): nodename nor servname provided, or not known
+General Logger:	2023/09/20 19:09:36 main.go:12: Starting app at 2023-08-11 19:09:36 
+Error Logger:	2023/09/20 19:09:36 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 19:09:36 db.go:37: Cargando info Base Datos
+Error Logger:	2023/09/20 19:09:36 db.go:79: Ocurrio um error cannot parse `host=localhost port=33060 user=ecs dbname=curso password=xxxxx sslmode=false TimeZone=Asia/Shanghais`: failed to configure TLS (sslmode is invalid)
+General Logger:	2023/09/20 19:09:36 app.go:36: Iniciando server --- :%!s(int=0)
+General Logger:	2023/09/20 19:09:36 app.go:39: Impossible initialice server: listen tcp: lookup tcp/%!s(int=0): nodename nor servname provided, or not known
+General Logger:	2023/09/20 19:10:28 main.go:12: Starting app at 2023-08-11 19:10:28 
+Error Logger:	2023/09/20 19:10:28 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 19:10:28 db.go:37: Cargando info Base Datos
+Error Logger:	2023/09/20 19:10:28 db.go:79: Ocurrio um error cannot parse `host=localhost port=33060 user=ecs dbname=curso password=xxxxx sslmode=false TimeZone=Asia/Shanghais`: failed to configure TLS (sslmode is invalid)
+General Logger:	2023/09/20 19:10:28 app.go:36: Iniciando server --- :%!s(int=0)
+General Logger:	2023/09/20 19:10:28 app.go:39: Impossible initialice server: listen tcp: lookup tcp/%!s(int=0): nodename nor servname provided, or not known
+General Logger:	2023/09/20 19:11:26 main.go:12: Starting app at 2023-08-11 19:11:26 
+Error Logger:	2023/09/20 19:11:26 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 19:11:26 db.go:37: Cargando info Base Datos
+Error Logger:	2023/09/20 19:11:26 db.go:79: Ocurrio um error cannot parse `host=localhost port=33060 user=ecs dbname=curso password=xxxxx sslmode=false TimeZone=Asia/Shanghais`: failed to configure TLS (sslmode is invalid)
+General Logger:	2023/09/20 19:11:26 app.go:36: Iniciando server --- :%!s(int=0)
+General Logger:	2023/09/20 19:11:26 app.go:39: Impossible initialice server: listen tcp: lookup tcp/%!s(int=0): nodename nor servname provided, or not known
+General Logger:	2023/09/20 19:11:28 main.go:12: Starting app at 2023-08-11 19:11:28 
+Error Logger:	2023/09/20 19:11:28 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 19:11:28 db.go:38: Cargando info Base Datos
+General Logger:	2023/09/20 19:11:28 app.go:36: Iniciando server --- :%!s(int=0)
+General Logger:	2023/09/20 19:11:28 app.go:39: Impossible initialice server: listen tcp: lookup tcp/%!s(int=0): nodename nor servname provided, or not known
+General Logger:	2023/09/20 19:11:46 main.go:12: Starting app at 2023-08-11 19:11:46 
+Error Logger:	2023/09/20 19:11:46 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 19:11:46 db.go:38: Cargando info Base Datos
+Error Logger:	2023/09/20 19:11:46 db.go:82: Verificar que la configuracion se la adecuada para base datos tipo: (postgres) .
+General Logger:	2023/09/20 19:11:46 app.go:36: Iniciando server --- :%!s(int=0)
+General Logger:	2023/09/20 19:11:46 app.go:39: Impossible initialice server: listen tcp: lookup tcp/%!s(int=0): nodename nor servname provided, or not known
+General Logger:	2023/09/20 19:11:58 main.go:12: Starting app at 2023-08-11 19:11:58 
+Error Logger:	2023/09/20 19:11:58 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 19:11:58 db.go:38: Cargando info Base Datos
+Error Logger:	2023/09/20 19:11:58 db.go:82: Verificar que la configuracion se la adecuada para base datos tipo: (postgres) .
+General Logger:	2023/09/20 19:11:58 app.go:36: Iniciando server --- :%!s(int=0)
+General Logger:	2023/09/20 19:11:58 app.go:39: Impossible initialice server: listen tcp: lookup tcp/%!s(int=0): nodename nor servname provided, or not known
+General Logger:	2023/09/20 19:16:03 main.go:12: Starting app at 2023-08-11 19:16:03 
+Error Logger:	2023/09/20 19:16:03 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 19:16:03 main.go:12: Starting app at 2023-08-11 19:16:03 
+General Logger:	2023/09/20 19:16:03 db.go:38: Cargando info Base Datos
+Error Logger:	2023/09/20 19:16:03 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 19:16:03 db.go:38: Cargando info Base Datos
+Error Logger:	2023/09/20 19:16:03 db.go:82: Verificar que la configuracion se la adecuada para base datos tipo: (postgres) .
+Error Logger:	2023/09/20 19:16:03 db.go:82: Verificar que la configuracion se la adecuada para base datos tipo: (postgres) .
+General Logger:	2023/09/20 19:16:03 app.go:36: Iniciando server --- :%!s(int=0)
+General Logger:	2023/09/20 19:16:03 app.go:36: Iniciando server --- :%!s(int=0)
+General Logger:	2023/09/20 19:16:03 app.go:39: Impossible initialice server: listen tcp: lookup tcp/%!s(int=0): nodename nor servname provided, or not known
+General Logger:	2023/09/20 19:16:03 app.go:39: Impossible initialice server: listen tcp: lookup tcp/%!s(int=0): nodename nor servname provided, or not known
+General Logger:	2023/09/20 19:40:53 main.go:12: Starting app at 2023-08-11 19:40:53 
+Error Logger:	2023/09/20 19:40:53 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 19:40:53 main.go:12: Starting app at 2023-08-11 19:40:53 
+General Logger:	2023/09/20 19:40:53 db.go:38: Cargando info Base Datos
+Error Logger:	2023/09/20 19:40:53 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 19:40:53 db.go:38: Cargando info Base Datos
+Error Logger:	2023/09/20 19:40:53 db.go:82: Verificar que la configuracion se la adecuada para base datos tipo: [31m(postgres)[0m .
+General Logger:	2023/09/20 19:40:53 app.go:36: Iniciando server --- :%!s(int=0)
+Error Logger:	2023/09/20 19:40:53 db.go:82: Verificar que la configuracion se la adecuada para base datos tipo: [31m(postgres)[0m .
+General Logger:	2023/09/20 19:40:53 app.go:36: Iniciando server --- :%!s(int=0)
+General Logger:	2023/09/20 19:40:53 app.go:39: Impossible initialice server: listen tcp: lookup tcp/%!s(int=0): nodename nor servname provided, or not known
+General Logger:	2023/09/20 19:40:53 app.go:39: Impossible initialice server: listen tcp: lookup tcp/%!s(int=0): nodename nor servname provided, or not known
+General Logger:	2023/09/20 19:41:02 main.go:12: Starting app at 2023-08-11 19:41:02 
+Error Logger:	2023/09/20 19:41:02 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 19:41:02 db.go:38: Cargando info Base Datos
+Error Logger:	2023/09/20 19:41:02 db.go:82: Verificar que la configuracion se la adecuada para base datos tipo: [31m(postgres)[0m .
+General Logger:	2023/09/20 19:41:02 app.go:36: Iniciando server --- :%!s(int=0)
+General Logger:	2023/09/20 19:41:02 app.go:39: Impossible initialice server: listen tcp: lookup tcp/%!s(int=0): nodename nor servname provided, or not known
+General Logger:	2023/09/20 19:42:09 main.go:12: Starting app at 2023-08-11 19:42:09 
+Error Logger:	2023/09/20 19:42:09 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 19:42:09 db.go:38: Cargando info Base Datos
+Error Logger:	2023/09/20 19:42:09 db.go:82: Verificar que la configuracion se la adecuada para base datos tipo: [31m(postgres)[0m .
+General Logger:	2023/09/20 19:42:09 app.go:36: Iniciando server --- :%!s(int=0)
+General Logger:	2023/09/20 19:42:09 app.go:39: Impossible initialice server: listen tcp: lookup tcp/%!s(int=0): nodename nor servname provided, or not known
+General Logger:	2023/09/20 19:42:19 main.go:12: Starting app at 2023-08-11 19:42:19 
+Error Logger:	2023/09/20 19:42:19 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 19:42:19 db.go:38: Cargando info Base Datos
+Error Logger:	2023/09/20 19:42:19 db.go:82: Error: [31mVerificar que la configuracion se la adecuada para base datos tipo: [31m(postgres)[0m .
+General Logger:	2023/09/20 19:42:19 app.go:36: Iniciando server --- :%!s(int=0)
+General Logger:	2023/09/20 19:42:19 app.go:39: Impossible initialice server: listen tcp: lookup tcp/%!s(int=0): nodename nor servname provided, or not known
+General Logger:	2023/09/20 19:43:21 main.go:12: Starting app at 2023-08-11 19:43:21 
+Error Logger:	2023/09/20 19:43:21 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 19:43:21 db.go:38: Cargando info Base Datos
+Error Logger:	2023/09/20 19:43:21 db.go:82: Error: [31mVerificar que la configuracion se la adecuada para base datos tipo: [31m(postgres)[0m .
+General Logger:	2023/09/20 19:43:21 app.go:36: Iniciando server --- :%!s(int=0)
+General Logger:	2023/09/20 19:43:21 app.go:39: Impossible initialice server: listen tcp: lookup tcp/%!s(int=0): nodename nor servname provided, or not known
+General Logger:	2023/09/20 19:45:06 main.go:12: Starting app at 2023-08-11 19:45:06 
+Error Logger:	2023/09/20 19:45:06 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 19:45:06 db.go:38: Cargando info Base Datos
+Error Logger:	2023/09/20 19:45:06 db.go:80: Error: [31mVerificar que la configuracion se la adecuada para base datos tipo: [31m(postgres)[0m .
+General Logger:	2023/09/20 19:45:06 app.go:36: Iniciando server --- :%!s(int=0)
+General Logger:	2023/09/20 19:45:06 app.go:39: Impossible initialice server: listen tcp: lookup tcp/%!s(int=0): nodename nor servname provided, or not known
+General Logger:	2023/09/20 19:45:31 main.go:12: Starting app at 2023-08-11 19:45:31 
+Error Logger:	2023/09/20 19:45:31 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 19:45:31 db.go:38: Cargando info Base Datos
+Error Logger:	2023/09/20 19:45:31 db.go:79: Error: [31mVerificar que la configuracion se la adecuada para base datos tipo: [31m(postgres)[0m .
+General Logger:	2023/09/20 19:45:31 app.go:36: Iniciando server --- :%!s(int=0)
+General Logger:	2023/09/20 19:45:31 app.go:39: Impossible initialice server: listen tcp: lookup tcp/%!s(int=0): nodename nor servname provided, or not known
+General Logger:	2023/09/20 19:46:15 main.go:12: Starting app at 2023-08-11 19:46:15 
+Error Logger:	2023/09/20 19:46:15 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 19:46:15 db.go:37: Cargando info Base Datos
+General Logger:	2023/09/20 19:46:15 db.go:86: New postgres conennection opened
+General Logger:	2023/09/20 19:46:15 app.go:36: Iniciando server --- :%!s(int=0)
+General Logger:	2023/09/20 19:46:15 app.go:39: Impossible initialice server: listen tcp: lookup tcp/%!s(int=0): nodename nor servname provided, or not known
+General Logger:	2023/09/20 19:46:22 main.go:12: Starting app at 2023-08-11 19:46:22 
+Error Logger:	2023/09/20 19:46:22 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/20 19:46:22 db.go:38: Cargando info Base Datos
+Error Logger:	2023/09/20 19:46:22 db.go:79: Error: [31mVerificar que la configuracion se la adecuada para base datos tipo: [31m(postgres)[0m .
+General Logger:	2023/09/20 19:46:22 app.go:36: Iniciando server --- :%!s(int=0)
+General Logger:	2023/09/20 19:46:22 app.go:39: Impossible initialice server: listen tcp: lookup tcp/%!s(int=0): nodename nor servname provided, or not known
