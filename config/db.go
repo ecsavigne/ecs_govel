@@ -1,10 +1,11 @@
 package config
 
 import (
+	"database/sql"
 	"ecs_govel/app/helpers/logg"
 	"fmt"
-	"log"
 	"os"
+	"regexp"
 	"strings"
 
 	//"github.com/jinzhu/gorm"
@@ -16,23 +17,33 @@ import (
 )
 
 type DbInstance struct {
-	DB    *gorm.DB
-	err   error
+	*gorm.DB
+	//err   error
 	AppID string
 }
 
 var Database = new(DbInstance)
 
+/*
+Inicializa configuracion de la base de datos
+Se le pasa '@pathEnv'=> Dir del fichero .env de las configuraciones de BD
+'@driverP' => Tipo de driver de base de datos
+*/
 func configDB(pathEnv, driverP string) {
+	if driverP == "" {
+		logg.ErrorLogger.Printf("Error: \033[31m%v\033[0m\n", "Driver BD no presente")
+		fmt.Println("Driver BD no presente")
+		return
+	}
 	logg.GeneralLogger.Printf("Cargando info Base Datos\n")
-	fmt.Printf("Cargando info Base Datos\n")
+	fmt.Printf("Cargando info Base Datos de %s\n", pathEnv)
 	err_ := godotenv.Load(pathEnv)
 	if err_ != nil {
 		logg.ErrorLogger.Printf("Error: \033[31m%v\033[0m\n", err_)
-		fmt.Println("Error cargando Var ambiente: \033[31m", err_.Error(), "\033[0m")
+		fmt.Println("Error:Error: \033[31m cargando Var ambiente: ", err_.Error(), "\033[0m")
 		return
 	}
-
+	fmt.Println("111111111", driverP)
 	driver := strings.ToLower(driverP)
 	host := os.Getenv("DB_HOST")
 	port := os.Getenv("DB_PORT")
@@ -44,29 +55,42 @@ func configDB(pathEnv, driverP string) {
 	var err error
 	switch driver {
 	case "postgres":
+		fmt.Println("POSTGRESS")
 		ConnStr = fmt.Sprintf("host=%s port=%s user=%s dbname=%s password=%s sslmode=%s TimeZone=Asia/Shanghais",
 			host, port, user, db, pass, ssl)
 		Database.DB, err = gorm.Open(postgres.Open(ConnStr), &gorm.Config{})
 		break
 	case "mysql":
-		//dsn1 := "user:pass@tcp(127.0.0.1:3306)/dbname?charset=utf8mb4&parseTime=True&loc=Local"
+		fmt.Println("MYSQL")
 		ConnStr = fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=utf8mb4&parseTime=True&loc=Local",
 			user, pass, host, port, db)
-		//Database.DB, err =
 		Database.DB, err = gorm.Open(mysql.Open(ConnStr), &gorm.Config{})
 		break
+	default:
+		logg.ErrorLogger.Printf("Error: \033[31m%v\033[0m\n", "Driver de BD no identificado")
+		fmt.Println("Driver de BD no identificado")
+		return
+		break
 	}
-	fmt.Println(ConnStr)
-	//Database.DB, err = gorm.Open(driver, ConnStr)
-	Database.err = err
 	if err != nil {
-		fmt.Println("Error")
-		logg.ErrorLogger.Println("Ocurrio um error", err)
+		expresionRegular := regexp.MustCompile("")
+		if expresionRegular.MatchString(err.Error()) {
+			fmt.Printf("Error: \033[31mVerificar que la configuracion sea la adecuada para base datos tipo: (%s)\033[0m .\n", driverP)
+			logg.ErrorLogger.Printf("Error: \033[31mVerificar que la configuracion se la adecuada para base datos tipo: \033[31m(%s)\033[0m .\n", driverP)
+		} else {
+			fmt.Println("Error", err)
+			logg.ErrorLogger.Println("Ocurrio um error: \033[31m %s\033[0m", err)
+		}
 		return
 	}
-	fmt.Println("qqqqError")
+
 	logg.GeneralLogger.Printf("New %s conennection opened\n", driver)
-	Database.initDB()
+	// Database.initDB()
+}
+
+func (db *DbInstance) db() *sql.DB {
+	DB, _ := db.DB.DB()
+	return DB
 }
 
 func (db *DbInstance) GetDbInstance() *gorm.DB {
@@ -74,16 +98,16 @@ func (db *DbInstance) GetDbInstance() *gorm.DB {
 }
 
 func (db *DbInstance) initDB() {
-	//init1()
-	//db.DB = db.GetDbInstance()
-	if db.err != nil {
-		log.Println(db.err)
-	}
+	// //init1()
+	// //db.DB = db.GetDbInstance()
+	// if db.err != nil {
+	// 	log.Println(db.err)
+	// }
 
-	//Configiuracion de conecciones idle
+	// //Configiuracion de conecciones idle
 	// db.DB.DB().SetConnMaxLifetime(30 * time.Minute)
-	// db.DB.DB().SetMaxIdleConns(100)
-	// db.DB.DB().SetMaxOpenConns(100)
+	//db.DB.DB().SetMaxIdleConns(100)
+	//db.DB.DB().SetMaxOpenConns(100)
 
 	//rand.Seed(time.Now().UnixNano())
 
