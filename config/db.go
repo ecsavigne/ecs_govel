@@ -4,12 +4,15 @@ import (
 	"database/sql"
 	"ecs_govel/app/helpers/logg"
 	"fmt"
+	"io"
 	"os"
+	"path/filepath"
 	"regexp"
 	"strings"
 	"time"
 
 	//"github.com/jinzhu/gorm"
+
 	_ "github.com/jinzhu/gorm/dialects/postgres"
 	"github.com/joho/godotenv"
 	"gorm.io/driver/mysql"
@@ -17,10 +20,21 @@ import (
 	"gorm.io/gorm"
 )
 
+type migration map[string]string
+
+type Migrate struct {
+	isAuto bool
+	// mapa de nombre de migraciones que almacena las path /database/migrations/*.sql
+	// Asociada a la migrationName Key del mapa
+	migrations migration
+	// maneja el tiempo en que son cargadas las migrations
+	timeFirstLoad time.Time
+}
 type DbInstance struct {
 	*gorm.DB
-	//err   error
-	AppID string
+	//Obj que tiene informacion realacionada con las migration
+	Migrates Migrate
+	AppID    string
 }
 
 var Database = new(DbInstance)
@@ -84,11 +98,15 @@ func configDB(pathEnv, driverP string) {
 		return
 	}
 
+	Database.Migrates.isAuto = configsIni.autoMigration
+
 	logg.GeneralLogger.Printf("New (%s) conennection opened\n", driver)
 	fmt.Printf("New (%s) conennection opened\n", driver)
 
 	logg.GeneralLogger.Printf("\033[36mConfigurando coneccion y cargando Migration %s: \033[0m\n", driver)
-	fmt.Printf("\033[36mConfigurando coneccion y cargando Migration de:  %s \033[0m\n", "/database/migrations/*")
+	fmt.Printf("\033[36mConfigurando coneccion y cargando Migration de:  %s \033[0m\n", configsIni.folderMigrations)
+	Database.loadMigrationNameFromMigrationsFolder()
+	Database.autoMigrate()
 }
 
 func (db *DbInstance) db() *sql.DB {
@@ -96,65 +114,93 @@ func (db *DbInstance) db() *sql.DB {
 	return DB
 }
 
-func (db *DbInstance) GetDbInstance() *gorm.DB {
-	return Database.DB
+// Esta funcion permite ejecutar las migraciones cuando se carga la instancia
+// de DbInstance, si DbInstance.Migrate.isAuto == true sino no carga
+func (db *DbInstance) autoMigrate() {
+	if db.Migrates.isAuto {
+		db.execAllMigration()
+		db.Migrates.timeFirstLoad = time.Now()
+		fmt.Println("Activado carga migration automaticas")
+	} else {
+		fmt.Println("Desactivado carga migration automaticas")
+	}
+	//db.execOneMigration("Otra")
+}
+
+// Esta function carga todos los nombres de las migration segun el nombre del
+// archivo .go situado en la carpeta que se almacenaran las migration y la asocia a su
+// respectivo archivo .sql
+func (db *DbInstance) loadMigrationNameFromMigrationsFolder() {
+	db.Migrates.migrations = make(migrations)
+	files, err := os.ReadDir(configsIni.folderMigrations)
+	if err != nil {
+		logg.ErrorLogger.Printf("Error \033[31mal leer la carpeta Error: %+v\033[0m\n", err)
+		fmt.Println("Error \033[31mal leer la carpeta:", err, "\033[0m")
+		return
+	}
+	for _, file := range files {
+		if file.IsDir() {
+			continue
+		}
+		if filepath.Ext(file.Name()) == ".sql" {
+			strTemp := deletePatronOffString(strings.TrimSuffix(file.Name(), ".sql"))
+			if strTemp != "" {
+				db.Migrates.migrations[strTemp] = configsIni.folderMigrations + file.Name()
+			}
+		}
+	}
+
+	fmt.Println("Folder Migrate:", configsIni.folderMigrations)
+	fmt.Printf("Migrates:\n\t%+v\n", db.Migrates.migrations)
 }
 
 func (db *DbInstance) initDB() {
 	// Configiuracion de conecciones idle
-	db.db().SetConnMaxLifetime(30 * time.Minute)
-	db.db().SetMaxIdleConns(20)
-	db.db().SetMaxOpenConns(20)
+	db.db().SetConnMaxLifetime(time.Duration(configsIni.setConnMaxLifetime) * time.Minute)
+	db.db().SetMaxIdleConns(configsIni.setMaxIdleConns)
+	db.db().SetMaxOpenConns(configsIni.setMaxOpenConns)
 
 	// Cargar de Migration
 	//rand.Seed(time.Now().UnixNano())
 
-	// Create tables if they dont exist or migrate schema if exist
-	// if !db.DB.HasTable(&migrations.User{}) {
-	// 	db.DB.CreateTable(&migrations.User{})
-	// } else {
-	// 	db.DB.AutoMigrate(&migrations.User{})
-	// }
+}
 
-	// if !db.DB.HasTable(&migrations.Application{}) {
-	// 	db.DB.CreateTable(&migrations.Application{})
-	// } else {
-	// 	db.DB.AutoMigrate(&migrations.Application{})
-	// }
+// Ejecutar migration dado un nombre
+func (db *DbInstance) execOneMigration(nameSql string) {
+	file, err := os.Open(db.Migrates.migrations[nameSql])
+	if err != nil {
+		logg.GeneralLogger.Printf("fallo al abrir file:%s,  Error: %v \n", nameSql, err)
+		fmt.Printf("fallo al abrir file:%s,  Error: %v \n", nameSql, err)
+		return
+	}
+	defer file.Close()
 
-	// if !db.DB.HasTable(&migrations.WhatchDog{}) {
-	// 	db.DB.CreateTable(&migrations.WhatchDog{})
-	// } else {
-	// 	db.DB.AutoMigrate(&migrations.WhatchDog{})
-	// }
+	queries, err := io.ReadAll(file)
+	if err != nil {
+		logg.GeneralLogger.Printf("fallo al leer file:%s,  Error: %v \n", nameSql, err)
+		fmt.Printf("fallo al leer file:%s,  Error: %v \n", nameSql, err)
+		return
+	}
 
-	// if !db.DB.HasTable(&migrations.WPAccounts{}) {
-	// 	db.DB.CreateTable(&migrations.WPAccounts{})
-	// } else {
-	// 	db.DB.AutoMigrate(&migrations.WPAccounts{})
-	// }
+	// Ejecuta las consultas SQL
+	db.Exec(string(queries))
+	if db.Error != nil {
+		logg.GeneralLogger.Printf("Ocurrio un fallo ejecutando Query Error:%v \n", err)
+		fmt.Printf("Ocurrio un fallo ejecutando Query Error:%v \n", err)
+		return
+	}
+}
 
-	// if !db.DB.HasTable(&migrations.History{}) {
-	// 	db.DB.CreateTable(&migrations.History{})
-	// } else {
-	// 	db.DB.AutoMigrate(&migrations.History{})
-	// }
+// Carga todas las migration situada en el directorio de migration
+func (db *DbInstance) execAllMigration() {
+	for _, v := range db.Migrates.migrations {
+		db.execOneMigration(db.Migrates.migrations[v])
+	}
+}
 
-	// if !db.DB.HasTable(&migrations.Sessions{}) {
-	// 	db.DB.CreateTable(&migrations.Sessions{})
-	// } else {
-	// 	db.DB.AutoMigrate(&migrations.Sessions{})
-	// }
-
-	// if !db.DB.HasTable(&migrations.CompanyWhatsapps{}) {
-	// 	db.DB.CreateTable(&migrations.CompanyWhatsapps{})
-	// } else {
-	// 	db.DB.AutoMigrate(&migrations.CompanyWhatsapps{})
-	// }
-
-	// if !db.DB.HasTable(&migrations.Chats{}) {
-	// 	db.DB.CreateTable(&migrations.Chats{})
-	// } else {
-	// 	db.DB.AutoMigrate(&migrations.Chats{})
-	// }
+// Cargara grupo de migration especificadas que deben estar en el dir de migrations
+func (db *DbInstance) ExecSetMigration(nombreMigration []string) {
+	for i := range nombreMigration {
+		db.execOneMigration(nombreMigration[i])
+	}
 }

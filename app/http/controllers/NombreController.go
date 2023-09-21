@@ -22,7 +22,9 @@ import (
 //	"database/migrations"
 //
 // )
-func (c *Nombre) Insert(w http.ResponseWriter, r *http.Request) {
+type NombreController struct{}
+
+func (c *NombreController) Index(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "ecs_govel/application/json")
 	//vars := mux.Vars(r)
 
@@ -52,7 +54,7 @@ func (c *Nombre) Insert(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(make(map[string]interface{}, 0))
 }
 
-// func (c *Nombre) Delete(w http.ResponseWriter, r *http.Request) {
+// func (c *NombreController) Delete(w http.ResponseWriter, r *http.Request) {
 // w.Header().Set("Content-Type", "ecs_govel/application/json")
 // vars := mux.Vars(r)
 
@@ -82,7 +84,7 @@ func (c *Nombre) Insert(w http.ResponseWriter, r *http.Request) {
 // json.NewEncoder(w).Encode(response)
 //}
 
-// func (c *Nombre) Update(w http.ResponseWriter, r *http.Request) {
+// func (c *NombreController) Update(w http.ResponseWriter, r *http.Request) {
 // w.Header().Set("Content-Type", "ecs_govel/application/json")
 // vars := mux.Vars(r)
 
@@ -112,7 +114,7 @@ func (c *Nombre) Insert(w http.ResponseWriter, r *http.Request) {
 // json.NewEncoder(w).Encode(response)
 //}
 
-// func (c *Nombre) Show(w http.ResponseWriter, r *http.Request) {
+// func (c *NombreController) Show(w http.ResponseWriter, r *http.Request) {
 // w.Header().Set("Content-Type", "ecs_govel/application/json")
 // vars := mux.Vars(r)
 

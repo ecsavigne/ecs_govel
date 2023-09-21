@@ -31,7 +31,7 @@ func InitApp() {
 		IdleTimeout:  time.Second * time.Duration(configsIni.idleTimeout),
 	}
 	fmt.Printf("Sever Web en: %s:%d\n", configsIni.host, configsIni.port)
-	// 10. run the http server paralelly in a goroutine to receive request
+	// Run the http server paralelly in a goroutine to receive request
 	go func() {
 		logg.GeneralLogger.Printf("Iniciando server --- %s:%d\n", configsIni.host, configsIni.port)
 		if err := server.ListenAndServe(); err != nil && err != http.ErrServerClosed {
