@@ -8,6 +8,7 @@ import (
 	"os"
 	"path/filepath"
 	"regexp"
+	"sort"
 	"strings"
 	"time"
 
@@ -21,12 +22,19 @@ import (
 )
 
 type migration map[string]string
+type migrationPath struct {
+	key  string
+	path string
+}
+type migrationOrder []migrationPath
 
 type Migrate struct {
 	isAuto bool
 	// mapa de nombre de migraciones que almacena las path /database/migrations/*.sql
 	// Asociada a la migrationName Key del mapa
 	migrations migration
+	// Migraciones ordenadas por Key
+	migrationsOrders migrationOrder
 	// maneja el tiempo en que son cargadas las migrations
 	timeFirstLoad time.Time
 }
@@ -113,16 +121,24 @@ func (db *DbInstance) db() *sql.DB {
 	return DB
 }
 
+// Copia en db.Migrates.migrationsOrder db.Migrates.migrations
+func (db *DbInstance) orderMigrationPath() {
+	sort.Slice(db.Migrates.migrationsOrders, func(i, j int) bool {
+		return db.Migrates.migrationsOrders[i].key < db.Migrates.migrationsOrders[j].key
+	})
+	//fmt.Printf("MIGRA ORDER:%v\n", db.Migrates.migrationsOrders)
+}
+
 // Esta funcion permite ejecutar las migraciones cuando se carga la instancia
 // de DbInstance, si DbInstance.Migrate.isAuto == true sino no carga
 func (db *DbInstance) autoMigrate() {
 	Database.loadMigrationNameFromMigrationsFolder()
-	if db.Migrates.isAuto {
+	if db.Migrates.isAuto == true {
 		db.execAllMigration()
 		db.Migrates.timeFirstLoad = time.Now()
-		fmt.Println("Activado carga migration automaticas")
+		fmt.Println("\033[31mActivado carga migration automaticas\033[0m")
 	} else {
-		fmt.Println("Desactivado carga migration automaticas")
+		fmt.Println("\033[36mDesactivado carga migration automaticas\033[0m")
 	}
 }
 
@@ -131,6 +147,7 @@ func (db *DbInstance) autoMigrate() {
 // respectivo archivo .sql
 func (db *DbInstance) loadMigrationNameFromMigrationsFolder() {
 	db.Migrates.migrations = make(migration)
+	db.Migrates.migrationsOrders = make(migrationOrder, 0)
 	files, err := os.ReadDir(configsIni.folderMigrations)
 	if err != nil {
 		logg.ErrorLogger.Printf("Error \033[31mal leer la carpeta Error: %+v\033[0m\n", err)
@@ -145,10 +162,16 @@ func (db *DbInstance) loadMigrationNameFromMigrationsFolder() {
 			strTemp := deletePatronOffString(strings.TrimSuffix(file.Name(), ".sql"))
 			if strTemp != "" {
 				db.Migrates.migrations[strTemp] = configsIni.folderMigrations + file.Name()
+				migrationPathTest := migrationPath{
+					key:  strTemp,
+					path: db.Migrates.migrations[strTemp],
+				}
+				db.Migrates.migrationsOrders = append(db.Migrates.migrationsOrders, migrationPathTest)
 			}
 		}
 	}
 
+	db.orderMigrationPath()
 	fmt.Println("Folder Migrate:", configsIni.folderMigrations)
 	fmt.Printf("Migrates:\n\t%+v\n", db.Migrates.migrations)
 }
@@ -196,13 +219,15 @@ func (db *DbInstance) execAllMigration() {
 	logg.GeneralLogger.Println("Ejecutando todas las migartion:")
 	fmt.Println("-----------------------------------------------")
 	logg.GeneralLogger.Println("-----------------------------------------------")
-	for key, _ := range db.Migrates.migrations {
-		db.execOneMigration(key)
-		fmt.Println("Migration:\033[36m", key, "\033[0m")
-		logg.GeneralLogger.Println("Migration:\033[36m", key, "\033[0m")
+	cantMig := 0
+	for i := range db.Migrates.migrationsOrders {
+		cantMig++
+		db.execOneMigration(db.Migrates.migrationsOrders[i].key)
+		fmt.Println("Migration:\033[36m", db.Migrates.migrationsOrders[i].key, "\033[0m")
+		logg.GeneralLogger.Println("Migration:\033[36m", db.Migrates.migrationsOrders[i].key, "\033[0m")
 	}
-	fmt.Println("------------End-----------------------------------")
-	logg.GeneralLogger.Println("------------End-----------------------------------")
+	fmt.Printf("------------End-------%s%d ----------------------------\n", "Cantida Migraciones ejecutadas en BD: ", cantMig)
+	logg.GeneralLogger.Printf("------------End-------%s%d ----------------------------\n", "Cantida Migraciones ejecutadas en BD: ", cantMig)
 }
 
 // Cargara grupo de migration especificadas que deben estar en el dir de migrations
