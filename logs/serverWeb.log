@@ -1,186 +1,150 @@
-General Logger:	2023/09/21 19:16:13 main.go:12: Starting app at 2023-08-12 19:16:13 
-Error Logger:	2023/09/21 19:16:13 main.go:16: [31mError loading env file[0m
-General Logger:	2023/09/21 19:16:13 db.go:53: Cargando info Base Datos
-General Logger:	2023/09/21 19:16:13 db.go:103: New (mysql) conennection opened
-General Logger:	2023/09/21 19:16:13 db.go:106: [36mConfigurando coneccion y cargando Migration mysql: [0m
-General Logger:	2023/09/21 19:16:13 db.go:172: fallo al abrir file:,  Error: open : no such file or directory 
-General Logger:	2023/09/21 19:16:13 db.go:172: fallo al abrir file:,  Error: open : no such file or directory 
-General Logger:	2023/09/21 19:16:13 app.go:36: Iniciando server --- 127.0.0.1:2222
-General Logger:	2023/09/21 19:19:47 main.go:12: Starting app at 2023-08-12 19:19:47 
-Error Logger:	2023/09/21 19:19:47 main.go:16: [31mError loading env file[0m
-General Logger:	2023/09/21 19:19:47 db.go:53: Cargando info Base Datos
-General Logger:	2023/09/21 19:19:47 db.go:103: New (mysql) conennection opened
-General Logger:	2023/09/21 19:19:47 db.go:106: [36mConfigurando coneccion y cargando Migration mysql: [0m
-General Logger:	2023/09/21 19:19:47 db.go:173: fallo al abrir file:,  Error: open : no such file or directory 
-General Logger:	2023/09/21 19:19:47 db.go:173: fallo al abrir file:,  Error: open : no such file or directory 
-General Logger:	2023/09/21 19:19:47 app.go:36: Iniciando server --- 127.0.0.1:2222
-General Logger:	2023/09/21 19:20:28 main.go:12: Starting app at 2023-08-12 19:20:28 
-Error Logger:	2023/09/21 19:20:28 main.go:16: [31mError loading env file[0m
-General Logger:	2023/09/21 19:20:28 db.go:53: Cargando info Base Datos
-General Logger:	2023/09/21 19:20:29 db.go:103: New (mysql) conennection opened
-General Logger:	2023/09/21 19:20:29 db.go:106: [36mConfigurando coneccion y cargando Migration mysql: [0m
-General Logger:	2023/09/21 19:20:29 db.go:173: fallo al abrir file:,  Error: open : no such file or directory 
-General Logger:	2023/09/21 19:20:29 db.go:173: fallo al abrir file:,  Error: open : no such file or directory 
-General Logger:	2023/09/21 19:20:29 app.go:36: Iniciando server --- 127.0.0.1:2222
-General Logger:	2023/09/21 19:21:38 main.go:12: Starting app at 2023-08-12 19:21:38 
-Error Logger:	2023/09/21 19:21:38 main.go:16: [31mError loading env file[0m
-General Logger:	2023/09/21 19:21:38 db.go:53: Cargando info Base Datos
-General Logger:	2023/09/21 19:21:38 db.go:103: New (mysql) conennection opened
-General Logger:	2023/09/21 19:21:38 db.go:106: [36mConfigurando coneccion y cargando Migration mysql: [0m
-General Logger:	2023/09/21 19:21:38 db.go:173: fallo al abrir file:,  Error: open : no such file or directory 
-General Logger:	2023/09/21 19:21:38 db.go:173: fallo al abrir file:,  Error: open : no such file or directory 
-General Logger:	2023/09/21 19:21:38 app.go:36: Iniciando server --- 127.0.0.1:2222
-General Logger:	2023/09/21 19:23:49 main.go:12: Starting app at 2023-08-12 19:23:49 
-Error Logger:	2023/09/21 19:23:49 main.go:16: [31mError loading env file[0m
-General Logger:	2023/09/21 19:23:49 db.go:53: Cargando info Base Datos
-General Logger:	2023/09/21 19:23:49 db.go:103: New (mysql) conennection opened
-General Logger:	2023/09/21 19:23:49 db.go:106: [36mConfigurando coneccion y cargando Migration mysql: [0m
-General Logger:	2023/09/21 19:23:49 db.go:173: fallo al abrir file:,  Error: open : no such file or directory 
-General Logger:	2023/09/21 19:23:49 db.go:173: fallo al abrir file:,  Error: open : no such file or directory 
-General Logger:	2023/09/21 19:23:49 app.go:36: Iniciando server --- 127.0.0.1:2222
-General Logger:	2023/09/21 19:25:40 main.go:12: Starting app at 2023-08-12 19:25:40 
-Error Logger:	2023/09/21 19:25:40 main.go:16: [31mError loading env file[0m
-General Logger:	2023/09/21 19:25:40 db.go:53: Cargando info Base Datos
-General Logger:	2023/09/21 19:25:40 db.go:103: New (mysql) conennection opened
-General Logger:	2023/09/21 19:25:40 db.go:106: [36mConfigurando coneccion y cargando Migration mysql: [0m
-General Logger:	2023/09/21 19:25:40 app.go:36: Iniciando server --- 127.0.0.1:2222
-General Logger:	2023/09/21 19:25:59 main.go:12: Starting app at 2023-08-12 19:25:59 
-Error Logger:	2023/09/21 19:25:59 main.go:16: [31mError loading env file[0m
-General Logger:	2023/09/21 19:25:59 db.go:53: Cargando info Base Datos
-General Logger:	2023/09/21 19:25:59 db.go:103: New (mysql) conennection opened
-General Logger:	2023/09/21 19:25:59 db.go:106: [36mConfigurando coneccion y cargando Migration mysql: [0m
-General Logger:	2023/09/21 19:25:59 db.go:173: fallo al abrir file:./database/migrations/otraMigration.sql,  Error: open : no such file or directory 
-General Logger:	2023/09/21 19:25:59 db.go:173: fallo al abrir file:./database/migrations/testMigration.sql,  Error: open : no such file or directory 
-General Logger:	2023/09/21 19:25:59 app.go:36: Iniciando server --- 127.0.0.1:2222
-General Logger:	2023/09/21 19:30:51 main.go:12: Starting app at 2023-08-12 19:30:51 
-Error Logger:	2023/09/21 19:30:51 main.go:16: [31mError loading env file[0m
-General Logger:	2023/09/21 19:30:51 db.go:53: Cargando info Base Datos
-General Logger:	2023/09/21 19:30:52 db.go:103: New (mysql) conennection opened
-General Logger:	2023/09/21 19:30:52 db.go:106: [36mConfigurando coneccion y cargando Migration mysql: [0m
-General Logger:	2023/09/21 19:30:52 db.go:173: fallo al abrir file relaccionado con migration:./database/migrations/testMigration.sql,  Error: open : no such file or directory 
-General Logger:	2023/09/21 19:30:52 db.go:173: fallo al abrir file relaccionado con migration:./database/migrations/otraMigration.sql,  Error: open : no such file or directory 
-General Logger:	2023/09/21 19:30:52 app.go:36: Iniciando server --- 127.0.0.1:2222
-General Logger:	2023/09/21 19:33:02 main.go:12: Starting app at 2023-08-12 19:33:02 
-Error Logger:	2023/09/21 19:33:02 main.go:16: [31mError loading env file[0m
-General Logger:	2023/09/21 19:33:02 db.go:53: Cargando info Base Datos
-General Logger:	2023/09/21 19:33:02 db.go:103: New (mysql) conennection opened
-General Logger:	2023/09/21 19:33:02 db.go:106: [36mConfigurando coneccion y cargando Migration mysql: [0m
-General Logger:	2023/09/21 19:33:02 db.go:173: fallo al abrir file ./database/migrations/otraMigration.sql relaccionado con migration:,  Error: ./database/migrations/otraMigration.sql 
-%!(EXTRA *fs.PathError=open : no such file or directory)
-General Logger:	2023/09/21 19:33:02 db.go:173: fallo al abrir file ./database/migrations/testMigration.sql relaccionado con migration:,  Error: ./database/migrations/testMigration.sql 
-%!(EXTRA *fs.PathError=open : no such file or directory)
-General Logger:	2023/09/21 19:33:02 app.go:36: Iniciando server --- 127.0.0.1:2222
-General Logger:	2023/09/21 19:34:27 main.go:12: Starting app at 2023-08-12 19:34:27 
-Error Logger:	2023/09/21 19:34:27 main.go:16: [31mError loading env file[0m
-General Logger:	2023/09/21 19:34:27 db.go:53: Cargando info Base Datos
-General Logger:	2023/09/21 19:34:27 db.go:103: New (mysql) conennection opened
-General Logger:	2023/09/21 19:34:27 db.go:106: [36mConfigurando coneccion y cargando Migration mysql: [0m
-General Logger:	2023/09/21 19:34:27 app.go:36: Iniciando server --- 127.0.0.1:2222
-General Logger:	2023/09/21 19:43:31 main.go:12: Starting app at 2023-08-12 19:43:31 
-Error Logger:	2023/09/21 19:43:31 main.go:16: [31mError loading env file[0m
-General Logger:	2023/09/21 19:43:31 db.go:53: Cargando info Base Datos
-General Logger:	2023/09/21 19:43:31 db.go:103: New (mysql) conennection opened
-General Logger:	2023/09/21 19:43:31 db.go:106: [36mConfigurando coneccion y cargando Migration mysql: [0m
-General Logger:	2023/09/21 19:43:31 app.go:36: Iniciando server --- 127.0.0.1:2222
-General Logger:	2023/09/21 19:45:50 main.go:12: Starting app at 2023-08-12 19:45:50 
-Error Logger:	2023/09/21 19:45:50 main.go:16: [31mError loading env file[0m
-General Logger:	2023/09/21 19:45:50 db.go:53: Cargando info Base Datos
-General Logger:	2023/09/21 19:45:50 db.go:103: New (mysql) conennection opened
-General Logger:	2023/09/21 19:45:50 db.go:106: [36mConfigurando coneccion y cargando Migration mysql: [0m
-General Logger:	2023/09/21 19:45:50 app.go:36: Iniciando server --- 127.0.0.1:2222
-General Logger:	2023/09/21 19:46:51 main.go:12: Starting app at 2023-08-12 19:46:51 
-Error Logger:	2023/09/21 19:46:51 main.go:16: [31mError loading env file[0m
-General Logger:	2023/09/21 19:46:51 db.go:53: Cargando info Base Datos
-General Logger:	2023/09/21 19:46:51 db.go:103: New (mysql) conennection opened
-General Logger:	2023/09/21 19:46:51 db.go:106: [36mConfigurando coneccion y cargando Migration mysql: [0m
-General Logger:	2023/09/21 19:46:51 app.go:36: Iniciando server --- 127.0.0.1:2222
-General Logger:	2023/09/21 19:52:21 main.go:12: Starting app at 2023-08-12 19:52:21 
-Error Logger:	2023/09/21 19:52:21 main.go:16: [31mError loading env file[0m
-General Logger:	2023/09/21 19:52:21 db.go:53: Cargando info Base Datos
-General Logger:	2023/09/21 19:52:21 db.go:103: New (mysql) conennection opened
-General Logger:	2023/09/21 19:52:21 db.go:106: [36mConfigurando coneccion y cargando Migration mysql: [0m
-General Logger:	2023/09/21 19:52:21 app.go:36: Iniciando server --- 127.0.0.1:2222
-General Logger:	2023/09/21 19:53:07 main.go:12: Starting app at 2023-08-12 19:53:07 
-Error Logger:	2023/09/21 19:53:07 main.go:16: [31mError loading env file[0m
-General Logger:	2023/09/21 19:53:07 db.go:53: Cargando info Base Datos
-General Logger:	2023/09/21 19:53:07 db.go:103: New (mysql) conennection opened
-General Logger:	2023/09/21 19:53:07 db.go:106: [36mConfigurando coneccion y cargando Migration mysql: [0m
-General Logger:	2023/09/21 19:53:07 app.go:36: Iniciando server --- 127.0.0.1:2222
-General Logger:	2023/09/21 19:53:59 main.go:12: Starting app at 2023-08-12 19:53:59 
-Error Logger:	2023/09/21 19:53:59 main.go:16: [31mError loading env file[0m
-General Logger:	2023/09/21 19:53:59 db.go:53: Cargando info Base Datos
-General Logger:	2023/09/21 19:53:59 db.go:103: New (mysql) conennection opened
-General Logger:	2023/09/21 19:53:59 db.go:106: [36mConfigurando coneccion y cargando Migration mysql: [0m
-General Logger:	2023/09/21 19:53:59 app.go:36: Iniciando server --- 127.0.0.1:2222
-General Logger:	2023/09/21 19:57:03 main.go:12: Starting app at 2023-08-12 19:57:03 
-Error Logger:	2023/09/21 19:57:03 main.go:16: [31mError loading env file[0m
-General Logger:	2023/09/21 19:57:03 db.go:53: Cargando info Base Datos
-General Logger:	2023/09/21 19:57:03 db.go:103: New (mysql) conennection opened
-General Logger:	2023/09/21 19:57:03 db.go:106: [36mConfigurando coneccion y cargando Migration mysql: [0m
-General Logger:	2023/09/21 19:57:03 app.go:36: Iniciando server --- 127.0.0.1:2222
-General Logger:	2023/09/21 19:58:15 main.go:12: Starting app at 2023-08-12 19:58:15 
-Error Logger:	2023/09/21 19:58:15 main.go:16: [31mError loading env file[0m
-General Logger:	2023/09/21 19:58:15 db.go:53: Cargando info Base Datos
-General Logger:	2023/09/21 19:58:15 db.go:103: New (mysql) conennection opened
-General Logger:	2023/09/21 19:58:15 db.go:106: [36mConfigurando coneccion y cargando Migration mysql: [0m
-General Logger:	2023/09/21 19:58:15 app.go:36: Iniciando server --- 127.0.0.1:2222
-General Logger:	2023/09/21 19:59:08 main.go:12: Starting app at 2023-08-12 19:59:08 
-Error Logger:	2023/09/21 19:59:08 main.go:16: [31mError loading env file[0m
-General Logger:	2023/09/21 19:59:08 db.go:53: Cargando info Base Datos
-General Logger:	2023/09/21 19:59:08 db.go:103: New (mysql) conennection opened
-General Logger:	2023/09/21 19:59:08 db.go:106: [36mConfigurando coneccion y cargando Migration mysql: [0m
-General Logger:	2023/09/21 19:59:08 app.go:36: Iniciando server --- 127.0.0.1:2222
-General Logger:	2023/09/21 20:00:06 main.go:12: Starting app at 2023-08-12 20:00:06 
-Error Logger:	2023/09/21 20:00:06 main.go:16: [31mError loading env file[0m
-General Logger:	2023/09/21 20:00:06 db.go:53: Cargando info Base Datos
-General Logger:	2023/09/21 20:00:06 db.go:103: New (mysql) conennection opened
-General Logger:	2023/09/21 20:00:06 db.go:106: [36mConfigurando coneccion y cargando Migration mysql: [0m
-General Logger:	2023/09/21 20:00:06 app.go:36: Iniciando server --- 127.0.0.1:2222
-General Logger:	2023/09/21 20:01:10 main.go:12: Starting app at 2023-08-12 20:01:10 
-Error Logger:	2023/09/21 20:01:10 main.go:16: [31mError loading env file[0m
-General Logger:	2023/09/21 20:01:10 db.go:53: Cargando info Base Datos
-General Logger:	2023/09/21 20:01:10 db.go:103: New (mysql) conennection opened
-General Logger:	2023/09/21 20:01:10 db.go:106: [36mConfigurando coneccion y cargando Migration mysql: [0m
-General Logger:	2023/09/21 20:01:10 app.go:36: Iniciando server --- 127.0.0.1:2222
-General Logger:	2023/09/21 20:02:26 main.go:12: Starting app at 2023-08-12 20:02:26 
-Error Logger:	2023/09/21 20:02:26 main.go:16: [31mError loading env file[0m
-General Logger:	2023/09/21 20:02:26 db.go:53: Cargando info Base Datos
-General Logger:	2023/09/21 20:02:26 db.go:103: New (mysql) conennection opened
-General Logger:	2023/09/21 20:02:26 db.go:106: [36mConfigurando coneccion y cargando Migration mysql: [0m
-General Logger:	2023/09/21 20:02:26 app.go:36: Iniciando server --- 127.0.0.1:2222
-General Logger:	2023/09/21 20:03:03 main.go:12: Starting app at 2023-08-12 20:03:03 
-Error Logger:	2023/09/21 20:03:03 main.go:16: [31mError loading env file[0m
-General Logger:	2023/09/21 20:03:03 db.go:53: Cargando info Base Datos
-General Logger:	2023/09/21 20:03:03 db.go:103: New (mysql) conennection opened
-General Logger:	2023/09/21 20:03:03 db.go:106: [36mConfigurando coneccion y cargando Migration mysql: [0m
-General Logger:	2023/09/21 20:03:03 db.go:196: Ejecutando todas las migartion:
-General Logger:	2023/09/21 20:03:03 db.go:198: -----------------------------------------------
-General Logger:	2023/09/21 20:03:03 db.go:202: Migration:[36m 21092023194920_otra [0m
-General Logger:	2023/09/21 20:03:03 db.go:202: Migration:[36m 21092023194921__test [0m
-General Logger:	2023/09/21 20:03:03 db.go:202: Migration:[36m 21092023194922__test [0m
-General Logger:	2023/09/21 20:03:03 db.go:205: ------------End-----------------------------------
-General Logger:	2023/09/21 20:03:03 app.go:36: Iniciando server --- 127.0.0.1:2222
-General Logger:	2023/09/21 20:03:39 main.go:12: Starting app at 2023-08-12 20:03:39 
-Error Logger:	2023/09/21 20:03:39 main.go:16: [31mError loading env file[0m
-General Logger:	2023/09/21 20:03:39 db.go:53: Cargando info Base Datos
-General Logger:	2023/09/21 20:03:39 db.go:103: New (mysql) conennection opened
-General Logger:	2023/09/21 20:03:39 db.go:106: [36mConfigurando coneccion y cargando Migration mysql: [0m
-General Logger:	2023/09/21 20:03:39 db.go:196: Ejecutando todas las migartion:
-General Logger:	2023/09/21 20:03:39 db.go:198: -----------------------------------------------
-General Logger:	2023/09/21 20:03:39 db.go:202: Migration:[36m 21092023194921__test [0m
-General Logger:	2023/09/21 20:03:39 db.go:202: Migration:[36m 21092023194922__test_copie [0m
-General Logger:	2023/09/21 20:03:39 db.go:202: Migration:[36m 21092023194920_otra [0m
-General Logger:	2023/09/21 20:03:39 db.go:205: ------------End-----------------------------------
-General Logger:	2023/09/21 20:03:39 app.go:36: Iniciando server --- 127.0.0.1:2222
-General Logger:	2023/09/21 20:04:01 main.go:12: Starting app at 2023-08-12 20:04:01 
-Error Logger:	2023/09/21 20:04:01 main.go:16: [31mError loading env file[0m
-General Logger:	2023/09/21 20:04:01 db.go:53: Cargando info Base Datos
-General Logger:	2023/09/21 20:04:01 db.go:103: New (mysql) conennection opened
-General Logger:	2023/09/21 20:04:01 db.go:106: [36mConfigurando coneccion y cargando Migration mysql: [0m
-General Logger:	2023/09/21 20:04:01 db.go:196: Ejecutando todas las migartion:
-General Logger:	2023/09/21 20:04:01 db.go:198: -----------------------------------------------
-General Logger:	2023/09/21 20:04:01 db.go:202: Migration:[36m 21092023194920_otra [0m
-General Logger:	2023/09/21 20:04:01 db.go:202: Migration:[36m 21092023194921__test [0m
-General Logger:	2023/09/21 20:04:01 db.go:202: Migration:[36m 21092023194922__test_copy [0m
-General Logger:	2023/09/21 20:04:01 db.go:205: ------------End-----------------------------------
-General Logger:	2023/09/21 20:04:01 app.go:36: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/09/22 01:57:26 main.go:12: Starting app at 2023-08-13 01:57:26 
+Error Logger:	2023/09/22 01:57:26 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/22 01:57:26 db.go:61: Cargando info Base Datos
+General Logger:	2023/09/22 01:57:26 db.go:111: New (mysql) conennection opened
+General Logger:	2023/09/22 01:57:26 db.go:114: [36mConfigurando coneccion y cargando Migration mysql: [0m
+General Logger:	2023/09/22 01:57:26 db.go:219: Ejecutando todas las migartion:
+General Logger:	2023/09/22 01:57:26 db.go:221: -----------------------------------------------
+General Logger:	2023/09/22 01:57:26 db.go:225: Migration:[36m 21092023224400_persona [0m
+General Logger:	2023/09/22 01:57:26 db.go:225: Migration:[36m 21092023224401_estudiante [0m
+General Logger:	2023/09/22 01:57:26 db.go:225: Migration:[36m 21092023224402_instructor [0m
+General Logger:	2023/09/22 01:57:26 db.go:225: Migration:[36m 21092023224403_contenido [0m
+General Logger:	2023/09/22 01:57:26 db.go:225: Migration:[36m 21092023224404_estructura [0m
+General Logger:	2023/09/22 01:57:26 db.go:225: Migration:[36m 21092023224405_curso [0m
+General Logger:	2023/09/22 01:57:26 db.go:225: Migration:[36m 21092023224406_matricula [0m
+General Logger:	2023/09/22 01:57:26 db.go:225: Migration:[36m 21092023224407_estructura_contenido [0m
+General Logger:	2023/09/22 01:57:27 db.go:225: Migration:[36m 21092023224408_instructor_curso [0m
+General Logger:	2023/09/22 01:57:27 db.go:228: ------------End-----------------------------------
+General Logger:	2023/09/22 01:57:27 app.go:36: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/09/22 01:58:31 main.go:12: Starting app at 2023-08-13 01:58:31 
+Error Logger:	2023/09/22 01:58:31 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/22 01:58:31 db.go:61: Cargando info Base Datos
+General Logger:	2023/09/22 01:58:31 db.go:111: New (mysql) conennection opened
+General Logger:	2023/09/22 01:58:31 db.go:114: [36mConfigurando coneccion y cargando Migration mysql: [0m
+General Logger:	2023/09/22 01:58:31 db.go:219: Ejecutando todas las migartion:
+General Logger:	2023/09/22 01:58:31 db.go:221: -----------------------------------------------
+General Logger:	2023/09/22 01:58:31 db.go:225: Migration:[36m 21092023224400_persona [0m
+General Logger:	2023/09/22 01:58:31 db.go:225: Migration:[36m 21092023224401_estudiante [0m
+General Logger:	2023/09/22 01:58:31 db.go:225: Migration:[36m 21092023224402_instructor [0m
+General Logger:	2023/09/22 01:58:31 db.go:225: Migration:[36m 21092023224403_contenido [0m
+General Logger:	2023/09/22 01:58:31 db.go:225: Migration:[36m 21092023224404_estructura [0m
+General Logger:	2023/09/22 01:58:31 db.go:225: Migration:[36m 21092023224405_curso [0m
+General Logger:	2023/09/22 01:58:31 db.go:225: Migration:[36m 21092023224406_matricula [0m
+General Logger:	2023/09/22 01:58:31 db.go:225: Migration:[36m 21092023224407_estructura_contenido [0m
+General Logger:	2023/09/22 01:58:31 db.go:225: Migration:[36m 21092023224408_instructor_curso [0m
+General Logger:	2023/09/22 01:58:31 db.go:228: ------------End-----------------------------------
+General Logger:	2023/09/22 01:58:31 app.go:36: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/09/22 02:11:21 main.go:12: Starting app at 2023-08-13 02:11:21 
+Error Logger:	2023/09/22 02:11:21 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/22 02:11:21 db.go:61: Cargando info Base Datos
+General Logger:	2023/09/22 02:11:21 db.go:111: New (mysql) conennection opened
+General Logger:	2023/09/22 02:11:21 db.go:114: [36mConfigurando coneccion y cargando Migration mysql: [0m
+General Logger:	2023/09/22 02:11:21 db.go:219: Ejecutando todas las migartion:
+General Logger:	2023/09/22 02:11:21 db.go:221: -----------------------------------------------
+General Logger:	2023/09/22 02:11:21 db.go:225: Migration:[36m 21092023224400_persona [0m
+General Logger:	2023/09/22 02:11:21 db.go:225: Migration:[36m 21092023224401_estudiante [0m
+General Logger:	2023/09/22 02:11:21 db.go:225: Migration:[36m 21092023224402_instructor [0m
+General Logger:	2023/09/22 02:11:21 db.go:225: Migration:[36m 21092023224403_contenido [0m
+General Logger:	2023/09/22 02:11:21 db.go:225: Migration:[36m 21092023224404_estructura [0m
+General Logger:	2023/09/22 02:11:21 db.go:225: Migration:[36m 21092023224405_curso [0m
+General Logger:	2023/09/22 02:11:21 db.go:225: Migration:[36m 21092023224406_matricula [0m
+General Logger:	2023/09/22 02:11:21 db.go:225: Migration:[36m 21092023224407_estructura_contenido [0m
+General Logger:	2023/09/22 02:11:21 db.go:225: Migration:[36m 21092023224408_instructor_curso [0m
+General Logger:	2023/09/22 02:11:21 db.go:225: Migration:[36m 21092023224409_curso_contenido [0m
+General Logger:	2023/09/22 02:11:21 db.go:228: ------------End-----------------------------------
+General Logger:	2023/09/22 02:11:21 app.go:36: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/09/22 02:12:21 main.go:12: Starting app at 2023-08-13 02:12:21 
+Error Logger:	2023/09/22 02:12:21 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/22 02:12:21 db.go:61: Cargando info Base Datos
+General Logger:	2023/09/22 02:12:21 db.go:111: New (mysql) conennection opened
+General Logger:	2023/09/22 02:12:21 db.go:114: [36mConfigurando coneccion y cargando Migration mysql: [0m
+General Logger:	2023/09/22 02:12:21 db.go:219: Ejecutando todas las migartion:
+General Logger:	2023/09/22 02:12:21 db.go:221: -----------------------------------------------
+General Logger:	2023/09/22 02:12:21 db.go:227: Migration:[36m 21092023224400_persona [0m
+General Logger:	2023/09/22 02:12:21 db.go:227: Migration:[36m 21092023224401_estudiante [0m
+General Logger:	2023/09/22 02:12:21 db.go:227: Migration:[36m 21092023224402_instructor [0m
+General Logger:	2023/09/22 02:12:21 db.go:227: Migration:[36m 21092023224403_contenido [0m
+General Logger:	2023/09/22 02:12:21 db.go:227: Migration:[36m 21092023224404_estructura [0m
+General Logger:	2023/09/22 02:12:21 db.go:227: Migration:[36m 21092023224405_curso [0m
+General Logger:	2023/09/22 02:12:21 db.go:227: Migration:[36m 21092023224406_matricula [0m
+General Logger:	2023/09/22 02:12:21 db.go:227: Migration:[36m 21092023224407_estructura_contenido [0m
+General Logger:	2023/09/22 02:12:21 db.go:227: Migration:[36m 21092023224408_instructor_curso [0m
+General Logger:	2023/09/22 02:12:21 db.go:227: Migration:[36m 21092023224409_curso_contenido [0m
+General Logger:	2023/09/22 02:12:21 db.go:230: ------------End-----------------------------------
+General Logger:	2023/09/22 02:12:21 app.go:36: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/09/22 02:12:47 main.go:12: Starting app at 2023-08-13 02:12:47 
+Error Logger:	2023/09/22 02:12:47 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/22 02:12:47 db.go:61: Cargando info Base Datos
+General Logger:	2023/09/22 02:12:47 db.go:111: New (mysql) conennection opened
+General Logger:	2023/09/22 02:12:47 db.go:114: [36mConfigurando coneccion y cargando Migration mysql: [0m
+General Logger:	2023/09/22 02:12:47 db.go:219: Ejecutando todas las migartion:
+General Logger:	2023/09/22 02:12:47 db.go:221: -----------------------------------------------
+General Logger:	2023/09/22 02:12:47 db.go:227: Migration:[36m 21092023224400_persona [0m
+General Logger:	2023/09/22 02:12:47 db.go:227: Migration:[36m 21092023224401_estudiante [0m
+General Logger:	2023/09/22 02:12:47 db.go:227: Migration:[36m 21092023224402_instructor [0m
+General Logger:	2023/09/22 02:12:47 db.go:227: Migration:[36m 21092023224403_contenido [0m
+General Logger:	2023/09/22 02:12:47 db.go:227: Migration:[36m 21092023224404_estructura [0m
+General Logger:	2023/09/22 02:12:47 db.go:227: Migration:[36m 21092023224405_curso [0m
+General Logger:	2023/09/22 02:12:47 db.go:227: Migration:[36m 21092023224406_matricula [0m
+General Logger:	2023/09/22 02:12:47 db.go:227: Migration:[36m 21092023224407_estructura_contenido [0m
+General Logger:	2023/09/22 02:12:47 db.go:227: Migration:[36m 21092023224408_instructor_curso [0m
+General Logger:	2023/09/22 02:12:47 db.go:227: Migration:[36m 21092023224409_curso_contenido [0m
+General Logger:	2023/09/22 02:12:47 db.go:230: ------------End-----------------------------------
+General Logger:	2023/09/22 02:12:47 app.go:36: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/09/22 02:14:05 main.go:12: Starting app at 2023-08-13 02:14:05 
+Error Logger:	2023/09/22 02:14:05 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/22 02:14:05 db.go:61: Cargando info Base Datos
+General Logger:	2023/09/22 02:14:05 db.go:111: New (mysql) conennection opened
+General Logger:	2023/09/22 02:14:05 db.go:114: [36mConfigurando coneccion y cargando Migration mysql: [0m
+General Logger:	2023/09/22 02:14:05 db.go:219: Ejecutando todas las migartion:
+General Logger:	2023/09/22 02:14:05 db.go:221: -----------------------------------------------
+General Logger:	2023/09/22 02:14:05 db.go:227: Migration:[36m 21092023224400_persona [0m
+General Logger:	2023/09/22 02:14:05 db.go:227: Migration:[36m 21092023224401_estudiante [0m
+General Logger:	2023/09/22 02:14:05 db.go:227: Migration:[36m 21092023224402_instructor [0m
+General Logger:	2023/09/22 02:14:05 db.go:227: Migration:[36m 21092023224403_contenido [0m
+General Logger:	2023/09/22 02:14:05 db.go:227: Migration:[36m 21092023224404_estructura [0m
+General Logger:	2023/09/22 02:14:05 db.go:227: Migration:[36m 21092023224405_curso [0m
+General Logger:	2023/09/22 02:14:05 db.go:227: Migration:[36m 21092023224406_matricula [0m
+General Logger:	2023/09/22 02:14:05 db.go:227: Migration:[36m 21092023224407_estructura_contenido [0m
+General Logger:	2023/09/22 02:14:05 db.go:227: Migration:[36m 21092023224408_instructor_curso [0m
+General Logger:	2023/09/22 02:14:05 db.go:227: Migration:[36m 21092023224409_curso_contenido [0m
+General Logger:	2023/09/22 02:14:05 db.go:230: ------------End-----------------------------------
+General Logger:	2023/09/22 02:14:05 app.go:36: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/09/22 02:14:21 main.go:12: Starting app at 2023-08-13 02:14:21 
+Error Logger:	2023/09/22 02:14:21 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/22 02:14:21 db.go:61: Cargando info Base Datos
+General Logger:	2023/09/22 02:14:21 db.go:111: New (mysql) conennection opened
+General Logger:	2023/09/22 02:14:21 db.go:114: [36mConfigurando coneccion y cargando Migration mysql: [0m
+General Logger:	2023/09/22 02:14:21 db.go:219: Ejecutando todas las migartion:
+General Logger:	2023/09/22 02:14:21 db.go:221: -----------------------------------------------
+General Logger:	2023/09/22 02:14:21 db.go:227: Migration:[36m 21092023224400_persona [0m
+General Logger:	2023/09/22 02:14:21 db.go:227: Migration:[36m 21092023224401_estudiante [0m
+General Logger:	2023/09/22 02:14:21 db.go:227: Migration:[36m 21092023224402_instructor [0m
+General Logger:	2023/09/22 02:14:21 db.go:227: Migration:[36m 21092023224403_contenido [0m
+General Logger:	2023/09/22 02:14:21 db.go:227: Migration:[36m 21092023224404_estructura [0m
+General Logger:	2023/09/22 02:14:21 db.go:227: Migration:[36m 21092023224405_curso [0m
+General Logger:	2023/09/22 02:14:21 db.go:227: Migration:[36m 21092023224406_matricula [0m
+General Logger:	2023/09/22 02:14:21 db.go:227: Migration:[36m 21092023224407_estructura_contenido [0m
+General Logger:	2023/09/22 02:14:21 db.go:227: Migration:[36m 21092023224408_instructor_curso [0m
+General Logger:	2023/09/22 02:14:21 db.go:227: Migration:[36m 21092023224409_curso_contenido [0m
+General Logger:	2023/09/22 02:14:21 db.go:230: ------------End-------Cantida Migraciones ejecutadas en BD: 10----------------------------
+General Logger:	2023/09/22 02:14:21 app.go:36: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/09/22 02:14:52 main.go:12: Starting app at 2023-08-13 02:14:52 
+Error Logger:	2023/09/22 02:14:52 main.go:16: [31mError loading env file[0m
+General Logger:	2023/09/22 02:14:52 db.go:61: Cargando info Base Datos
+General Logger:	2023/09/22 02:14:52 db.go:111: New (mysql) conennection opened
+General Logger:	2023/09/22 02:14:52 db.go:114: [36mConfigurando coneccion y cargando Migration mysql: [0m
+General Logger:	2023/09/22 02:14:52 db.go:219: Ejecutando todas las migartion:
+General Logger:	2023/09/22 02:14:52 db.go:221: -----------------------------------------------
+General Logger:	2023/09/22 02:14:52 db.go:227: Migration:[36m 21092023224400_persona [0m
+General Logger:	2023/09/22 02:14:52 db.go:227: Migration:[36m 21092023224401_estudiante [0m
+General Logger:	2023/09/22 02:14:52 db.go:227: Migration:[36m 21092023224402_instructor [0m
+General Logger:	2023/09/22 02:14:52 db.go:227: Migration:[36m 21092023224403_contenido [0m
+General Logger:	2023/09/22 02:14:52 db.go:227: Migration:[36m 21092023224404_estructura [0m
+General Logger:	2023/09/22 02:14:52 db.go:227: Migration:[36m 21092023224405_curso [0m
+General Logger:	2023/09/22 02:14:52 db.go:227: Migration:[36m 21092023224406_matricula [0m
+General Logger:	2023/09/22 02:14:52 db.go:227: Migration:[36m 21092023224407_estructura_contenido [0m
+General Logger:	2023/09/22 02:14:52 db.go:227: Migration:[36m 21092023224408_instructor_curso [0m
+General Logger:	2023/09/22 02:14:52 db.go:227: Migration:[36m 21092023224409_curso_contenido [0m
+General Logger:	2023/09/22 02:14:52 db.go:230: ------------End-------Cantida Migraciones ejecutadas en BD: 10 ----------------------------
+General Logger:	2023/09/22 02:14:52 app.go:36: Iniciando server --- 127.0.0.1:2222
