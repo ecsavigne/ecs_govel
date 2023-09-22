@@ -3,14 +3,16 @@
  que van hacer ejcutados por medio de *gorm.DB.Exec()
  los mismos deberan ser ejecutados si en la base de datos no existe la table 
  a la que refiere la migration o sip se modifica algun campo.Los nombres de la migration
- se forman como el nombre del archivo .sql que representa la migration sin Migration.sql 
- con la primera letra en mayuscula
+ se forman como el nombre del archivo .sql que representa la migration sin (Migration.sql) 
+ con la primera letra en mayuscula y la primera parte sera:
+    ddmmyyyyhhmmss_nombre_de_ellaMigration.sql
+ . LOs nombres de las migrations son en Plural al final
+ antes de Migrations
 
 # Ejemplo de contenido del archivo .sql
- 
-Crear la migration o tabla nombre_otronombre(file= nombre_otronombreMigration.sql)
+Crear la migration o tabla nombre_otronombre(file= nombre_otronombresMigration.sql)
 --------------------------------------------------
-	CREATE TABLE IF NOT EXISTS <nombre_otronombre> (
+	CREATE TABLE IF NOT EXISTS <nombre_otronombres> (
 		id INT PRIMARY KEY,
 		nombre VARCHAR(255),
 		edad INT

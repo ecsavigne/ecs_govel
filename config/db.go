@@ -105,7 +105,6 @@ func configDB(pathEnv, driverP string) {
 
 	logg.GeneralLogger.Printf("\033[36mConfigurando coneccion y cargando Migration %s: \033[0m\n", driver)
 	fmt.Printf("\033[36mConfigurando coneccion y cargando Migration de:  %s \033[0m\n", configsIni.folderMigrations)
-	Database.loadMigrationNameFromMigrationsFolder()
 	Database.autoMigrate()
 }
 
@@ -117,6 +116,7 @@ func (db *DbInstance) db() *sql.DB {
 // Esta funcion permite ejecutar las migraciones cuando se carga la instancia
 // de DbInstance, si DbInstance.Migrate.isAuto == true sino no carga
 func (db *DbInstance) autoMigrate() {
+	Database.loadMigrationNameFromMigrationsFolder()
 	if db.Migrates.isAuto {
 		db.execAllMigration()
 		db.Migrates.timeFirstLoad = time.Now()
@@ -124,14 +124,13 @@ func (db *DbInstance) autoMigrate() {
 	} else {
 		fmt.Println("Desactivado carga migration automaticas")
 	}
-	//db.execOneMigration("Otra")
 }
 
 // Esta function carga todos los nombres de las migration segun el nombre del
 // archivo .go situado en la carpeta que se almacenaran las migration y la asocia a su
 // respectivo archivo .sql
 func (db *DbInstance) loadMigrationNameFromMigrationsFolder() {
-	db.Migrates.migrations = make(migrations)
+	db.Migrates.migrations = make(migration)
 	files, err := os.ReadDir(configsIni.folderMigrations)
 	if err != nil {
 		logg.ErrorLogger.Printf("Error \033[31mal leer la carpeta Error: %+v\033[0m\n", err)
@@ -166,24 +165,24 @@ func (db *DbInstance) initDB() {
 }
 
 // Ejecutar migration dado un nombre
-func (db *DbInstance) execOneMigration(nameSql string) {
-	file, err := os.Open(db.Migrates.migrations[nameSql])
+func (db *DbInstance) execOneMigration(nombreMigration string) {
+	file, err := os.Open(db.Migrates.migrations[nombreMigration])
 	if err != nil {
-		logg.GeneralLogger.Printf("fallo al abrir file:%s,  Error: %v \n", nameSql, err)
-		fmt.Printf("fallo al abrir file:%s,  Error: %v \n", nameSql, err)
+		logg.GeneralLogger.Printf("fallo al abrir file %s relaccionado con migration:%s,  Error: %v \n", nombreMigration, db.Migrates.migrations[nombreMigration], nombreMigration, err)
+		fmt.Printf("fallo al abrir file %s relaccionado con migration:%s,  Error: %v \n", nombreMigration, db.Migrates.migrations[nombreMigration], nombreMigration, err)
 		return
 	}
 	defer file.Close()
 
-	queries, err := io.ReadAll(file)
+	querieSql, err := io.ReadAll(file)
 	if err != nil {
-		logg.GeneralLogger.Printf("fallo al leer file:%s,  Error: %v \n", nameSql, err)
-		fmt.Printf("fallo al leer file:%s,  Error: %v \n", nameSql, err)
+		logg.GeneralLogger.Printf("fallo al leer file relaccionado con :%s, Path: %s Error: %v \n", nombreMigration, db.Migrates.migrations[nombreMigration], err)
+		fmt.Printf("fallo al leer file relaccionado con :%s, Path: %s Error: %v \n", nombreMigration, db.Migrates.migrations[nombreMigration], err)
 		return
 	}
 
 	// Ejecuta las consultas SQL
-	db.Exec(string(queries))
+	db.Exec(string(querieSql))
 	if db.Error != nil {
 		logg.GeneralLogger.Printf("Ocurrio un fallo ejecutando Query Error:%v \n", err)
 		fmt.Printf("Ocurrio un fallo ejecutando Query Error:%v \n", err)
@@ -193,14 +192,30 @@ func (db *DbInstance) execOneMigration(nameSql string) {
 
 // Carga todas las migration situada en el directorio de migration
 func (db *DbInstance) execAllMigration() {
-	for _, v := range db.Migrates.migrations {
-		db.execOneMigration(db.Migrates.migrations[v])
+	fmt.Println("Ejecutando todas las migartion:")
+	logg.GeneralLogger.Println("Ejecutando todas las migartion:")
+	fmt.Println("-----------------------------------------------")
+	logg.GeneralLogger.Println("-----------------------------------------------")
+	for key, _ := range db.Migrates.migrations {
+		db.execOneMigration(key)
+		fmt.Println("Migration:\033[36m", key, "\033[0m")
+		logg.GeneralLogger.Println("Migration:\033[36m", key, "\033[0m")
 	}
+	fmt.Println("------------End-----------------------------------")
+	logg.GeneralLogger.Println("------------End-----------------------------------")
 }
 
 // Cargara grupo de migration especificadas que deben estar en el dir de migrations
 func (db *DbInstance) ExecSetMigration(nombreMigration []string) {
+	fmt.Println("Ejecutando todas las migartion:")
+	logg.GeneralLogger.Println("Ejecutando todas las migartion:")
+	fmt.Println("-----------------------------------------------")
+	logg.GeneralLogger.Println("-----------------------------------------------")
 	for i := range nombreMigration {
 		db.execOneMigration(nombreMigration[i])
+		fmt.Println("Migration:\033[36m", i, "\033[0m")
+		logg.GeneralLogger.Println("Migration:\033[36m", i, "\033[0m")
 	}
+	fmt.Println("------------End-----------------------------------")
+	logg.GeneralLogger.Println("------------End-----------------------------------")
 }
