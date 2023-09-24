@@ -7,7 +7,7 @@ import (
 )
 
 type Contenidos struct {
-	ID        int `gorm:"primarykey;column:id;autoIncrement"`
+	ID        int `gorm:"primarykey;column:id;autoIncrement; not null"`
 	CreatedAt time.Time
 	UpdatedAt time.Time
 	DeletedAt gorm.DeletedAt `gorm:"index;"`
