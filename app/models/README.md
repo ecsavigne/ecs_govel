@@ -44,3 +44,10 @@ type A struct {
     AID int
     B B
  }
+# Model gorm
+type gorm.Model struct {
+    ID        uint `gorm:"primarykey"`
+	CreatedAt time.Time
+	UpdatedAt time.Time
+	DeletedAt gorm.DeletedAt `gorm:"index"`
+}
