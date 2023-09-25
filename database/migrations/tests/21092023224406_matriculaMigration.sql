@@ -6,6 +6,10 @@ CREATE TABLE IF NOT EXISTS matriculas (
     curso_id INT,
     estudiante_ci VARCHAR(11),
     fecha_ingreso DATETIME,
-    FOREIGN KEY (estudiante_ci) REFERENCES estudiantes(ci),
+    FOREIGN KEY (estudiante_ci) REFERENCES estudiantes(ci)
+        ON UPDATE CASCADE
+        ON DELETE CASCADE,
     FOREIGN KEY (curso_id) REFERENCES cursos(id)
+        ON UPDATE CASCADE
+        ON DELETE CASCADE
 ) ENGINE = InnoDB;

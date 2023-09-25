@@ -5,4 +5,6 @@ CREATE TABLE IF NOT EXISTS estudiantes (
     deleted_at DATETIME,
     si_juridico BOOLEAN,
     FOREIGN KEY (ci) REFERENCES personas(ci)
+        ON UPDATE CASCADE
+        ON DELETE CASCADE
 ) ENGINE = InnoDB;

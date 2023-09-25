@@ -4,4 +4,6 @@ CREATE TABLE IF NOT EXISTS instructores (
     updated_at DATETIME,
     deleted_at DATETIME,
     FOREIGN KEY (ci) REFERENCES personas(ci)
+        ON UPDATE CASCADE
+        ON DELETE CASCADE
 ) ENGINE = InnoDB;
