@@ -28,6 +28,8 @@ Modificar un campo de la tabla si es necesario nombre_otronombre(file= nombre_ot
 ALTER TABLE nombre_otronombre
     MODIFY edad INT NOT NULL;
 
+ALTER TABLE curso_contenidos
+    CHANGE NombreAntiguo NombreNuevo Tipo;
 # Ejemplo de Migraciones con Primary y Foreign key
 CREATE TABLE IF NOT EXISTS Test (
     id INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
