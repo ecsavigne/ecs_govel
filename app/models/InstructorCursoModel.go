@@ -6,8 +6,8 @@ import (
 	"gorm.io/gorm"
 )
 
-type InstructorCursos struct {
-	ID           int            `gorm:"primarykey;column:id;autoIncrement; not null"`
+type InstructorCurso struct {
+	ID           int            `gorm:"primaryKey;column:id;autoIncrement; not null"`
 	CreatedAt    time.Time      `gorm:"column:s;type:datetime;default:null"`
 	UpdatedAt    time.Time      `gorm:"column:updated_at;type:datetime;default:null"`
 	DeletedAt    gorm.DeletedAt `gorm:"index;column:deleted_at;type:datetime;default:null"`

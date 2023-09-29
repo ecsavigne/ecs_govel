@@ -3,6 +3,7 @@ package config
 import (
 	"database/sql"
 	"ecs_govel/app/helpers/logg"
+	"ecs_govel/app/models"
 	"fmt"
 	"io"
 	"os"
@@ -29,7 +30,8 @@ type migrationPath struct {
 type migrationOrder []migrationPath
 
 type Migrate struct {
-	isAuto bool
+	isAuto               bool
+	isMigrationFromModel bool
 	// mapa de nombre de migraciones que almacena las path /database/migrations/*.sql
 	// Asociada a la migrationName Key del mapa
 	migrations migration
@@ -80,13 +82,18 @@ func configDB(pathEnv, driverP string) {
 		fmt.Println("driver: POSTGRESS")
 		ConnStr = fmt.Sprintf("host=%s port=%s user=%s dbname=%s password=%s sslmode=%s TimeZone=Asia/Shanghais",
 			host, port, user, db, pass, ssl)
-		Database.DB, err = gorm.Open(postgres.Open(ConnStr), &gorm.Config{})
+		// DisableForeignKeyConstraintWhenMigrating: false activa la actualizacion en cascada cuando migra
+		// hay que correr las migration con true y luego con false para agregar actualizacion
+		// en cascada o ordenar las tablas segun el orden que acomoda o sino la otra opcion
+		// de cargar migration es decir que no sea via gorm sino .sql
+		Database.DB, err = gorm.Open(postgres.Open(ConnStr), &gorm.Config{DisableForeignKeyConstraintWhenMigrating: configsIni.activeOnCascade})
 		break
 	case "mysql":
 		fmt.Println("driver: MYSQL")
 		ConnStr = fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=utf8mb4&parseTime=True&loc=Local",
 			user, pass, host, port, db)
-		Database.DB, err = gorm.Open(mysql.Open(ConnStr), &gorm.Config{})
+		// DisableForeignKeyConstraintWhenMigrating: false activa la actualizacion en cascada cuando migra
+		Database.DB, err = gorm.Open(mysql.Open(ConnStr), &gorm.Config{DisableForeignKeyConstraintWhenMigrating: configsIni.activeOnCascade})
 		break
 	default:
 		logg.ErrorLogger.Printf("Error: \033[31m%v\033[0m\n", "Driver de BD no identificado")
@@ -107,6 +114,7 @@ func configDB(pathEnv, driverP string) {
 	}
 
 	Database.Migrates.isAuto = configsIni.autoMigration
+	Database.Migrates.isMigrationFromModel = configsIni.migrationFromModel
 
 	logg.GeneralLogger.Printf("New (%s) conennection opened\n", driver)
 	fmt.Printf("New (%s) conennection opened\n", driver)
@@ -133,12 +141,21 @@ func (db *DbInstance) orderMigrationPath() {
 // de DbInstance, si DbInstance.Migrate.isAuto == true sino no carga
 func (db *DbInstance) autoMigrate() {
 	Database.loadMigrationNameFromMigrationsFolder()
+	if db.Migrates.isAuto == true && db.Migrates.isMigrationFromModel == true {
+		fmt.Println("\033[31mNo puede estar los 2 modos de carga de migration automatica activa, revise app.ini en config/app.ini\033[0m")
+		logg.GeneralLogger.Println("\033[31mNo puede estar los 2 modos de carga de migration automatica activa, revise app.ini en config/app.ini\033[0m")
+		return
+	}
 	if db.Migrates.isAuto == true {
 		db.execAllMigration()
 		db.Migrates.timeFirstLoad = time.Now()
 		fmt.Println("\033[31mActivado carga migration automaticas\033[0m")
+		logg.GeneralLogger.Println("\033[31mActivado carga migration automaticas\033[0m")
+	} else if db.Migrates.isMigrationFromModel == true {
+		db.execAllMigrationFromModels()
 	} else {
 		fmt.Println("\033[36mDesactivado carga migration automaticas\033[0m")
+		logg.GeneralLogger.Println("\033[36mDesactivado carga migration automaticas\033[0m")
 	}
 }
 
@@ -226,6 +243,20 @@ func (db *DbInstance) execAllMigration() {
 		fmt.Println("Migration:\033[36m", db.Migrates.migrationsOrders[i].key, "\033[0m")
 		logg.GeneralLogger.Println("Migration:\033[36m", db.Migrates.migrationsOrders[i].key, "\033[0m")
 	}
+	fmt.Printf("------------End-------%s%d ----------------------------\n", "Cantida Migraciones ejecutadas en BD: ", cantMig)
+	logg.GeneralLogger.Printf("------------End-------%s%d ----------------------------\n", "Cantida Migraciones ejecutadas en BD: ", cantMig)
+}
+
+func (db *DbInstance) execAllMigrationFromModels() {
+	fmt.Println("\nEjecutando todas las migartion desde Models:")
+	logg.GeneralLogger.Println("Ejecutando todas las migartion:")
+	fmt.Println("-----------------------------------------------")
+	logg.GeneralLogger.Println("-----------------------------------------------")
+	cantMig := len(models.Models)
+	db.AutoMigrate(models.Models...)
+	// fmt.Println("Migration:\033[36m", reflect.TypeOf(v).String(), "\033[0m")
+	// logg.GeneralLogger.Println("Migration:\033[36m", reflect.TypeOf(v).String(), "\033[0m")
+	//}
 	fmt.Printf("------------End-------%s%d ----------------------------\n", "Cantida Migraciones ejecutadas en BD: ", cantMig)
 	logg.GeneralLogger.Printf("------------End-------%s%d ----------------------------\n", "Cantida Migraciones ejecutadas en BD: ", cantMig)
 }

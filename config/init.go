@@ -14,10 +14,11 @@ type configEcsGovelIni struct {
 	cfgAppIni *ini.File
 	cfgBDIni  *ini.File
 	//Seccion de variables de App
-	sessionApp       *ini.Section
-	appID            string
-	folderMigrations string
-	autoMigration    bool
+	sessionApp         *ini.Section
+	appID              string
+	folderMigrations   string
+	autoMigration      bool
+	migrationFromModel bool
 	//Seccion de variables de Servidor Web
 	sessionWeb   *ini.Section
 	host         string
@@ -32,6 +33,7 @@ type configEcsGovelIni struct {
 	setConnMaxLifetime int
 	setMaxIdleConns    int
 	setMaxOpenConns    int
+	activeOnCascade    bool
 }
 
 var configsIni = configEcsGovelIni{}
@@ -51,6 +53,7 @@ func init() {
 	configsIni.appID, Database.AppID = configsIni.sessionApp.Key("AppID").String(), configsIni.sessionApp.Key("AppID").String()
 	configsIni.folderMigrations = configsIni.sessionApp.Key("FolderMigrations").String()
 	configsIni.autoMigration, _ = configsIni.sessionApp.Key("AutoMigration").Bool()
+	configsIni.migrationFromModel, _ = configsIni.sessionApp.Key("MigrationFromModel").Bool()
 	configsIni.sessionWeb = configsIni.cfgAppIni.Section("Servidor Web")
 	configsIni.host = configsIni.sessionWeb.Key("Host").String()
 	configsIni.port, _ = configsIni.sessionWeb.Key("Port").Int()
@@ -60,6 +63,7 @@ func init() {
 	configsIni.sessionDB = configsIni.cfgBDIni.Section("Env DataBase")
 	configsIni.driver = configsIni.sessionDB.Key("Driver").String()
 	configsIni.urlEnv = configsIni.sessionDB.Key("UrlEnv").String()
+	configsIni.activeOnCascade, _ = configsIni.sessionDB.Key("ActiveOnCascade").Bool()
 	configsIni.setConnMaxLifetime, _ = configsIni.sessionDB.Key("SetConnMaxLifetime").Int()
 	configsIni.setMaxIdleConns, _ = configsIni.sessionDB.Key("SetMaxIdleConns").Int()
 	configsIni.setMaxOpenConns, _ = configsIni.sessionDB.Key("SetMaxOpenConns").Int()
