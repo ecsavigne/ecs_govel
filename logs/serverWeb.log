@@ -2085,3 +2085,10 @@ General Logger:	2023/09/30 10:53:00 db.go:158: [36mDesactivado carga migration 
 General Logger:	2023/09/30 10:53:00 app.go:36: Iniciando server --- 127.0.0.1:3333
 General Logger:	2023/09/30 10:53:00 app.go:36: Iniciando server --- 127.0.0.1:3333
 General Logger:	2023/09/30 10:53:00 app.go:39: Impossible initialice server: listen tcp 127.0.0.1:3333: bind: address already in use
+General Logger:	2023/10/02 04:44:38 main.go:12: Starting app at 2023-08-23 04:44:38 
+Error Logger:	2023/10/02 04:44:38 main.go:16: [31mError loading env file[0m
+General Logger:	2023/10/02 04:44:38 db.go:63: Cargando info Base Datos
+General Logger:	2023/10/02 04:44:38 db.go:119: New (mysql) conennection opened
+General Logger:	2023/10/02 04:44:38 db.go:122: [36mConfigurando coneccion y cargando Migration mysql: [0m
+General Logger:	2023/10/02 04:44:38 db.go:158: [36mDesactivado carga migration automaticas[0m
+General Logger:	2023/10/02 04:44:38 app.go:36: Iniciando server --- 127.0.0.1:3333

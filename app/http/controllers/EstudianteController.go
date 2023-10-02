@@ -7,7 +7,29 @@ import (
 
 type EstudianteController struct{}
 
-func (c *CursoController) RegistrarEstudiante(w http.ResponseWriter, r *http.Request) {
+func (c *EstudianteController) RegistrarEstudianteEnCurso(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+	//vars := mux.Vars(r)
+	defer func() {
+		if err := recover(); err != nil {
+			w.WriteHeader(http.StatusOK)
+			json.NewEncoder(w).Encode(
+				map[string]interface{}{
+					"Test": "Validacion de Excepcion",
+				},
+			)
+		}
+	}()
+	defer r.Body.Close()
+
+	w.WriteHeader(http.StatusOK)
+	json.NewEncoder(w).Encode(map[string]interface{}{
+		"result": 1,
+		"func":   "RegistrarEstudianteEnCurso",
+	})
+}
+
+func (c *EstudianteController) RegistrarEstudiante(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	//vars := mux.Vars(r)
 	defer func() {
@@ -29,7 +51,7 @@ func (c *CursoController) RegistrarEstudiante(w http.ResponseWriter, r *http.Req
 	})
 }
 
-func (c *CursoController) ModificarEstudiante(w http.ResponseWriter, r *http.Request) {
+func (c *EstudianteController) ModificarEstudiante(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	//vars := mux.Vars(r)
 	defer func() {
@@ -51,7 +73,7 @@ func (c *CursoController) ModificarEstudiante(w http.ResponseWriter, r *http.Req
 	})
 }
 
-func (c *CursoController) ModificarDatosEstudianteCurso(w http.ResponseWriter, r *http.Request) {
+func (c *EstudianteController) ModificarDatosEstudianteCurso(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	//vars := mux.Vars(r)
 	defer func() {
@@ -73,7 +95,7 @@ func (c *CursoController) ModificarDatosEstudianteCurso(w http.ResponseWriter, r
 	})
 }
 
-func (c *CursoController) EliminarEstudiante(w http.ResponseWriter, r *http.Request) {
+func (c *EstudianteController) EliminarEstudiante(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	//vars := mux.Vars(r)
 	defer func() {
@@ -95,7 +117,7 @@ func (c *CursoController) EliminarEstudiante(w http.ResponseWriter, r *http.Requ
 	})
 }
 
-func (c *CursoController) AsocisarEstudianteCurso(w http.ResponseWriter, r *http.Request) {
+func (c *EstudianteController) AsocisarEstudianteCurso(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	//vars := mux.Vars(r)
 	defer func() {
@@ -117,7 +139,7 @@ func (c *CursoController) AsocisarEstudianteCurso(w http.ResponseWriter, r *http
 	})
 }
 
-func (c *CursoController) ElminarEstudianteCurso(w http.ResponseWriter, r *http.Request) {
+func (c *EstudianteController) ElminarEstudianteCurso(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	//vars := mux.Vars(r)
 	defer func() {
@@ -139,7 +161,7 @@ func (c *CursoController) ElminarEstudianteCurso(w http.ResponseWriter, r *http.
 	})
 }
 
-func (c *CursoController) MostrarEstudianteDeCurso(w http.ResponseWriter, r *http.Request) {
+func (c *EstudianteController) MostrarEstudianteDeCurso(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	//vars := mux.Vars(r)
 	defer func() {
@@ -161,7 +183,7 @@ func (c *CursoController) MostrarEstudianteDeCurso(w http.ResponseWriter, r *htt
 	})
 }
 
-func (c *CursoController) MostrarEstudianteJuridicoNoJuridico(w http.ResponseWriter, r *http.Request) {
+func (c *EstudianteController) MostrarEstudianteJuridicoNoJuridico(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	//vars := mux.Vars(r)
 	defer func() {

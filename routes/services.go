@@ -14,8 +14,28 @@ func services(loadRoute *mux.Router) {
 	loadRoute.HandleFunc("/mostrarCurso", new(controllers.CursoController).MostrarCurso)
 
 	//Estudiante
+	loadRoute.HandleFunc("/registrarEstudiante", new(controllers.EstudianteController).RegistrarEstudiante)
+	loadRoute.HandleFunc("/registrarEstudianteEnCurso", new(controllers.EstudianteController).RegistrarEstudianteEnCurso)
+	loadRoute.HandleFunc("/modificarEstudiante", new(controllers.EstudianteController).ModificarEstudiante)
+	loadRoute.HandleFunc("/modificarEstudianteCurso", new(controllers.EstudianteController).ModificarDatosEstudianteCurso)
+	loadRoute.HandleFunc("/eliminarEstudiante", new(controllers.EstudianteController).EliminarEstudiante)
+	loadRoute.HandleFunc("/eliminarEstudianteCurso", new(controllers.EstudianteController).ElminarEstudianteCurso)
+	loadRoute.HandleFunc("/mostrarEstudianteDeCurso", new(controllers.EstudianteController).MostrarEstudianteDeCurso)
+	loadRoute.HandleFunc("/mostrarEstudianteJuridicoNoJuridico", new(controllers.EstudianteController).MostrarEstudianteJuridicoNoJuridico)
 
 	//Instructor
+	loadRoute.HandleFunc("/registrarInstructor", new(controllers.InstructorController).RegistrarInstructor)
+	loadRoute.HandleFunc("/modificarInstructor", new(controllers.InstructorController).MostrarInstructor)
+	loadRoute.HandleFunc("/eliminarInstructor", new(controllers.InstructorController).EliminarInstructor)
+	loadRoute.HandleFunc("/mostrarInstructor", new(controllers.InstructorController).MostrarInstructor)
+	loadRoute.HandleFunc("/agregarInstructorToCurso", new(controllers.InstructorController).AgregarCursoToInstructor)
+	loadRoute.HandleFunc("/eliminarInstructorDeCurso", new(controllers.InstructorController).EliminarCursoOffInstructor)
+	loadRoute.HandleFunc("/modificarInstructorCurso", new(controllers.InstructorController).ModificarCursoOffInstructor)
 
 	//Gestion de Usuario
+	loadRoute.HandleFunc("/recuperarPass", new(controllers.UsuarioController).RecuperarPass)
+	loadRoute.HandleFunc("/cambioPass", new(controllers.UsuarioController).CambiarPass)
+
+	//matricula
+	loadRoute.HandleFunc("/mostrarMatricula", new(controllers.MatriculaController).MostrarMatriculaDeCurso)
 }
