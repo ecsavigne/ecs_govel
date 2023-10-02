@@ -24,7 +24,7 @@ func (c *MatriculaController) MostrarMatriculaDeCurso(w http.ResponseWriter, r *
 
 	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode(map[string]interface{}{
-		"result": "Joson resultado"
+		"result":  "Joson resultado",
 		"funcion": "MostrarMatriculaDeCurso",
 	})
 }
