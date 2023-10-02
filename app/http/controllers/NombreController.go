@@ -115,7 +115,7 @@ func (c *NombreController) Index(w http.ResponseWriter, r *http.Request) {
 //}
 
 // func (c *NombreController) Show(w http.ResponseWriter, r *http.Request) {
-// w.Header().Set("Content-Type", "ecs_govel/application/json")
+// w.Header().Set("Content-Type", "application/json")
 // vars := mux.Vars(r)
 
 // si sucede algun error
