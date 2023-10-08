@@ -146,12 +146,11 @@ func ConfigDB(obj ConfigEcsGovelIni) {
 				fmt.Printf("Error: \033[31mConfiguracion de Base de datos: (%s) incompleta. Verifiquela!!!!!\033[0m .\n config URL: (%s)", driverP, ConnStr)
 				logg.ErrorLogger.Printf("Error: \033[31mConfiguracion de Base de datos: (%s) incompleta. Verifiquela!!!!!\033[0m .\n config URL: (%s)", driverP, ConnStr)
 			} else {
-				fmt.Println(">>>", err.Error())
 				fmt.Printf("Error: \033[31mVerificar que la configuracion sea la adecuada para base datos tipo: (%s)\033[0m .\n", driverP)
 				logg.ErrorLogger.Printf("Error: \033[31mVerificar que la configuracion se la adecuada para base datos tipo: \033[31m(%s)\033[0m .\n", driverP)
 			}
 		} else {
-			fmt.Println("Error", err)
+			fmt.Println("Ocurrio um error: \033[31m %s\033[0m", err)
 			logg.ErrorLogger.Println("Ocurrio um error: \033[31m %s\033[0m", err)
 		}
 		return
