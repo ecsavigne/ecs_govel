@@ -2,7 +2,7 @@ package config
 
 import (
 	"ecs_govel/app/helpers/logg"
-	//"ecs_govel/config"
+	"ecs_govel/config/db"
 	"ecs_govel/routes"
 	"fmt"
 	"net/http"
@@ -13,8 +13,9 @@ import (
 )
 
 func InitApp() {
-	fmt.Println("Id App:", Database.AppID)
-	configDB(configsIni.urlEnv, configsIni.driver)
+	fmt.Println("Id App:", db.Orm.AppID)
+	//db.ConfigDB(configsIni.urlEnv, configsIni.driver)
+	db.ConfigDB(configsIni)
 	// MAnejo de errores
 	defer func() {
 		if err := recover(); err != nil {
@@ -25,15 +26,15 @@ func InitApp() {
 
 	server := &http.Server{
 		Handler:      routes.Router,
-		Addr:         fmt.Sprintf("%s:%d", configsIni.host, configsIni.port),
-		WriteTimeout: time.Second * time.Duration(configsIni.writeTimeout),
-		ReadTimeout:  time.Second * time.Duration(configsIni.readTimeout),
-		IdleTimeout:  time.Second * time.Duration(configsIni.idleTimeout),
+		Addr:         fmt.Sprintf("%s:%d", configsIni.Host, configsIni.Port),
+		WriteTimeout: time.Second * time.Duration(configsIni.WriteTimeout),
+		ReadTimeout:  time.Second * time.Duration(configsIni.ReadTimeout),
+		IdleTimeout:  time.Second * time.Duration(configsIni.IdleTimeout),
 	}
-	fmt.Printf("Sever Web en: %s:%d\n", configsIni.host, configsIni.port)
+	fmt.Printf("Sever Web en: %s:%d\n", configsIni.Host, configsIni.Port)
 	// Run the http server paralelly in a goroutine to receive request
 	go func() {
-		logg.GeneralLogger.Printf("Iniciando server --- %s:%d\n", configsIni.host, configsIni.port)
+		logg.GeneralLogger.Printf("Iniciando server --- %s:%d\n", configsIni.Host, configsIni.Port)
 		if err := server.ListenAndServe(); err != nil && err != http.ErrServerClosed {
 			logMessage := "Impossible initialice server: " + err.Error()
 			logg.GeneralLogger.Println(logMessage)

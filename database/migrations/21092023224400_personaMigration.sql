@@ -5,6 +5,5 @@ CREATE TABLE IF NOT EXISTS personas (
     deleted_at DATETIME,
     nombre VARCHAR(35),
     apellidos VARCHAR(100),
-    dir VARCHAR(255),
-    mail VARCHAR(70)
+    dir VARCHAR(255)
 ) ENGINE = InnoDB;

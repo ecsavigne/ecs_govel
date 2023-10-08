@@ -33,9 +33,25 @@ func services(loadRoute *mux.Router) {
 	loadRoute.HandleFunc("/modificarInstructorCurso", new(controllers.InstructorController).ModificarCursoOffInstructor)
 
 	//Gestion de Usuario
+	loadRoute.HandleFunc("/registrarUsr", new(controllers.UsuarioController).RegistrarUsr)
 	loadRoute.HandleFunc("/recuperarPass", new(controllers.UsuarioController).RecuperarPass)
 	loadRoute.HandleFunc("/cambioPass", new(controllers.UsuarioController).CambiarPass)
 
 	//matricula
 	loadRoute.HandleFunc("/mostrarMatricula", new(controllers.MatriculaController).MostrarMatriculaDeCurso)
+
+	//Contenido
+	loadRoute.HandleFunc("/registrarContenido", new(controllers.ContenidoController).RegistrarContenido)
+	loadRoute.HandleFunc("/mostrarContenido", new(controllers.ContenidoController).MostrarContenido)
+	loadRoute.HandleFunc("/eliminarContenido", new(controllers.ContenidoController).EliminarContenido)
+	loadRoute.HandleFunc("/modificarContenido", new(controllers.ContenidoController).ModificarContenido)
+	loadRoute.HandleFunc("/asociarContenidoToEstructura", new(controllers.ContenidoController).AsociarContenidoToEstructura)
+	loadRoute.HandleFunc("/modificarContenidoToEstructura", new(controllers.ContenidoController).ModificarContenidoToEstructura)
+	loadRoute.HandleFunc("/mostrarAllContenido", new(controllers.ContenidoController).MostrarAllContenido)
+
+	//Estructura
+	loadRoute.HandleFunc("/registrarEstructura", new(controllers.EstructuraController).RegistrarEstructura)
+	loadRoute.HandleFunc("/mostrarEstructura", new(controllers.EstructuraController).MostrarEstructura)
+	loadRoute.HandleFunc("/eliminarEstructura", new(controllers.EstructuraController).EliminarEstructura)
+	loadRoute.HandleFunc("/modificarEstructura", new(controllers.EstructuraController).ModificarEstructura)
 }

@@ -13,7 +13,7 @@ type Curso struct {
 	DeletedAt         gorm.DeletedAt    `gorm:"index;column:deleted_at;type:datetime;default:null"`
 	FechaIngreso      time.Time         `gorm:"type:datetime;column:fecha_ingreso"`
 	DuracionHora      time.Time         `gorm:"type:datetime;column:duracion_hora"`
-	SiCertificado     int               `gorm:"column:si_certificado; type:tinyint(1); default:null"`
+	SiCertificado     bool              `gorm:"column:si_certificado;type:bool;default:false"`
 	InstructorsCursos []InstructorCurso `gorm:"foreignKey:CursoId;constraint:OnUpdate:CASCADE,OnDelete:CASCADE;"`
 	CursosContenidos  []CursoContenido  `gorm:"foreignKey:CursoId;constraint:OnUpdate:CASCADE,OnDelete:CASCADE;"`
 	Matriculass       []Matricula       `gorm:"foreignKey:CursoId;constraint:OnUpdate:CASCADE,OnDelete:CASCADE;"`

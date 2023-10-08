@@ -3,7 +3,6 @@ module ecs_govel
 go 1.21.0
 
 require (
-	github.com/go-gormigrate/gormigrate/v2 v2.1.1
 	github.com/go-ini/ini v1.67.0
 	github.com/golang-module/carbon v1.7.3
 	github.com/gorilla/mux v1.8.0
