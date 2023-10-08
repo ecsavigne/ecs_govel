@@ -1,85 +1,78 @@
 package config
 
 import (
-	"ecs_govel/app/helpers/logg"
-	"fmt"
 	"log"
-	"strings"
+
+	"ecs_govel/config/db"
 
 	"github.com/go-ini/ini"
 )
 
-type configEcsGovelIni struct {
-	//Files .ini
-	cfgAppIni *ini.File
-	cfgBDIni  *ini.File
-	//Seccion de variables de App
-	sessionApp         *ini.Section
-	appID              string
-	folderMigrations   string
-	autoMigration      bool
-	migrationFromModel bool
-	//Seccion de variables de Servidor Web
-	sessionWeb   *ini.Section
-	host         string
-	port         int
-	writeTimeout int
-	readTimeout  int
-	idleTimeout  int
-	//Seccion de variables de Base de datos
-	sessionDB          *ini.Section
-	urlEnv             string
-	driver             string
-	setConnMaxLifetime int
-	setMaxIdleConns    int
-	setMaxOpenConns    int
-	activeOnCascade    bool
+type Config interface {
+	GetObj() interface{}
 }
 
-var configsIni = configEcsGovelIni{}
+// type ConfigEcsGovelIni struct {
+// 	//Files .ini
+// 	cfgAppIni *ini.File
+// 	cfgBDIni  *ini.File
+// 	//Seccion de variables de App
+// 	sessionApp         *ini.Section
+// 	appID              string
+// 	folderMigrations   string
+// 	autoMigration      bool
+// 	migrationFromModel bool
+// 	//Seccion de variables de Servidor Web
+// 	sessionWeb   *ini.Section
+// 	host         string
+// 	port         int
+// 	writeTimeout int
+// 	readTimeout  int
+// 	idleTimeout  int
+// 	//Seccion de variables de Base de datos
+// 	sessionDB          *ini.Section
+// 	UrlEnv             string
+// 	Driver             string
+// 	setConnMaxLifetime int
+// 	setMaxIdleConns    int
+// 	setMaxOpenConns    int
+// 	activeOnCascade    bool
+// }
+
+// func (conf ConfigEcsGovelIni) GetObj() interface{} {
+// 	return conf
+// }
+
+var configsIni = db.ConfigEcsGovelIni{}
 
 func init() {
 	var errConfig error
-	configsIni.cfgAppIni, errConfig = ini.Load("./config/app.ini")
+	configsIni.CfgAppIni, errConfig = ini.Load("./config/app.ini")
 	if errConfig != nil {
 		log.Fatalf("Error al cargar el archivo .ini: %v", errConfig)
 	}
-	configsIni.cfgBDIni, errConfig = ini.Load("./config/db.ini")
+	configsIni.CfgBDIni, errConfig = ini.Load("./config/db/db.ini")
 	if errConfig != nil {
 		log.Fatalf("Error al cargar el archivo .ini: %v", errConfig)
 	}
 
-	configsIni.sessionApp = configsIni.cfgAppIni.Section("App")
-	configsIni.appID, Database.AppID = configsIni.sessionApp.Key("AppID").String(), configsIni.sessionApp.Key("AppID").String()
-	configsIni.folderMigrations = configsIni.sessionApp.Key("FolderMigrations").String()
-	configsIni.autoMigration, _ = configsIni.sessionApp.Key("AutoMigration").Bool()
-	configsIni.migrationFromModel, _ = configsIni.sessionApp.Key("MigrationFromModel").Bool()
-	configsIni.sessionWeb = configsIni.cfgAppIni.Section("Servidor Web")
-	configsIni.host = configsIni.sessionWeb.Key("Host").String()
-	configsIni.port, _ = configsIni.sessionWeb.Key("Port").Int()
-	configsIni.writeTimeout, _ = configsIni.sessionWeb.Key("WriteTimeout").Int()
-	configsIni.writeTimeout, _ = configsIni.sessionWeb.Key("ReadTimeout").Int()
-	configsIni.idleTimeout, _ = configsIni.sessionWeb.Key("IdleTimeout").Int()
-	configsIni.sessionDB = configsIni.cfgBDIni.Section("Env DataBase")
-	configsIni.driver = configsIni.sessionDB.Key("Driver").String()
-	configsIni.urlEnv = configsIni.sessionDB.Key("UrlEnv").String()
-	configsIni.activeOnCascade, _ = configsIni.sessionDB.Key("ActiveOnCascade").Bool()
-	configsIni.setConnMaxLifetime, _ = configsIni.sessionDB.Key("SetConnMaxLifetime").Int()
-	configsIni.setMaxIdleConns, _ = configsIni.sessionDB.Key("SetMaxIdleConns").Int()
-	configsIni.setMaxOpenConns, _ = configsIni.sessionDB.Key("SetMaxOpenConns").Int()
-}
+	configsIni.SessionApp = configsIni.CfgAppIni.Section("App")
+	configsIni.AppID, db.Orm.AppID = configsIni.SessionApp.Key("AppID").String(), configsIni.SessionApp.Key("AppID").String()
+	configsIni.FolderMigrations = configsIni.SessionApp.Key("FolderMigrations").String()
+	configsIni.AutoMigration, _ = configsIni.SessionApp.Key("AutoMigration").Bool()
+	configsIni.MigrationFromModel, _ = configsIni.SessionApp.Key("MigrationFromModel").Bool()
+	configsIni.SessionWeb = configsIni.CfgAppIni.Section("Servidor Web")
+	configsIni.Host = configsIni.SessionWeb.Key("Host").String()
+	configsIni.Port, _ = configsIni.SessionWeb.Key("Port").Int()
+	configsIni.WriteTimeout, _ = configsIni.SessionWeb.Key("WriteTimeout").Int()
+	configsIni.WriteTimeout, _ = configsIni.SessionWeb.Key("ReadTimeout").Int()
+	configsIni.IdleTimeout, _ = configsIni.SessionWeb.Key("IdleTimeout").Int()
+	configsIni.SessionDB = configsIni.CfgBDIni.Section("Env DataBase")
+	configsIni.Driver = configsIni.SessionDB.Key("Driver").String()
+	configsIni.UrlEnv = configsIni.SessionDB.Key("UrlEnv").String()
+	configsIni.ActiveOnCascade, _ = configsIni.SessionDB.Key("ActiveOnCascade").Bool()
+	configsIni.SetConnMaxLifetime, _ = configsIni.SessionDB.Key("SetConnMaxLifetime").Int()
+	configsIni.SetMaxIdleConns, _ = configsIni.SessionDB.Key("SetMaxIdleConns").Int()
+	configsIni.SetMaxOpenConns, _ = configsIni.SessionDB.Key("SetMaxOpenConns").Int()
 
-// Elimina un patron de una cadena y retorna desde el inicio hasta el patron
-// Se usa para eliminar Migration.sql de los archivos  que estan en la ruta de las
-// Migration seguen el criterio aplicado
-func deletePatronOffString(cad string) string {
-	patron := "Migration"
-	indice := strings.Index(cad, patron)
-	if indice == -1 {
-		logg.ErrorLogger.Println("Error: \033[31Patron no existente: %\033[0m\n")
-		fmt.Println("Error: \033[31Patron no existente: %\033[0m\n")
-		return ""
-	}
-	strTemp := cad[:indice]
-	return strings.ToUpper(string(strTemp[0])) + strTemp[1:]
 }

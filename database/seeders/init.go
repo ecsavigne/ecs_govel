@@ -1,20 +1,20 @@
 package seeders
 
 import (
-	"ecs_govel/config"
+	"ecs_govel/config/db"
 	"fmt"
 )
 
 type Seeders struct {
-	*config.DbInstance
+	*db.DbInstance
 }
 
 var Seeder = new(Seeders)
 
 func init() {
-	Seeder.DbInstance = &config.DbInstance{}
-	if config.Database.DB != nil {
-		Seeder.DbInstance = config.Database
+	Seeder.DbInstance = &db.DbInstance{}
+	if db.Orm.DB != nil {
+		Seeder.DbInstance = db.Orm
 	} else {
 		fmt.Print("Erro nao é posivel criar o DBase object inicializador")
 	}

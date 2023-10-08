@@ -4,5 +4,6 @@ CREATE TABLE IF NOT EXISTS usuarios (
     updated_at DATETIME,
     deleted_at DATETIME,
     nombre varchar(35),
-    password varchar(35)
+    password varchar(35),
+    mail varchar(100)
 ) ENGINE = InnoDB;

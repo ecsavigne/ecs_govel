@@ -1,9 +1,10 @@
-package config
+package db
 
 import (
 	"database/sql"
 	"ecs_govel/app/helpers/logg"
 	"ecs_govel/app/models"
+
 	"fmt"
 	"io"
 	"os"
@@ -13,14 +14,42 @@ import (
 	"strings"
 	"time"
 
-	//"github.com/jinzhu/gorm"
-
+	"github.com/go-ini/ini"
 	_ "github.com/jinzhu/gorm/dialects/postgres"
 	"github.com/joho/godotenv"
 	"gorm.io/driver/mysql"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )
+
+type ConfigEcsGovelIni struct {
+	//Files .ini
+	CfgAppIni *ini.File
+	CfgBDIni  *ini.File
+	//Seccion de variables de App
+	SessionApp         *ini.Section
+	AppID              string
+	FolderMigrations   string
+	AutoMigration      bool
+	MigrationFromModel bool
+	//Seccion de variables de Servidor Web
+	SessionWeb   *ini.Section
+	Host         string
+	Port         int
+	WriteTimeout int
+	ReadTimeout  int
+	IdleTimeout  int
+	//Seccion de variables de Base de datos
+	SessionDB          *ini.Section
+	UrlEnv             string
+	Driver             string
+	SetConnMaxLifetime int
+	SetMaxIdleConns    int
+	SetMaxOpenConns    int
+	ActiveOnCascade    bool
+}
+
+var configsIni ConfigEcsGovelIni
 
 type migration map[string]string
 type migrationPath struct {
@@ -47,14 +76,18 @@ type DbInstance struct {
 	AppID    string
 }
 
-var Database = new(DbInstance)
+var Orm = new(DbInstance)
 
 /*
 Inicializa configuracion de la base de datos
 Se le pasa '@pathEnv'=> Dir del fichero .env de las configuraciones de BD
 '@driverP' => Tipo de driver de base de datos
 */
-func configDB(pathEnv, driverP string) {
+//func ConfigDB(pathEnv, driverP string) {
+func ConfigDB(obj ConfigEcsGovelIni) {
+	configsIni = obj
+	driverP := obj.Driver
+	pathEnv := obj.UrlEnv
 	if driverP == "" {
 		logg.ErrorLogger.Printf("Error: \033[31m%v\033[0m\n", "Driver BD no presente")
 		fmt.Println("Driver BD no presente")
@@ -65,7 +98,7 @@ func configDB(pathEnv, driverP string) {
 	err_ := godotenv.Load(pathEnv)
 	if err_ != nil {
 		logg.ErrorLogger.Printf("Error: \033[31m%v\033[0m\n", err_)
-		fmt.Println("Error:Error: \033[31m cargando Var ambiente: ", err_.Error(), "\033[0m")
+		fmt.Println("Error: \033[31m cargando Var ambiente: ", err_.Error(), "\033[0m")
 		return
 	}
 	driver := strings.ToLower(driverP)
@@ -86,26 +119,37 @@ func configDB(pathEnv, driverP string) {
 		// hay que correr las migration con true y luego con false para agregar actualizacion
 		// en cascada o ordenar las tablas segun el orden que acomoda o sino la otra opcion
 		// de cargar migration es decir que no sea via gorm sino .sql
-		Database.DB, err = gorm.Open(postgres.Open(ConnStr), &gorm.Config{DisableForeignKeyConstraintWhenMigrating: configsIni.activeOnCascade})
+		Orm.DB, err = gorm.Open(postgres.Open(ConnStr), &gorm.Config{DisableForeignKeyConstraintWhenMigrating: !configsIni.ActiveOnCascade})
 		break
 	case "mysql":
 		fmt.Println("driver: MYSQL")
 		ConnStr = fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=utf8mb4&parseTime=True&loc=Local",
 			user, pass, host, port, db)
 		// DisableForeignKeyConstraintWhenMigrating: false activa la actualizacion en cascada cuando migra
-		Database.DB, err = gorm.Open(mysql.Open(ConnStr), &gorm.Config{DisableForeignKeyConstraintWhenMigrating: configsIni.activeOnCascade})
+		Orm.DB, err = gorm.Open(mysql.Open(ConnStr), &gorm.Config{DisableForeignKeyConstraintWhenMigrating: !configsIni.ActiveOnCascade})
 		break
 	default:
 		logg.ErrorLogger.Printf("Error: \033[31m%v\033[0m\n", "Driver de BD no identificado")
 		fmt.Println("Driver de BD no identificado")
-		return
 		break
 	}
 	if err != nil {
-		expresionRegular := regexp.MustCompile("")
-		if expresionRegular.MatchString(err.Error()) {
-			fmt.Printf("Error: \033[31mVerificar que la configuracion sea la adecuada para base datos tipo: (%s)\033[0m .\n", driverP)
-			logg.ErrorLogger.Printf("Error: \033[31mVerificar que la configuracion se la adecuada para base datos tipo: \033[31m(%s)\033[0m .\n", driverP)
+		expresionRegularError := regexp.MustCompile("")
+		expRegServerDBOff := regexp.MustCompile(`dial tcp \[::`)
+		expRegErrorUrlDB := regexp.MustCompile(`invalid URL escape`)
+		if expresionRegularError.MatchString(err.Error()) {
+			if expRegServerDBOff.MatchString(err.Error()) {
+				fmt.Printf("Error: \033[31mServidor de Base de datos tipo: (%s) esta off. Inicielo!!!!!\033[0m .\n", driverP)
+				logg.ErrorLogger.Printf("Error: \033[31mServidor de Base de datos tipo: (%s) esta off. Inicielo!!!!!\033[0m .\n", driverP)
+			}
+			if expRegErrorUrlDB.MatchString(err.Error()) {
+				fmt.Printf("Error: \033[31mConfiguracion de Base de datos: (%s) incompleta. Verifiquela!!!!!\033[0m .\n config URL: (%s)", driverP, ConnStr)
+				logg.ErrorLogger.Printf("Error: \033[31mConfiguracion de Base de datos: (%s) incompleta. Verifiquela!!!!!\033[0m .\n config URL: (%s)", driverP, ConnStr)
+			} else {
+				fmt.Println(">>>", err.Error())
+				fmt.Printf("Error: \033[31mVerificar que la configuracion sea la adecuada para base datos tipo: (%s)\033[0m .\n", driverP)
+				logg.ErrorLogger.Printf("Error: \033[31mVerificar que la configuracion se la adecuada para base datos tipo: \033[31m(%s)\033[0m .\n", driverP)
+			}
 		} else {
 			fmt.Println("Error", err)
 			logg.ErrorLogger.Println("Ocurrio um error: \033[31m %s\033[0m", err)
@@ -113,15 +157,15 @@ func configDB(pathEnv, driverP string) {
 		return
 	}
 
-	Database.Migrates.isAuto = configsIni.autoMigration
-	Database.Migrates.isMigrationFromModel = configsIni.migrationFromModel
+	Orm.Migrates.isAuto = configsIni.AutoMigration
+	Orm.Migrates.isMigrationFromModel = configsIni.MigrationFromModel
 
 	logg.GeneralLogger.Printf("New (%s) conennection opened\n", driver)
 	fmt.Printf("New (%s) conennection opened\n", driver)
 
 	logg.GeneralLogger.Printf("\033[36mConfigurando coneccion y cargando Migration %s: \033[0m\n", driver)
-	fmt.Printf("\033[36mConfigurando coneccion y cargando Migration de:  %s \033[0m\n", configsIni.folderMigrations)
-	Database.autoMigrate()
+	fmt.Printf("\033[36mConfigurando coneccion y cargando Migration de:  %s \033[0m\n", configsIni.FolderMigrations)
+	Orm.autoMigrate()
 }
 
 func (db *DbInstance) db() *sql.DB {
@@ -140,7 +184,7 @@ func (db *DbInstance) orderMigrationPath() {
 // Esta funcion permite ejecutar las migraciones cuando se carga la instancia
 // de DbInstance, si DbInstance.Migrate.isAuto == true sino no carga
 func (db *DbInstance) autoMigrate() {
-	Database.loadMigrationNameFromMigrationsFolder()
+	Orm.loadMigrationNameFromMigrationsFolder()
 	if db.Migrates.isAuto == true && db.Migrates.isMigrationFromModel == true {
 		fmt.Println("\033[31mNo puede estar los 2 modos de carga de migration automatica activa, revise app.ini en config/app.ini\033[0m")
 		logg.GeneralLogger.Println("\033[31mNo puede estar los 2 modos de carga de migration automatica activa, revise app.ini en config/app.ini\033[0m")
@@ -165,7 +209,7 @@ func (db *DbInstance) autoMigrate() {
 func (db *DbInstance) loadMigrationNameFromMigrationsFolder() {
 	db.Migrates.migrations = make(migration)
 	db.Migrates.migrationsOrders = make(migrationOrder, 0)
-	files, err := os.ReadDir(configsIni.folderMigrations)
+	files, err := os.ReadDir(configsIni.FolderMigrations)
 	if err != nil {
 		logg.ErrorLogger.Printf("Error \033[31mal leer la carpeta Error: %+v\033[0m\n", err)
 		fmt.Println("Error \033[31mal leer la carpeta:", err, "\033[0m")
@@ -178,7 +222,7 @@ func (db *DbInstance) loadMigrationNameFromMigrationsFolder() {
 		if filepath.Ext(file.Name()) == ".sql" {
 			strTemp := deletePatronOffString(strings.TrimSuffix(file.Name(), ".sql"))
 			if strTemp != "" {
-				db.Migrates.migrations[strTemp] = configsIni.folderMigrations + file.Name()
+				db.Migrates.migrations[strTemp] = configsIni.FolderMigrations + file.Name()
 				migrationPathTest := migrationPath{
 					key:  strTemp,
 					path: db.Migrates.migrations[strTemp],
@@ -189,15 +233,15 @@ func (db *DbInstance) loadMigrationNameFromMigrationsFolder() {
 	}
 
 	db.orderMigrationPath()
-	fmt.Println("Folder Migrate:", configsIni.folderMigrations)
+	fmt.Println("Folder Migrate:", configsIni.FolderMigrations)
 	fmt.Printf("Migrates:\n\t%+v\n", db.Migrates.migrations)
 }
 
 func (db *DbInstance) initDB() {
 	// Configiuracion de conecciones idle
-	db.db().SetConnMaxLifetime(time.Duration(configsIni.setConnMaxLifetime) * time.Minute)
-	db.db().SetMaxIdleConns(configsIni.setMaxIdleConns)
-	db.db().SetMaxOpenConns(configsIni.setMaxOpenConns)
+	db.db().SetConnMaxLifetime(time.Duration(configsIni.SetConnMaxLifetime) * time.Minute)
+	db.db().SetMaxIdleConns(configsIni.SetMaxIdleConns)
+	db.db().SetMaxOpenConns(configsIni.SetMaxOpenConns)
 
 	// Cargar de Migration
 	//rand.Seed(time.Now().UnixNano())
@@ -274,4 +318,19 @@ func (db *DbInstance) ExecSetMigration(nombreMigration []string) {
 	}
 	fmt.Println("------------End-----------------------------------")
 	logg.GeneralLogger.Println("------------End-----------------------------------")
+}
+
+// Elimina un patron de una cadena y retorna desde el inicio hasta el patron
+// Se usa para eliminar Migration.sql de los archivos  que estan en la ruta de las
+// Migration seguen el criterio aplicado
+func deletePatronOffString(cad string) string {
+	patron := "Migration"
+	indice := strings.Index(cad, patron)
+	if indice == -1 {
+		logg.ErrorLogger.Println("Error: \033[31Patron no existente: %\033[0m\n")
+		fmt.Println("Error: \033[31Patron no existente: %\033[0m\n")
+		return ""
+	}
+	strTemp := cad[:indice]
+	return strings.ToUpper(string(strTemp[0])) + strTemp[1:]
 }

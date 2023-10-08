@@ -51,3 +51,9 @@ type gorm.Model struct {
 	UpdatedAt time.Time
 	DeletedAt gorm.DeletedAt `gorm:"index"`
 }
+
+# tambien se pueden mplementar los trigger para update, insert, delete
+# Update
+    BeforeSave, BeforeUpdate, AfterSave, AfterUpdate 
+# Delete
+# Insert
