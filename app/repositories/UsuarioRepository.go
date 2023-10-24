@@ -22,19 +22,20 @@ func (u UsuarioRepository) RegistrarUsr(nome, correio, pass string) interface{} 
 
 func (u UsuarioRepository) CambiarPass(idUsuario int, newPass string) interface{} {
 	usr := new(models.Usuario)
-	db.Orm.Find(usr, uint(idUsuario))
-	usr.Password = newPass
-	if err := db.Orm.Save(usr).Error; err != nil {
-		return err
+	if res := db.Orm.Model(usr).Where("id = ?", idUsuario).Update("password", newPass); res.Error != nil {
+		return res.Error
+	} else if res.RowsAffected == 0 {
+		return false
 	}
 	return true
 }
 
 func (u UsuarioRepository) RecuperarPass(correio string) interface{} {
-	result := db.Orm.Model(new(models.Usuario)).Where("mail = ?", correio).Update("password", "12345")
-	if result.Error != nil {
-		return result.Error
-	} else if result.RowsAffected == 0 {
+	//usr.Password = "12345" // Aqui gneral un pass y mandarlo por correo
+	res := db.Orm.Model(new(models.Usuario)).Where("mail = ?", correio).Update("password", "12345")
+	if res.Error != nil {
+		return res.Error
+	} else if res.RowsAffected == 0 {
 		return false
 	}
 	return true

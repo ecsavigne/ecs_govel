@@ -135,14 +135,13 @@ func ConfigDB(obj ConfigEcsGovelIni) {
 	}
 	if err != nil {
 		expresionRegularError := regexp.MustCompile("")
-		expRegServerDBOff := regexp.MustCompile(`dial tcp \[::`)
+		expRegServerDBOff := regexp.MustCompile(`dial tcp`)
 		expRegErrorUrlDB := regexp.MustCompile(`invalid URL escape`)
 		if expresionRegularError.MatchString(err.Error()) {
 			if expRegServerDBOff.MatchString(err.Error()) {
 				fmt.Printf("Error: \033[31mServidor de Base de datos tipo: (%s) esta off. Inicielo!!!!!\033[0m .\n", driverP)
 				logg.ErrorLogger.Printf("Error: \033[31mServidor de Base de datos tipo: (%s) esta off. Inicielo!!!!!\033[0m .\n", driverP)
-			}
-			if expRegErrorUrlDB.MatchString(err.Error()) {
+			} else if expRegErrorUrlDB.MatchString(err.Error()) {
 				fmt.Printf("Error: \033[31mConfiguracion de Base de datos: (%s) incompleta. Verifiquela!!!!!\033[0m .\n config URL: (%s)", driverP, ConnStr)
 				logg.ErrorLogger.Printf("Error: \033[31mConfiguracion de Base de datos: (%s) incompleta. Verifiquela!!!!!\033[0m .\n config URL: (%s)", driverP, ConnStr)
 			} else {
