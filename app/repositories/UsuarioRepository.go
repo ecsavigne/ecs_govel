@@ -21,18 +21,21 @@ func (u UsuarioRepository) RegistrarUsr(nome, correio, pass string) interface{} 
 }
 
 func (u UsuarioRepository) CambiarPass(idUsuario int, newPass string) interface{} {
-	//usr := new(models.Usuario)
-	// config.Orm.Find(usr, uint(idUsuario))
-	// usr.Password = newPass
-	// if err := config.Orm.Save(usr).Error; err != nil {
-	// 	return err
-	// }
+	usr := new(models.Usuario)
+	db.Orm.Find(usr, uint(idUsuario))
+	usr.Password = newPass
+	if err := db.Orm.Save(usr).Error; err != nil {
+		return err
+	}
 	return true
 }
 
 func (u UsuarioRepository) RecuperarPass(correio string) interface{} {
-	usr := new(models.Usuario)
-	usr.Password = "12345" // Aqui gneral un pass y mandarlo por correo
-	// config.Orm.Model(usr).Where("mail = ?", correio).Save(*usr)
+	result := db.Orm.Model(new(models.Usuario)).Where("mail = ?", correio).Update("password", "12345")
+	if result.Error != nil {
+		return result.Error
+	} else if result.RowsAffected == 0 {
+		return false
+	}
 	return true
 }

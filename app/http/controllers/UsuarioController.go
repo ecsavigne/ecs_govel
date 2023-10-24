@@ -23,6 +23,7 @@ func (c *UsuarioController) RegistrarUsr(w http.ResponseWriter, r *http.Request)
 			w.WriteHeader(http.StatusOK)
 			json.NewEncoder(w).Encode(
 				map[string]interface{}{
+					"err":  err,
 					"Test": "Validacion de Excepcion",
 				},
 			)
@@ -30,7 +31,10 @@ func (c *UsuarioController) RegistrarUsr(w http.ResponseWriter, r *http.Request)
 	}()
 	defer r.Body.Close()
 
-	//c.usuarioRepository.RegistrarUsr(nome, correio, pass)
+	res := c.usuarioRepository.RegistrarUsr(nome, correio, pass)
+	if res != true {
+		panic(res)
+	}
 
 	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode(map[string]interface{}{
@@ -38,6 +42,7 @@ func (c *UsuarioController) RegistrarUsr(w http.ResponseWriter, r *http.Request)
 			"pass":    pass,
 			"correio": correio,
 			"nome":    nome,
+			"res":     res,
 		},
 		"func": "RegistrarUsr",
 	})
@@ -53,6 +58,7 @@ func (c *UsuarioController) CambiarPass(w http.ResponseWriter, r *http.Request) 
 			w.WriteHeader(http.StatusOK)
 			json.NewEncoder(w).Encode(
 				map[string]interface{}{
+
 					"Test": "Validacion de Excepcion",
 				},
 			)
@@ -60,11 +66,17 @@ func (c *UsuarioController) CambiarPass(w http.ResponseWriter, r *http.Request) 
 	}()
 	defer r.Body.Close()
 
+	res := c.usuarioRepository.CambiarPass(idUsuario, newPass)
+	if res != true {
+		panic(res)
+	}
+
 	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode(map[string]interface{}{
 		"result": map[string]interface{}{
 			"newPass":   newPass,
 			"idUsuario": idUsuario,
+			"res":       res,
 		},
 		"func": "CambiarPass",
 	})
@@ -79,6 +91,7 @@ func (c *UsuarioController) RecuperarPass(w http.ResponseWriter, r *http.Request
 			w.WriteHeader(http.StatusOK)
 			json.NewEncoder(w).Encode(
 				map[string]interface{}{
+					"err":  err,
 					"Test": "Validacion de Excepcion",
 				},
 			)
@@ -86,10 +99,16 @@ func (c *UsuarioController) RecuperarPass(w http.ResponseWriter, r *http.Request
 	}()
 	defer r.Body.Close()
 
+	res := c.usuarioRepository.RecuperarPass(correio)
+	if res != true && res != false {
+		panic(res)
+	}
+
 	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode(map[string]interface{}{
 		"result": map[string]interface{}{
 			"correio": correio,
+			"res":     res,
 		},
 		"func": "RecuperarPass",
 	})

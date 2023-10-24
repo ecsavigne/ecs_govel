@@ -151,7 +151,7 @@ func ConfigDB(obj ConfigEcsGovelIni) {
 				logg.ErrorLogger.Printf("Error: \033[31mVerificar que la configuracion se la adecuada para base datos tipo: \033[31m(%s)\033[0m .\n", driverP)
 			}
 		} else {
-			fmt.Println("Error", err)
+			fmt.Println("Ocurrio um error: \033[31m %s\033[0m", err)
 			logg.ErrorLogger.Println("Ocurrio um error: \033[31m %s\033[0m", err)
 		}
 		return
