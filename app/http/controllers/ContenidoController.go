@@ -2,12 +2,14 @@ package controllers
 
 import (
 	"ecs_govel/app/helpers"
+	"ecs_govel/app/models"
+	"ecs_govel/app/repositories"
 	"encoding/json"
 	"net/http"
 )
 
 type ContenidoController struct {
-	//contenidoRepositoy repositories.ContenidoRepository
+	contenidoRepositoy repositories.ContenidoRepository
 }
 
 func (c *ContenidoController) RegistrarContenido(w http.ResponseWriter, r *http.Request) {
@@ -16,10 +18,10 @@ func (c *ContenidoController) RegistrarContenido(w http.ResponseWriter, r *http.
 	tema := r.FormValue("tema")
 	defer func() {
 		if err := recover(); err != nil {
-			w.WriteHeader(http.StatusOK)
+			w.WriteHeader(509)
 			json.NewEncoder(w).Encode(
 				map[string]interface{}{
-					"erro":        "",
+					"error":       err,
 					"descripcion": "Validacion de Excepcion",
 					"func":        "RegistrarContenido",
 				},
@@ -27,6 +29,11 @@ func (c *ContenidoController) RegistrarContenido(w http.ResponseWriter, r *http.
 		}
 	}()
 	defer r.Body.Close()
+
+	contenido := models.Contenido{
+		Tema: tema,
+	}
+	c.contenidoRepositoy.RegistrarContenido(&contenido)
 
 	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode(map[string]interface{}{
@@ -43,10 +50,10 @@ func (c *ContenidoController) MostrarContenido(w http.ResponseWriter, r *http.Re
 	idContenido, _ := helpers.ValidateInt(r.FormValue("idContenido"))
 	defer func() {
 		if err := recover(); err != nil {
-			w.WriteHeader(http.StatusOK)
+			w.WriteHeader(509)
 			json.NewEncoder(w).Encode(
 				map[string]interface{}{
-					"erro":        "",
+					"error":       err,
 					"descripcion": "Validacion de Excepcion",
 					"func":        "MostrarContenido",
 				},
@@ -55,12 +62,18 @@ func (c *ContenidoController) MostrarContenido(w http.ResponseWriter, r *http.Re
 	}()
 	defer r.Body.Close()
 
+	contenido := models.Contenido{
+		ID: idContenido,
+	}
+	res := c.contenidoRepositoy.MostrarContenido(&contenido)
+
 	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode(map[string]interface{}{
 		"result": map[string]interface{}{
 			"idContenido": idContenido,
 		},
-		"func": "MostrarContenido",
+		"func":      "MostrarContenido",
+		"contenido": res,
 	})
 }
 
@@ -70,10 +83,10 @@ func (c *ContenidoController) EliminarContenido(w http.ResponseWriter, r *http.R
 	idContenido, _ := helpers.ValidateInt(r.FormValue("idContenido"))
 	defer func() {
 		if err := recover(); err != nil {
-			w.WriteHeader(http.StatusOK)
+			w.WriteHeader(509)
 			json.NewEncoder(w).Encode(
 				map[string]interface{}{
-					"erro":        "",
+					"error":       err,
 					"descripcion": "Validacion de Excepcion",
 					"func":        "EliminarContenido",
 				},
@@ -81,6 +94,11 @@ func (c *ContenidoController) EliminarContenido(w http.ResponseWriter, r *http.R
 		}
 	}()
 	defer r.Body.Close()
+
+	contenido := models.Contenido{
+		ID: idContenido,
+	}
+	c.contenidoRepositoy.EliminarContenido(&contenido)
 
 	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode(map[string]interface{}{
@@ -98,10 +116,10 @@ func (c *ContenidoController) ModificarContenido(w http.ResponseWriter, r *http.
 	tema := r.FormValue("tema")
 	defer func() {
 		if err := recover(); err != nil {
-			w.WriteHeader(http.StatusOK)
+			w.WriteHeader(509)
 			json.NewEncoder(w).Encode(
 				map[string]interface{}{
-					"erro":        "",
+					"error":       err,
 					"descripcion": "Validacion de Excepcion",
 					"func":        "ModificarContenido",
 				},
@@ -109,6 +127,12 @@ func (c *ContenidoController) ModificarContenido(w http.ResponseWriter, r *http.
 		}
 	}()
 	defer r.Body.Close()
+
+	contenido := models.Contenido{
+		ID:   idContenido,
+		Tema: tema,
+	}
+	c.contenidoRepositoy.ModificarContenido(&contenido)
 
 	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode(map[string]interface{}{
@@ -127,10 +151,10 @@ func (c *ContenidoController) AsociarContenidoToEstructura(w http.ResponseWriter
 	idEstructura, _ := helpers.ValidateInt(r.FormValue("idEstructura"))
 	defer func() {
 		if err := recover(); err != nil {
-			w.WriteHeader(http.StatusOK)
+			w.WriteHeader(509)
 			json.NewEncoder(w).Encode(
 				map[string]interface{}{
-					"erro":        "",
+					"error":       err,
 					"descripcion": "Validacion de Excepcion",
 					"func":        "asociarContenidoToEstructura",
 				},
@@ -138,6 +162,12 @@ func (c *ContenidoController) AsociarContenidoToEstructura(w http.ResponseWriter
 		}
 	}()
 	defer r.Body.Close()
+
+	est_cont := models.EstructuraContenido{
+		ContenidoId:  idContenido,
+		EstructuraId: idEstructura,
+	}
+	c.contenidoRepositoy.AsociarContenidoToEstructura(&est_cont)
 
 	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode(map[string]interface{}{
@@ -156,10 +186,10 @@ func (c *ContenidoController) ModificarContenidoToEstructura(w http.ResponseWrit
 	idEstructura, _ := helpers.ValidateInt(r.FormValue("idEstructura"))
 	defer func() {
 		if err := recover(); err != nil {
-			w.WriteHeader(http.StatusOK)
+			w.WriteHeader(509)
 			json.NewEncoder(w).Encode(
 				map[string]interface{}{
-					"erro":        "",
+					"error":       err,
 					"descripcion": "Validacion de Excepcion",
 					"func":        "modificarContenidoToEstructura",
 				},
@@ -167,6 +197,12 @@ func (c *ContenidoController) ModificarContenidoToEstructura(w http.ResponseWrit
 		}
 	}()
 	defer r.Body.Close()
+
+	est_cont := models.EstructuraContenido{
+		ContenidoId:  idContenido,
+		EstructuraId: idEstructura,
+	}
+	c.contenidoRepositoy.ModificarContenidoToEstructura(&est_cont)
 
 	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode(map[string]interface{}{
@@ -183,10 +219,10 @@ func (c *ContenidoController) MostrarAllContenido(w http.ResponseWriter, r *http
 	//vars := mux.Vars(r)
 	defer func() {
 		if err := recover(); err != nil {
-			w.WriteHeader(http.StatusOK)
+			w.WriteHeader(509)
 			json.NewEncoder(w).Encode(
 				map[string]interface{}{
-					"erro":        "",
+					"error":       err,
 					"descripcion": "Validacion de Excepcion",
 					"func":        "mostrarAllContenido",
 				},

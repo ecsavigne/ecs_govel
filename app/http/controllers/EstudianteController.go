@@ -2,12 +2,14 @@ package controllers
 
 import (
 	"ecs_govel/app/helpers"
+	"ecs_govel/app/models"
+	"ecs_govel/app/repositories"
 	"encoding/json"
 	"net/http"
 )
 
 type EstudianteController struct {
-	//estudianteRepository repositories.EstudianteRepository
+	estudianteRepository repositories.EstudianteRepository
 }
 
 func (c *EstudianteController) RegistrarEstudianteEnCurso(w http.ResponseWriter, r *http.Request) {
@@ -17,15 +19,21 @@ func (c *EstudianteController) RegistrarEstudianteEnCurso(w http.ResponseWriter,
 	ci, _ := helpers.ValidateCi(r.FormValue("ci"))
 	defer func() {
 		if err := recover(); err != nil {
-			w.WriteHeader(http.StatusOK)
+			w.WriteHeader(509)
 			json.NewEncoder(w).Encode(
 				map[string]interface{}{
-					"Test": "Validacion de Excepcion",
+					"Error": err,
 				},
 			)
 		}
 	}()
 	defer r.Body.Close()
+
+	matricula := models.Matricula{
+		CursoId:      idCurso,
+		EstudianteCi: ci,
+	}
+	c.estudianteRepository.RegistrarEstudianteEnCurso(&matricula)
 
 	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode(map[string]interface{}{
@@ -45,18 +53,27 @@ func (c *EstudianteController) RegistrarEstudiante(w http.ResponseWriter, r *htt
 	sobreNome := r.FormValue("sobreNome")
 	enderecao := r.FormValue("enderecao")
 	correio, _ := helpers.ValidateCorreio(r.FormValue("idCurso"))
-	siJuridico := r.FormValue("siJuridico")
+	siJuridico, _ := helpers.ValidateBool(r.FormValue("siJuridico"))
 	defer func() {
 		if err := recover(); err != nil {
-			w.WriteHeader(http.StatusOK)
+			w.WriteHeader(509)
 			json.NewEncoder(w).Encode(
 				map[string]interface{}{
-					"Test": "Validacion de Excepcion",
+					"Error": err,
 				},
 			)
 		}
 	}()
 	defer r.Body.Close()
+
+	estud := models.Persona{
+		CI:        ci,
+		Nombre:    nome,
+		Apellidos: sobreNome,
+		Dir:       enderecao,
+		Mail:      correio,
+	}
+	c.estudianteRepository.RegistrarEstudiante(&estud, siJuridico)
 
 	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode(map[string]interface{}{
@@ -80,18 +97,27 @@ func (c *EstudianteController) ModificarEstudiante(w http.ResponseWriter, r *htt
 	sobreNome := r.FormValue("sobreNome")
 	enderecao := r.FormValue("enderecao")
 	correio, _ := helpers.ValidateCorreio(r.FormValue("idCurso"))
-	siJuridico := r.FormValue("siJuridico")
+	siJuridico, _ := helpers.ValidateBool(r.FormValue("siJuridico"))
 	defer func() {
 		if err := recover(); err != nil {
-			w.WriteHeader(http.StatusOK)
+			w.WriteHeader(509)
 			json.NewEncoder(w).Encode(
 				map[string]interface{}{
-					"Test": "Validacion de Excepcion",
+					"Error": err,
 				},
 			)
 		}
 	}()
 	defer r.Body.Close()
+
+	estud := models.Persona{
+		CI:        ci,
+		Nombre:    nome,
+		Apellidos: sobreNome,
+		Dir:       enderecao,
+		Mail:      correio,
+	}
+	c.estudianteRepository.RegistrarEstudiante(&estud, siJuridico)
 
 	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode(map[string]interface{}{
@@ -112,17 +138,25 @@ func (c *EstudianteController) ModificarDatosEstudianteCurso(w http.ResponseWrit
 	//vars := mux.Vars(r)
 	ci, _ := helpers.ValidateCi(r.FormValue("ci"))
 	idCurso, _ := helpers.ValidateInt(r.FormValue("idCurso"))
+	fecha_ingreso, _ := helpers.ValidateFecha(r.FormValue("fechaIngreso"))
 	defer func() {
 		if err := recover(); err != nil {
-			w.WriteHeader(http.StatusOK)
+			w.WriteHeader(509)
 			json.NewEncoder(w).Encode(
 				map[string]interface{}{
-					"Test": "Validacion de Excepcion",
+					"Error": err,
 				},
 			)
 		}
 	}()
 	defer r.Body.Close()
+
+	matric := models.Matricula{
+		CursoId:      idCurso,
+		EstudianteCi: ci,
+		FechaIngreso: fecha_ingreso,
+	}
+	c.estudianteRepository.ModificarEstudianteCurso(&matric)
 
 	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode(map[string]interface{}{
@@ -140,15 +174,19 @@ func (c *EstudianteController) EliminarEstudiante(w http.ResponseWriter, r *http
 	ci, _ := helpers.ValidateCi(r.FormValue("ci"))
 	defer func() {
 		if err := recover(); err != nil {
-			w.WriteHeader(http.StatusOK)
+			w.WriteHeader(509)
 			json.NewEncoder(w).Encode(
 				map[string]interface{}{
-					"Test": "Validacion de Excepcion",
+					"Error": err,
 				},
 			)
 		}
 	}()
 	defer r.Body.Close()
+	estudiante := models.Estudiante{
+		CI: ci,
+	}
+	c.estudianteRepository.EliminarEstudiante(&estudiante)
 
 	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode(map[string]interface{}{
@@ -166,15 +204,20 @@ func (c *EstudianteController) ElminarEstudianteCurso(w http.ResponseWriter, r *
 	idCurso, _ := helpers.ValidateInt(r.FormValue("idCurso"))
 	defer func() {
 		if err := recover(); err != nil {
-			w.WriteHeader(http.StatusOK)
+			w.WriteHeader(509)
 			json.NewEncoder(w).Encode(
 				map[string]interface{}{
-					"Test": "Validacion de Excepcion",
+					"Error": err,
 				},
 			)
 		}
 	}()
 	defer r.Body.Close()
+	matricula := models.Matricula{
+		EstudianteCi: ci,
+		CursoId:      idCurso,
+	}
+	c.estudianteRepository.EliminarEstudianteCurso(&matricula)
 
 	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode(map[string]interface{}{
@@ -192,7 +235,7 @@ func (c *EstudianteController) MostrarEstudianteDeCurso(w http.ResponseWriter, r
 	idCurso, _ := helpers.ValidateInt(r.FormValue("idCurso"))
 	defer func() {
 		if err := recover(); err != nil {
-			w.WriteHeader(http.StatusOK)
+			w.WriteHeader(509)
 			json.NewEncoder(w).Encode(
 				map[string]interface{}{
 					"Test": "Validacion de Excepcion",
@@ -214,25 +257,31 @@ func (c *EstudianteController) MostrarEstudianteDeCurso(w http.ResponseWriter, r
 func (c *EstudianteController) MostrarEstudianteJuridicoNoJuridico(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	//vars := mux.Vars(r)
-	siJuridico := r.FormValue("siJuridico")
+	siJuridico, _ := helpers.ValidateBool(r.FormValue("siJuridico"))
 	defer func() {
 		if err := recover(); err != nil {
-			w.WriteHeader(http.StatusOK)
+			w.WriteHeader(509)
 			json.NewEncoder(w).Encode(
 				map[string]interface{}{
-					"Test": "Validacion de Excepcion",
+					"Error": err,
 				},
 			)
 		}
 	}()
 	defer r.Body.Close()
 
+	estudiante := models.Estudiante{
+		SiJuridico: siJuridico,
+	}
+	res := c.estudianteRepository.MostrarEstudianteJuridicoNoJuridico(&estudiante)
+
 	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode(map[string]interface{}{
 		"result": map[string]interface{}{
 			"siJuridico": siJuridico,
 		},
-		"func": "MostrarEstudianteJuridicoNoJuridico",
+		"func":       "MostrarEstudianteJuridicoNoJuridico",
+		"Estudiante": res,
 	})
 }
 

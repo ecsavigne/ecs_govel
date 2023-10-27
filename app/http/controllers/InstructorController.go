@@ -2,18 +2,19 @@ package controllers
 
 import (
 	"ecs_govel/app/helpers"
+	"ecs_govel/app/models"
+	"ecs_govel/app/repositories"
 	"encoding/json"
 	"net/http"
 )
 
 type InstructorController struct {
-	//isnstructorRepository repositories.InstructorRepository
+	instructorRepository repositories.InstructorRepository
 }
 
 func (c *InstructorController) RegistrarInstructor(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	//vars := mux.Vars(r)
-	idCurso, _ := helpers.ValidateInt(r.FormValue("idCurso"))
 	ci, _ := helpers.ValidateCi(r.FormValue("ci"))
 	nome := r.FormValue("nome")
 	sobreNome := r.FormValue("sobreNome")
@@ -21,20 +22,28 @@ func (c *InstructorController) RegistrarInstructor(w http.ResponseWriter, r *htt
 	correio, _ := helpers.ValidateCorreio(r.FormValue("idCurso"))
 	defer func() {
 		if err := recover(); err != nil {
-			w.WriteHeader(http.StatusOK)
+			w.WriteHeader(509)
 			json.NewEncoder(w).Encode(
 				map[string]interface{}{
-					"Test": "Validacion de Excepcion",
+					"Error": err,
 				},
 			)
 		}
 	}()
 	defer r.Body.Close()
 
+	instructor := models.Persona{
+		CI:        ci,
+		Nombre:    nome,
+		Apellidos: sobreNome,
+		Dir:       enderecao,
+		Mail:      correio,
+	}
+	c.instructorRepository.RegistrarInstructor(&instructor)
+
 	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode(map[string]interface{}{
 		"result": map[string]interface{}{
-			"idCurso":   idCurso,
 			"nome":      nome,
 			"sobreNome": sobreNome,
 			"ci":        ci,
@@ -48,7 +57,6 @@ func (c *InstructorController) RegistrarInstructor(w http.ResponseWriter, r *htt
 func (c *InstructorController) ModificarInstructor(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	//vars := mux.Vars(r)
-	idCurso, _ := helpers.ValidateInt(r.FormValue("idCurso"))
 	ci, _ := helpers.ValidateCi(r.FormValue("ci"))
 	nome := r.FormValue("nome")
 	sobreNome := r.FormValue("sobreNome")
@@ -56,20 +64,28 @@ func (c *InstructorController) ModificarInstructor(w http.ResponseWriter, r *htt
 	correio, _ := helpers.ValidateCorreio(r.FormValue("idCurso"))
 	defer func() {
 		if err := recover(); err != nil {
-			w.WriteHeader(http.StatusOK)
+			w.WriteHeader(509)
 			json.NewEncoder(w).Encode(
 				map[string]interface{}{
-					"Test": "Validacion de Excepcion",
+					"Error": err,
 				},
 			)
 		}
 	}()
 	defer r.Body.Close()
 
+	inst := models.Persona{
+		CI:        ci,
+		Nombre:    nome,
+		Apellidos: sobreNome,
+		Dir:       enderecao,
+		Mail:      correio,
+	}
+	c.instructorRepository.ModificarInstructor(&inst)
+
 	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode(map[string]interface{}{
 		"result": map[string]interface{}{
-			"idCurso":   idCurso,
 			"nome":      nome,
 			"sobreNome": sobreNome,
 			"ci":        ci,
@@ -86,15 +102,20 @@ func (c *InstructorController) EliminarInstructor(w http.ResponseWriter, r *http
 	ci, _ := helpers.ValidateCi(r.FormValue("ci"))
 	defer func() {
 		if err := recover(); err != nil {
-			w.WriteHeader(http.StatusOK)
+			w.WriteHeader(509)
 			json.NewEncoder(w).Encode(
 				map[string]interface{}{
-					"Test": "Validacion de Excepcion",
+					"Error": err,
 				},
 			)
 		}
 	}()
 	defer r.Body.Close()
+
+	inst := models.Instructore{
+		CI: ci,
+	}
+	c.instructorRepository.EliminarInstructor(&inst)
 
 	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode(map[string]interface{}{
@@ -111,15 +132,20 @@ func (c *InstructorController) MostrarInstructor(w http.ResponseWriter, r *http.
 	ci, _ := helpers.ValidateCi(r.FormValue("ci"))
 	defer func() {
 		if err := recover(); err != nil {
-			w.WriteHeader(http.StatusOK)
+			w.WriteHeader(509)
 			json.NewEncoder(w).Encode(
 				map[string]interface{}{
-					"Test": "Validacion de Excepcion",
+					"Error": err,
 				},
 			)
 		}
 	}()
 	defer r.Body.Close()
+
+	inst := models.Instructore{
+		CI: ci,
+	}
+	res := c.instructorRepository.MostrarInstructor(&inst)
 
 	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode(map[string]interface{}{
@@ -127,6 +153,7 @@ func (c *InstructorController) MostrarInstructor(w http.ResponseWriter, r *http.
 			"ci": ci,
 		},
 		"func": "MostrarInstructor",
+		"data": res,
 	})
 }
 
@@ -137,15 +164,21 @@ func (c *InstructorController) AgregarCursoToInstructor(w http.ResponseWriter, r
 	ci, _ := helpers.ValidateCi(r.FormValue("ci"))
 	defer func() {
 		if err := recover(); err != nil {
-			w.WriteHeader(http.StatusOK)
+			w.WriteHeader(509)
 			json.NewEncoder(w).Encode(
 				map[string]interface{}{
-					"Test": "Validacion de Excepcion",
+					"Error": err,
 				},
 			)
 		}
 	}()
 	defer r.Body.Close()
+
+	inst_cur := models.InstructorCurso{
+		CursoId:      idCurso,
+		InstructorCi: ci,
+	}
+	c.instructorRepository.AgregarInstructorToCurso(&inst_cur)
 
 	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode(map[string]interface{}{
@@ -164,15 +197,20 @@ func (c *InstructorController) ModificarCursoOffInstructor(w http.ResponseWriter
 	ci, _ := helpers.ValidateCi(r.FormValue("ci"))
 	defer func() {
 		if err := recover(); err != nil {
-			w.WriteHeader(http.StatusOK)
+			w.WriteHeader(509)
 			json.NewEncoder(w).Encode(
 				map[string]interface{}{
-					"Test": "Validacion de Excepcion",
+					"Error": err,
 				},
 			)
 		}
 	}()
 	defer r.Body.Close()
+	inst_cur := models.InstructorCurso{
+		CursoId:      idCurso,
+		InstructorCi: ci,
+	}
+	c.instructorRepository.ModificarInstructorCurso(&inst_cur)
 
 	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode(map[string]interface{}{
@@ -191,15 +229,20 @@ func (c *InstructorController) EliminarCursoOffInstructor(w http.ResponseWriter,
 	ci, _ := helpers.ValidateCi(r.FormValue("ci"))
 	defer func() {
 		if err := recover(); err != nil {
-			w.WriteHeader(http.StatusOK)
+			w.WriteHeader(509)
 			json.NewEncoder(w).Encode(
 				map[string]interface{}{
-					"Test": "Validacion de Excepcion",
+					"Error": err,
 				},
 			)
 		}
 	}()
 	defer r.Body.Close()
+	inst_cur := models.InstructorCurso{
+		CursoId:      idCurso,
+		InstructorCi: ci,
+	}
+	c.instructorRepository.EliminarCursoOffInstructor(&inst_cur)
 
 	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode(map[string]interface{}{

@@ -2,12 +2,14 @@ package controllers
 
 import (
 	"ecs_govel/app/helpers"
+	"ecs_govel/app/models"
+	"ecs_govel/app/repositories"
 	"encoding/json"
 	"net/http"
 )
 
 type EstructuraController struct {
-	//estructuraRepository repositories.EstructuraRepository
+	estructuraRepository repositories.EstructuraRepository
 }
 
 func (c *EstructuraController) RegistrarEstructura(w http.ResponseWriter, r *http.Request) {
@@ -16,10 +18,10 @@ func (c *EstructuraController) RegistrarEstructura(w http.ResponseWriter, r *htt
 	tipoEstructura := r.FormValue("tipoEstructura")
 	defer func() {
 		if err := recover(); err != nil {
-			w.WriteHeader(http.StatusOK)
+			w.WriteHeader(509)
 			json.NewEncoder(w).Encode(
 				map[string]interface{}{
-					"erro":        "",
+					"error":       err,
 					"descripcion": "Validacion de Excepcion",
 					"func":        "RegistrarEstructura",
 				},
@@ -27,6 +29,11 @@ func (c *EstructuraController) RegistrarEstructura(w http.ResponseWriter, r *htt
 		}
 	}()
 	defer r.Body.Close()
+
+	estructura := models.Estructura{
+		TipoEstructura: tipoEstructura,
+	}
+	c.estructuraRepository.RegistrarEstructura(&estructura)
 
 	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode(map[string]interface{}{
@@ -43,10 +50,10 @@ func (c *EstructuraController) MostrarEstructura(w http.ResponseWriter, r *http.
 	idEstructura, _ := helpers.ValidateInt(r.FormValue("idEstructura"))
 	defer func() {
 		if err := recover(); err != nil {
-			w.WriteHeader(http.StatusOK)
+			w.WriteHeader(509)
 			json.NewEncoder(w).Encode(
 				map[string]interface{}{
-					"erro":        "",
+					"error":       err,
 					"descripcion": "Validacion de Excepcion",
 					"func":        "MostrarEstructura",
 				},
@@ -55,12 +62,18 @@ func (c *EstructuraController) MostrarEstructura(w http.ResponseWriter, r *http.
 	}()
 	defer r.Body.Close()
 
+	estructura := models.Estructura{
+		ID: idEstructura,
+	}
+	res := c.estructuraRepository.MostrarEstructura(&estructura)
+
 	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode(map[string]interface{}{
 		"result": map[string]interface{}{
 			"idEstructura": idEstructura,
 		},
-		"func": "MostrarEstructura",
+		"func":        "MostrarEstructura",
+		"estructuras": res,
 	})
 }
 
@@ -70,10 +83,10 @@ func (c *EstructuraController) EliminarEstructura(w http.ResponseWriter, r *http
 	idEstructura, _ := helpers.ValidateInt(r.FormValue("idEstructura"))
 	defer func() {
 		if err := recover(); err != nil {
-			w.WriteHeader(http.StatusOK)
+			w.WriteHeader(509)
 			json.NewEncoder(w).Encode(
 				map[string]interface{}{
-					"erro":        "",
+					"error":       err,
 					"descripcion": "Validacion de Excepcion",
 					"func":        "EliminarEstructura",
 				},
@@ -81,6 +94,11 @@ func (c *EstructuraController) EliminarEstructura(w http.ResponseWriter, r *http
 		}
 	}()
 	defer r.Body.Close()
+
+	estructura := models.Estructura{
+		ID: idEstructura,
+	}
+	c.estructuraRepository.EliminarEstructura(&estructura)
 
 	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode(map[string]interface{}{
@@ -98,10 +116,10 @@ func (c *EstructuraController) ModificarEstructura(w http.ResponseWriter, r *htt
 	tipoEstructura := r.FormValue("tipoEstructura")
 	defer func() {
 		if err := recover(); err != nil {
-			w.WriteHeader(http.StatusOK)
+			w.WriteHeader(509)
 			json.NewEncoder(w).Encode(
 				map[string]interface{}{
-					"erro":        "",
+					"error":       err,
 					"descripcion": "Validacion de Excepcion",
 					"func":        "ModificarEstructura",
 				},
@@ -109,6 +127,12 @@ func (c *EstructuraController) ModificarEstructura(w http.ResponseWriter, r *htt
 		}
 	}()
 	defer r.Body.Close()
+
+	estructura := models.Estructura{
+		ID:             idEstructura,
+		TipoEstructura: tipoEstructura,
+	}
+	c.estructuraRepository.ModificarEstructura(&estructura)
 
 	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode(map[string]interface{}{

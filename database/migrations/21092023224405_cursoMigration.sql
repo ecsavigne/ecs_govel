@@ -4,6 +4,6 @@ CREATE TABLE IF NOT EXISTS cursos (
     updated_at DATETIME,
     deleted_at DATETIME,
     fecha_ingreso DATETIME,
-    duracion_hora TIME,
+    duracion_hora INT,
     si_certificado BOOLEAN
 ) ENGINE = InnoDB;

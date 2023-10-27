@@ -2,42 +2,55 @@ package controllers
 
 import (
 	"ecs_govel/app/helpers"
+	"ecs_govel/app/models"
+	"ecs_govel/app/repositories"
 	"encoding/json"
 	"net/http"
 )
 
 type CursoController struct {
-	//cursoRepositoy repositories.CursoRepository
+	cursoRepositoy repositories.CursoRepository
 }
 
 func (c *CursoController) RegistrarCurso(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	//vars := mux.Vars(r)
-	idCurso, _ := helpers.ValidateInt(r.FormValue("idCurso"))
-	idConteido, _ := helpers.ValidateCi(r.FormValue("idConteido"))
-	dataIngreso := r.FormValue("dataIngreso")
-	duracao, _ := helpers.ValidateCi(r.FormValue("duracao"))
+	// idCurso, _ := helpers.ValidateInt(r.FormValue("idCurso"))
+	idConteido, _ := helpers.ValidateInt(r.FormValue("idConteido"))
+	dataIngreso, _ := helpers.ValidateFecha(r.FormValue("dataIngreso"))
+	duracao, _ := helpers.ValidateInt(r.FormValue("duracao"))
+	si_certificado, _ := helpers.ValidateBool(r.FormValue("si_certificado"))
 	defer func() {
 		if err := recover(); err != nil {
-			w.WriteHeader(http.StatusOK)
+			w.WriteHeader(509)
 			json.NewEncoder(w).Encode(
 				map[string]interface{}{
-					"Test": "Validacion de Excepcion",
+					"Err": err,
 				},
 			)
 		}
 	}()
 	defer r.Body.Close()
+	curso := models.Curso{
+		FechaIngreso:  dataIngreso,
+		DuracionHora:  duracao,
+		SiCertificado: si_certificado,
+	}
+	contenido_curso := models.CursoContenido{
+		ContenidoId: idConteido,
+	}
+	c.cursoRepositoy.RegistrarCurso(&curso, &contenido_curso)
 
 	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode(map[string]interface{}{
 		"result": map[string]interface{}{
-			"idCurso":     idCurso,
-			"idConteido":  idConteido,
-			"dataIngreso": dataIngreso,
-			"duracao":     duracao,
+			"idConteido":     idConteido,
+			"dataIngreso":    dataIngreso,
+			"duracao":        duracao,
+			"si_certificado": si_certificado,
 		},
-		"func": "Valor Test Registrar curso",
+		"func":   "Valor Test Registrar curso",
+		"Status": http.StatusOK,
 	})
 }
 
@@ -45,20 +58,34 @@ func (c *CursoController) ModificarCurso(w http.ResponseWriter, r *http.Request)
 	w.Header().Set("Content-Type", "application/json")
 	//vars := mux.Vars(r)
 	idCurso, _ := helpers.ValidateInt(r.FormValue("idCurso"))
-	idConteido, _ := helpers.ValidateCi(r.FormValue("idConteido"))
-	dataIngreso := r.FormValue("dataIngreso")
-	duracao, _ := helpers.ValidateCi(r.FormValue("duracao"))
+	idConteido, _ := helpers.ValidateInt(r.FormValue("idConteido"))
+	dataIngreso, _ := helpers.ValidateFecha(r.FormValue("dataIngreso"))
+	duracao, _ := helpers.ValidateInt(r.FormValue("duracao"))
+	si_certificado, _ := helpers.ValidateBool(r.FormValue("si_certificado"))
 	defer func() {
 		if err := recover(); err != nil {
-			w.WriteHeader(http.StatusOK)
+			w.WriteHeader(509)
 			json.NewEncoder(w).Encode(
 				map[string]interface{}{
-					"Test": "Validacion de Excepcion",
+					"Err": err,
 				},
 			)
 		}
 	}()
 	defer r.Body.Close()
+	curso := models.Curso{
+		ID:            idCurso,
+		FechaIngreso:  dataIngreso,
+		DuracionHora:  duracao,
+		SiCertificado: si_certificado,
+	}
+
+	contenido_curso := models.CursoContenido{
+		ContenidoId: idConteido,
+		CursoId:     idCurso,
+	}
+
+	c.cursoRepositoy.ModificarCurso(&curso, &contenido_curso)
 
 	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode(map[string]interface{}{
@@ -78,15 +105,20 @@ func (c *CursoController) EliminarCurso(w http.ResponseWriter, r *http.Request) 
 	idCurso, _ := helpers.ValidateInt(r.FormValue("idCurso"))
 	defer func() {
 		if err := recover(); err != nil {
-			w.WriteHeader(http.StatusOK)
+			w.WriteHeader(509)
 			json.NewEncoder(w).Encode(
 				map[string]interface{}{
-					"Test": "Validacion de Excepcion",
+					"Err": err,
 				},
 			)
 		}
 	}()
 	defer r.Body.Close()
+	curso := models.Curso{
+		ID: idCurso,
+	}
+
+	c.cursoRepositoy.EliminarCurso(&curso)
 
 	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode(map[string]interface{}{
@@ -103,21 +135,27 @@ func (c *CursoController) MostrarCurso(w http.ResponseWriter, r *http.Request) {
 	idCurso, _ := helpers.ValidateInt(r.FormValue("idCurso"))
 	defer func() {
 		if err := recover(); err != nil {
-			w.WriteHeader(http.StatusOK)
+			w.WriteHeader(509)
 			json.NewEncoder(w).Encode(
 				map[string]interface{}{
-					"Test": "Validacion de Excepcion",
+					"Err": err,
 				},
 			)
 		}
 	}()
 	defer r.Body.Close()
+	curso := models.Curso{
+		ID: idCurso,
+	}
+
+	res := c.cursoRepositoy.MostrarCurso(&curso)
 
 	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode(map[string]interface{}{
 		"result": map[string]interface{}{
 			"idCurso": idCurso,
 		},
-		"func": "MostrarCurso",
+		"func":   "MostrarCurso",
+		"cursos": res,
 	})
 }
