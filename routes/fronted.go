@@ -121,12 +121,15 @@ func _style(loadRoute *mux.Router) {
 		http.StripPrefix("/main/login/estilos/", http.FileServer(http.Dir("../frontend/main/login/estilos/"))))
 	loadRoute.PathPrefix("/main/login/images/").Handler(
 		http.StripPrefix("/main/login/images/", http.FileServer(http.Dir("../frontend/main/login/images/"))))
-	// Cargar imagenes carpeat /main/img
+	// Cargar imagenes carpeat /main/img/
 	loadRoute.PathPrefix("/main/img/").Handler(
 		http.StripPrefix("/main/img/", http.FileServer(http.Dir("../frontend/main/img/"))))
-	//Cargar stylos de carpeta /main/css
+	//Cargar stylos de carpeta /main/css/
 	loadRoute.PathPrefix("/main/css/").Handler(
 		http.StripPrefix("/main/css/", http.FileServer(http.Dir("../frontend/main/css/"))))
+	// //Cargar stylos de carpeta /main/
+	// loadRoute.PathPrefix("/main/styles.css").Handler(
+	// 	http.StripPrefix("/main/styles.css", http.FileServer(http.Dir("../frontend/main/styles.css"))))
 }
 
 func _js(loadRoute *mux.Router) {
