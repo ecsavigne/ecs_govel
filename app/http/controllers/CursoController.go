@@ -17,7 +17,7 @@ func (c *CursoController) RegistrarCurso(w http.ResponseWriter, r *http.Request)
 	//vars := mux.Vars(r)
 	// idCurso, _ := helpers.ValidateInt(r.FormValue("idCurso"))
 	idConteido, _ := helpers.ValidateInt(r.FormValue("idConteido"))
-	dataIngreso, _ := helpers.ValidateFecha(r.FormValue("dataIngreso"))
+	dataCreacion, _ := helpers.ValidateFecha(r.FormValue("dataCreacion"))
 	duracao, _ := helpers.ValidateInt(r.FormValue("duracao"))
 	si_certificado, _ := helpers.ValidateBool(r.FormValue("si_certificado"))
 	defer func() {
@@ -32,7 +32,7 @@ func (c *CursoController) RegistrarCurso(w http.ResponseWriter, r *http.Request)
 	}()
 	defer r.Body.Close()
 	curso := models.Curso{
-		FechaIngreso:  dataIngreso,
+		FechaCreacion: dataCreacion,
 		DuracionHora:  duracao,
 		SiCertificado: si_certificado,
 	}
@@ -45,7 +45,7 @@ func (c *CursoController) RegistrarCurso(w http.ResponseWriter, r *http.Request)
 	json.NewEncoder(w).Encode(map[string]interface{}{
 		"result": map[string]interface{}{
 			"idConteido":     idConteido,
-			"dataIngreso":    dataIngreso,
+			"FechaCreacion":  dataCreacion,
 			"duracao":        duracao,
 			"si_certificado": si_certificado,
 		},
@@ -59,7 +59,7 @@ func (c *CursoController) ModificarCurso(w http.ResponseWriter, r *http.Request)
 	//vars := mux.Vars(r)
 	idCurso, _ := helpers.ValidateInt(r.FormValue("idCurso"))
 	idConteido, _ := helpers.ValidateInt(r.FormValue("idConteido"))
-	dataIngreso, _ := helpers.ValidateFecha(r.FormValue("dataIngreso"))
+	dataCreacion, _ := helpers.ValidateFecha(r.FormValue("dataCreacion"))
 	duracao, _ := helpers.ValidateInt(r.FormValue("duracao"))
 	si_certificado, _ := helpers.ValidateBool(r.FormValue("si_certificado"))
 	defer func() {
@@ -75,7 +75,7 @@ func (c *CursoController) ModificarCurso(w http.ResponseWriter, r *http.Request)
 	defer r.Body.Close()
 	curso := models.Curso{
 		ID:            idCurso,
-		FechaIngreso:  dataIngreso,
+		FechaCreacion: dataCreacion,
 		DuracionHora:  duracao,
 		SiCertificado: si_certificado,
 	}
@@ -90,10 +90,10 @@ func (c *CursoController) ModificarCurso(w http.ResponseWriter, r *http.Request)
 	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode(map[string]interface{}{
 		"result": map[string]interface{}{
-			"idCurso":     idCurso,
-			"idConteido":  idConteido,
-			"dataIngreso": dataIngreso,
-			"duracao":     duracao,
+			"idCurso":       idCurso,
+			"idConteido":    idConteido,
+			"FechaCreacion": dataCreacion,
+			"duracao":       duracao,
 		},
 		"func": "ModificarCurso",
 	})

@@ -4,6 +4,7 @@ import (
 	"database/sql"
 	"ecs_govel/app/helpers/logg"
 	"ecs_govel/app/models"
+	"ecs_govel/database/seeders"
 
 	"fmt"
 	"io"
@@ -165,6 +166,7 @@ func ConfigDB(obj ConfigEcsGovelIni) {
 	logg.GeneralLogger.Printf("\033[36mConfigurando coneccion y cargando Migration %s: \033[0m\n", driver)
 	fmt.Printf("\033[36mConfigurando coneccion y cargando Migration de:  %s \033[0m\n", configsIni.FolderMigrations)
 	Orm.autoMigrate()
+	Orm.ExecuteSeeder()
 }
 
 func (db *DbInstance) db() *sql.DB {
@@ -332,4 +334,9 @@ func deletePatronOffString(cad string) string {
 	}
 	strTemp := cad[:indice]
 	return strings.ToUpper(string(strTemp[0])) + strTemp[1:]
+}
+
+func (db *DbInstance) ExecuteSeeder() {
+	seeders.Init(db.DB)
+	seeders.Seeder.SeederUsuario()
 }

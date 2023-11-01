@@ -41,7 +41,6 @@ func InitApp() {
 			return
 		}
 	}()
-
 	// Espera por Ctrl+C para finalizar la aplicacion
 	c := make(chan os.Signal, 1)                    //registra el canal c para recibir la señal SIGINT (representada por os.Interrupt).
 	signal.Notify(c, os.Interrupt, syscall.SIGTERM) // La aplicación espere hasta que reciba la señal SIGINT.
