@@ -12,37 +12,6 @@ type Config interface {
 	GetObj() interface{}
 }
 
-// type ConfigEcsGovelIni struct {
-// 	//Files .ini
-// 	cfgAppIni *ini.File
-// 	cfgBDIni  *ini.File
-// 	//Seccion de variables de App
-// 	sessionApp         *ini.Section
-// 	appID              string
-// 	folderMigrations   string
-// 	autoMigration      bool
-// 	migrationFromModel bool
-// 	//Seccion de variables de Servidor Web
-// 	sessionWeb   *ini.Section
-// 	host         string
-// 	port         int
-// 	writeTimeout int
-// 	readTimeout  int
-// 	idleTimeout  int
-// 	//Seccion de variables de Base de datos
-// 	sessionDB          *ini.Section
-// 	UrlEnv             string
-// 	Driver             string
-// 	setConnMaxLifetime int
-// 	setMaxIdleConns    int
-// 	setMaxOpenConns    int
-// 	activeOnCascade    bool
-// }
-
-// func (conf ConfigEcsGovelIni) GetObj() interface{} {
-// 	return conf
-// }
-
 var configsIni = db.ConfigEcsGovelIni{}
 
 func init() {
@@ -60,6 +29,7 @@ func init() {
 	configsIni.AppID, db.Orm.AppID = configsIni.SessionApp.Key("AppID").String(), configsIni.SessionApp.Key("AppID").String()
 	configsIni.FolderMigrations = configsIni.SessionApp.Key("FolderMigrations").String()
 	configsIni.AutoMigration, _ = configsIni.SessionApp.Key("AutoMigration").Bool()
+	configsIni.Seeders, _ = configsIni.SessionApp.Key("Seeders").Bool()
 	configsIni.MigrationFromModel, _ = configsIni.SessionApp.Key("MigrationFromModel").Bool()
 	configsIni.SessionWeb = configsIni.CfgAppIni.Section("Servidor Web")
 	configsIni.Host = configsIni.SessionWeb.Key("Host").String()

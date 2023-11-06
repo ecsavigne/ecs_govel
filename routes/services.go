@@ -36,6 +36,7 @@ func services(loadRoute *mux.Router) {
 	loadRoute.HandleFunc("/registrarUsr", new(controllers.UsuarioController).RegistrarUsr)
 	loadRoute.HandleFunc("/recuperarPass", new(controllers.UsuarioController).RecuperarPass)
 	loadRoute.HandleFunc("/cambioPass", new(controllers.UsuarioController).CambiarPass)
+	loadRoute.HandleFunc("/verificarUsr", new(controllers.UsuarioController).VerificarUsr)
 
 	//matricula
 	loadRoute.HandleFunc("/mostrarMatricula", new(controllers.MatriculaController).MostrarMatriculaDeCurso)

@@ -2,8 +2,11 @@ package controllers
 
 import (
 	"ecs_govel/app/helpers"
+	"ecs_govel/app/models"
 	"ecs_govel/app/repositories"
 	"encoding/json"
+	"errors"
+	"fmt"
 	"net/http"
 )
 
@@ -13,18 +16,17 @@ type UsuarioController struct {
 
 func (c *UsuarioController) RegistrarUsr(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
-	//vars := mux.Vars(r)
 	pass := r.FormValue("pass")
 	nome := r.FormValue("nome")
 	correio := r.FormValue("correio")
-
+	var err error = nil
 	defer func() {
-		if err := recover(); err != nil {
-			w.WriteHeader(http.StatusOK)
+		if err != nil {
+			w.WriteHeader(509)
 			json.NewEncoder(w).Encode(
 				map[string]interface{}{
-					"err":  err,
-					"Test": "Validacion de Excepcion",
+					"Error": err.Error(),
+					"code":  false,
 				},
 			)
 		}
@@ -33,16 +35,15 @@ func (c *UsuarioController) RegistrarUsr(w http.ResponseWriter, r *http.Request)
 
 	res := c.usuarioRepository.RegistrarUsr(nome, correio, pass)
 	if res != true {
-		panic(res)
+		err = errors.New("Ocurrio un error al registrar usuario : " + fmt.Sprintf("%v", res))
+		return
 	}
 
 	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode(map[string]interface{}{
 		"result": map[string]interface{}{
-			"pass":    pass,
-			"correio": correio,
-			"nome":    nome,
-			"res":     res,
+			"code": true,
+			"res":  res,
 		},
 		"func": "RegistrarUsr",
 	})
@@ -50,16 +51,16 @@ func (c *UsuarioController) RegistrarUsr(w http.ResponseWriter, r *http.Request)
 
 func (c *UsuarioController) CambiarPass(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
-	//vars := mux.Vars(r)
 	newPass := r.FormValue("newPass")
 	idUsuario, _ := helpers.ValidateInt(r.FormValue("idUsuario"))
+	var err error = nil
 	defer func() {
-		if err := recover(); err != nil {
-			w.WriteHeader(http.StatusOK)
+		if err != nil {
+			w.WriteHeader(509)
 			json.NewEncoder(w).Encode(
 				map[string]interface{}{
-
-					"Test": "Validacion de Excepcion",
+					"Error": err.Error(),
+					"code":  false,
 				},
 			)
 		}
@@ -68,15 +69,15 @@ func (c *UsuarioController) CambiarPass(w http.ResponseWriter, r *http.Request) 
 
 	res := c.usuarioRepository.CambiarPass(idUsuario, newPass)
 	if res != true {
-		panic(res)
+		err = errors.New("Ocurried error to changing password : " + fmt.Sprintf("%v", res))
+		return
 	}
 
 	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode(map[string]interface{}{
 		"result": map[string]interface{}{
-			"newPass":   newPass,
-			"idUsuario": idUsuario,
-			"res":       res,
+			"code": true,
+			"res":  res,
 		},
 		"func": "CambiarPass",
 	})
@@ -84,32 +85,87 @@ func (c *UsuarioController) CambiarPass(w http.ResponseWriter, r *http.Request) 
 
 func (c *UsuarioController) RecuperarPass(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
-	//vars := mux.Vars(r)
-	correio, _ := helpers.ValidateCorreio(r.FormValue("correio"))
+	correio, err := helpers.ValidateCorreio(r.FormValue("correio"))
 	defer func() {
-		if err := recover(); err != nil {
-			w.WriteHeader(http.StatusOK)
+		if err != nil {
+			w.WriteHeader(509)
 			json.NewEncoder(w).Encode(
 				map[string]interface{}{
-					"err":  err,
-					"Test": "Validacion de Excepcion",
+					"error": err.Error(),
+					"code":  false,
 				},
 			)
 		}
 	}()
+
+	if err != nil {
+		return
+	}
+
 	defer r.Body.Close()
 
 	res := c.usuarioRepository.RecuperarPass(correio)
-	if res != true && res != false {
-		panic(res)
+	if res != true {
+		if res == false {
+			err = errors.New("Ocurrio un error Recuperando password, no existe correo : " + correio)
+		} else {
+			err = errors.New("Ocurrio un error Recuperando password : " + fmt.Sprintf("%v", res))
+		}
+		return
 	}
 
 	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode(map[string]interface{}{
 		"result": map[string]interface{}{
-			"correio": correio,
-			"res":     res,
+			"code": true,
 		},
 		"func": "RecuperarPass",
+	})
+}
+
+func (c *UsuarioController) VerificarUsr(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+	usuario := r.FormValue("usuario")
+	pass := r.FormValue("passwd")
+	var err error = nil
+	defer func() {
+		if err != nil {
+			w.WriteHeader(509)
+			json.NewEncoder(w).Encode(
+				map[string]interface{}{
+					"error": err.Error(),
+					"code":  false,
+				},
+			)
+		}
+	}()
+
+	if err != nil {
+		return
+	}
+
+	defer r.Body.Close()
+
+	usr := models.Usuario{
+		Nombre:   usuario,
+		Password: pass,
+	}
+
+	res := c.usuarioRepository.VerificarUsr(&usr)
+	if res != true {
+		if res == false {
+			err = errors.New("Ocurrio un error Verificando el usuario")
+		} else {
+			err = errors.New("Ocurrio un error Verificando el usuario : " + fmt.Sprintf("%v", res))
+		}
+		return
+	}
+
+	w.WriteHeader(http.StatusOK)
+	json.NewEncoder(w).Encode(map[string]interface{}{
+		"result1": map[string]interface{}{
+			"code": true,
+		},
+		"func": "VerificarUsr",
 	})
 }

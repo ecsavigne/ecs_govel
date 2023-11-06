@@ -15,7 +15,7 @@ func ValidateCorreio(correo string) (string, error) {
 	if exprCorreo.Match([]byte(correo)) {
 		return correo, nil
 	} else {
-		return correo, errors.New("No es un correo")
+		return correo, errors.New("No es un correo válido")
 	}
 }
 

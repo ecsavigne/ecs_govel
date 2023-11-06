@@ -33,6 +33,7 @@ type ConfigEcsGovelIni struct {
 	FolderMigrations   string
 	AutoMigration      bool
 	MigrationFromModel bool
+	Seeders            bool
 	//Seccion de variables de Servidor Web
 	SessionWeb   *ini.Section
 	Host         string
@@ -337,6 +338,20 @@ func deletePatronOffString(cad string) string {
 }
 
 func (db *DbInstance) ExecuteSeeder() {
-	seeders.Init(db.DB)
-	seeders.Seeder.SeederUsuario()
+	if configsIni.Seeders == true {
+		seeders.Init(db.DB)
+		for _, seederName := range seeders.Seeder.SeedersLoad {
+			if seeders.EjecutarMetodo(seeders.Seeder, seederName) == false {
+				logg.GeneralLogger.Printf("\033[31mNo pudo cargando Seeder : %s\033[0m\n", seederName)
+				fmt.Printf("\033[31mNo pudo cargando Seeder : %s \033[0m\n", seederName)
+			} else {
+				logg.GeneralLogger.Printf("\033[36mCargando Seeder : %s\033[0m\n", seederName)
+				fmt.Printf("\033[36mCargando Seeder : %s\033[0m\n", seederName)
+			}
+		}
+	} else {
+		logg.GeneralLogger.Println("\033[36mCarga de seeder deshabilitada %s\033[0m\n")
+		fmt.Println("\033[36mCarga de seeder deshabilitada \033[0m\n")
+	}
+	// seeders.Seeder.SeederUsuario()
 }
