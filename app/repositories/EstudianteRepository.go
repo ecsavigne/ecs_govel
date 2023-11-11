@@ -79,3 +79,13 @@ func (e *EstudianteRepository) MostrarEstudianteJuridicoNoJuridico(estudiante *m
 func (e *EstudianteRepository) mostrarEstudianteDeCurso(estudiante *models.Estudiante) interface{} {
 	return ""
 }
+
+func (e *EstudianteRepository) MostrarEstudiante() interface{} {
+	pers := []models.Persona{}
+	if res := db.Orm.
+		Joins("inner join estudiantes on personas.ci = estudiantes.ci").
+		Find(&pers); res.Error != nil {
+		panic("Ocurried one error in line 86 [EstudanteRepository.mostrarEstudiante] error: " + res.Error.Error())
+	}
+	return pers
+}

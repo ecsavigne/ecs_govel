@@ -46,3 +46,11 @@ func (c *CursoRepository) MostrarCurso(curso *models.Curso) interface{} {
 	}
 	return cursos
 }
+
+func (c *CursoRepository) MostrarCursos() interface{} {
+	curs := []models.Curso{}
+	if res := db.Orm.Find(&curs); res.Error != nil {
+		panic("Ocurried one error in line 53 [CursoRepository.MostrarCursos] error: " + res.Error.Error())
+	}
+	return curs
+}

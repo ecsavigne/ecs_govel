@@ -3,6 +3,7 @@ package repositories
 import (
 	"ecs_govel/app/models"
 	"ecs_govel/config/db"
+	"fmt"
 )
 
 type ContenidoRepository struct {
@@ -47,6 +48,7 @@ func (c *ContenidoRepository) MostrarAllContenido() interface{} {
 	if res := db.Orm.Model(new(models.Contenido)).Find(&contenidos); res.Error != nil {
 		panic("[Repositories.ContenidoRepository.MostrarAllContenido: Line 48] - " + res.Error.Error())
 	}
+	fmt.Printf("Conetnidos: \n%+v\n", contenidos)
 	return contenidos
 }
 

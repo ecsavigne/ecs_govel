@@ -46,16 +46,24 @@ func (i *InstructorRepository) MostrarInstructor(instructor *models.Instructore)
 	return inst
 }
 
+func (i *InstructorRepository) MostrarInstructores() interface{} {
+	inst := []models.Instructore{}
+	if res := db.Orm.Joins("inner join personas on personas.ci  = instructores.ci ").Find(&inst); res.Error != nil {
+		panic("Ocurried one error in line 52 [EstudanteRepository.mostrarInstructores] error: " + res.Error.Error())
+	}
+	return inst
+}
+
 func (i *InstructorRepository) AgregarInstructorToCurso(instructor_curso *models.InstructorCurso) interface{} {
 	if err := db.Orm.Create(instructor_curso).Error; err != nil {
-		panic("[Repositories.InstructorRepository.AgregarInstructorToCurso: Line 51] - " + err.Error())
+		panic("[Repositories.InstructorRepository.AgregarInstructorToCurso: Line 59] - " + err.Error())
 	}
 	return true
 }
 
 func (i *InstructorRepository) EliminarCursoOffInstructor(instructor_curso *models.InstructorCurso) interface{} {
 	if res := db.Orm.Model(new(models.InstructorCurso)).Delete(instructor_curso); res.Error != nil {
-		panic("[Repositories.InstructorRepository.EliminarInstructorDeCurso: Line 58] - " + res.Error.Error())
+		panic("[Repositories.InstructorRepository.EliminarInstructorDeCurso: Line 66] - " + res.Error.Error())
 	} else if res.RowsAffected == 0 {
 		return false
 	}
@@ -64,7 +72,7 @@ func (i *InstructorRepository) EliminarCursoOffInstructor(instructor_curso *mode
 
 func (i *InstructorRepository) ModificarInstructorCurso(instructor_curso *models.InstructorCurso) interface{} {
 	if res := db.Orm.Model(new(models.InstructorCurso)).Updates(instructor_curso); res.Error != nil {
-		panic("[Repositories.InstructorRepository.ModificarInstructorCurso: Line 67] - " + res.Error.Error())
+		panic("[Repositories.InstructorRepository.ModificarInstructorCurso: Line 75] - " + res.Error.Error())
 	} else if res.RowsAffected == 0 {
 		return false
 	}

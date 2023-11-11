@@ -22,7 +22,7 @@ func (c *EstudianteController) RegistrarEstudianteEnCurso(w http.ResponseWriter,
 			w.WriteHeader(509)
 			json.NewEncoder(w).Encode(
 				map[string]interface{}{
-					"Error": err,
+					"error": err,
 				},
 			)
 		}
@@ -52,14 +52,14 @@ func (c *EstudianteController) RegistrarEstudiante(w http.ResponseWriter, r *htt
 	nome := r.FormValue("nome")
 	sobreNome := r.FormValue("sobreNome")
 	enderecao := r.FormValue("enderecao")
-	correio, _ := helpers.ValidateCorreio(r.FormValue("idCurso"))
+	correio, _ := helpers.ValidateCorreio(r.FormValue("correio"))
 	siJuridico, _ := helpers.ValidateBool(r.FormValue("siJuridico"))
 	defer func() {
 		if err := recover(); err != nil {
 			w.WriteHeader(509)
 			json.NewEncoder(w).Encode(
 				map[string]interface{}{
-					"Error": err,
+					"error": err,
 				},
 			)
 		}
@@ -103,7 +103,7 @@ func (c *EstudianteController) ModificarEstudiante(w http.ResponseWriter, r *htt
 			w.WriteHeader(509)
 			json.NewEncoder(w).Encode(
 				map[string]interface{}{
-					"Error": err,
+					"error": err,
 				},
 			)
 		}
@@ -144,7 +144,7 @@ func (c *EstudianteController) ModificarDatosEstudianteCurso(w http.ResponseWrit
 			w.WriteHeader(509)
 			json.NewEncoder(w).Encode(
 				map[string]interface{}{
-					"Error": err,
+					"error": err,
 				},
 			)
 		}
@@ -177,7 +177,7 @@ func (c *EstudianteController) EliminarEstudiante(w http.ResponseWriter, r *http
 			w.WriteHeader(509)
 			json.NewEncoder(w).Encode(
 				map[string]interface{}{
-					"Error": err,
+					"error": err,
 				},
 			)
 		}
@@ -207,7 +207,7 @@ func (c *EstudianteController) ElminarEstudianteCurso(w http.ResponseWriter, r *
 			w.WriteHeader(509)
 			json.NewEncoder(w).Encode(
 				map[string]interface{}{
-					"Error": err,
+					"error": err,
 				},
 			)
 		}
@@ -263,7 +263,7 @@ func (c *EstudianteController) MostrarEstudianteJuridicoNoJuridico(w http.Respon
 			w.WriteHeader(509)
 			json.NewEncoder(w).Encode(
 				map[string]interface{}{
-					"Error": err,
+					"error": err,
 				},
 			)
 		}
@@ -282,6 +282,32 @@ func (c *EstudianteController) MostrarEstudianteJuridicoNoJuridico(w http.Respon
 		},
 		"func":       "MostrarEstudianteJuridicoNoJuridico",
 		"Estudiante": res,
+	})
+}
+
+func (c *EstudianteController) MostrarEstudiante(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+
+	defer func() {
+		if err := recover(); err != nil {
+			w.WriteHeader(509)
+			json.NewEncoder(w).Encode(
+				map[string]interface{}{
+					"error": err,
+				},
+			)
+		}
+	}()
+	defer r.Body.Close()
+
+	res := c.estudianteRepository.MostrarEstudiante()
+
+	w.WriteHeader(http.StatusOK)
+	json.NewEncoder(w).Encode(map[string]interface{}{
+		"result": map[string]interface{}{
+			"estudiantes": res,
+		},
+		"func": "MostrarEstudiante",
 	})
 }
 

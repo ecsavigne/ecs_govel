@@ -12,6 +12,7 @@ func services(loadRoute *mux.Router) {
 	loadRoute.HandleFunc("/modificarCurso", new(controllers.CursoController).ModificarCurso)
 	loadRoute.HandleFunc("/eliminarCurso", new(controllers.CursoController).EliminarCurso)
 	loadRoute.HandleFunc("/mostrarCurso", new(controllers.CursoController).MostrarCurso)
+	loadRoute.HandleFunc("/mostrarCursos", new(controllers.CursoController).MostrarCursos)
 
 	//Estudiante
 	loadRoute.HandleFunc("/registrarEstudiante", new(controllers.EstudianteController).RegistrarEstudiante)
@@ -21,6 +22,7 @@ func services(loadRoute *mux.Router) {
 	loadRoute.HandleFunc("/eliminarEstudiante", new(controllers.EstudianteController).EliminarEstudiante)
 	loadRoute.HandleFunc("/eliminarEstudianteCurso", new(controllers.EstudianteController).ElminarEstudianteCurso)
 	loadRoute.HandleFunc("/mostrarEstudianteDeCurso", new(controllers.EstudianteController).MostrarEstudianteDeCurso)
+	loadRoute.HandleFunc("/mostrarEstudiante", new(controllers.EstudianteController).MostrarEstudiante)
 	loadRoute.HandleFunc("/mostrarEstudianteJuridicoNoJuridico", new(controllers.EstudianteController).MostrarEstudianteJuridicoNoJuridico)
 
 	//Instructor
@@ -28,6 +30,7 @@ func services(loadRoute *mux.Router) {
 	loadRoute.HandleFunc("/modificarInstructor", new(controllers.InstructorController).MostrarInstructor)
 	loadRoute.HandleFunc("/eliminarInstructor", new(controllers.InstructorController).EliminarInstructor)
 	loadRoute.HandleFunc("/mostrarInstructor", new(controllers.InstructorController).MostrarInstructor)
+	loadRoute.HandleFunc("/mostrarInstructores", new(controllers.InstructorController).MostrarInstructores)
 	loadRoute.HandleFunc("/agregarInstructorToCurso", new(controllers.InstructorController).AgregarCursoToInstructor)
 	loadRoute.HandleFunc("/eliminarInstructorDeCurso", new(controllers.InstructorController).EliminarCursoOffInstructor)
 	loadRoute.HandleFunc("/modificarInstructorCurso", new(controllers.InstructorController).ModificarCursoOffInstructor)

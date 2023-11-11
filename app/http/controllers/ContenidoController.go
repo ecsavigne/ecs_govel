@@ -77,6 +77,35 @@ func (c *ContenidoController) MostrarContenido(w http.ResponseWriter, r *http.Re
 	})
 }
 
+func (c *ContenidoController) MostrarAllContenido(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+
+	defer func() {
+		if err := recover(); err != nil {
+			w.WriteHeader(509)
+			json.NewEncoder(w).Encode(
+				map[string]interface{}{
+					"error":       err,
+					"descripcion": "Validacion de Excepcion",
+					"func":        "MostrarAllContenido",
+				},
+			)
+		}
+	}()
+	defer r.Body.Close()
+
+	res := c.contenidoRepositoy.MostrarAllContenido()
+
+	w.WriteHeader(http.StatusOK)
+	json.NewEncoder(w).Encode(map[string]interface{}{
+		"result": map[string]interface{}{
+			"contenidos": res,
+		},
+		"func":       "MostrarAllContenido",
+		"contenidos": res,
+	})
+}
+
 func (c *ContenidoController) EliminarContenido(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	//vars := mux.Vars(r)
@@ -211,29 +240,5 @@ func (c *ContenidoController) ModificarContenidoToEstructura(w http.ResponseWrit
 			"idEstructura": idEstructura,
 		},
 		"func": "modificarContenidoToEstructura",
-	})
-}
-
-func (c *ContenidoController) MostrarAllContenido(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/json")
-	//vars := mux.Vars(r)
-	defer func() {
-		if err := recover(); err != nil {
-			w.WriteHeader(509)
-			json.NewEncoder(w).Encode(
-				map[string]interface{}{
-					"error":       err,
-					"descripcion": "Validacion de Excepcion",
-					"func":        "mostrarAllContenido",
-				},
-			)
-		}
-	}()
-	defer r.Body.Close()
-
-	w.WriteHeader(http.StatusOK)
-	json.NewEncoder(w).Encode(map[string]interface{}{
-		"result": new(interface{}),
-		"func":   "mostrarAllContenido",
 	})
 }

@@ -159,3 +159,29 @@ func (c *CursoController) MostrarCurso(w http.ResponseWriter, r *http.Request) {
 		"cursos": res,
 	})
 }
+
+func (c *CursoController) MostrarCursos(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+
+	defer func() {
+		if err := recover(); err != nil {
+			w.WriteHeader(509)
+			json.NewEncoder(w).Encode(
+				map[string]interface{}{
+					"error": err,
+				},
+			)
+		}
+	}()
+	defer r.Body.Close()
+
+	res := c.cursoRepositoy.MostrarCursos()
+
+	w.WriteHeader(http.StatusOK)
+	json.NewEncoder(w).Encode(map[string]interface{}{
+		"result": map[string]interface{}{
+			"cursos": res,
+		},
+		"func": "MostrarCursos",
+	})
+}
