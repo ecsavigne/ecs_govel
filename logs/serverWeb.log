@@ -1993,3 +1993,48 @@ General Logger:	2023/11/27 12:06:05 db.go:300: ---------------------------------
 General Logger:	2023/11/27 12:06:06 db.go:307: ------------End-------Cantida Migraciones ejecutadas en BD: 11 ----------------------------
 General Logger:	2023/11/27 12:06:06 db.go:348: [36mCargando Seeder : SeederUsuario[0m
 General Logger:	2023/11/27 12:06:06 app.go:37: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/11/28 07:35:30 main.go:12: Starting app at 2023-10-19 07:35:30 
+Error Logger:	2023/11/28 07:35:30 main.go:16: [31mError loading env file[0m
+General Logger:	2023/11/28 07:35:30 db.go:98: Cargando info Base Datos
+Error Logger:	2023/11/28 07:35:30 db.go:145: Error: [31mServidor de Base de datos tipo: (mysql) esta off. Inicielo!!!!![0m .
+General Logger:	2023/11/28 07:35:30 app.go:37: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/11/28 08:09:31 main.go:12: Starting app at 2023-10-19 08:09:31 
+Error Logger:	2023/11/28 08:09:31 main.go:16: [31mError loading env file[0m
+General Logger:	2023/11/28 08:09:31 db.go:98: Cargando info Base Datos
+General Logger:	2023/11/28 08:09:31 db.go:164: New (mysql) conennection opened
+General Logger:	2023/11/28 08:09:31 db.go:167: [36mConfigurando coneccion y cargando Migration mysql: [0m
+General Logger:	2023/11/28 08:09:31 db.go:298: Ejecutando todas las migartion:
+General Logger:	2023/11/28 08:09:31 db.go:300: -----------------------------------------------
+General Logger:	2023/11/28 08:09:32 db.go:307: ------------End-------Cantida Migraciones ejecutadas en BD: 11 ----------------------------
+General Logger:	2023/11/28 08:09:32 db.go:348: [36mCargando Seeder : SeederUsuario[0m
+General Logger:	2023/11/28 08:09:32 app.go:37: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/11/28 08:27:50 main.go:12: Starting app at 2023-10-19 08:27:50 
+Error Logger:	2023/11/28 08:27:50 main.go:16: [31mError loading env file[0m
+General Logger:	2023/11/28 08:27:50 db.go:98: Cargando info Base Datos
+General Logger:	2023/11/28 08:27:50 db.go:164: New (mysql) conennection opened
+General Logger:	2023/11/28 08:27:50 db.go:167: [36mConfigurando coneccion y cargando Migration mysql: [0m
+General Logger:	2023/11/28 08:27:50 db.go:298: Ejecutando todas las migartion:
+General Logger:	2023/11/28 08:27:50 db.go:300: -----------------------------------------------
+General Logger:	2023/11/28 08:27:50 db.go:307: ------------End-------Cantida Migraciones ejecutadas en BD: 11 ----------------------------
+General Logger:	2023/11/28 08:27:50 db.go:348: [36mCargando Seeder : SeederUsuario[0m
+General Logger:	2023/11/28 08:27:50 app.go:37: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/11/28 08:34:28 main.go:12: Starting app at 2023-10-19 08:34:28 
+Error Logger:	2023/11/28 08:34:28 main.go:16: [31mError loading env file[0m
+General Logger:	2023/11/28 08:34:28 db.go:98: Cargando info Base Datos
+General Logger:	2023/11/28 08:34:28 db.go:164: New (mysql) conennection opened
+General Logger:	2023/11/28 08:34:28 db.go:167: [36mConfigurando coneccion y cargando Migration mysql: [0m
+General Logger:	2023/11/28 08:34:28 db.go:298: Ejecutando todas las migartion:
+General Logger:	2023/11/28 08:34:28 db.go:300: -----------------------------------------------
+General Logger:	2023/11/28 08:34:28 db.go:307: ------------End-------Cantida Migraciones ejecutadas en BD: 11 ----------------------------
+General Logger:	2023/11/28 08:34:28 db.go:348: [36mCargando Seeder : SeederUsuario[0m
+General Logger:	2023/11/28 08:34:28 app.go:37: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/11/28 08:41:18 main.go:12: Starting app at 2023-10-19 08:41:18 
+Error Logger:	2023/11/28 08:41:18 main.go:16: [31mError loading env file[0m
+General Logger:	2023/11/28 08:41:18 db.go:98: Cargando info Base Datos
+General Logger:	2023/11/28 08:41:18 db.go:164: New (mysql) conennection opened
+General Logger:	2023/11/28 08:41:18 db.go:167: [36mConfigurando coneccion y cargando Migration mysql: [0m
+General Logger:	2023/11/28 08:41:18 db.go:298: Ejecutando todas las migartion:
+General Logger:	2023/11/28 08:41:18 db.go:300: -----------------------------------------------
+General Logger:	2023/11/28 08:41:18 db.go:307: ------------End-------Cantida Migraciones ejecutadas en BD: 11 ----------------------------
+General Logger:	2023/11/28 08:41:18 db.go:348: [36mCargando Seeder : SeederUsuario[0m
+General Logger:	2023/11/28 08:41:18 app.go:37: Iniciando server --- 127.0.0.1:2222
