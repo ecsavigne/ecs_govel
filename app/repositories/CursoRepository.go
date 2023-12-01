@@ -31,7 +31,7 @@ func (c *CursoRepository) ModificarCurso(curso *models.Curso, curso_contenido *m
 }
 
 func (c *CursoRepository) EliminarCurso(curso *models.Curso) interface{} {
-	if res := db.Orm.Model(new(models.Curso)).Delete(curso); res.Error != nil {
+	if res := db.Orm.Unscoped().Delete(curso); res.Error != nil {
 		panic("[Repositories.CursoRepository.EliminarCurso: Line 35] - " + res.Error.Error())
 	} else if res.RowsAffected == 0 {
 		return false
@@ -51,6 +51,22 @@ func (c *CursoRepository) MostrarCursos() interface{} {
 	curs := []models.Curso{}
 	if res := db.Orm.Find(&curs); res.Error != nil {
 		panic("Ocurried one error in line 53 [CursoRepository.MostrarCursos] error: " + res.Error.Error())
+	}
+	return curs
+}
+
+func (c *CursoRepository) MostrarCursosContenido() interface{} {
+	curs := []map[string]interface{}{}
+	if res := db.Orm.
+		Table("cursos").
+		Select("cursos.id as idCurso, DATE_FORMAT(cursos.fecha_creacion, '%d-%m-%Y') AS fecha_creacion," +
+			"cursos.duracion_hora,cursos.si_certificado," +
+			"contenidos.id as idContenido, contenidos.tema").
+		Joins("inner join curso_contenidos on cursos.id = curso_contenidos.curso_id").
+		Joins("inner join contenidos on contenidos.id = curso_contenidos.contenido_id").
+		Order("fecha_creacion asc, contenidos.tema asc").
+		Scan(&curs); res.Error != nil {
+		panic("Ocurried one error in line 63 [CursoRepository.MostrarCursosContenido] error: " + res.Error.Error())
 	}
 	return curs
 }

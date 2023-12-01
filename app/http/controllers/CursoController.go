@@ -15,9 +15,8 @@ type CursoController struct {
 func (c *CursoController) RegistrarCurso(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	//vars := mux.Vars(r)
-	// idCurso, _ := helpers.ValidateInt(r.FormValue("idCurso"))
 	idConteido, _ := helpers.ValidateInt(r.FormValue("idConteido"))
-	dataCreacion, _ := helpers.ValidateFecha(r.FormValue("dataCreacion"))
+	dataCreacion, err := helpers.ValidateFecha(r.FormValue("dataCreacion"))
 	duracao, _ := helpers.ValidateInt(r.FormValue("duracao"))
 	si_certificado, _ := helpers.ValidateBool(r.FormValue("si_certificado"))
 	defer func() {
@@ -25,12 +24,17 @@ func (c *CursoController) RegistrarCurso(w http.ResponseWriter, r *http.Request)
 			w.WriteHeader(509)
 			json.NewEncoder(w).Encode(
 				map[string]interface{}{
-					"Err": err,
+					"error": err,
 				},
 			)
 		}
 	}()
 	defer r.Body.Close()
+
+	if err != nil {
+		panic("Error formateando fecha en [Controller-Curso.RegistrarCurso] - Error: " + err.Error() + " Fecha in :" + r.FormValue("dataCreacion"))
+	}
+
 	curso := models.Curso{
 		FechaCreacion: dataCreacion,
 		DuracionHora:  duracao,
@@ -67,7 +71,7 @@ func (c *CursoController) ModificarCurso(w http.ResponseWriter, r *http.Request)
 			w.WriteHeader(509)
 			json.NewEncoder(w).Encode(
 				map[string]interface{}{
-					"Err": err,
+					"error": err,
 				},
 			)
 		}
@@ -101,14 +105,13 @@ func (c *CursoController) ModificarCurso(w http.ResponseWriter, r *http.Request)
 
 func (c *CursoController) EliminarCurso(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
-	//vars := mux.Vars(r)
 	idCurso, _ := helpers.ValidateInt(r.FormValue("idCurso"))
 	defer func() {
 		if err := recover(); err != nil {
 			w.WriteHeader(509)
 			json.NewEncoder(w).Encode(
 				map[string]interface{}{
-					"Err": err,
+					"error": err,
 				},
 			)
 		}
@@ -125,11 +128,12 @@ func (c *CursoController) EliminarCurso(w http.ResponseWriter, r *http.Request) 
 		"result": map[string]interface{}{
 			"idCurso": idCurso,
 		},
-		"func": "eliminarCurso",
+		"idCurso": idCurso,
+		"func":    "eliminarCurso",
 	})
 }
 
-func (c *CursoController) MostrarCurso(w http.ResponseWriter, r *http.Request) {
+func (c *CursoController) MostrarCursoById(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	//vars := mux.Vars(r)
 	idCurso, _ := helpers.ValidateInt(r.FormValue("idCurso"))
@@ -138,7 +142,7 @@ func (c *CursoController) MostrarCurso(w http.ResponseWriter, r *http.Request) {
 			w.WriteHeader(509)
 			json.NewEncoder(w).Encode(
 				map[string]interface{}{
-					"Err": err,
+					"error": err,
 				},
 			)
 		}
@@ -155,7 +159,7 @@ func (c *CursoController) MostrarCurso(w http.ResponseWriter, r *http.Request) {
 		"result": map[string]interface{}{
 			"idCurso": idCurso,
 		},
-		"func":   "MostrarCurso",
+		"func":   "MostrarCursoById",
 		"cursos": res,
 	})
 }
@@ -183,5 +187,32 @@ func (c *CursoController) MostrarCursos(w http.ResponseWriter, r *http.Request) 
 			"cursos": res,
 		},
 		"func": "MostrarCursos",
+	})
+}
+
+func (c *CursoController) MostrarCursosContenido(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+
+	defer func() {
+		if err := recover(); err != nil {
+			w.WriteHeader(509)
+			json.NewEncoder(w).Encode(
+				map[string]interface{}{
+					"error": err,
+				},
+			)
+		}
+	}()
+	defer r.Body.Close()
+
+	res := c.cursoRepositoy.MostrarCursosContenido()
+
+	w.WriteHeader(http.StatusOK)
+	json.NewEncoder(w).Encode(map[string]interface{}{
+		"result": map[string]interface{}{
+			"cursos": res,
+		},
+		"cursos": res,
+		"func":   "MostrarCursos",
 	})
 }

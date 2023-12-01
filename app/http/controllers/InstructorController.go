@@ -276,6 +276,34 @@ func (c *InstructorController) MostrarInstructores(w http.ResponseWriter, r *htt
 		"result": map[string]interface{}{
 			"Instructores": res,
 		},
-		"func": "MostrarInstructores",
+		"instructores": res,
+		"func":         "MostrarInstructores",
+	})
+}
+
+func (c *InstructorController) MostrarCursosOfInstructor(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+	ci, _ := helpers.ValidateCi(r.FormValue("ci"))
+	defer func() {
+		if err := recover(); err != nil {
+			w.WriteHeader(509)
+			json.NewEncoder(w).Encode(
+				map[string]interface{}{
+					"error": err,
+				},
+			)
+		}
+	}()
+	defer r.Body.Close()
+
+	res := c.instructorRepository.MostrarCursosOfInstructor(ci)
+
+	w.WriteHeader(http.StatusOK)
+	json.NewEncoder(w).Encode(map[string]interface{}{
+		"result": map[string]interface{}{
+			"cursos": res,
+		},
+		"cursos": res,
+		"func":   "MostrarCursosOfInstructor",
 	})
 }

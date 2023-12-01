@@ -29,6 +29,9 @@ func (c *ContenidoController) RegistrarContenido(w http.ResponseWriter, r *http.
 		}
 	}()
 	defer r.Body.Close()
+	if tema == "" {
+		panic("Tema no puede ser vacio")
+	}
 
 	contenido := models.Contenido{
 		Tema: tema,

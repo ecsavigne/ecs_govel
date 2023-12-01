@@ -2,6 +2,7 @@ package helpers
 
 import (
 	"errors"
+	"fmt"
 	"regexp"
 	"strconv"
 	"strings"
@@ -56,9 +57,10 @@ func ValidateCi(ci string) (string, error) {
 // }
 
 func ValidateFecha(fecha string) (time.Time, error) {
-	const shortForm = "2006-Jan-02"
+	const shortForm = "2006-01-02"
 	t, err := time.Parse(shortForm, fecha)
 	if err != nil {
+		fmt.Println(fecha)
 		return time.Time{}, err
 	}
 	return t, nil

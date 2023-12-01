@@ -25,7 +25,7 @@ func (e *EstructuraRepository) MostrarEstructura(estructura *models.Estructura) 
 }
 
 func (e *EstructuraRepository) EliminarEstructura(estructura *models.Estructura) interface{} {
-	if res := db.Orm.Model(new(models.Estructura)).Delete(estructura); res.Error != nil {
+	if res := db.Orm.Model(new(models.Estructura)).Unscoped().Delete(estructura); res.Error != nil {
 		panic("[Repositories.EstructuraRepository.EliminarEstructura: Line 29] - " + res.Error.Error())
 	} else if res.RowsAffected == 0 {
 		return false

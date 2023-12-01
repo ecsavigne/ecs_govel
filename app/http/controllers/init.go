@@ -3,4 +3,4 @@ package controllers
 type Controller struct {
 }
 
-func (c *Controller) test() {}
+// func (c *Controller) test() {}

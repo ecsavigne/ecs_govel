@@ -17,6 +17,7 @@ func (c *EstudianteController) RegistrarEstudianteEnCurso(w http.ResponseWriter,
 	//vars := mux.Vars(r)
 	idCurso, _ := helpers.ValidateInt(r.FormValue("idCurso"))
 	ci, _ := helpers.ValidateCi(r.FormValue("ci"))
+	fecha_ingreso, err := helpers.ValidateFecha(r.FormValue("fecha_ingreso"))
 	defer func() {
 		if err := recover(); err != nil {
 			w.WriteHeader(509)
@@ -28,10 +29,14 @@ func (c *EstudianteController) RegistrarEstudianteEnCurso(w http.ResponseWriter,
 		}
 	}()
 	defer r.Body.Close()
+	if err != nil {
+		panic("Error formateando fecha en [Controller-Estudiante.RegistrarEstudianteEnCurso] - Error: " + err.Error() + " Fecha in :" + r.FormValue("fecha_ingreso"))
+	}
 
 	matricula := models.Matricula{
 		CursoId:      idCurso,
 		EstudianteCi: ci,
+		FechaIngreso: fecha_ingreso,
 	}
 	c.estudianteRepository.RegistrarEstudianteEnCurso(&matricula)
 
@@ -238,19 +243,22 @@ func (c *EstudianteController) MostrarEstudianteDeCurso(w http.ResponseWriter, r
 			w.WriteHeader(509)
 			json.NewEncoder(w).Encode(
 				map[string]interface{}{
-					"Test": "Validacion de Excepcion",
+					"error": err,
 				},
 			)
 		}
 	}()
 	defer r.Body.Close()
+	res := c.estudianteRepository.MostrarEstudianteDeCurso(idCurso)
 
 	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode(map[string]interface{}{
 		"result": map[string]interface{}{
-			"idCurso": idCurso,
+			"idCurso":     idCurso,
+			"estudiantes": res,
 		},
-		"func": "MostrarEstudianteDeCurso",
+		"estudiantes": res,
+		"func":        "MostrarEstudianteDeCurso1",
 	})
 }
 
@@ -280,8 +288,8 @@ func (c *EstudianteController) MostrarEstudianteJuridicoNoJuridico(w http.Respon
 		"result": map[string]interface{}{
 			"siJuridico": siJuridico,
 		},
-		"func":       "MostrarEstudianteJuridicoNoJuridico",
-		"Estudiante": res,
+		"func":        "MostrarEstudianteJuridicoNoJuridico",
+		"estudiantes": res,
 	})
 }
 
@@ -307,7 +315,8 @@ func (c *EstudianteController) MostrarEstudiante(w http.ResponseWriter, r *http.
 		"result": map[string]interface{}{
 			"estudiantes": res,
 		},
-		"func": "MostrarEstudiante",
+		"estudiantes": res,
+		"func":        "MostrarEstudiante",
 	})
 }
 

@@ -29,7 +29,7 @@ func (i *InstructorRepository) ModificarInstructor(instructor *models.Persona) i
 }
 
 func (i *InstructorRepository) EliminarInstructor(instructor *models.Instructore) interface{} {
-	if res := db.Orm.Model(new(models.Instructore)).Delete(instructor); res.Error != nil {
+	if res := db.Orm.Model(new(models.Instructore)).Unscoped().Delete(instructor); res.Error != nil {
 		panic("[Repositories.InstructorRepository.EliminarInstructor: Line 33] - " + res.Error.Error())
 	} else if res.RowsAffected == 0 {
 		return false
@@ -47,8 +47,10 @@ func (i *InstructorRepository) MostrarInstructor(instructor *models.Instructore)
 }
 
 func (i *InstructorRepository) MostrarInstructores() interface{} {
-	inst := []models.Instructore{}
-	if res := db.Orm.Joins("inner join personas on personas.ci  = instructores.ci ").Find(&inst); res.Error != nil {
+	inst := []map[string]interface{}{}
+	if res := db.Orm.Table("instructores").
+		Select("personas.*").
+		Joins("inner join personas on personas.ci  = instructores.ci ").Find(&inst); res.Error != nil {
 		panic("Ocurried one error in line 52 [EstudanteRepository.mostrarInstructores] error: " + res.Error.Error())
 	}
 	return inst
@@ -62,7 +64,11 @@ func (i *InstructorRepository) AgregarInstructorToCurso(instructor_curso *models
 }
 
 func (i *InstructorRepository) EliminarCursoOffInstructor(instructor_curso *models.InstructorCurso) interface{} {
-	if res := db.Orm.Model(new(models.InstructorCurso)).Delete(instructor_curso); res.Error != nil {
+	if res := db.Orm.Model(new(models.InstructorCurso)).
+		Unscoped().
+		Where("instructor_ci = ?", instructor_curso.InstructorCi).
+		Where("curso_id = ? ", instructor_curso.CursoId).
+		Delete(instructor_curso); res.Error != nil {
 		panic("[Repositories.InstructorRepository.EliminarInstructorDeCurso: Line 66] - " + res.Error.Error())
 	} else if res.RowsAffected == 0 {
 		return false
@@ -77,6 +83,21 @@ func (i *InstructorRepository) ModificarInstructorCurso(instructor_curso *models
 		return false
 	}
 	return true
+}
+
+func (i *InstructorRepository) MostrarCursosOfInstructor(ci string) interface{} {
+	inst := []map[string]interface{}{}
+	if res := db.Orm.Table("instructores").
+		Select("cursos.id as idCurso, cursos.fecha_creacion, contenidos.tema").
+		Joins("inner join personas on personas.ci  = instructores.ci ").
+		Joins("inner join instructor_cursos on instructor_cursos.instructor_ci  = instructores.ci ").
+		Joins("inner join cursos on instructor_cursos.curso_id  = cursos.id ").
+		Joins("inner join curso_contenidos on curso_contenidos.curso_id  = cursos.id ").
+		Joins("inner join contenidos on curso_contenidos.contenido_id  = contenidos.id ").
+		Find(&inst, "personas.ci = ?", ci); res.Error != nil {
+		panic("Ocurried one error in line 92 [InstructorRepository.MostrarCursosOfInstructor] error: " + res.Error.Error())
+	}
+	return inst
 }
 
 func (i *InstructorRepository) MostrarAllsInstructors() interface{} {

@@ -51,7 +51,7 @@ func (c *ContenidoRepository) MostrarAllContenido() interface{} {
 }
 
 func (c *ContenidoRepository) EliminarContenido(contenido *models.Contenido) interface{} {
-	if res := db.Orm.Model(new(models.Contenido)).Delete(contenido); res.Error != nil {
+	if res := db.Orm.Model(new(models.Contenido)).Unscoped().Delete(contenido); res.Error != nil {
 		panic("[Repositories.ContenidoRepository.EliminarContenido: Line 55] - " + res.Error.Error())
 	} else if res.RowsAffected == 0 {
 		return false
