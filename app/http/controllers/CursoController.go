@@ -63,6 +63,7 @@ func (c *CursoController) ModificarCurso(w http.ResponseWriter, r *http.Request)
 	//vars := mux.Vars(r)
 	idCurso, _ := helpers.ValidateInt(r.FormValue("idCurso"))
 	idConteido, _ := helpers.ValidateInt(r.FormValue("idConteido"))
+	idContenidoAsoc, _ := helpers.ValidateInt(r.FormValue("idContenidoAsoc"))
 	dataCreacion, _ := helpers.ValidateFecha(r.FormValue("dataCreacion"))
 	duracao, _ := helpers.ValidateInt(r.FormValue("duracao"))
 	si_certificado, _ := helpers.ValidateBool(r.FormValue("si_certificado"))
@@ -89,7 +90,7 @@ func (c *CursoController) ModificarCurso(w http.ResponseWriter, r *http.Request)
 		CursoId:     idCurso,
 	}
 
-	c.cursoRepositoy.ModificarCurso(&curso, &contenido_curso)
+	c.cursoRepositoy.ModificarCurso(&curso, &contenido_curso, idContenidoAsoc)
 
 	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode(map[string]interface{}{

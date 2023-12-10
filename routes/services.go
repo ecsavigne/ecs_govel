@@ -53,6 +53,7 @@ func services(loadRoute *mux.Router) {
 	loadRoute.HandleFunc("/modificarContenidoToEstructura", new(controllers.ContenidoController).ModificarContenidoToEstructura)
 	loadRoute.HandleFunc("/modificarContenido", new(controllers.ContenidoController).ModificarContenido)
 	loadRoute.HandleFunc("/mostrarContenido", new(controllers.ContenidoController).MostrarContenido)
+	loadRoute.HandleFunc("/mostrarContenidoByCurso", new(controllers.ContenidoController).MostrarContenidoByCurso)
 	loadRoute.HandleFunc("/mostrarAllContenido", new(controllers.ContenidoController).MostrarAllContenido)
 
 	//Estructura

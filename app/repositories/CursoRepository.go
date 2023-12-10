@@ -21,11 +21,22 @@ func (c *CursoRepository) RegistrarCurso(curso *models.Curso, curso_contenido *m
 	return true
 }
 
-func (c *CursoRepository) ModificarCurso(curso *models.Curso, curso_contenido *models.CursoContenido) interface{} {
-	if res := db.Orm.Model(new(models.Curso)).Updates(curso); res.Error != nil {
-		panic("[Repositories.CursoRepository.RegistrarCurso: Line 26] - " + res.Error.Error())
+func (c *CursoRepository) ModificarCurso(curso *models.Curso, curso_contenido *models.CursoContenido, idContAsoc int) interface{} {
+	if res := db.Orm.Model(new(models.Curso)).
+		Where("id = ?", curso.ID).
+		Updates(curso); res.Error != nil {
+		panic("[Repositories.CursoRepository.RegistrarCurso: Line 27] - " + res.Error.Error())
 	} else if res.RowsAffected == 0 {
 		return false
+	} else {
+		if res := db.Orm.Table("curso_contenidos").
+			Where("curso_id = ?", curso_contenido.CursoId).
+			Where("contenido_id = ?", idContAsoc).
+			Updates(curso_contenido); res.Error != nil {
+			panic("[Repositories.CursoRepository.RegistrarCurso: Line 35] - " + res.Error.Error())
+		} else if res.RowsAffected == 0 {
+			return false
+		}
 	}
 	return true
 }

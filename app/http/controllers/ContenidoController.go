@@ -80,6 +80,35 @@ func (c *ContenidoController) MostrarContenido(w http.ResponseWriter, r *http.Re
 	})
 }
 
+func (c *ContenidoController) MostrarContenidoByCurso(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+	idCurso, _ := helpers.ValidateInt(r.FormValue("idCurso"))
+	defer func() {
+		if err := recover(); err != nil {
+			w.WriteHeader(509)
+			json.NewEncoder(w).Encode(
+				map[string]interface{}{
+					"error":       err,
+					"descripcion": "Validacion de Excepcion",
+					"func":        "MostrarContenidoByCurso",
+				},
+			)
+		}
+	}()
+	defer r.Body.Close()
+
+	res := c.contenidoRepositoy.MostrarContenidoByCurso(idCurso)
+
+	w.WriteHeader(http.StatusOK)
+	json.NewEncoder(w).Encode(map[string]interface{}{
+		"result": map[string]interface{}{
+			"idCurso": idCurso,
+		},
+		"func":       "MostrarContenidoByCurso",
+		"contenidos": res,
+	})
+}
+
 func (c *ContenidoController) MostrarAllContenido(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 

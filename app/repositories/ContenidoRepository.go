@@ -67,3 +67,17 @@ func (c *ContenidoRepository) ModificarContenido(contenido *models.Contenido) in
 	}
 	return true
 }
+
+func (c *ContenidoRepository) MostrarContenidoByCurso(idCurso int) interface{} {
+	contenidos := []map[string]interface{}{}
+	if res := db.Orm.
+		Table("cursos").
+		Select("contenidos.tema as Tema, contenidos.ID").
+		Joins("INNER JOIN curso_contenidos ON cursos.id = curso_contenidos.curso_id").
+		Joins("INNER JOIN contenidos ON contenidos.id = curso_contenidos.contenido_id").
+		Where("cursos.id = ?", idCurso).
+		Scan(&contenidos); res.Error != nil {
+		panic("[Repositories.ContenidoRepository.MostrarContenido: Line 79] - " + res.Error.Error())
+	}
+	return contenidos
+}
