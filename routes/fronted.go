@@ -136,4 +136,7 @@ func _js(loadRoute *mux.Router) {
 	// Js login
 	loadRoute.PathPrefix("/main/login/js/").Handler(
 		http.StripPrefix("/main/login/js/", http.FileServer(http.Dir("../frontend/main/login/js/"))))
+	// Js libs
+	loadRoute.PathPrefix("/main/js/").Handler(
+		http.StripPrefix("/main/js/", http.FileServer(http.Dir("../frontend/main/js/"))))
 }

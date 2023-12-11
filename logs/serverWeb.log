@@ -7063,3 +7063,25 @@ General Logger:	2023/12/11 01:28:42 db.go:307: ------------End-------Cantida Mig
 General Logger:	2023/12/11 01:28:42 db.go:353: [36mCarga de seeder deshabilitada %s[0m
 
 General Logger:	2023/12/11 01:28:42 app.go:37: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/12/11 02:16:22 main.go:12: Starting app at 2023-11-01 02:16:22 
+Error Logger:	2023/12/11 02:16:22 main.go:16: [31mError loading env file[0m
+General Logger:	2023/12/11 02:16:22 db.go:98: Cargando info Base Datos
+General Logger:	2023/12/11 02:16:22 db.go:164: New (mysql) conennection opened
+General Logger:	2023/12/11 02:16:22 db.go:167: [36mConfigurando coneccion y cargando Migration mysql: [0m
+General Logger:	2023/12/11 02:16:22 db.go:298: Ejecutando todas las migartion:
+General Logger:	2023/12/11 02:16:22 db.go:300: -----------------------------------------------
+General Logger:	2023/12/11 02:16:22 db.go:307: ------------End-------Cantida Migraciones ejecutadas en BD: 11 ----------------------------
+General Logger:	2023/12/11 02:16:22 db.go:353: [36mCarga de seeder deshabilitada %s[0m
+
+General Logger:	2023/12/11 02:16:22 app.go:37: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/12/11 02:25:43 main.go:12: Starting app at 2023-11-01 02:25:43 
+Error Logger:	2023/12/11 02:25:43 main.go:16: [31mError loading env file[0m
+General Logger:	2023/12/11 02:25:43 db.go:98: Cargando info Base Datos
+General Logger:	2023/12/11 02:25:43 db.go:164: New (mysql) conennection opened
+General Logger:	2023/12/11 02:25:43 db.go:167: [36mConfigurando coneccion y cargando Migration mysql: [0m
+General Logger:	2023/12/11 02:25:43 db.go:298: Ejecutando todas las migartion:
+General Logger:	2023/12/11 02:25:43 db.go:300: -----------------------------------------------
+General Logger:	2023/12/11 02:25:44 db.go:307: ------------End-------Cantida Migraciones ejecutadas en BD: 11 ----------------------------
+General Logger:	2023/12/11 02:25:44 db.go:353: [36mCarga de seeder deshabilitada %s[0m
+
+General Logger:	2023/12/11 02:25:44 app.go:37: Iniciando server --- 127.0.0.1:2222
