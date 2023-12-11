@@ -5,6 +5,7 @@ import (
 	"ecs_govel/app/models"
 	"ecs_govel/app/repositories"
 	"encoding/json"
+	"errors"
 	"net/http"
 )
 
@@ -61,7 +62,7 @@ func (c *InstructorController) ModificarInstructor(w http.ResponseWriter, r *htt
 	nome := r.FormValue("nome")
 	sobreNome := r.FormValue("sobreNome")
 	enderecao := r.FormValue("enderecao")
-	correio, _ := helpers.ValidateCorreio(r.FormValue("idCurso"))
+	correio, _ := helpers.ValidateCorreio(r.FormValue("correio"))
 	defer func() {
 		if err := recover(); err != nil {
 			w.WriteHeader(509)
@@ -81,7 +82,10 @@ func (c *InstructorController) ModificarInstructor(w http.ResponseWriter, r *htt
 		Dir:       enderecao,
 		Mail:      correio,
 	}
-	c.instructorRepository.ModificarInstructor(&inst)
+	res := c.instructorRepository.ModificarInstructor(&inst)
+	if res == false {
+		panic(errors.New("No se pudo modificar el instructor"))
+	}
 
 	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode(map[string]interface{}{
@@ -112,7 +116,7 @@ func (c *InstructorController) EliminarInstructor(w http.ResponseWriter, r *http
 	}()
 	defer r.Body.Close()
 
-	inst := models.Instructore{
+	inst := models.Persona{
 		CI: ci,
 	}
 	c.instructorRepository.EliminarInstructor(&inst)
@@ -193,8 +197,9 @@ func (c *InstructorController) AgregarCursoToInstructor(w http.ResponseWriter, r
 func (c *InstructorController) ModificarCursoOffInstructor(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	//vars := mux.Vars(r)
-	idCurso, _ := helpers.ValidateInt(r.FormValue("idCurso"))
 	ci, _ := helpers.ValidateCi(r.FormValue("ci"))
+	idCursoA, _ := helpers.ValidateInt(r.FormValue("idCursoA"))
+	idCursoN, _ := helpers.ValidateInt(r.FormValue("idCursoN"))
 	defer func() {
 		if err := recover(); err != nil {
 			w.WriteHeader(509)
@@ -207,15 +212,20 @@ func (c *InstructorController) ModificarCursoOffInstructor(w http.ResponseWriter
 	}()
 	defer r.Body.Close()
 	inst_cur := models.InstructorCurso{
-		CursoId:      idCurso,
+		CursoId:      idCursoN,
 		InstructorCi: ci,
 	}
-	c.instructorRepository.ModificarInstructorCurso(&inst_cur)
+	if idCursoA != idCursoN {
+		c.instructorRepository.ModificarInstructorCurso(&inst_cur, idCursoA)
+	}
+
+	w.WriteHeader(http.StatusOK)
+	c.instructorRepository.ModificarInstructorCurso(&inst_cur, idCursoA)
 
 	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode(map[string]interface{}{
 		"result": map[string]interface{}{
-			"idCurso": idCurso,
+			"idCurso": idCursoA,
 			"ci":      ci,
 		},
 		"func": "ModificarCursoOffInstructor",

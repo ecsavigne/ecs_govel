@@ -122,7 +122,7 @@ func (c *EstudianteController) ModificarEstudiante(w http.ResponseWriter, r *htt
 		Dir:       enderecao,
 		Mail:      correio,
 	}
-	c.estudianteRepository.RegistrarEstudiante(&estud, siJuridico)
+	c.estudianteRepository.ModificarEstudiante(&estud, siJuridico)
 
 	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode(map[string]interface{}{
@@ -142,7 +142,8 @@ func (c *EstudianteController) ModificarDatosEstudianteCurso(w http.ResponseWrit
 	w.Header().Set("Content-Type", "application/json")
 	//vars := mux.Vars(r)
 	ci, _ := helpers.ValidateCi(r.FormValue("ci"))
-	idCurso, _ := helpers.ValidateInt(r.FormValue("idCurso"))
+	idCursoA, _ := helpers.ValidateInt(r.FormValue("idCursoA"))
+	idCursoN, _ := helpers.ValidateInt(r.FormValue("idCursoN"))
 	fecha_ingreso, _ := helpers.ValidateFecha(r.FormValue("fechaIngreso"))
 	defer func() {
 		if err := recover(); err != nil {
@@ -157,16 +158,18 @@ func (c *EstudianteController) ModificarDatosEstudianteCurso(w http.ResponseWrit
 	defer r.Body.Close()
 
 	matric := models.Matricula{
-		CursoId:      idCurso,
+		CursoId:      idCursoN,
 		EstudianteCi: ci,
 		FechaIngreso: fecha_ingreso,
 	}
-	c.estudianteRepository.ModificarEstudianteCurso(&matric)
+	if idCursoA != idCursoN {
+		c.estudianteRepository.ModificarEstudianteCurso(&matric, idCursoA)
+	}
 
 	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode(map[string]interface{}{
 		"result": map[string]interface{}{
-			"idCurso": idCurso,
+			"idCurso": idCursoN,
 			"ci":      ci,
 		},
 		"func": "ModificarDatosEstudianteCurso",
@@ -188,7 +191,7 @@ func (c *EstudianteController) EliminarEstudiante(w http.ResponseWriter, r *http
 		}
 	}()
 	defer r.Body.Close()
-	estudiante := models.Estudiante{
+	estudiante := models.Persona{
 		CI: ci,
 	}
 	c.estudianteRepository.EliminarEstudiante(&estudiante)

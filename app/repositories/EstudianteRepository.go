@@ -31,27 +31,31 @@ func (e *EstudianteRepository) ModificarEstudiante(persona *models.Persona, siJu
 		CI:         persona.CI,
 		SiJuridico: siJuridico,
 	}
-	if res := db.Orm.Model(new(models.Persona)).Updates(persona); res.Error != nil {
+	if res := db.Orm.Model(&persona).Updates(persona); res.Error != nil {
 		panic("[Repositories.EstudianteRepository.ModificarEstudiante: Line 35] - " + res.Error.Error())
 	} else if res.RowsAffected == 0 {
 		return false
-	} else if res := db.Orm.Model(new(models.Estudiante)).Updates(&estudiante); res.Error != nil {
+	} else if res := db.Orm.Model(&estudiante).Updates(&estudiante); res.Error != nil {
 		panic("[Repositories.EstudianteRepository.ModificarEstudiante: Line 39] - " + res.Error.Error())
 	}
 	return true
 }
 
-func (e *EstudianteRepository) ModificarEstudianteCurso(matricula *models.Matricula) interface{} {
-	if res := db.Orm.Model(new(models.Matricula)).Updates(matricula); res.Error != nil {
-		panic("[Repositories.EstudianteRepository.ModificarEstudianteCurso: Line 46] - " + res.Error.Error())
+func (e *EstudianteRepository) ModificarEstudianteCurso(matricula *models.Matricula, idCursoA int) interface{} {
+	if res := db.Orm.Model(new(models.Matricula)).
+		Where("estudiante_ci = ?", matricula.EstudianteCi).
+		Where("curso_id = ?", idCursoA).
+		Where("curso_id <> ?", matricula.CursoId).
+		Updates(matricula); res.Error != nil {
+		panic("[Repositories.EstudianteRepository.ModificarEstudianteCurso: Line 48] - " + res.Error.Error())
 	} else if res.RowsAffected == 0 {
 		return false
 	}
 	return true
 }
 
-func (e *EstudianteRepository) EliminarEstudiante(estudiante *models.Estudiante) interface{} {
-	if res := db.Orm.Model(new(models.Estudiante)).Unscoped().Delete(estudiante); res.Error != nil {
+func (e *EstudianteRepository) EliminarEstudiante(estudiante *models.Persona) interface{} {
+	if res := db.Orm.Model(&estudiante).Unscoped().Delete(estudiante); res.Error != nil {
 		panic("[Repositories.EstudianteRepository.EliminarEstudiante: Line 55] - " + res.Error.Error())
 	} else if res.RowsAffected == 0 {
 		return false
@@ -102,11 +106,13 @@ func (e *EstudianteRepository) MostrarEstudianteDeCurso(idCurso int) interface{}
 }
 
 func (e *EstudianteRepository) MostrarEstudiante() interface{} {
-	pers := []models.Persona{}
-	if res := db.Orm.
+	pers := []map[string]interface{}{}
+	if res := db.Orm.Table("personas").
+		Select("personas.ci as CI, personas.nombre as Nombre, personas.apellidos as Apellidos," +
+			"personas.dir as Dir, personas.mail as Mail, estudiantes.si_juridico as siJuridico").
 		Joins("inner join estudiantes on personas.ci = estudiantes.ci").
 		Find(&pers); res.Error != nil {
-		panic("Ocurried one error in line 86 [EstudanteRepository.mostrarEstudiante] error: " + res.Error.Error())
+		panic("Ocurried one error in line 111 [EstudanteRepository.mostrarEstudiante] error: " + res.Error.Error())
 	}
 	return pers
 }

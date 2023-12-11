@@ -31,7 +31,7 @@ func services(loadRoute *mux.Router) {
 	loadRoute.HandleFunc("/agregarInstructorToCurso", new(controllers.InstructorController).AgregarCursoToInstructor)
 	loadRoute.HandleFunc("/eliminarInstructor", new(controllers.InstructorController).EliminarInstructor)
 	loadRoute.HandleFunc("/eliminarInstructorDeCurso", new(controllers.InstructorController).EliminarCursoOffInstructor)
-	loadRoute.HandleFunc("/modificarInstructor", new(controllers.InstructorController).MostrarInstructor)
+	loadRoute.HandleFunc("/modificarInstructor", new(controllers.InstructorController).ModificarInstructor)
 	loadRoute.HandleFunc("/modificarInstructorCurso", new(controllers.InstructorController).ModificarCursoOffInstructor)
 	loadRoute.HandleFunc("/mostrarInstructor", new(controllers.InstructorController).MostrarInstructor)
 	loadRoute.HandleFunc("/mostrarInstructores", new(controllers.InstructorController).MostrarInstructores)

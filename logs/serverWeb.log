@@ -6461,3 +6461,605 @@ General Logger:	2023/12/02 16:40:37 db.go:307: ------------End-------Cantida Mig
 General Logger:	2023/12/02 16:40:37 db.go:353: [36mCarga de seeder deshabilitada %s[0m
 
 General Logger:	2023/12/02 16:40:37 app.go:37: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/12/10 12:27:51 main.go:12: Starting app at 2023-10-31 12:27:51 
+Error Logger:	2023/12/10 12:27:51 main.go:16: [31mError loading env file[0m
+General Logger:	2023/12/10 12:27:51 db.go:98: Cargando info Base Datos
+Error Logger:	2023/12/10 12:27:51 db.go:145: Error: [31mServidor de Base de datos tipo: (mysql) esta off. Inicielo!!!!![0m .
+General Logger:	2023/12/10 12:27:51 app.go:37: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/12/10 12:28:14 main.go:12: Starting app at 2023-10-31 12:28:14 
+Error Logger:	2023/12/10 12:28:14 main.go:16: [31mError loading env file[0m
+General Logger:	2023/12/10 12:28:14 db.go:98: Cargando info Base Datos
+General Logger:	2023/12/10 12:28:14 db.go:164: New (mysql) conennection opened
+General Logger:	2023/12/10 12:28:14 db.go:167: [36mConfigurando coneccion y cargando Migration mysql: [0m
+General Logger:	2023/12/10 12:28:14 db.go:298: Ejecutando todas las migartion:
+General Logger:	2023/12/10 12:28:14 db.go:300: -----------------------------------------------
+General Logger:	2023/12/10 12:28:15 db.go:307: ------------End-------Cantida Migraciones ejecutadas en BD: 11 ----------------------------
+General Logger:	2023/12/10 12:28:15 db.go:353: [36mCarga de seeder deshabilitada %s[0m
+
+General Logger:	2023/12/10 12:28:15 app.go:37: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/12/10 12:35:04 main.go:12: Starting app at 2023-10-31 12:35:04 
+Error Logger:	2023/12/10 12:35:04 main.go:16: [31mError loading env file[0m
+General Logger:	2023/12/10 12:35:04 db.go:98: Cargando info Base Datos
+General Logger:	2023/12/10 12:35:04 db.go:164: New (mysql) conennection opened
+General Logger:	2023/12/10 12:35:04 db.go:167: [36mConfigurando coneccion y cargando Migration mysql: [0m
+General Logger:	2023/12/10 12:35:04 db.go:298: Ejecutando todas las migartion:
+General Logger:	2023/12/10 12:35:04 db.go:300: -----------------------------------------------
+General Logger:	2023/12/10 12:35:04 db.go:307: ------------End-------Cantida Migraciones ejecutadas en BD: 11 ----------------------------
+General Logger:	2023/12/10 12:35:04 db.go:353: [36mCarga de seeder deshabilitada %s[0m
+
+General Logger:	2023/12/10 12:35:04 app.go:37: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/12/10 14:05:41 main.go:12: Starting app at 2023-10-31 14:05:41 
+Error Logger:	2023/12/10 14:05:41 main.go:16: [31mError loading env file[0m
+General Logger:	2023/12/10 14:05:41 db.go:98: Cargando info Base Datos
+General Logger:	2023/12/10 14:05:41 db.go:164: New (mysql) conennection opened
+General Logger:	2023/12/10 14:05:41 db.go:167: [36mConfigurando coneccion y cargando Migration mysql: [0m
+General Logger:	2023/12/10 14:05:41 db.go:298: Ejecutando todas las migartion:
+General Logger:	2023/12/10 14:05:41 db.go:300: -----------------------------------------------
+General Logger:	2023/12/10 14:05:41 db.go:307: ------------End-------Cantida Migraciones ejecutadas en BD: 11 ----------------------------
+General Logger:	2023/12/10 14:05:41 db.go:353: [36mCarga de seeder deshabilitada %s[0m
+
+General Logger:	2023/12/10 14:05:41 app.go:37: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/12/10 14:06:58 main.go:12: Starting app at 2023-10-31 14:06:58 
+Error Logger:	2023/12/10 14:06:58 main.go:16: [31mError loading env file[0m
+General Logger:	2023/12/10 14:06:58 db.go:98: Cargando info Base Datos
+General Logger:	2023/12/10 14:06:58 db.go:164: New (mysql) conennection opened
+General Logger:	2023/12/10 14:06:58 db.go:167: [36mConfigurando coneccion y cargando Migration mysql: [0m
+General Logger:	2023/12/10 14:06:58 db.go:298: Ejecutando todas las migartion:
+General Logger:	2023/12/10 14:06:58 db.go:300: -----------------------------------------------
+General Logger:	2023/12/10 14:06:58 db.go:307: ------------End-------Cantida Migraciones ejecutadas en BD: 11 ----------------------------
+General Logger:	2023/12/10 14:06:58 db.go:353: [36mCarga de seeder deshabilitada %s[0m
+
+General Logger:	2023/12/10 14:06:58 app.go:37: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/12/10 14:07:11 main.go:12: Starting app at 2023-10-31 14:07:11 
+Error Logger:	2023/12/10 14:07:11 main.go:16: [31mError loading env file[0m
+General Logger:	2023/12/10 14:07:11 db.go:98: Cargando info Base Datos
+General Logger:	2023/12/10 14:07:11 db.go:164: New (mysql) conennection opened
+General Logger:	2023/12/10 14:07:11 db.go:167: [36mConfigurando coneccion y cargando Migration mysql: [0m
+General Logger:	2023/12/10 14:07:11 db.go:298: Ejecutando todas las migartion:
+General Logger:	2023/12/10 14:07:11 db.go:300: -----------------------------------------------
+General Logger:	2023/12/10 14:07:12 db.go:307: ------------End-------Cantida Migraciones ejecutadas en BD: 11 ----------------------------
+General Logger:	2023/12/10 14:07:12 db.go:353: [36mCarga de seeder deshabilitada %s[0m
+
+General Logger:	2023/12/10 14:07:12 app.go:37: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/12/10 14:07:26 main.go:12: Starting app at 2023-10-31 14:07:26 
+Error Logger:	2023/12/10 14:07:26 main.go:16: [31mError loading env file[0m
+General Logger:	2023/12/10 14:07:26 db.go:98: Cargando info Base Datos
+General Logger:	2023/12/10 14:07:26 db.go:164: New (mysql) conennection opened
+General Logger:	2023/12/10 14:07:26 db.go:167: [36mConfigurando coneccion y cargando Migration mysql: [0m
+General Logger:	2023/12/10 14:07:26 db.go:298: Ejecutando todas las migartion:
+General Logger:	2023/12/10 14:07:26 db.go:300: -----------------------------------------------
+General Logger:	2023/12/10 14:07:26 db.go:307: ------------End-------Cantida Migraciones ejecutadas en BD: 11 ----------------------------
+General Logger:	2023/12/10 14:07:26 db.go:353: [36mCarga de seeder deshabilitada %s[0m
+
+General Logger:	2023/12/10 14:07:26 app.go:37: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/12/10 14:08:28 main.go:12: Starting app at 2023-10-31 14:08:28 
+Error Logger:	2023/12/10 14:08:28 main.go:16: [31mError loading env file[0m
+General Logger:	2023/12/10 14:08:28 db.go:98: Cargando info Base Datos
+General Logger:	2023/12/10 14:08:28 db.go:164: New (mysql) conennection opened
+General Logger:	2023/12/10 14:08:28 db.go:167: [36mConfigurando coneccion y cargando Migration mysql: [0m
+General Logger:	2023/12/10 14:08:28 db.go:298: Ejecutando todas las migartion:
+General Logger:	2023/12/10 14:08:28 db.go:300: -----------------------------------------------
+General Logger:	2023/12/10 14:08:28 db.go:307: ------------End-------Cantida Migraciones ejecutadas en BD: 11 ----------------------------
+General Logger:	2023/12/10 14:08:28 db.go:353: [36mCarga de seeder deshabilitada %s[0m
+
+General Logger:	2023/12/10 14:08:28 app.go:37: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/12/10 14:08:38 main.go:12: Starting app at 2023-10-31 14:08:38 
+Error Logger:	2023/12/10 14:08:38 main.go:16: [31mError loading env file[0m
+General Logger:	2023/12/10 14:08:38 db.go:98: Cargando info Base Datos
+General Logger:	2023/12/10 14:08:38 db.go:164: New (mysql) conennection opened
+General Logger:	2023/12/10 14:08:38 db.go:167: [36mConfigurando coneccion y cargando Migration mysql: [0m
+General Logger:	2023/12/10 14:08:38 db.go:298: Ejecutando todas las migartion:
+General Logger:	2023/12/10 14:08:38 db.go:300: -----------------------------------------------
+General Logger:	2023/12/10 14:08:39 db.go:307: ------------End-------Cantida Migraciones ejecutadas en BD: 11 ----------------------------
+General Logger:	2023/12/10 14:08:39 db.go:353: [36mCarga de seeder deshabilitada %s[0m
+
+General Logger:	2023/12/10 14:08:39 app.go:37: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/12/10 14:10:08 main.go:12: Starting app at 2023-10-31 14:10:08 
+Error Logger:	2023/12/10 14:10:08 main.go:16: [31mError loading env file[0m
+General Logger:	2023/12/10 14:10:08 db.go:98: Cargando info Base Datos
+General Logger:	2023/12/10 14:10:08 db.go:164: New (mysql) conennection opened
+General Logger:	2023/12/10 14:10:08 db.go:167: [36mConfigurando coneccion y cargando Migration mysql: [0m
+General Logger:	2023/12/10 14:10:08 db.go:298: Ejecutando todas las migartion:
+General Logger:	2023/12/10 14:10:08 db.go:300: -----------------------------------------------
+General Logger:	2023/12/10 14:10:08 db.go:307: ------------End-------Cantida Migraciones ejecutadas en BD: 11 ----------------------------
+General Logger:	2023/12/10 14:10:08 db.go:353: [36mCarga de seeder deshabilitada %s[0m
+
+General Logger:	2023/12/10 14:10:08 app.go:37: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/12/10 14:19:26 main.go:12: Starting app at 2023-10-31 14:19:26 
+Error Logger:	2023/12/10 14:19:26 main.go:16: [31mError loading env file[0m
+General Logger:	2023/12/10 14:19:26 db.go:98: Cargando info Base Datos
+General Logger:	2023/12/10 14:19:26 db.go:164: New (mysql) conennection opened
+General Logger:	2023/12/10 14:19:26 db.go:167: [36mConfigurando coneccion y cargando Migration mysql: [0m
+General Logger:	2023/12/10 14:19:26 db.go:298: Ejecutando todas las migartion:
+General Logger:	2023/12/10 14:19:26 db.go:300: -----------------------------------------------
+General Logger:	2023/12/10 14:19:27 db.go:307: ------------End-------Cantida Migraciones ejecutadas en BD: 11 ----------------------------
+General Logger:	2023/12/10 14:19:27 db.go:353: [36mCarga de seeder deshabilitada %s[0m
+
+General Logger:	2023/12/10 14:19:27 app.go:37: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/12/10 14:20:00 main.go:12: Starting app at 2023-10-31 14:20:00 
+Error Logger:	2023/12/10 14:20:00 main.go:16: [31mError loading env file[0m
+General Logger:	2023/12/10 14:20:00 db.go:98: Cargando info Base Datos
+General Logger:	2023/12/10 14:20:00 db.go:164: New (mysql) conennection opened
+General Logger:	2023/12/10 14:20:00 db.go:167: [36mConfigurando coneccion y cargando Migration mysql: [0m
+General Logger:	2023/12/10 14:20:00 db.go:298: Ejecutando todas las migartion:
+General Logger:	2023/12/10 14:20:00 db.go:300: -----------------------------------------------
+General Logger:	2023/12/10 14:20:00 db.go:307: ------------End-------Cantida Migraciones ejecutadas en BD: 11 ----------------------------
+General Logger:	2023/12/10 14:20:00 db.go:353: [36mCarga de seeder deshabilitada %s[0m
+
+General Logger:	2023/12/10 14:20:00 app.go:37: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/12/10 14:20:05 main.go:12: Starting app at 2023-10-31 14:20:05 
+Error Logger:	2023/12/10 14:20:05 main.go:16: [31mError loading env file[0m
+General Logger:	2023/12/10 14:20:05 db.go:98: Cargando info Base Datos
+General Logger:	2023/12/10 14:20:05 db.go:164: New (mysql) conennection opened
+General Logger:	2023/12/10 14:20:05 db.go:167: [36mConfigurando coneccion y cargando Migration mysql: [0m
+General Logger:	2023/12/10 14:20:05 db.go:298: Ejecutando todas las migartion:
+General Logger:	2023/12/10 14:20:05 db.go:300: -----------------------------------------------
+General Logger:	2023/12/10 14:20:05 db.go:307: ------------End-------Cantida Migraciones ejecutadas en BD: 11 ----------------------------
+General Logger:	2023/12/10 14:20:05 db.go:353: [36mCarga de seeder deshabilitada %s[0m
+
+General Logger:	2023/12/10 14:20:05 app.go:37: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/12/10 14:20:11 main.go:12: Starting app at 2023-10-31 14:20:11 
+Error Logger:	2023/12/10 14:20:11 main.go:16: [31mError loading env file[0m
+General Logger:	2023/12/10 14:20:11 db.go:98: Cargando info Base Datos
+General Logger:	2023/12/10 14:20:11 db.go:164: New (mysql) conennection opened
+General Logger:	2023/12/10 14:20:11 db.go:167: [36mConfigurando coneccion y cargando Migration mysql: [0m
+General Logger:	2023/12/10 14:20:11 db.go:298: Ejecutando todas las migartion:
+General Logger:	2023/12/10 14:20:11 db.go:300: -----------------------------------------------
+General Logger:	2023/12/10 14:20:11 db.go:307: ------------End-------Cantida Migraciones ejecutadas en BD: 11 ----------------------------
+General Logger:	2023/12/10 14:20:11 db.go:353: [36mCarga de seeder deshabilitada %s[0m
+
+General Logger:	2023/12/10 14:20:11 app.go:37: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/12/10 14:23:49 main.go:12: Starting app at 2023-10-31 14:23:49 
+Error Logger:	2023/12/10 14:23:49 main.go:16: [31mError loading env file[0m
+General Logger:	2023/12/10 14:23:49 db.go:98: Cargando info Base Datos
+General Logger:	2023/12/10 14:23:49 db.go:164: New (mysql) conennection opened
+General Logger:	2023/12/10 14:23:49 db.go:167: [36mConfigurando coneccion y cargando Migration mysql: [0m
+General Logger:	2023/12/10 14:23:49 db.go:298: Ejecutando todas las migartion:
+General Logger:	2023/12/10 14:23:49 db.go:300: -----------------------------------------------
+General Logger:	2023/12/10 14:23:49 db.go:307: ------------End-------Cantida Migraciones ejecutadas en BD: 11 ----------------------------
+General Logger:	2023/12/10 14:23:49 db.go:353: [36mCarga de seeder deshabilitada %s[0m
+
+General Logger:	2023/12/10 14:23:49 app.go:37: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/12/10 14:28:04 main.go:12: Starting app at 2023-10-31 14:28:04 
+Error Logger:	2023/12/10 14:28:04 main.go:16: [31mError loading env file[0m
+General Logger:	2023/12/10 14:28:04 db.go:98: Cargando info Base Datos
+General Logger:	2023/12/10 14:28:04 db.go:164: New (mysql) conennection opened
+General Logger:	2023/12/10 14:28:04 db.go:167: [36mConfigurando coneccion y cargando Migration mysql: [0m
+General Logger:	2023/12/10 14:28:04 db.go:298: Ejecutando todas las migartion:
+General Logger:	2023/12/10 14:28:04 db.go:300: -----------------------------------------------
+General Logger:	2023/12/10 14:28:05 main.go:12: Starting app at 2023-10-31 14:28:05 
+Error Logger:	2023/12/10 14:28:05 main.go:16: [31mError loading env file[0m
+General Logger:	2023/12/10 14:28:05 db.go:98: Cargando info Base Datos
+General Logger:	2023/12/10 14:28:05 db.go:164: New (mysql) conennection opened
+General Logger:	2023/12/10 14:28:05 db.go:167: [36mConfigurando coneccion y cargando Migration mysql: [0m
+General Logger:	2023/12/10 14:28:05 db.go:298: Ejecutando todas las migartion:
+General Logger:	2023/12/10 14:28:05 db.go:300: -----------------------------------------------
+General Logger:	2023/12/10 14:28:05 db.go:307: ------------End-------Cantida Migraciones ejecutadas en BD: 11 ----------------------------
+General Logger:	2023/12/10 14:28:05 db.go:353: [36mCarga de seeder deshabilitada %s[0m
+
+General Logger:	2023/12/10 14:28:05 app.go:37: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/12/10 14:40:21 main.go:12: Starting app at 2023-10-31 14:40:21 
+Error Logger:	2023/12/10 14:40:21 main.go:16: [31mError loading env file[0m
+General Logger:	2023/12/10 14:40:21 db.go:98: Cargando info Base Datos
+General Logger:	2023/12/10 14:40:21 db.go:164: New (mysql) conennection opened
+General Logger:	2023/12/10 14:40:21 db.go:167: [36mConfigurando coneccion y cargando Migration mysql: [0m
+General Logger:	2023/12/10 14:40:21 db.go:298: Ejecutando todas las migartion:
+General Logger:	2023/12/10 14:40:21 db.go:300: -----------------------------------------------
+General Logger:	2023/12/10 14:40:21 db.go:307: ------------End-------Cantida Migraciones ejecutadas en BD: 11 ----------------------------
+General Logger:	2023/12/10 14:40:21 db.go:353: [36mCarga de seeder deshabilitada %s[0m
+
+General Logger:	2023/12/10 14:40:21 app.go:37: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/12/10 14:48:48 main.go:12: Starting app at 2023-10-31 14:48:48 
+Error Logger:	2023/12/10 14:48:48 main.go:16: [31mError loading env file[0m
+General Logger:	2023/12/10 14:48:48 db.go:98: Cargando info Base Datos
+General Logger:	2023/12/10 14:48:48 db.go:164: New (mysql) conennection opened
+General Logger:	2023/12/10 14:48:48 db.go:167: [36mConfigurando coneccion y cargando Migration mysql: [0m
+General Logger:	2023/12/10 14:48:48 db.go:298: Ejecutando todas las migartion:
+General Logger:	2023/12/10 14:48:48 db.go:300: -----------------------------------------------
+General Logger:	2023/12/10 14:48:48 db.go:307: ------------End-------Cantida Migraciones ejecutadas en BD: 11 ----------------------------
+General Logger:	2023/12/10 14:48:48 db.go:353: [36mCarga de seeder deshabilitada %s[0m
+
+General Logger:	2023/12/10 14:48:48 app.go:37: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/12/10 14:58:42 main.go:12: Starting app at 2023-10-31 14:58:42 
+Error Logger:	2023/12/10 14:58:42 main.go:16: [31mError loading env file[0m
+General Logger:	2023/12/10 14:58:42 db.go:98: Cargando info Base Datos
+General Logger:	2023/12/10 14:58:42 db.go:164: New (mysql) conennection opened
+General Logger:	2023/12/10 14:58:42 db.go:167: [36mConfigurando coneccion y cargando Migration mysql: [0m
+General Logger:	2023/12/10 14:58:42 db.go:298: Ejecutando todas las migartion:
+General Logger:	2023/12/10 14:58:42 db.go:300: -----------------------------------------------
+General Logger:	2023/12/10 14:58:42 db.go:307: ------------End-------Cantida Migraciones ejecutadas en BD: 11 ----------------------------
+General Logger:	2023/12/10 14:58:42 db.go:353: [36mCarga de seeder deshabilitada %s[0m
+
+General Logger:	2023/12/10 14:58:42 app.go:37: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/12/10 16:06:00 main.go:12: Starting app at 2023-10-31 16:06:00 
+Error Logger:	2023/12/10 16:06:00 main.go:16: [31mError loading env file[0m
+General Logger:	2023/12/10 16:06:00 db.go:98: Cargando info Base Datos
+General Logger:	2023/12/10 16:06:00 db.go:164: New (mysql) conennection opened
+General Logger:	2023/12/10 16:06:00 db.go:167: [36mConfigurando coneccion y cargando Migration mysql: [0m
+General Logger:	2023/12/10 16:06:00 db.go:298: Ejecutando todas las migartion:
+General Logger:	2023/12/10 16:06:00 db.go:300: -----------------------------------------------
+General Logger:	2023/12/10 16:06:01 db.go:307: ------------End-------Cantida Migraciones ejecutadas en BD: 11 ----------------------------
+General Logger:	2023/12/10 16:06:01 db.go:353: [36mCarga de seeder deshabilitada %s[0m
+
+General Logger:	2023/12/10 16:06:01 app.go:37: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/12/10 16:42:48 main.go:12: Starting app at 2023-10-31 16:42:48 
+Error Logger:	2023/12/10 16:42:48 main.go:16: [31mError loading env file[0m
+General Logger:	2023/12/10 16:42:48 db.go:98: Cargando info Base Datos
+General Logger:	2023/12/10 16:42:48 db.go:164: New (mysql) conennection opened
+General Logger:	2023/12/10 16:42:48 db.go:167: [36mConfigurando coneccion y cargando Migration mysql: [0m
+General Logger:	2023/12/10 16:42:48 db.go:298: Ejecutando todas las migartion:
+General Logger:	2023/12/10 16:42:48 db.go:300: -----------------------------------------------
+General Logger:	2023/12/10 16:42:49 db.go:307: ------------End-------Cantida Migraciones ejecutadas en BD: 11 ----------------------------
+General Logger:	2023/12/10 16:42:49 db.go:353: [36mCarga de seeder deshabilitada %s[0m
+
+General Logger:	2023/12/10 16:42:49 app.go:37: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/12/10 16:43:19 main.go:12: Starting app at 2023-10-31 16:43:19 
+Error Logger:	2023/12/10 16:43:19 main.go:16: [31mError loading env file[0m
+General Logger:	2023/12/10 16:43:19 db.go:98: Cargando info Base Datos
+General Logger:	2023/12/10 16:43:19 db.go:164: New (mysql) conennection opened
+General Logger:	2023/12/10 16:43:19 db.go:167: [36mConfigurando coneccion y cargando Migration mysql: [0m
+General Logger:	2023/12/10 16:43:19 db.go:298: Ejecutando todas las migartion:
+General Logger:	2023/12/10 16:43:19 db.go:300: -----------------------------------------------
+General Logger:	2023/12/10 16:43:20 db.go:307: ------------End-------Cantida Migraciones ejecutadas en BD: 11 ----------------------------
+General Logger:	2023/12/10 16:43:20 db.go:353: [36mCarga de seeder deshabilitada %s[0m
+
+General Logger:	2023/12/10 16:43:20 app.go:37: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/12/10 16:46:53 main.go:12: Starting app at 2023-10-31 16:46:53 
+Error Logger:	2023/12/10 16:46:53 main.go:16: [31mError loading env file[0m
+General Logger:	2023/12/10 16:46:53 db.go:98: Cargando info Base Datos
+General Logger:	2023/12/10 16:46:53 db.go:164: New (mysql) conennection opened
+General Logger:	2023/12/10 16:46:53 db.go:167: [36mConfigurando coneccion y cargando Migration mysql: [0m
+General Logger:	2023/12/10 16:46:53 db.go:298: Ejecutando todas las migartion:
+General Logger:	2023/12/10 16:46:53 db.go:300: -----------------------------------------------
+General Logger:	2023/12/10 16:46:54 db.go:307: ------------End-------Cantida Migraciones ejecutadas en BD: 11 ----------------------------
+General Logger:	2023/12/10 16:46:54 db.go:353: [36mCarga de seeder deshabilitada %s[0m
+
+General Logger:	2023/12/10 16:46:54 app.go:37: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/12/10 16:47:40 main.go:12: Starting app at 2023-10-31 16:47:40 
+Error Logger:	2023/12/10 16:47:40 main.go:16: [31mError loading env file[0m
+General Logger:	2023/12/10 16:47:40 db.go:98: Cargando info Base Datos
+General Logger:	2023/12/10 16:47:40 db.go:164: New (mysql) conennection opened
+General Logger:	2023/12/10 16:47:40 db.go:167: [36mConfigurando coneccion y cargando Migration mysql: [0m
+General Logger:	2023/12/10 16:47:40 db.go:298: Ejecutando todas las migartion:
+General Logger:	2023/12/10 16:47:40 db.go:300: -----------------------------------------------
+General Logger:	2023/12/10 16:47:40 db.go:307: ------------End-------Cantida Migraciones ejecutadas en BD: 11 ----------------------------
+General Logger:	2023/12/10 16:47:40 db.go:353: [36mCarga de seeder deshabilitada %s[0m
+
+General Logger:	2023/12/10 16:47:40 app.go:37: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/12/10 16:48:50 main.go:12: Starting app at 2023-10-31 16:48:50 
+Error Logger:	2023/12/10 16:48:50 main.go:16: [31mError loading env file[0m
+General Logger:	2023/12/10 16:48:50 db.go:98: Cargando info Base Datos
+General Logger:	2023/12/10 16:48:51 db.go:164: New (mysql) conennection opened
+General Logger:	2023/12/10 16:48:51 db.go:167: [36mConfigurando coneccion y cargando Migration mysql: [0m
+General Logger:	2023/12/10 16:48:51 db.go:298: Ejecutando todas las migartion:
+General Logger:	2023/12/10 16:48:51 db.go:300: -----------------------------------------------
+General Logger:	2023/12/10 16:48:51 db.go:307: ------------End-------Cantida Migraciones ejecutadas en BD: 11 ----------------------------
+General Logger:	2023/12/10 16:48:51 db.go:353: [36mCarga de seeder deshabilitada %s[0m
+
+General Logger:	2023/12/10 16:48:51 app.go:37: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/12/10 16:49:57 main.go:12: Starting app at 2023-10-31 16:49:57 
+Error Logger:	2023/12/10 16:49:57 main.go:16: [31mError loading env file[0m
+General Logger:	2023/12/10 16:49:57 db.go:98: Cargando info Base Datos
+General Logger:	2023/12/10 16:49:57 db.go:164: New (mysql) conennection opened
+General Logger:	2023/12/10 16:49:57 db.go:167: [36mConfigurando coneccion y cargando Migration mysql: [0m
+General Logger:	2023/12/10 16:49:57 db.go:298: Ejecutando todas las migartion:
+General Logger:	2023/12/10 16:49:57 db.go:300: -----------------------------------------------
+General Logger:	2023/12/10 16:49:57 db.go:307: ------------End-------Cantida Migraciones ejecutadas en BD: 11 ----------------------------
+General Logger:	2023/12/10 16:49:57 db.go:353: [36mCarga de seeder deshabilitada %s[0m
+
+General Logger:	2023/12/10 16:49:57 app.go:37: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/12/10 16:53:07 main.go:12: Starting app at 2023-10-31 16:53:07 
+Error Logger:	2023/12/10 16:53:07 main.go:16: [31mError loading env file[0m
+General Logger:	2023/12/10 16:53:07 db.go:98: Cargando info Base Datos
+General Logger:	2023/12/10 16:53:07 db.go:164: New (mysql) conennection opened
+General Logger:	2023/12/10 16:53:07 db.go:167: [36mConfigurando coneccion y cargando Migration mysql: [0m
+General Logger:	2023/12/10 16:53:07 db.go:298: Ejecutando todas las migartion:
+General Logger:	2023/12/10 16:53:07 db.go:300: -----------------------------------------------
+General Logger:	2023/12/10 16:53:07 db.go:307: ------------End-------Cantida Migraciones ejecutadas en BD: 11 ----------------------------
+General Logger:	2023/12/10 16:53:07 db.go:353: [36mCarga de seeder deshabilitada %s[0m
+
+General Logger:	2023/12/10 16:53:07 app.go:37: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/12/10 17:00:55 main.go:12: Starting app at 2023-10-31 17:00:55 
+Error Logger:	2023/12/10 17:00:55 main.go:16: [31mError loading env file[0m
+General Logger:	2023/12/10 17:00:55 db.go:98: Cargando info Base Datos
+General Logger:	2023/12/10 17:00:55 db.go:164: New (mysql) conennection opened
+General Logger:	2023/12/10 17:00:55 db.go:167: [36mConfigurando coneccion y cargando Migration mysql: [0m
+General Logger:	2023/12/10 17:00:55 db.go:298: Ejecutando todas las migartion:
+General Logger:	2023/12/10 17:00:55 db.go:300: -----------------------------------------------
+General Logger:	2023/12/10 17:00:55 db.go:307: ------------End-------Cantida Migraciones ejecutadas en BD: 11 ----------------------------
+General Logger:	2023/12/10 17:00:55 db.go:353: [36mCarga de seeder deshabilitada %s[0m
+
+General Logger:	2023/12/10 17:00:55 app.go:37: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/12/10 17:01:36 main.go:12: Starting app at 2023-10-31 17:01:36 
+Error Logger:	2023/12/10 17:01:36 main.go:16: [31mError loading env file[0m
+General Logger:	2023/12/10 17:01:36 db.go:98: Cargando info Base Datos
+General Logger:	2023/12/10 17:01:36 db.go:164: New (mysql) conennection opened
+General Logger:	2023/12/10 17:01:36 db.go:167: [36mConfigurando coneccion y cargando Migration mysql: [0m
+General Logger:	2023/12/10 17:01:36 db.go:298: Ejecutando todas las migartion:
+General Logger:	2023/12/10 17:01:36 db.go:300: -----------------------------------------------
+General Logger:	2023/12/10 17:01:36 db.go:307: ------------End-------Cantida Migraciones ejecutadas en BD: 11 ----------------------------
+General Logger:	2023/12/10 17:01:36 db.go:353: [36mCarga de seeder deshabilitada %s[0m
+
+General Logger:	2023/12/10 17:01:36 app.go:37: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/12/10 19:47:18 main.go:12: Starting app at 2023-10-31 19:47:18 
+Error Logger:	2023/12/10 19:47:18 main.go:16: [31mError loading env file[0m
+General Logger:	2023/12/10 19:47:18 db.go:98: Cargando info Base Datos
+General Logger:	2023/12/10 19:47:18 db.go:164: New (mysql) conennection opened
+General Logger:	2023/12/10 19:47:18 db.go:167: [36mConfigurando coneccion y cargando Migration mysql: [0m
+General Logger:	2023/12/10 19:47:18 db.go:298: Ejecutando todas las migartion:
+General Logger:	2023/12/10 19:47:18 db.go:300: -----------------------------------------------
+General Logger:	2023/12/10 19:47:19 db.go:307: ------------End-------Cantida Migraciones ejecutadas en BD: 11 ----------------------------
+General Logger:	2023/12/10 19:47:19 db.go:353: [36mCarga de seeder deshabilitada %s[0m
+
+General Logger:	2023/12/10 19:47:19 app.go:37: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/12/10 19:50:51 main.go:12: Starting app at 2023-10-31 19:50:51 
+Error Logger:	2023/12/10 19:50:51 main.go:16: [31mError loading env file[0m
+General Logger:	2023/12/10 19:50:51 db.go:98: Cargando info Base Datos
+General Logger:	2023/12/10 19:50:51 db.go:164: New (mysql) conennection opened
+General Logger:	2023/12/10 19:50:51 db.go:167: [36mConfigurando coneccion y cargando Migration mysql: [0m
+General Logger:	2023/12/10 19:50:51 db.go:298: Ejecutando todas las migartion:
+General Logger:	2023/12/10 19:50:51 db.go:300: -----------------------------------------------
+General Logger:	2023/12/10 19:50:52 db.go:307: ------------End-------Cantida Migraciones ejecutadas en BD: 11 ----------------------------
+General Logger:	2023/12/10 19:50:52 db.go:353: [36mCarga de seeder deshabilitada %s[0m
+
+General Logger:	2023/12/10 19:50:52 app.go:37: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/12/10 19:51:23 main.go:12: Starting app at 2023-10-31 19:51:23 
+Error Logger:	2023/12/10 19:51:23 main.go:16: [31mError loading env file[0m
+General Logger:	2023/12/10 19:51:23 db.go:98: Cargando info Base Datos
+General Logger:	2023/12/10 19:51:23 db.go:164: New (mysql) conennection opened
+General Logger:	2023/12/10 19:51:23 db.go:167: [36mConfigurando coneccion y cargando Migration mysql: [0m
+General Logger:	2023/12/10 19:51:23 db.go:298: Ejecutando todas las migartion:
+General Logger:	2023/12/10 19:51:23 db.go:300: -----------------------------------------------
+General Logger:	2023/12/10 19:51:23 db.go:307: ------------End-------Cantida Migraciones ejecutadas en BD: 11 ----------------------------
+General Logger:	2023/12/10 19:51:23 db.go:353: [36mCarga de seeder deshabilitada %s[0m
+
+General Logger:	2023/12/10 19:51:23 app.go:37: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/12/10 19:52:20 main.go:12: Starting app at 2023-10-31 19:52:20 
+Error Logger:	2023/12/10 19:52:20 main.go:16: [31mError loading env file[0m
+General Logger:	2023/12/10 19:52:20 db.go:98: Cargando info Base Datos
+General Logger:	2023/12/10 19:52:20 db.go:164: New (mysql) conennection opened
+General Logger:	2023/12/10 19:52:20 db.go:167: [36mConfigurando coneccion y cargando Migration mysql: [0m
+General Logger:	2023/12/10 19:52:20 db.go:298: Ejecutando todas las migartion:
+General Logger:	2023/12/10 19:52:20 db.go:300: -----------------------------------------------
+General Logger:	2023/12/10 19:52:21 db.go:307: ------------End-------Cantida Migraciones ejecutadas en BD: 11 ----------------------------
+General Logger:	2023/12/10 19:52:21 db.go:353: [36mCarga de seeder deshabilitada %s[0m
+
+General Logger:	2023/12/10 19:52:21 app.go:37: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/12/10 19:52:33 main.go:12: Starting app at 2023-10-31 19:52:33 
+Error Logger:	2023/12/10 19:52:33 main.go:16: [31mError loading env file[0m
+General Logger:	2023/12/10 19:52:33 db.go:98: Cargando info Base Datos
+General Logger:	2023/12/10 19:52:33 db.go:164: New (mysql) conennection opened
+General Logger:	2023/12/10 19:52:33 db.go:167: [36mConfigurando coneccion y cargando Migration mysql: [0m
+General Logger:	2023/12/10 19:52:33 db.go:298: Ejecutando todas las migartion:
+General Logger:	2023/12/10 19:52:33 db.go:300: -----------------------------------------------
+General Logger:	2023/12/10 19:52:33 db.go:307: ------------End-------Cantida Migraciones ejecutadas en BD: 11 ----------------------------
+General Logger:	2023/12/10 19:52:33 db.go:353: [36mCarga de seeder deshabilitada %s[0m
+
+General Logger:	2023/12/10 19:52:33 app.go:37: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/12/11 00:18:30 main.go:12: Starting app at 2023-11-01 00:18:30 
+Error Logger:	2023/12/11 00:18:30 main.go:16: [31mError loading env file[0m
+General Logger:	2023/12/11 00:18:30 db.go:98: Cargando info Base Datos
+General Logger:	2023/12/11 00:18:30 db.go:164: New (mysql) conennection opened
+General Logger:	2023/12/11 00:18:30 db.go:167: [36mConfigurando coneccion y cargando Migration mysql: [0m
+General Logger:	2023/12/11 00:18:30 db.go:298: Ejecutando todas las migartion:
+General Logger:	2023/12/11 00:18:30 db.go:300: -----------------------------------------------
+General Logger:	2023/12/11 00:18:31 db.go:307: ------------End-------Cantida Migraciones ejecutadas en BD: 11 ----------------------------
+General Logger:	2023/12/11 00:18:31 db.go:353: [36mCarga de seeder deshabilitada %s[0m
+
+General Logger:	2023/12/11 00:18:31 app.go:37: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/12/11 00:18:55 main.go:12: Starting app at 2023-11-01 00:18:55 
+Error Logger:	2023/12/11 00:18:55 main.go:16: [31mError loading env file[0m
+General Logger:	2023/12/11 00:18:55 db.go:98: Cargando info Base Datos
+General Logger:	2023/12/11 00:18:55 db.go:164: New (mysql) conennection opened
+General Logger:	2023/12/11 00:18:55 db.go:167: [36mConfigurando coneccion y cargando Migration mysql: [0m
+General Logger:	2023/12/11 00:18:55 db.go:298: Ejecutando todas las migartion:
+General Logger:	2023/12/11 00:18:55 db.go:300: -----------------------------------------------
+General Logger:	2023/12/11 00:18:56 db.go:307: ------------End-------Cantida Migraciones ejecutadas en BD: 11 ----------------------------
+General Logger:	2023/12/11 00:18:56 db.go:353: [36mCarga de seeder deshabilitada %s[0m
+
+General Logger:	2023/12/11 00:18:56 app.go:37: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/12/11 00:21:58 main.go:12: Starting app at 2023-11-01 00:21:58 
+Error Logger:	2023/12/11 00:21:58 main.go:16: [31mError loading env file[0m
+General Logger:	2023/12/11 00:21:58 db.go:98: Cargando info Base Datos
+General Logger:	2023/12/11 00:21:58 db.go:164: New (mysql) conennection opened
+General Logger:	2023/12/11 00:21:58 db.go:167: [36mConfigurando coneccion y cargando Migration mysql: [0m
+General Logger:	2023/12/11 00:21:58 db.go:298: Ejecutando todas las migartion:
+General Logger:	2023/12/11 00:21:58 db.go:300: -----------------------------------------------
+General Logger:	2023/12/11 00:21:59 db.go:307: ------------End-------Cantida Migraciones ejecutadas en BD: 11 ----------------------------
+General Logger:	2023/12/11 00:21:59 db.go:353: [36mCarga de seeder deshabilitada %s[0m
+
+General Logger:	2023/12/11 00:21:59 app.go:37: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/12/11 00:22:34 main.go:12: Starting app at 2023-11-01 00:22:34 
+Error Logger:	2023/12/11 00:22:34 main.go:16: [31mError loading env file[0m
+General Logger:	2023/12/11 00:22:34 db.go:98: Cargando info Base Datos
+General Logger:	2023/12/11 00:22:34 db.go:164: New (mysql) conennection opened
+General Logger:	2023/12/11 00:22:34 db.go:167: [36mConfigurando coneccion y cargando Migration mysql: [0m
+General Logger:	2023/12/11 00:22:34 db.go:298: Ejecutando todas las migartion:
+General Logger:	2023/12/11 00:22:34 db.go:300: -----------------------------------------------
+General Logger:	2023/12/11 00:22:34 db.go:307: ------------End-------Cantida Migraciones ejecutadas en BD: 11 ----------------------------
+General Logger:	2023/12/11 00:22:34 db.go:353: [36mCarga de seeder deshabilitada %s[0m
+
+General Logger:	2023/12/11 00:22:34 app.go:37: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/12/11 00:24:12 main.go:12: Starting app at 2023-11-01 00:24:12 
+Error Logger:	2023/12/11 00:24:12 main.go:16: [31mError loading env file[0m
+General Logger:	2023/12/11 00:24:12 db.go:98: Cargando info Base Datos
+General Logger:	2023/12/11 00:24:12 db.go:164: New (mysql) conennection opened
+General Logger:	2023/12/11 00:24:12 db.go:167: [36mConfigurando coneccion y cargando Migration mysql: [0m
+General Logger:	2023/12/11 00:24:12 db.go:298: Ejecutando todas las migartion:
+General Logger:	2023/12/11 00:24:12 db.go:300: -----------------------------------------------
+General Logger:	2023/12/11 00:24:12 db.go:307: ------------End-------Cantida Migraciones ejecutadas en BD: 11 ----------------------------
+General Logger:	2023/12/11 00:24:12 db.go:353: [36mCarga de seeder deshabilitada %s[0m
+
+General Logger:	2023/12/11 00:24:12 app.go:37: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/12/11 00:24:31 main.go:12: Starting app at 2023-11-01 00:24:31 
+Error Logger:	2023/12/11 00:24:31 main.go:16: [31mError loading env file[0m
+General Logger:	2023/12/11 00:24:31 db.go:98: Cargando info Base Datos
+General Logger:	2023/12/11 00:24:31 db.go:164: New (mysql) conennection opened
+General Logger:	2023/12/11 00:24:31 db.go:167: [36mConfigurando coneccion y cargando Migration mysql: [0m
+General Logger:	2023/12/11 00:24:31 db.go:298: Ejecutando todas las migartion:
+General Logger:	2023/12/11 00:24:31 db.go:300: -----------------------------------------------
+General Logger:	2023/12/11 00:24:31 db.go:307: ------------End-------Cantida Migraciones ejecutadas en BD: 11 ----------------------------
+General Logger:	2023/12/11 00:24:31 db.go:353: [36mCarga de seeder deshabilitada %s[0m
+
+General Logger:	2023/12/11 00:24:31 app.go:37: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/12/11 00:33:08 main.go:12: Starting app at 2023-11-01 00:33:08 
+Error Logger:	2023/12/11 00:33:08 main.go:16: [31mError loading env file[0m
+General Logger:	2023/12/11 00:33:08 db.go:98: Cargando info Base Datos
+General Logger:	2023/12/11 00:33:08 db.go:164: New (mysql) conennection opened
+General Logger:	2023/12/11 00:33:08 db.go:167: [36mConfigurando coneccion y cargando Migration mysql: [0m
+General Logger:	2023/12/11 00:33:08 db.go:298: Ejecutando todas las migartion:
+General Logger:	2023/12/11 00:33:08 db.go:300: -----------------------------------------------
+General Logger:	2023/12/11 00:33:08 db.go:307: ------------End-------Cantida Migraciones ejecutadas en BD: 11 ----------------------------
+General Logger:	2023/12/11 00:33:08 db.go:353: [36mCarga de seeder deshabilitada %s[0m
+
+General Logger:	2023/12/11 00:33:08 app.go:37: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/12/11 00:38:31 main.go:12: Starting app at 2023-11-01 00:38:31 
+Error Logger:	2023/12/11 00:38:31 main.go:16: [31mError loading env file[0m
+General Logger:	2023/12/11 00:38:31 db.go:98: Cargando info Base Datos
+General Logger:	2023/12/11 00:38:31 db.go:164: New (mysql) conennection opened
+General Logger:	2023/12/11 00:38:31 db.go:167: [36mConfigurando coneccion y cargando Migration mysql: [0m
+General Logger:	2023/12/11 00:38:31 db.go:298: Ejecutando todas las migartion:
+General Logger:	2023/12/11 00:38:31 db.go:300: -----------------------------------------------
+General Logger:	2023/12/11 00:38:32 db.go:307: ------------End-------Cantida Migraciones ejecutadas en BD: 11 ----------------------------
+General Logger:	2023/12/11 00:38:32 db.go:353: [36mCarga de seeder deshabilitada %s[0m
+
+General Logger:	2023/12/11 00:38:32 app.go:37: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/12/11 00:38:36 main.go:12: Starting app at 2023-11-01 00:38:36 
+Error Logger:	2023/12/11 00:38:36 main.go:16: [31mError loading env file[0m
+General Logger:	2023/12/11 00:38:36 db.go:98: Cargando info Base Datos
+General Logger:	2023/12/11 00:38:36 db.go:164: New (mysql) conennection opened
+General Logger:	2023/12/11 00:38:36 db.go:167: [36mConfigurando coneccion y cargando Migration mysql: [0m
+General Logger:	2023/12/11 00:38:36 db.go:298: Ejecutando todas las migartion:
+General Logger:	2023/12/11 00:38:36 db.go:300: -----------------------------------------------
+General Logger:	2023/12/11 00:38:36 db.go:307: ------------End-------Cantida Migraciones ejecutadas en BD: 11 ----------------------------
+General Logger:	2023/12/11 00:38:36 db.go:353: [36mCarga de seeder deshabilitada %s[0m
+
+General Logger:	2023/12/11 00:38:36 app.go:37: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/12/11 00:52:01 main.go:12: Starting app at 2023-11-01 00:52:01 
+Error Logger:	2023/12/11 00:52:01 main.go:16: [31mError loading env file[0m
+General Logger:	2023/12/11 00:52:01 db.go:98: Cargando info Base Datos
+General Logger:	2023/12/11 00:52:01 db.go:164: New (mysql) conennection opened
+General Logger:	2023/12/11 00:52:01 db.go:167: [36mConfigurando coneccion y cargando Migration mysql: [0m
+General Logger:	2023/12/11 00:52:01 db.go:298: Ejecutando todas las migartion:
+General Logger:	2023/12/11 00:52:01 db.go:300: -----------------------------------------------
+General Logger:	2023/12/11 00:52:01 db.go:307: ------------End-------Cantida Migraciones ejecutadas en BD: 11 ----------------------------
+General Logger:	2023/12/11 00:52:01 db.go:353: [36mCarga de seeder deshabilitada %s[0m
+
+General Logger:	2023/12/11 00:52:01 app.go:37: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/12/11 01:17:50 main.go:12: Starting app at 2023-11-01 01:17:50 
+Error Logger:	2023/12/11 01:17:50 main.go:16: [31mError loading env file[0m
+General Logger:	2023/12/11 01:17:50 db.go:98: Cargando info Base Datos
+General Logger:	2023/12/11 01:17:50 db.go:164: New (mysql) conennection opened
+General Logger:	2023/12/11 01:17:50 db.go:167: [36mConfigurando coneccion y cargando Migration mysql: [0m
+General Logger:	2023/12/11 01:17:50 db.go:298: Ejecutando todas las migartion:
+General Logger:	2023/12/11 01:17:50 db.go:300: -----------------------------------------------
+General Logger:	2023/12/11 01:17:51 db.go:307: ------------End-------Cantida Migraciones ejecutadas en BD: 11 ----------------------------
+General Logger:	2023/12/11 01:17:51 db.go:353: [36mCarga de seeder deshabilitada %s[0m
+
+General Logger:	2023/12/11 01:17:51 app.go:37: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/12/11 01:18:09 main.go:12: Starting app at 2023-11-01 01:18:09 
+Error Logger:	2023/12/11 01:18:09 main.go:16: [31mError loading env file[0m
+General Logger:	2023/12/11 01:18:09 db.go:98: Cargando info Base Datos
+General Logger:	2023/12/11 01:18:09 db.go:164: New (mysql) conennection opened
+General Logger:	2023/12/11 01:18:09 db.go:167: [36mConfigurando coneccion y cargando Migration mysql: [0m
+General Logger:	2023/12/11 01:18:09 db.go:298: Ejecutando todas las migartion:
+General Logger:	2023/12/11 01:18:09 db.go:300: -----------------------------------------------
+General Logger:	2023/12/11 01:18:09 db.go:307: ------------End-------Cantida Migraciones ejecutadas en BD: 11 ----------------------------
+General Logger:	2023/12/11 01:18:09 db.go:353: [36mCarga de seeder deshabilitada %s[0m
+
+General Logger:	2023/12/11 01:18:09 app.go:37: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/12/11 01:18:18 main.go:12: Starting app at 2023-11-01 01:18:18 
+Error Logger:	2023/12/11 01:18:18 main.go:16: [31mError loading env file[0m
+General Logger:	2023/12/11 01:18:18 db.go:98: Cargando info Base Datos
+General Logger:	2023/12/11 01:18:18 db.go:164: New (mysql) conennection opened
+General Logger:	2023/12/11 01:18:18 db.go:167: [36mConfigurando coneccion y cargando Migration mysql: [0m
+General Logger:	2023/12/11 01:18:18 db.go:298: Ejecutando todas las migartion:
+General Logger:	2023/12/11 01:18:18 db.go:300: -----------------------------------------------
+General Logger:	2023/12/11 01:18:19 db.go:307: ------------End-------Cantida Migraciones ejecutadas en BD: 11 ----------------------------
+General Logger:	2023/12/11 01:18:19 db.go:353: [36mCarga de seeder deshabilitada %s[0m
+
+General Logger:	2023/12/11 01:18:19 app.go:37: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/12/11 01:21:51 main.go:12: Starting app at 2023-11-01 01:21:51 
+Error Logger:	2023/12/11 01:21:51 main.go:16: [31mError loading env file[0m
+General Logger:	2023/12/11 01:21:51 db.go:98: Cargando info Base Datos
+General Logger:	2023/12/11 01:21:51 db.go:164: New (mysql) conennection opened
+General Logger:	2023/12/11 01:21:51 db.go:167: [36mConfigurando coneccion y cargando Migration mysql: [0m
+General Logger:	2023/12/11 01:21:51 db.go:298: Ejecutando todas las migartion:
+General Logger:	2023/12/11 01:21:51 db.go:300: -----------------------------------------------
+General Logger:	2023/12/11 01:21:52 db.go:307: ------------End-------Cantida Migraciones ejecutadas en BD: 11 ----------------------------
+General Logger:	2023/12/11 01:21:52 db.go:353: [36mCarga de seeder deshabilitada %s[0m
+
+General Logger:	2023/12/11 01:21:52 app.go:37: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/12/11 01:22:28 main.go:12: Starting app at 2023-11-01 01:22:28 
+Error Logger:	2023/12/11 01:22:28 main.go:16: [31mError loading env file[0m
+General Logger:	2023/12/11 01:22:28 db.go:98: Cargando info Base Datos
+General Logger:	2023/12/11 01:22:28 db.go:164: New (mysql) conennection opened
+General Logger:	2023/12/11 01:22:28 db.go:167: [36mConfigurando coneccion y cargando Migration mysql: [0m
+General Logger:	2023/12/11 01:22:28 db.go:298: Ejecutando todas las migartion:
+General Logger:	2023/12/11 01:22:28 db.go:300: -----------------------------------------------
+General Logger:	2023/12/11 01:22:28 db.go:307: ------------End-------Cantida Migraciones ejecutadas en BD: 11 ----------------------------
+General Logger:	2023/12/11 01:22:28 db.go:353: [36mCarga de seeder deshabilitada %s[0m
+
+General Logger:	2023/12/11 01:22:28 app.go:37: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/12/11 01:23:28 main.go:12: Starting app at 2023-11-01 01:23:28 
+Error Logger:	2023/12/11 01:23:28 main.go:16: [31mError loading env file[0m
+General Logger:	2023/12/11 01:23:28 db.go:98: Cargando info Base Datos
+General Logger:	2023/12/11 01:23:28 db.go:164: New (mysql) conennection opened
+General Logger:	2023/12/11 01:23:28 db.go:167: [36mConfigurando coneccion y cargando Migration mysql: [0m
+General Logger:	2023/12/11 01:23:28 db.go:298: Ejecutando todas las migartion:
+General Logger:	2023/12/11 01:23:28 db.go:300: -----------------------------------------------
+General Logger:	2023/12/11 01:23:28 db.go:307: ------------End-------Cantida Migraciones ejecutadas en BD: 11 ----------------------------
+General Logger:	2023/12/11 01:23:28 db.go:353: [36mCarga de seeder deshabilitada %s[0m
+
+General Logger:	2023/12/11 01:23:28 app.go:37: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/12/11 01:24:16 main.go:12: Starting app at 2023-11-01 01:24:16 
+Error Logger:	2023/12/11 01:24:16 main.go:16: [31mError loading env file[0m
+General Logger:	2023/12/11 01:24:16 db.go:98: Cargando info Base Datos
+General Logger:	2023/12/11 01:24:16 db.go:164: New (mysql) conennection opened
+General Logger:	2023/12/11 01:24:16 db.go:167: [36mConfigurando coneccion y cargando Migration mysql: [0m
+General Logger:	2023/12/11 01:24:16 db.go:298: Ejecutando todas las migartion:
+General Logger:	2023/12/11 01:24:16 db.go:300: -----------------------------------------------
+General Logger:	2023/12/11 01:24:16 db.go:307: ------------End-------Cantida Migraciones ejecutadas en BD: 11 ----------------------------
+General Logger:	2023/12/11 01:24:16 db.go:353: [36mCarga de seeder deshabilitada %s[0m
+
+General Logger:	2023/12/11 01:24:16 app.go:37: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/12/11 01:24:49 main.go:12: Starting app at 2023-11-01 01:24:49 
+Error Logger:	2023/12/11 01:24:49 main.go:16: [31mError loading env file[0m
+General Logger:	2023/12/11 01:24:49 db.go:98: Cargando info Base Datos
+General Logger:	2023/12/11 01:24:49 db.go:164: New (mysql) conennection opened
+General Logger:	2023/12/11 01:24:49 db.go:167: [36mConfigurando coneccion y cargando Migration mysql: [0m
+General Logger:	2023/12/11 01:24:49 db.go:298: Ejecutando todas las migartion:
+General Logger:	2023/12/11 01:24:49 db.go:300: -----------------------------------------------
+General Logger:	2023/12/11 01:24:49 db.go:307: ------------End-------Cantida Migraciones ejecutadas en BD: 11 ----------------------------
+General Logger:	2023/12/11 01:24:49 db.go:353: [36mCarga de seeder deshabilitada %s[0m
+
+General Logger:	2023/12/11 01:24:49 app.go:37: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/12/11 01:27:16 main.go:12: Starting app at 2023-11-01 01:27:16 
+Error Logger:	2023/12/11 01:27:16 main.go:16: [31mError loading env file[0m
+General Logger:	2023/12/11 01:27:16 db.go:98: Cargando info Base Datos
+General Logger:	2023/12/11 01:27:16 db.go:164: New (mysql) conennection opened
+General Logger:	2023/12/11 01:27:16 db.go:167: [36mConfigurando coneccion y cargando Migration mysql: [0m
+General Logger:	2023/12/11 01:27:16 db.go:298: Ejecutando todas las migartion:
+General Logger:	2023/12/11 01:27:16 db.go:300: -----------------------------------------------
+General Logger:	2023/12/11 01:27:16 db.go:307: ------------End-------Cantida Migraciones ejecutadas en BD: 11 ----------------------------
+General Logger:	2023/12/11 01:27:16 db.go:353: [36mCarga de seeder deshabilitada %s[0m
+
+General Logger:	2023/12/11 01:27:16 app.go:37: Iniciando server --- 127.0.0.1:2222
+General Logger:	2023/12/11 01:28:41 main.go:12: Starting app at 2023-11-01 01:28:41 
+Error Logger:	2023/12/11 01:28:41 main.go:16: [31mError loading env file[0m
+General Logger:	2023/12/11 01:28:41 db.go:98: Cargando info Base Datos
+General Logger:	2023/12/11 01:28:41 db.go:164: New (mysql) conennection opened
+General Logger:	2023/12/11 01:28:41 db.go:167: [36mConfigurando coneccion y cargando Migration mysql: [0m
+General Logger:	2023/12/11 01:28:41 db.go:298: Ejecutando todas las migartion:
+General Logger:	2023/12/11 01:28:41 db.go:300: -----------------------------------------------
+General Logger:	2023/12/11 01:28:42 main.go:12: Starting app at 2023-11-01 01:28:42 
+Error Logger:	2023/12/11 01:28:42 main.go:16: [31mError loading env file[0m
+General Logger:	2023/12/11 01:28:42 db.go:98: Cargando info Base Datos
+General Logger:	2023/12/11 01:28:42 db.go:164: New (mysql) conennection opened
+General Logger:	2023/12/11 01:28:42 db.go:167: [36mConfigurando coneccion y cargando Migration mysql: [0m
+General Logger:	2023/12/11 01:28:42 db.go:298: Ejecutando todas las migartion:
+General Logger:	2023/12/11 01:28:42 db.go:300: -----------------------------------------------
+General Logger:	2023/12/11 01:28:42 db.go:307: ------------End-------Cantida Migraciones ejecutadas en BD: 11 ----------------------------
+General Logger:	2023/12/11 01:28:42 db.go:353: [36mCarga de seeder deshabilitada %s[0m
+
+General Logger:	2023/12/11 01:28:42 app.go:37: Iniciando server --- 127.0.0.1:2222

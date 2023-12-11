@@ -20,7 +20,7 @@ func (i *InstructorRepository) RegistrarInstructor(persona *models.Persona) inte
 }
 
 func (i *InstructorRepository) ModificarInstructor(instructor *models.Persona) interface{} {
-	if res := db.Orm.Model(new(models.Persona)).Updates(instructor); res.Error != nil {
+	if res := db.Orm.Model(&instructor).Updates(instructor); res.Error != nil {
 		panic("[Repositories.InstructorRepository.ModificarInstructor: Line 24] - " + res.Error.Error())
 	} else if res.RowsAffected == 0 {
 		return false
@@ -28,8 +28,8 @@ func (i *InstructorRepository) ModificarInstructor(instructor *models.Persona) i
 	return true
 }
 
-func (i *InstructorRepository) EliminarInstructor(instructor *models.Instructore) interface{} {
-	if res := db.Orm.Model(new(models.Instructore)).Unscoped().Delete(instructor); res.Error != nil {
+func (i *InstructorRepository) EliminarInstructor(instructor *models.Persona) interface{} {
+	if res := db.Orm.Model(&instructor).Unscoped().Delete(instructor); res.Error != nil {
 		panic("[Repositories.InstructorRepository.EliminarInstructor: Line 33] - " + res.Error.Error())
 	} else if res.RowsAffected == 0 {
 		return false
@@ -51,7 +51,7 @@ func (i *InstructorRepository) MostrarInstructores() interface{} {
 	if res := db.Orm.Table("instructores").
 		Select("personas.*").
 		Joins("inner join personas on personas.ci  = instructores.ci ").Find(&inst); res.Error != nil {
-		panic("Ocurried one error in line 52 [EstudanteRepository.mostrarInstructores] error: " + res.Error.Error())
+		panic("Ocurried one error in line 54 [EstudanteRepository.mostrarInstructores] error: " + res.Error.Error())
 	}
 	return inst
 }
@@ -76,8 +76,12 @@ func (i *InstructorRepository) EliminarCursoOffInstructor(instructor_curso *mode
 	return true
 }
 
-func (i *InstructorRepository) ModificarInstructorCurso(instructor_curso *models.InstructorCurso) interface{} {
-	if res := db.Orm.Model(new(models.InstructorCurso)).Updates(instructor_curso); res.Error != nil {
+func (i *InstructorRepository) ModificarInstructorCurso(instructor_curso *models.InstructorCurso, idCursoA int) interface{} {
+	if res := db.Orm.Model(new(models.InstructorCurso)).
+		Where("instructor_ci = ?", instructor_curso.InstructorCi).
+		Where("curso_id = ?", idCursoA).
+		Where("curso_id <> ?", instructor_curso.CursoId).
+		Updates(instructor_curso); res.Error != nil {
 		panic("[Repositories.InstructorRepository.ModificarInstructorCurso: Line 75] - " + res.Error.Error())
 	} else if res.RowsAffected == 0 {
 		return false
