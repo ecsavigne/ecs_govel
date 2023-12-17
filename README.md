@@ -6,7 +6,9 @@
 Aqui se encuentra la configuracion correspondiente al servidor Web y a la App
 ```
 # db.ini 
-```Aqui ó, correspondiente a base datos, driver path del archivo env con variable```
+```
+Aqui ó, correspondiente a base datos, driver path del archivo env con variable
+```
 ## var para base de datos ecs_govel:
  ej: Config archivo .env para base de datos driver=mysql
 ```
