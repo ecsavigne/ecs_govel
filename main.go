@@ -1,19 +1,21 @@
 package main
 
 import (
-	"ecs_govel/app/helpers/logg"
-	app "ecs_govel/config"
+	//configs "oficial_gin/configs"
 
-	"github.com/golang-module/carbon"
-	"github.com/joho/godotenv"
+	"fmt"
+	// "oficial_gin/app/webhooks"
+	config "oficial_gin/configs"
+	_ "oficial_gin/routes"
 )
 
 func main() {
-	logg.GeneralLogger.Printf("Starting app at %s ", carbon.Now().SubDays(40).Format("Y-m-d H:i:s"))
-
-	err := godotenv.Load()
-	if err != nil {
-		logg.ErrorLogger.Println("\033[31mError loading env file\033[0m")
-	}
-	app.InitApp()
+	// fmt.Println("Host:", configs.HTTP_SERVER_HOST)
+	//Test de Rutas
+	// config.RouterList(config.GetEngine())
+	//config.F_prepare_collection_postman("")
+	config.AppRun()
+	fmt.Println("Starting Webhooks")
+	//new(webhooks.WPSession).RestQueue()
+	fmt.Println("Starting Webhooks 2")
 }

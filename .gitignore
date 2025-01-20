@@ -3,3 +3,4 @@
 ./tmp
 ./.vscode
 .air.toml
+/vendor
