@@ -11,3 +11,6 @@ func NewRepositoryTemplate() *RepositoryTemplate {
 		},
 	}
 }
+
+// Implementacion de metodos del repositorio
+func (*RepositoryTemplate) MetTest() {}
