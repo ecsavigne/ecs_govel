@@ -29,8 +29,11 @@ var (
 	DB_PORT         string
 	FORWARD_DB_PORT string
 	DB_CONNSTR      string
+	DNS_DB          string
 	Database        *DbInstance = new(DbInstance)
 )
+
+func create_database() {}
 
 func prepare_db() {
 	var (
@@ -45,6 +48,9 @@ func prepare_db() {
 			os.Exit(2)
 		}
 	}()
+
+	// Create database si no existe
+	create_database()
 
 	DB_CONNSTR = fmt.Sprintf("host=%s user=%s dbname=%s port=%s sslmode=disable password=%s", DB_HOST, DB_USER, DB_NAME, FORWARD_DB_PORT, DB_PASSWORD)
 
@@ -75,10 +81,6 @@ func prepare_db() {
 
 	// Load Migration
 	Database.Migrate()
-}
-
-func (db *DbInstance) GetDbInstance() *gorm.DB {
-	return Database.DB
 }
 
 // Init : First Setup

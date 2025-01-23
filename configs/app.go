@@ -50,9 +50,9 @@ func prepare_engine() {
 	if IsX1() {
 		//TODO: Configurar el motor de Gin para metricas no esta implementada la logica aun
 		metricEngine = gin.Default()
-	} else {
-		engine = gin.Default()
 	}
+	engine = gin.Default()
+
 }
 
 // Carga de varEnv
@@ -60,7 +60,7 @@ func prepare_env() {
 	pathDir, _ := os.Getwd()
 	viper.AddConfigPath(pathDir)
 	viper.SetConfigType("env")
-	viper.SetConfigName(".env")
+	viper.SetConfigName("app.env")
 	if err := viper.ReadInConfig(); err != nil {
 		fmt.Printf("\033[31mError: No encontrado archivo app.env ni .cobraToml de tipo (toml) en\033[30m %s\n", pathDir)
 		os.Exit(2)
@@ -75,6 +75,7 @@ func prepare_env() {
 		DB_PASSWORD = viper.GetString("PG_DB_PASSWORD")
 		DB_PORT = viper.GetString("PG_DB_PORT")
 		FORWARD_DB_PORT = viper.GetString("PG_FORWARD_DB_PORT")
+		DNS_DB = viper.GetString("PG_DNS_LOCAL")
 
 		// Variables .env HTTP_SERVER
 		HTTP_SERVER_HOST = viper.GetString("HTTP_SERVER_HOST")
