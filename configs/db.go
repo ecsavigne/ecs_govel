@@ -13,6 +13,7 @@ import (
 
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
+	"oficial_gin/app/model"
 )
 
 type DbInstance struct {
@@ -62,6 +63,7 @@ func prepare_db() {
 		panic(err)
 	}
 
+	model.SetGlobalDB(Database)
 	fmt.Println("Max Connections: ", APP_MAX_CONNECTIONS, " CantX: ", APP_CANT_X)
 	sqlDB, _ := Database.DB.DB()
 	sqlDB.SetConnMaxLifetime(time.Minute * 2) // Make than last forever
