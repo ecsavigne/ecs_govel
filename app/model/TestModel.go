@@ -20,14 +20,14 @@ func (*Test) GetModelName() string {
 	return "Test"
 }
 
-func (*Test) Insert(db *gorm.DB) *gorm.DB {
+func (*Test) Insert() *gorm.DB {
 	return db.Create(&Test{})
 }
 
-func (*Test) Update(db *gorm.DB) *gorm.DB {
+func (*Test) Update() *gorm.DB {
 	return db.Save(&Test{})
 }
 
-func (*Test) Delete(db *gorm.DB) *gorm.DB {
+func (*Test) Delete() *gorm.DB {
 	return db.Delete(&Test{})
 }
