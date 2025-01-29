@@ -1,6 +1,6 @@
-package models
+package model
 
-import "oficial_gin/database/migration"
+import "ecs_govel/database/migration"
 
 // User  : User model
 type User migration.User

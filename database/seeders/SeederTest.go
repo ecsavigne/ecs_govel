@@ -1,8 +1,8 @@
 package seeders
 
 import (
+	model "ecs_govel/app/model"
 	"fmt"
-	"oficial_gin/app/models"
 )
 
 /*Protocolo para agregar un seeder*/
@@ -13,7 +13,7 @@ func (s *Seeders) NameSeeder() {
 */
 // Ejemplo de agregar un seeder de prueba de aplicacion
 func (s *Seeders) TestSeeder() {
-	application := models.Application{
+	application := model.Application{
 		AppName: "socialhub_chat",
 		// AppHash:     "S4h_EPRZm-b46kyoUbUJ",
 		WebhookText: "http://principal.socialhub.local/reciveTextMessage",

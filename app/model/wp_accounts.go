@@ -1,7 +1,7 @@
-package models
+package model
 
 import (
-	"oficial_gin/database/migration"
+	"ecs_govel/database/migration"
 )
 
 // WPAccounts : WhatsAppAccount model (test if FK is working otherwise do it manually)

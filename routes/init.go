@@ -1,7 +1,7 @@
 package routes
 
 import (
-	c_ "oficial_gin/configs"
+	c_ "ecs_govel/configs"
 )
 
 func init() {

@@ -1,7 +1,7 @@
-package models
+package model
 
 import (
-	"oficial_gin/database/migration"
+	"ecs_govel/database/migration"
 )
 
 // Application : Application model

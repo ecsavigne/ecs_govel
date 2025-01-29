@@ -1,15 +1,15 @@
 package configs
 
 import (
+	model "ecs_govel/app/model"
+	migrations "ecs_govel/database/migration"
 	"fmt"
 	"math/rand"
-	model "oficial_gin/app/models"
-	migrations "oficial_gin/database/migration"
 	"os"
 	"path/filepath"
 	"time"
 
-	// model "oficial_gin/models"
+	// model "ecs_govel/models"
 
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"

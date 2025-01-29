@@ -2,11 +2,11 @@ package repositories
 
 import "ecs_govel/app/model"
 
-
 type RepositoryType = string
 
 const (
 	RepositoriesTypeTemplate RepositoryType = "repository_type_template"
+	RepositoriesTypeTest     RepositoryType = "repository_type_test"
 	// Asi crear el resto
 )
 
@@ -17,13 +17,13 @@ type Repository interface {
 }
 
 type RepositoryKernel struct {
-	_type string
+	_type  string
 	_rep   Repository
 	_model model.ModelKernel
 }
 
 func (r *RepositoryKernel) GetType() string {
-	return r.Type
+	return r._type
 }
 
 func (r *RepositoryKernel) GetRepository() Repository {

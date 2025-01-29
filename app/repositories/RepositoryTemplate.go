@@ -1,16 +1,21 @@
 package repositories
 
-type RepositoryTemplate struct {
+import "ecs_govel/app/model"
+
+type RepositoryTest struct {
 	Repository
 }
 
-func NewRepositoryTemplate() *RepositoryTemplate {
-	return &RepositoryTemplate{
-		Repository: &RepositoryKernel{
-			Type: RepositoriesTypeTemplate,
-		},
+func NewRepositoryTemplate() *RepositoryTest {
+	r := &RepositoryTest{}
+	r.Repository = &RepositoryKernel{
+		_type:  RepositoriesTypeTest,
+		_rep:   r,
+		_model: &model.Test{},
 	}
+
+	return r
 }
 
 // Implementacion de metodos del repositorio
-func (*RepositoryTemplate) MetTest() {}
+func (*RepositoryTest) MetTest() {}

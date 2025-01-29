@@ -1,12 +1,12 @@
 package main
 
 import (
-	//configs "oficial_gin/configs"
+	//configs "ecs_govel/configs"
 
 	"fmt"
-	// "oficial_gin/app/webhooks"
-	config "oficial_gin/configs"
-	_ "oficial_gin/routes"
+	// "ecs_govel/app/webhooks"
+	config "ecs_govel/configs"
+	_ "ecs_govel/routes"
 )
 
 func main() {

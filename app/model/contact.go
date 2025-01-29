@@ -1,8 +1,8 @@
-package models
+package model
 
 import (
+	"ecs_govel/database/migration"
 	"fmt"
-	"oficial_gin/database/migration"
 
 	"gorm.io/gorm"
 )
