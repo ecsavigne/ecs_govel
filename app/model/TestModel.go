@@ -38,7 +38,7 @@ func (*TestModel) Delete() *gorm.DB {
 	return db.Delete(&TestModel{})
 }
 
-func (t *TestModel) GetById(db *gorm.DB, id uint) ModelKernel {
+func (t *TestModel) GetById(id uint) ModelKernel {
 	return nil
 }
 

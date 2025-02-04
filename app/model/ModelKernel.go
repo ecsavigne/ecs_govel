@@ -11,7 +11,7 @@ type ModelKernel interface {
 	Update() *gorm.DB
 	Delete() *gorm.DB
 	// Obtener por id
-	GetById(db *gorm.DB, id uint) ModelKernel
+	GetById(id uint) ModelKernel
 	// Obtener todos o limit
 	Gets(...int) []ModelKernel
 }
