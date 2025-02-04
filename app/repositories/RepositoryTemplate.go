@@ -11,7 +11,7 @@ func NewRepositoryTemplate() *RepositoryTest {
 	r.Repository = &RepositoryKernel{
 		_type:  RepositoriesTypeTest,
 		_rep:   r,
-		_model: &model.Test{},
+		_model: &model.TestModel{},
 	}
 
 	return r

@@ -1,6 +1,6 @@
 package migration
 
-type Test struct {
+type TestMigation struct {
 	ID  uint   `gorm:"primary_key"`
 	Url string `gorm:"type:varchar(255);not null"`
 }

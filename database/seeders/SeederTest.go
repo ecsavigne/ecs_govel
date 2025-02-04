@@ -13,16 +13,10 @@ func (s *Seeders) NameSeeder() {
 */
 // Ejemplo de agregar un seeder de prueba de aplicacion
 func (s *Seeders) TestSeeder() {
-	application := model.Application{
-		AppName: "socialhub_chat",
-		// AppHash:     "S4h_EPRZm-b46kyoUbUJ",
-		WebhookText: "http://principal.socialhub.local/reciveTextMessage",
-		WebhookFile: "http://principal.socialhub.local/reciveFileMessage",
-	}
+	test := &model.TestModel{}
 
-	//TODO db.DB.Create(&application) intentaba criar y si ya existia el registro devolvia error de primary key  ERROR: duplicate key value violates unique constraint "applications_api_hash_key"
-	if res := s.DB.FirstOrCreate(&application); res.Error != nil {
-		fmt.Println("Error creating application ", application, ". Error is: ", res.Error.Error())
+	if res := s.DB.FirstOrCreate(test); res.Error != nil {
+		fmt.Println("Error creating test ", test, ". Error is: ", res.Error.Error())
 		return
 	}
 }

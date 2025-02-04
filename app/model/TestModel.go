@@ -6,28 +6,42 @@ import (
 	"gorm.io/gorm"
 )
 
-type Test migration.Test
+type TestModel migration.TestMigation
 
-/*Insert(db *gorm.DB) *gorm.DB
-Update(db *gorm.DB) *gorm.DB
-Delete(db *gorm.DB) *gorm.DB*/
+/*
+Insert() *gorm.DB
+	Update() *gorm.DB
+	Delete() *gorm.DB
+	// Obtener por id
+	GetById(db *gorm.DB, id uint) ModelKernel
+	// Obtener todos o limit
+	Gets(...int) []ModelKernel
+*/
 
-func (*Test) TableName() string {
-	return "Tests"
+func (*TestModel) TableName() string {
+	return "TestModels"
 }
 
-func (*Test) GetModelName() string {
-	return "Test"
+func (*TestModel) GetModelName() string {
+	return "TestModel"
 }
 
-func (*Test) Insert() *gorm.DB {
-	return db.Create(&Test{})
+func (*TestModel) Insert() *gorm.DB {
+	return db.Create(&TestModel{})
 }
 
-func (*Test) Update() *gorm.DB {
-	return db.Save(&Test{})
+func (*TestModel) Update() *gorm.DB {
+	return db.Save(&TestModel{})
 }
 
-func (*Test) Delete() *gorm.DB {
-	return db.Delete(&Test{})
+func (*TestModel) Delete() *gorm.DB {
+	return db.Delete(&TestModel{})
+}
+
+func (t *TestModel) GetById(db *gorm.DB, id uint) ModelKernel {
+	return nil
+}
+
+func (t *TestModel) Gets(limit ...int) []ModelKernel {
+	return nil
 }

@@ -9,9 +9,11 @@ var db *gorm.DB
 type ModelKernel interface {
 	Insert() *gorm.DB
 	Update() *gorm.DB
-	// Delete(db *gorm.DB) *gorm.DB
 	Delete() *gorm.DB
-	// Get(db *gorm.DB, id uint)
+	// Obtener por id
+	GetById(db *gorm.DB, id uint) ModelKernel
+	// Obtener todos o limit
+	Gets(...int) []ModelKernel
 }
 
 var SetGlobalDB = func(db_ *gorm.DB) {
