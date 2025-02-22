@@ -3,13 +3,13 @@ package routes
 import (
 	// "new_whatsmeow_gin/app/http/controllers"
 
+	c_ "ecs_govel/configs"
+	"ecs_govel/docs"
 	"fmt"
 	"log"
 	"net/http"
 	"net/http/httputil"
 	"net/url"
-	c_ "oficial_gin/configs"
-	"oficial_gin/docs"
 
 	"github.com/gin-gonic/gin"
 	"github.com/pkg/errors"
