@@ -23,14 +23,6 @@ var (
 	APP_AVATAR_FILES          string
 	APP_NAME_X1               string
 	APP_PROCESS_EVENT_RECIVED bool
-	// APIExts : Api -> wpp ext to mime convert
-	APIExts                 = make(map[string]string, 40)
-	DocHandlerExts          = make(map[string]string, 40)
-	ImageType      []string = []string{"png", "jpg", "jpeg", "webp", "gif"}
-	AudioType      []string = []string{"ogg", "mp3"}
-	VideoType      []string = []string{"mp4"}
-	DocumentType   []string = []string{"docx", "doc", "pdf", "epub", "ppt",
-		"pptx", "csv", "xls", "xlsx"}
 )
 
 func init() {
@@ -122,93 +114,6 @@ func prepare_app() {
 	// Test app
 	//test_app()
 }
-
-func test_app() {
-	Database.CreateApp()
-	// Database.SaveCompanyWhatsapp(models.CompanyWhatsapps{
-	// 	CompanyId:            1,
-	// 	CompanyWhatsappId:    1,
-	// 	Whatsapp:             "5521982641843",
-	// 	ProcessGroupMessages: true,
-	// })
-}
-
-/*func prepare_mime_exts() {
-	DocHandlerExts["application/vnd.ms-excel"] = "xls"
-	DocHandlerExts["application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"] = "xlsx"
-	DocHandlerExts["application/vnd.openxmlformats-officedocument.wordprocessingml.document"] = "docx"
-	DocHandlerExts["application/msword"] = "doc"
-	DocHandlerExts["application/vnd.ms-powerpoint"] = "ppt"
-	DocHandlerExts["application/vnd.openxmlformats-officedocument.presentationml.presentation"] = "pptx"
-
-	DocHandlerExts["application/vnd.oasis.opendocument.text"] = "odt"
-	DocHandlerExts["application/vnd.oasis.opendocument.spreadsheet"] = "ods"
-	DocHandlerExts["application/vnd.oasis.opendocument.presentation"] = "odp"
-
-	DocHandlerExts["application/epub+zip"] = "epub"
-	DocHandlerExts["text/plain"] = "text"
-
-	DocHandlerExts["text/csv"] = "csv"
-
-	DocHandlerExts["video/mp4"] = "mp4"
-
-	DocHandlerExts["application/pdf"] = "pdf"
-	DocHandlerExts["application/zip"] = "zip"
-
-	DocHandlerExts["image/png"] = "png"
-	DocHandlerExts["image/jpg"] = "jpg"
-	DocHandlerExts["image/jpeg"] = "jpeg"
-	DocHandlerExts["image/gif"] = "gif"
-
-	DocHandlerExts["video/mpeg"] = "mpeg"
-	DocHandlerExts["image/webp"] = "webp"
-
-	DocHandlerExts["audio/mpeg"] = "mp3"
-	// DocHandlerExts["audio/ogg"] = "ogg"
-	DocHandlerExts["audio/ogg; codecs=opus"] = "ogg"
-	DocHandlerExts["audio/mpeg; codecs=opus"] = "mpeg"
-	DocHandlerExts["audio/mp4; codecs=opus"] = "mp4"
-	DocHandlerExts["audio/aac; codecs=opus"] = "aac"
-
-	//DocHandlerExts[""] = "rem"
-	DocHandlerExts["application/ofx"] = "ofx"
-
-	APIExts["png"] = "image/png"
-	APIExts["jpg"] = "image/jpeg"
-	APIExts["jpeg"] = "image/jpeg"
-	// added by JR
-	APIExts["webp"] = "image/webp"
-
-	APIExts["docx"] = "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
-	APIExts["doc"] = "application/msword"
-	APIExts["pdf"] = "application/pdf"
-	APIExts["epub"] = "application/epub+zip"
-
-	APIExts["ppt"] = "application/vnd.ms-powerpoint"
-	APIExts["pptx"] = "application/vnd.openxmlformats-officedocument.presentationml.presentation"
-
-	APIExts["gif"] = "image/gif"
-	APIExts["csv"] = "application/csv" // APIExts["csv"] = "text/csv"
-	APIExts["xlsx"] = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-	APIExts["xls"] = "application/excel"
-
-	// video format
-	APIExts["mp4"] = "video/mp4"
-
-	// audio formats
-	APIExts["ogg"] = "audio/ogg; codecs=opus"
-	APIExts["acc"] = "audio/acc; codecs=opus"
-	APIExts["aac"] = "audio/ogg; codecs=opus"
-	APIExts["mp3"] = "audio/mpeg"
-
-	APIExts["txt"] = "text/plain"
-	APIExts["odt"] = "application/vnd.oasis.opendocument.text"
-	APIExts["zip"] = "application/zip"
-
-	// APIExts["rem"] = "text/plain"
-	// APIExts["ofx"] = "application/ofx"
-
-}*/
 
 func IsX1() bool {
 	name := path.Base(os.Args[0])

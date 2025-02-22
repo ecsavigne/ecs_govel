@@ -1,4 +1,4 @@
-module oficial_gin
+module ecs_govel
 
 go 1.23.0
 
