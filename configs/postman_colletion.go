@@ -426,7 +426,7 @@ func getVarParam() map[string]Body {
 }
 
 func F_prepare_collection_postman(host string) {
-	fmt.Println("Cantidad de Routas", len(engine.Routes()))
+	fmt.Println("Cantidad de Routas", len(routerApi.Routes()))
 	itemsReqPost := []PostmanItem{}
 	itemsReqGet := []PostmanItem{}
 	itemsReqPut := []PostmanItem{}
@@ -441,7 +441,7 @@ func F_prepare_collection_postman(host string) {
 
 	m := getVarParam()
 
-	for _, route := range engine.Routes() {
+	for _, route := range routerApi.Routes() {
 		path = strings.ReplaceAll(route.Path, "/:", "/")
 		base := filepath.Base(path)
 		body := Body{}

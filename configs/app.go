@@ -12,8 +12,9 @@ import (
 )
 
 var (
-	engine                    *gin.Engine
-	metricEngine              *gin.Engine
+	routerApi                 *gin.Engine
+	routerMetric              *gin.Engine
+	routerDocApi              *gin.Engine
 	APP_MAX_CONNECTIONS       int
 	APP_CANT_X                int
 	APP_FILE_LOGGER           string
@@ -37,22 +38,26 @@ func init() {
 }
 
 func GetEngine() *gin.Engine {
-	return engine
+	return routerApi
 }
 
 func GetMetricEngine() *gin.Engine {
-	return metricEngine
+	return routerMetric
+}
+
+func GetDocApiEngine() *gin.Engine {
+	return routerDocApi
 }
 
 // Configurar el motor de Gin
 func prepare_engine() {
 	gin.SetMode(gin.ReleaseMode)
+	routerApi = gin.Default()
 	if IsX1() {
 		//TODO: Configurar el motor de Gin para metricas no esta implementada la logica aun
-		metricEngine = gin.Default()
+		routerMetric = gin.Default()
+		routerDocApi = gin.Default()
 	}
-	engine = gin.Default()
-
 }
 
 // Carga de varEnv
@@ -80,11 +85,14 @@ func prepare_env() {
 		// Variables .env HTTP_SERVER
 		HTTP_SERVER_HOST = viper.GetString("HTTP_SERVER_HOST")
 		HTTP_SERVER_HOST_METRICS = viper.GetString("HTTP_SERVER_HOST_METRICS")
+		HTTP_SERVER_PORT_TEST = viper.GetString("HTTP_SERVER_PORT_TEST")
+		HTTP_SERVER_PORT_DOC_API = viper.GetString("HTTP_SERVER_PORT_DOC_API")
 		filename := filepath.Base(os.Args[0])
 		port := strings.Replace(filename, "main", "", 1)
 
 		if port == "__debug_bin" || port == "" {
-			port = "1337"
+			// port = "1337"
+			port = HTTP_SERVER_PORT_TEST
 		} else if port != "" {
 			port = strings.Replace(port, "1337", "", 1)
 			port = strings.Replace(port, "133", "", 1) // JoseR
