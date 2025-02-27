@@ -1,21 +1,13 @@
 package routes
 
 import (
+	"ecs_govel/routes/middleware"
 	"fmt"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
 )
 
-//	@Schemes http https
-//
-// @Tags Routes of test
-// @Accept json
-// @Produce json
-// @Description ruta de test
-// @Success 200 {object} object
-// @Failure 400 {object} object
-// @Router /test [post]
 func RutaTestFunc(c *gin.Context) {
 	fmt.Print("RutaTestFunc")
 	c.String(http.StatusOK, "RutaTestFunc")
@@ -48,5 +40,5 @@ func RutaTestFunc1(c *gin.Context) {
 
 func loadApi(g *gin.Engine) {
 	// Sin parametro
-	g.POST("/Test", RutaTestFunc)
+	g.GET("/Test", middleware.CorsMiddleware(), RutaTestFunc)
 }

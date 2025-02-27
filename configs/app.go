@@ -43,7 +43,7 @@ func GetDocApiEngine() *gin.Engine {
 }
 
 func prepare_proxies() {
-	ReverseProxyApiDoc = proxy.NewProxyReverse(proxy.ProxyReverse{
+	ReverseProxyApi = proxy.NewProxyReverse(proxy.ProxyReverse{
 		Host: HTTP_SERVER_HOST,
 		Port: HTTP_SERVER_PORT,
 	})

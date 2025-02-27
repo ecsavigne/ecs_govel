@@ -15,5 +15,5 @@ var (
 
 // ReverseProxyApiDoc
 var (
-	ReverseProxyApiDoc *proxy.ProxyReverse
+	ReverseProxyApi *proxy.ProxyReverse
 )
