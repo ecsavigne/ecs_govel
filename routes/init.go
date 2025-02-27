@@ -7,4 +7,5 @@ import (
 func init() {
 	loadApi(c_.GetEngine())
 	// loadMetrics(c_.GetMetricEngine())
+	loadDocRoutes(c_.GetDocApiEngine())
 }

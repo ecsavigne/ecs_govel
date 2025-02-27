@@ -7,6 +7,7 @@ import (
 	"path/filepath"
 	"strings"
 
+	"github.com/ecsavigne/proxy-reverse/proxy"
 	"github.com/gin-gonic/gin"
 	"github.com/spf13/viper"
 )
@@ -39,6 +40,13 @@ func GetMetricEngine() *gin.Engine {
 
 func GetDocApiEngine() *gin.Engine {
 	return routerDocApi
+}
+
+func prepare_proxies() {
+	ReverseProxyApiDoc = proxy.NewProxyReverse(proxy.ProxyReverse{
+		Host: HTTP_SERVER_HOST,
+		Port: HTTP_SERVER_PORT,
+	})
 }
 
 // Configurar el motor de Gin
@@ -76,6 +84,7 @@ func prepare_env() {
 
 		// Variables .env HTTP_SERVER
 		HTTP_SERVER_HOST = viper.GetString("HTTP_SERVER_HOST")
+		HTTP_SERVER_HOST_DOC_API = viper.GetString("HTTP_SERVER_HOST_DOC_API")
 		HTTP_SERVER_HOST_METRICS = viper.GetString("HTTP_SERVER_HOST_METRICS")
 		HTTP_SERVER_PORT_TEST = viper.GetString("HTTP_SERVER_PORT_TEST")
 		HTTP_SERVER_PORT_DOC_API = viper.GetString("HTTP_SERVER_PORT_DOC_API")
@@ -106,9 +115,10 @@ func prepare_env() {
 
 func prepare_app() {
 	prepare_env()
+	prepare_proxies()
 	prepare_engine()
-	prepare_logger()
-	prepare_db()
+	// prepare_logger() //TODO:Cambiar por logecs
+	// prepare_db()
 	// prepare_mime_exts()
 
 	// Test app

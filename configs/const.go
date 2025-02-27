@@ -21,3 +21,7 @@ const (
 	TYPE_MESSAGE_URL             = 18
 	TYPE_MESSAGE_UNDESCRIBABLE   = 19
 )
+
+const (
+	logAPi TYPE_LOG_MESSAGE = "API"
+)

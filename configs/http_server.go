@@ -10,6 +10,7 @@ var (
 	HTTP_SERVER_HOST         string
 	HTTP_SERVER_PORT         string
 	HTTP_SERVER_PORT_TEST    string
+	HTTP_SERVER_HOST_DOC_API string
 	HTTP_SERVER_PORT_DOC_API string
 
 	HTTP_SERVER_HOST_METRICS string
@@ -22,6 +23,7 @@ func httpRun() {
 	if IsX1() { //metricEngine
 		//fmt.Println("Server Metrics:" + HTTP_SERVER_HOST_METRICS + ":" + HTTP_SERVER_PORT_METRICS)
 		go runServMetric()
+		go runServerDocApi()
 	}
 	if err := GROUP_WAIT.Wait(); err != nil {
 		fmt.Println("Ocurrio un error con la sincronizacion de server: ", err.Error())
@@ -37,6 +39,6 @@ func runServMetric() {
 }
 
 func runServerDocApi() {
-	fmt.Printf("Run server Doc Api in %s:%s\n", HTTP_SERVER_HOST, HTTP_SERVER_PORT_DOC_API)
-	routerDocApi.Run(HTTP_SERVER_HOST + ":" + HTTP_SERVER_PORT_DOC_API)
+	fmt.Printf("Run server Doc Api in %s:%s\n", HTTP_SERVER_HOST_DOC_API, HTTP_SERVER_PORT_DOC_API)
+	routerDocApi.Run(HTTP_SERVER_HOST_DOC_API + ":" + HTTP_SERVER_PORT_DOC_API)
 }
