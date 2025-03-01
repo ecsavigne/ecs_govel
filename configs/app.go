@@ -22,6 +22,7 @@ var (
 	APP_SESSIONS              string
 	APP_MESSAJE_FILES         string
 	APP_AVATAR_FILES          string
+	APP_NAME                  string
 	APP_NAME_X1               string
 	APP_PROCESS_EVENT_RECIVED bool
 )
@@ -82,25 +83,6 @@ func prepare_env() {
 		FORWARD_DB_PORT = viper.GetString("PG_FORWARD_DB_PORT")
 		DNS_DB = viper.GetString("PG_DNS_LOCAL")
 
-		// Variables .env HTTP_SERVER
-		HTTP_SERVER_HOST = viper.GetString("HTTP_SERVER_HOST")
-		HTTP_SERVER_HOST_DOC_API = viper.GetString("HTTP_SERVER_HOST_DOC_API")
-		HTTP_SERVER_HOST_METRICS = viper.GetString("HTTP_SERVER_HOST_METRICS")
-		HTTP_SERVER_PORT_TEST = viper.GetString("HTTP_SERVER_PORT_TEST")
-		HTTP_SERVER_PORT_DOC_API = viper.GetString("HTTP_SERVER_PORT_DOC_API")
-		filename := filepath.Base(os.Args[0])
-		port := strings.Replace(filename, "main", "", 1)
-
-		if port == "__debug_bin" || port == "" {
-			// port = "1337"
-			port = HTTP_SERVER_PORT_TEST
-		} else if port != "" {
-			port = strings.Replace(port, "1337", "", 1)
-			port = strings.Replace(port, "133", "", 1) // JoseR
-		}
-		HTTP_SERVER_PORT = port
-		HTTP_SERVER_PORT_METRICS = viper.GetString("HTTP_SERVER_PORT_METRICS")
-
 		// Var env APP
 		APP_MAX_CONNECTIONS = viper.GetInt("APP_MAX_CONNECTIONS")
 		APP_CANT_X = viper.GetInt("APP_CANT_X")
@@ -110,6 +92,23 @@ func prepare_env() {
 		APP_AVATAR_FILES = viper.GetString("APP_AVATAR_FILES")
 		APP_MESSAJE_FILES = viper.GetString("APP_MESSAJE_FILES")
 		APP_NAME_X1 = viper.GetString("APP_NAME_X1")
+		APP_NAME = viper.GetString("APP_NAME")
+
+		// Variables .env HTTP_SERVER
+		HTTP_SERVER_HOST = viper.GetString("HTTP_SERVER_HOST")
+		HTTP_SERVER_HOST_DOC_API = viper.GetString("HTTP_SERVER_HOST_DOC_API")
+		HTTP_SERVER_HOST_METRICS = viper.GetString("HTTP_SERVER_HOST_METRICS")
+		HTTP_SERVER_PORT_TEST = viper.GetString("HTTP_SERVER_PORT_TEST")
+		HTTP_SERVER_PORT_DOC_API = viper.GetString("HTTP_SERVER_PORT_DOC_API")
+		filename := filepath.Base(os.Args[0])
+		port := strings.TrimSpace(strings.Replace(filename, APP_NAME, "", 1))
+
+		if port == "__debug_bin" || port == "" {
+			port = HTTP_SERVER_PORT_TEST
+		}
+
+		HTTP_SERVER_PORT = port
+		HTTP_SERVER_PORT_METRICS = viper.GetString("HTTP_SERVER_PORT_METRICS")
 	}
 }
 
