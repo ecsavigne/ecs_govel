@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"os"
 	"path"
-	"path/filepath"
 	"strings"
 
 	"github.com/ecsavigne/proxy-reverse/proxy"
@@ -23,6 +22,7 @@ var (
 	APP_MESSAJE_FILES         string
 	APP_AVATAR_FILES          string
 	APP_NAME                  string
+	APP_MODE                  string = "develop"
 	APP_NAME_X1               string
 	APP_PROCESS_EVENT_RECIVED bool
 )
@@ -94,6 +94,7 @@ func prepare_env() {
 		APP_MESSAJE_FILES = viper.GetString("APP_MESSAJE_FILES")
 		APP_NAME_X1 = viper.GetString("APP_NAME_X1")
 		APP_NAME = viper.GetString("APP_NAME")
+		APP_MODE = viper.GetString("APP_MODE")
 
 		// Variables .env HTTP_SERVER
 		HTTP_SERVER_HOST = viper.GetString("HTTP_SERVER_HOST")
@@ -101,12 +102,14 @@ func prepare_env() {
 		HTTP_SERVER_HOST_METRICS = viper.GetString("HTTP_SERVER_HOST_METRICS")
 		HTTP_SERVER_PORT_TEST = viper.GetString("HTTP_SERVER_PORT_TEST")
 		HTTP_SERVER_PORT_DOC_API = viper.GetString("HTTP_SERVER_PORT_DOC_API")
-		filename := filepath.Base(os.Args[0])
-		port := strings.TrimSpace(strings.Replace(filename, APP_NAME, "", 1))
 
-		if port == "__debug_bin" || port == "" {
-			port = HTTP_SERVER_PORT_TEST
+		port := "8080"
+		if strings.ToLower(APP_MODE) == "develop" {
+			if HTTP_SERVER_PORT_TEST != "" {
+				port = HTTP_SERVER_PORT_TEST
+			}
 		}
+		Log.Debugf("prepare_env HTTP_SERVER_Port: %s", port)
 
 		HTTP_SERVER_PORT = port
 		HTTP_SERVER_PORT_METRICS = viper.GetString("HTTP_SERVER_PORT_METRICS")
@@ -126,7 +129,7 @@ func prepare_app() {
 
 func IsX1() bool {
 	name := path.Base(os.Args[0])
-	if name == APP_NAME_X1 || name == "main" {
+	if name == APP_NAME_X1 || strings.ToLower(APP_MODE) == "develop" {
 		return true
 	}
 	return false
