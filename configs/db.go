@@ -42,7 +42,7 @@ func prepare_db() {
 	defer func() {
 		if r := recover(); r != nil {
 			logMessage = filepath.Base(os.Args[0]) + " :  Error initializing Database. " + ": Recovered from exception " + ". Interface in defer is: " + fmt.Sprintf("%+v", r) + ". DebugMessage is: " + debugMessage
-			ErrorLogger.Println("[database.database.go - init()]. ", logMessage)
+			Log.Infof("[database.database.go - init()]. ", logMessage)
 			os.Exit(2)
 		}
 	}()
@@ -89,7 +89,7 @@ func (db *DbInstance) Migrate() {
 	defer func() {
 		if r := recover(); r != nil {
 			logMessage = filepath.Base(os.Args[0]) + " :  Error initializing Migration in Database. " + ": Recovered from exception " + ". Interface in defer is: " + fmt.Sprintf("%+v", r) + ". DebugMessage is: " + debugMessage
-			ErrorLogger.Println("[database.database.go - Init()]. ", logMessage)
+			Log.Infof("[database.database.go - Init()]. ", logMessage)
 			fmt.Println(logMessage)
 		}
 	}()

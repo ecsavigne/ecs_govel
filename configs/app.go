@@ -87,6 +87,7 @@ func prepare_env() {
 		APP_MAX_CONNECTIONS = viper.GetInt("APP_MAX_CONNECTIONS")
 		APP_CANT_X = viper.GetInt("APP_CANT_X")
 		APP_FILE_LOGGER = viper.GetString("APP_FILE_LOGGER")
+		prepare_logger()
 		APP_PROCESS_EVENT_RECIVED = viper.GetBool("APP_PROCESS_EVENT_RECIVED")
 		APP_SESSIONS = viper.GetString("APP_SESSIONS")
 		APP_AVATAR_FILES = viper.GetString("APP_AVATAR_FILES")
@@ -116,7 +117,6 @@ func prepare_app() {
 	prepare_env()
 	prepare_proxies()
 	prepare_engine()
-	// prepare_logger() //TODO:Cambiar por logecs
 	// prepare_db()
 	// prepare_mime_exts()
 
