@@ -6,6 +6,8 @@ import (
 
 func init() {
 	loadApi(c_.GetEngine())
-	// loadMetrics(c_.GetMetricEngine())
-	loadDocRoutes(c_.GetDocApiEngine())
+	if c_.IsX1() {
+		// loadMetrics(c_.GetMetricEngine())
+		loadDocRoutes(c_.GetDocApiEngine())
+	}
 }
