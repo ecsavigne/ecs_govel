@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"os"
 	"path"
+	"strconv"
 	"strings"
 
 	"github.com/ecsavigne/proxy-reverse/proxy"
@@ -107,6 +108,11 @@ func prepare_env() {
 		if strings.ToLower(APP_MODE) == "develop" {
 			if HTTP_SERVER_PORT_TEST != "" {
 				port = HTTP_SERVER_PORT_TEST
+			}
+		} else if strings.ToLower(APP_MODE) == "production" {
+			port = strings.TrimPrefix(path.Base(os.Args[0]), APP_NAME)
+			if _, e := strconv.Atoi(port); e != nil {
+				port = "8080"
 			}
 		}
 		Log.Debugf("prepare_env HTTP_SERVER_Port: %s", port)
