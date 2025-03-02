@@ -1,5 +1,5 @@
-# [Inspirado en laravel](#lintest)
-<a name="lintest"></a>
+# [Inspirado en laravel](#intro)
+<a name="intro"></a>
 1- Para probara si el server esta corriendo segun la configuracion de ip y proxy creada en
 # config/app.ini
 ```
@@ -38,8 +38,8 @@ HTTP_SERVER_PORT_TEST=3333
 HTTP_SERVER_PORT_DOC_API=2222
 ```
 
-# [Api Doc](#lintest1)
-<a name="lintest1"></a>
+# [Api Doc](#apiDoc)
+<a name="apiDoc"></a>
 ## Para Correr api doc hay que instalar:
 ### 1.
  ```
@@ -71,3 +71,18 @@ HTTP_SERVER_PORT_DOC_API=2222
     }
 
  ```
+# [Opcional] Para activar recarga live del código en desarrollo se debe seguir estos pasos:
+## 1. Install air, se debe estar en la carpeta principal de ecs_govel
+```
+   go install github.com/air-verse/air@latest
+```
+## 2. Inicializar air
+```
+   air init
+```
+## 3. Ejecutar air
+```
+   air
+```
+### Saber más sobre [air](#air)
+<a name="air" href="https://github.com/air-verse/air" target="_blank"></a>
