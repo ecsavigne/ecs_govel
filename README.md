@@ -84,5 +84,4 @@ HTTP_SERVER_PORT_DOC_API=2222
 ```
    air
 ```
-### Saber más sobre [air](#air)
-<a name="air" href="https://github.com/air-verse/air" target="_blank"></a>
+### Saber más sobre [air](https://github.com/air-verse/air)
