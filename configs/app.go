@@ -103,6 +103,7 @@ func prepare_env() {
 		HTTP_SERVER_HOST_METRICS = viper.GetString("HTTP_SERVER_HOST_METRICS")
 		HTTP_SERVER_PORT_TEST = viper.GetString("HTTP_SERVER_PORT_TEST")
 		HTTP_SERVER_PORT_DOC_API = viper.GetString("HTTP_SERVER_PORT_DOC_API")
+		HTTP_SERVER_PORT_METRICS = viper.GetString("HTTP_SERVER_PORT_METRICS")
 
 		port := "8080"
 		if strings.ToLower(APP_MODE) == "develop" {
@@ -118,7 +119,6 @@ func prepare_env() {
 		Log.Debugf("prepare_env HTTP_SERVER_Port: %s", port)
 
 		HTTP_SERVER_PORT = port
-		HTTP_SERVER_PORT_METRICS = viper.GetString("HTTP_SERVER_PORT_METRICS")
 	}
 }
 
