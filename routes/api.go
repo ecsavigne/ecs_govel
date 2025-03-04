@@ -1,6 +1,7 @@
 package routes
 
 import (
+	"ecs_govel/routes/middleware"
 	"fmt"
 	"net/http"
 
@@ -39,6 +40,7 @@ func RutaTestFunc1(c *gin.Context) {
 
 func loadApi(g *gin.Engine) {
 	// Sin parametro
+<<<<<<< HEAD
 	g.POST("/Test", RutaTestFunc)
 	// g.PUT("/Test", RutaTestFun
 	// g.PATCH("/Test", RutaTestFunc)
@@ -122,4 +124,7 @@ func loadApi(g *gin.Engine) {
 	/*g.POST("/:apihash/:phonenumber/SendVideoMessage", new(controller.VidController).SendVideoMessage)*/
 	// UrlController:
 	//g.POST("/:apihash/:phonenumber/SendUrlMessage", new(controller.UrlController).SendUrlMessage)
+=======
+	g.GET("/Test", middleware.CorsMiddleware(), RutaTestFunc)
+>>>>>>> 1424e55af40b1cc94cb7ef395becc50dfd93e7ef
 }
