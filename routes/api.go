@@ -40,7 +40,7 @@ func RutaTestFunc1(c *gin.Context) {
 func loadApi(g *gin.Engine) {
 	// Sin parametro
 	g.POST("/Test", RutaTestFunc)
-	// g.PUT("/Test", RutaTestFunc)
+	// g.PUT("/Test", RutaTestFun
 	// g.PATCH("/Test", RutaTestFunc)
 	// g.DELETE("/Test", RutaTestFunc)
 	//Rutas con parametros
