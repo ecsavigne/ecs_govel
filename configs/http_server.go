@@ -30,8 +30,11 @@ func httpRun() {
 		fmt.Println("Ocurrio un error con la sincronizacion de server: ", err.Error())
 	}
 	// Servicio
-	fmt.Printf("Run server Api in %s:%s\n", HTTP_SERVER_HOST, HTTP_SERVER_PORT)
-	routerApi.Run(HTTP_SERVER_HOST + ":" + HTTP_SERVER_PORT)
+	Log.Infof("Run server Api in %s:%s\n", HTTP_SERVER_HOST, HTTP_SERVER_PORT)
+	err := routerApi.Run(HTTP_SERVER_HOST + ":" + HTTP_SERVER_PORT)
+	if err != nil {
+		Log.Errorf("Error initializing server Api error is: %s", err.Error())
+	}
 }
 
 func runServMetric() {
@@ -40,8 +43,11 @@ func runServMetric() {
 		return
 	}
 	StateInitMetric = true
-	fmt.Printf("Run server Metrics in %s:%s\n", HTTP_SERVER_HOST_METRICS, HTTP_SERVER_PORT_METRICS)
-	// metricEngine.Run(HTTP_SERVER_HOST_METRICS + ":" + HTTP_SERVER_PORT_METRICS)
+	Log.Infof("Run server Metrics in %s:%s\n", HTTP_SERVER_HOST_METRICS, HTTP_SERVER_PORT_METRICS)
+	// err := metricEngine.Run(HTTP_SERVER_HOST_METRICS + ":" + HTTP_SERVER_PORT_METRICS)
+	// if err != nil {
+	// 	Log.Errorf("Error initializing server Metrics error is: %s", err.Error())
+	// }
 }
 
 func runServerDocApi() {
@@ -50,6 +56,9 @@ func runServerDocApi() {
 		return
 	}
 	StateInitDocApi = true
-	fmt.Printf("Run server Doc Api in %s:%s\n", HTTP_SERVER_HOST_DOC_API, HTTP_SERVER_PORT_DOC_API)
-	routerDocApi.Run(HTTP_SERVER_HOST_DOC_API + ":" + HTTP_SERVER_PORT_DOC_API)
+	Log.Infof("Run server Doc Api in %s:%s\n", HTTP_SERVER_HOST_DOC_API, HTTP_SERVER_PORT_DOC_API)
+	err := routerDocApi.Run(HTTP_SERVER_HOST_DOC_API + ":" + HTTP_SERVER_PORT_DOC_API)
+	if err != nil {
+		Log.Errorf("Error initializing server Doc Api error is: %s", err.Error())
+	}
 }
