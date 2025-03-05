@@ -116,7 +116,7 @@ func prepare_env() {
 				port = "8080"
 			}
 		}
-		Log.Debugf("prepare_env HTTP_SERVER_Port: %s", port)
+		Log.Debugf("prepare_env ")
 
 		HTTP_SERVER_PORT = port
 	}
