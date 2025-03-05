@@ -8,7 +8,7 @@ path="./"
 main_file="$APP_NAME"
 
 echo "go build main.go"
-go build -o apiGateWay
+go build -o $main_file
 sleep 1
 
 permision=$(stat -c "%a" "$path")
