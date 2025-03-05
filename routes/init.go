@@ -6,7 +6,7 @@ import (
 
 func init() {
 	loadApi(c_.GetEngine())
-	if c_.IsX1() {
+	if c_.StateInitDocApi {
 		// loadMetrics(c_.GetMetricEngine())
 		loadDocRoutes(c_.GetDocApiEngine())
 	}

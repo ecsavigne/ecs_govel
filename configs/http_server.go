@@ -39,6 +39,7 @@ func runServMetric() {
 		StateInitMetric = false
 		return
 	}
+	StateInitMetric = true
 	fmt.Printf("Run server Metrics in %s:%s\n", HTTP_SERVER_HOST_METRICS, HTTP_SERVER_PORT_METRICS)
 	// metricEngine.Run(HTTP_SERVER_HOST_METRICS + ":" + HTTP_SERVER_PORT_METRICS)
 }
@@ -48,6 +49,7 @@ func runServerDocApi() {
 		StateInitDocApi = false
 		return
 	}
+	StateInitDocApi = true
 	fmt.Printf("Run server Doc Api in %s:%s\n", HTTP_SERVER_HOST_DOC_API, HTTP_SERVER_PORT_DOC_API)
 	routerDocApi.Run(HTTP_SERVER_HOST_DOC_API + ":" + HTTP_SERVER_PORT_DOC_API)
 }
