@@ -2,7 +2,9 @@ package configs
 
 import (
 	"fmt"
+	"net/http"
 
+	"golang.org/x/net/http2"
 	"golang.org/x/sync/errgroup"
 )
 
@@ -30,11 +32,21 @@ func httpRun() {
 		fmt.Println("Ocurrio un error con la sincronizacion de server: ", err.Error())
 	}
 	// Servicio
-	Log.Infof("Run server Api in %s:%s", HTTP_SERVER_HOST, HTTP_SERVER_PORT)
-	err := routerApi.Run(HTTP_SERVER_HOST + ":" + HTTP_SERVER_PORT)
+	server := &http.Server{
+		Addr:    HTTP_SERVER_HOST + ":" + HTTP_SERVER_PORT,
+		Handler: routerApi,
+	}
+	err := http2.ConfigureServer(server, &http2.Server{})
+	if err != nil {
+		Log.Errorf("Error configuring server Api error is: %s", err.Error())
+	}
+
+	// err := routerApi.Run(HTTP_SERVER_HOST + ":" + HTTP_SERVER_PORT)
+	err = server.ListenAndServe()
 	if err != nil {
 		Log.Errorf("Error initializing server Api error is: %s", err.Error())
 	}
+	Log.Infof("Run server Api in %s:%s", HTTP_SERVER_HOST, HTTP_SERVER_PORT)
 }
 
 func runServMetric() {
@@ -43,11 +55,23 @@ func runServMetric() {
 		return
 	}
 	StateInitMetric = true
-	Log.Infof("Run server Metrics in %s:%s", HTTP_SERVER_HOST_METRICS, HTTP_SERVER_PORT_METRICS)
-	// err := metricEngine.Run(HTTP_SERVER_HOST_METRICS + ":" + HTTP_SERVER_PORT_METRICS)
+
+	// metricServer := &http.Server{
+	// 	Addr:    HTTP_SERVER_HOST_METRICS + ":" + HTTP_SERVER_PORT_METRICS,
+	// 	Handler: routerMetric,
+	// }
+
+	// err := http2.ConfigureServer(metricServer, &http2.Server{})
+	// if err != nil {
+	// 	Log.Errorf("Error configuring server Metrics error is: %s", err.Error())
+	// }
+
+	// err = metricServer.ListenAndServe()
 	// if err != nil {
 	// 	Log.Errorf("Error initializing server Metrics error is: %s", err.Error())
 	// }
+
+	Log.Infof("Run server Metrics in %s:%s", HTTP_SERVER_HOST_METRICS, HTTP_SERVER_PORT_METRICS)
 }
 
 func runServerDocApi() {
@@ -56,9 +80,21 @@ func runServerDocApi() {
 		return
 	}
 	StateInitDocApi = true
+
+	// serverDocApi := &http.Server{
+	// 	Addr:    HTTP_SERVER_HOST_DOC_API + ":" + HTTP_SERVER_PORT_DOC_API,
+	// 	Handler: routerDocApi,
+	// }
+
+	// err := http2.ConfigureServer(serverDocApi, &http2.Server{})
+	// if err != nil {
+	// 	Log.Errorf("Error configuring server Doc Api error is: %s", err.Error())
+	// }
+
+	// err = serverDocApi.ListenAndServe()
+	// if err != nil {
+	// 	Log.Errorf("Error initializing server Doc Api error is: %s", err.Error())
+	// }
+
 	Log.Infof("Run server Doc Api in %s:%s", HTTP_SERVER_HOST_DOC_API, HTTP_SERVER_PORT_DOC_API)
-	err := routerDocApi.Run(HTTP_SERVER_HOST_DOC_API + ":" + HTTP_SERVER_PORT_DOC_API)
-	if err != nil {
-		Log.Errorf("Error initializing server Doc Api error is: %s", err.Error())
-	}
 }
