@@ -25,8 +25,8 @@ var (
 
 func httpRun() {
 	if IsX1() {
-		go runServMetric()
-		go runServerDocApi()
+		runServMetric()
+		runServerDocApi()
 	}
 	if err := GROUP_WAIT.Wait(); err != nil {
 		fmt.Println("Ocurrio un error con la sincronizacion de server: ", err.Error())
