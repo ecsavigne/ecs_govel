@@ -119,6 +119,13 @@ func prepare_env() {
 		Log.Debugf("prepare_env ")
 
 		HTTP_SERVER_PORT = port
+		if HTTP_SERVER_HOST_METRICS == "" && HTTP_SERVER_PORT_METRICS == "" {
+			StateInitMetric = false
+		}
+
+		if HTTP_SERVER_HOST_DOC_API == "" && HTTP_SERVER_PORT_DOC_API == "" {
+			StateInitDocApi = false
+		}
 	}
 }
 
