@@ -30,7 +30,10 @@ fi
 echo "$PORTS" | awk 'BEGIN {FS=","} {for (i=1; i<=NF; i++) print $i}' | while read -r port; do
     echo "$port"
     echo "killing $main_file$port"
-    # pkill -f "$main_file$port"
+    sudo pkill -f "$main_file$port"
     echo "copying $main_file to ${path}Binary/$main_file$port"
-    cp $main_file $path"Binary/$main_file$port"
+    #cp $main_file $path"Binary/$main_file$port"
+    rsync -av --inplace $main_file $path"Binary/$main_file$port"
 done
+
+rm $main_file
