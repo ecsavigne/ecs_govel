@@ -11,25 +11,25 @@ const (
 )
 
 type Repository interface {
-	// Funciones comunes para todos los repositorios que embeben Repository y se implementan en RepositoryKernelssss
+	// Funciones comunes para todos los repositorios que embeben Repository y se implementan en KernelRepositoryssss
 	GetType() string
 	GetRepository() Repository
 }
 
-type RepositoryKernel struct {
+type KernelRepository struct {
 	_type  string
 	_rep   Repository
 	_model model.ModelKernel
 }
 
-func (r *RepositoryKernel) GetType() string {
+func (r *KernelRepository) GetType() string {
 	return r._type
 }
 
-func (r *RepositoryKernel) GetRepository() Repository {
+func (r *KernelRepository) GetRepository() Repository {
 	return r._rep
 }
 
-func (r *RepositoryKernel) GetModel() model.ModelKernel {
+func (r *KernelRepository) GetModel() model.ModelKernel {
 	return r._model
 }
