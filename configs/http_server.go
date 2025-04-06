@@ -25,12 +25,17 @@ var (
 
 func httpRun() {
 	if IsX1() {
-		runServMetric()
-		runServerDocApi()
+		GROUP_WAIT.Go(func() error {
+			Log.Infof("Run server Metrics in %s:%s\n", HTTP_SERVER_HOST_METRICS, HTTP_SERVER_PORT_METRICS)
+			return runServMetric()
+		})
+
+		GROUP_WAIT.Go(func() error {
+			Log.Infof("Run server Doc Api in %s:%s\n", HTTP_SERVER_HOST_DOC_API, HTTP_SERVER_PORT_DOC_API)
+			return runServerDocApi()
+		})
 	}
-	if err := GROUP_WAIT.Wait(); err != nil {
-		fmt.Println("Ocurrio un error con la sincronizacion de server: ", err.Error())
-	}
+
 	// Servicio
 	server := &http.Server{
 		Addr:    HTTP_SERVER_HOST + ":" + HTTP_SERVER_PORT,
@@ -41,16 +46,20 @@ func httpRun() {
 		Log.Errorf("Error configuring server Api error is: %s", err.Error())
 	}
 
-	Log.Infof("Run server Api in %s:%s", HTTP_SERVER_HOST, HTTP_SERVER_PORT)
-	err = server.ListenAndServe()
-	if err != nil {
-		Log.Errorf("Error initializing server Api error is: %s", err.Error())
+	GROUP_WAIT.Go(func() error {
+		Log.Infof("Run server Api in %s:%s", HTTP_SERVER_HOST, HTTP_SERVER_PORT)
+		return server.ListenAndServe()
+	})
+	server.ListenAndServe()
+
+	if err := GROUP_WAIT.Wait(); err != nil {
+		fmt.Printf("Ocurred one error with the sincronization of server error is: %s\n", err.Error())
 	}
 }
 
-func runServMetric() {
+func runServMetric() error {
 	if HTTP_SERVER_HOST_METRICS == "" && HTTP_SERVER_PORT_METRICS == "" {
-		return
+		return nil
 	} else {
 		if HTTP_SERVER_HOST_METRICS == "" {
 			HTTP_SERVER_HOST_METRICS = HTTP_SERVER_HOST
@@ -76,13 +85,12 @@ func runServMetric() {
 	// 	Log.Errorf("Error initializing server Metrics error is: %s", err.Error())
 	// }
 	// }
-
-	Log.Infof("Run server Metrics in %s:%s", HTTP_SERVER_HOST_METRICS, HTTP_SERVER_PORT_METRICS)
+	return nil
 }
 
-func runServerDocApi() {
+func runServerDocApi() error {
 	if HTTP_SERVER_HOST_DOC_API == "" && HTTP_SERVER_PORT_DOC_API == "" {
-		return
+		return nil
 	} else {
 		if HTTP_SERVER_HOST_DOC_API == "" {
 			HTTP_SERVER_HOST_DOC_API = HTTP_SERVER_HOST
@@ -108,6 +116,5 @@ func runServerDocApi() {
 	// 	Log.Errorf("Error initializing server Doc Api error is: %s", err.Error())
 	// }
 	// }()
-
-	Log.Infof("Run server Doc Api in %s:%s", HTTP_SERVER_HOST_DOC_API, HTTP_SERVER_PORT_DOC_API)
+	return nil
 }
