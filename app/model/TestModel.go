@@ -18,6 +18,13 @@ Insert() *gorm.DB
 	Gets(...int) []ModelKernel
 */
 
+func NewTest(t ...TestModel) *TestModel {
+	if len(t) == 1 {
+		return &t[0]
+	}
+	return &TestModel{}
+}
+
 func (*TestModel) TableName() string {
 	return "TestModels"
 }
