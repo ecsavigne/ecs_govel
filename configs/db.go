@@ -1,20 +1,24 @@
 package configs
 
 import (
+	"database/sql"
 	"fmt"
+	"log"
 	"math/rand"
 	"os"
 	"path/filepath"
 	"time"
 
 	"ecs_govel/app/model"
+	"ecs_govel/database/migration"
 
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
+	"gorm.io/gorm/logger"
+	"gorm.io/plugin/dbresolver"
 )
 
 type DbInstance struct {
-	// DB    *gorm.DB
 	*gorm.DB
 	AppID string
 }
@@ -31,7 +35,60 @@ var (
 	Database        *DbInstance = new(DbInstance)
 )
 
-func create_database() {}
+func create_database() error {
+	db, err := sql.Open("postgres", DNS_DB)
+	if err != nil {
+		l := fmt.Sprintf("Error al conectar al servidor de PostgreSQL: %v", err)
+		return fmt.Errorf("%s", l)
+	}
+	defer db.Close()
+
+	var exists bool
+	query := fmt.Sprintf("SELECT EXISTS(SELECT datname FROM pg_catalog.pg_database WHERE datname = '%s')", DB_NAME)
+	err = db.QueryRow(query).Scan(&exists)
+	if err != nil {
+		return fmt.Errorf("Error obtaining database existence status is: %s", err.Error())
+	}
+
+	if !exists {
+		fmt.Println("Creating database")
+		_, err = db.Exec(fmt.Sprintf("CREATE DATABASE %s;", DB_NAME))
+		if err != nil {
+			return fmt.Errorf("Error creating database is: %s", err.Error())
+		}
+		fmt.Printf("Database '%s' created successfully.\n", DB_NAME)
+		// Grant access
+		fmt.Println("Granting access to database")
+		_, err = db.Exec(fmt.Sprintf("GRANT ALL ON DATABASE %s TO %s;", DB_NAME, DB_USER))
+		if err != nil {
+			return fmt.Errorf("Error granting database access is: %s", err.Error())
+		}
+		fmt.Printf("Access granted to database: '%s' by user: '%s'.\n", DB_NAME, DB_USER)
+	} else {
+		fmt.Printf("Database '%s' already exists.\n", DB_NAME)
+	}
+
+	return nil
+}
+
+func logDBInfo() logger.Interface {
+	logDataBaseFile, err := os.Create("database.log")
+	if err != nil {
+		fmt.Println("Error creating Database log file, is: ", err)
+	}
+
+	newLogger := logger.New(
+		log.New(logDataBaseFile, "\r\n", log.LstdFlags), // io writer
+		logger.Config{
+			SlowThreshold:             time.Second, // Slow SQL threshold
+			LogLevel:                  logger.Info, // Log level
+			IgnoreRecordNotFoundError: false,       // Ignore ErrRecordNotFound error for logger
+			ParameterizedQueries:      false,       // Don't include params in the SQL log
+			Colorful:                  true,        // Disable color
+		},
+	)
+	return newLogger
+}
 
 func prepare_db() {
 	var (
@@ -42,25 +99,45 @@ func prepare_db() {
 	defer func() {
 		if r := recover(); r != nil {
 			logMessage = filepath.Base(os.Args[0]) + " :  Error initializing Database. " + ": Recovered from exception " + ". Interface in defer is: " + fmt.Sprintf("%+v", r) + ". DebugMessage is: " + debugMessage
-			Log.Infof("[database.database.go - init()]. ", logMessage)
+			Log.Errorf("[database.database.go - init()]. ", logMessage)
+			//TODO: Quitar el Exit(2)
 			os.Exit(2)
 		}
 	}()
 
 	// Create database si no existe
-	create_database()
+	if err = create_database(); err != nil {
+		logMessage = filepath.Base(os.Args[0]) + " :  Error initializing Database. " + err.Error()
+		fmt.Println(logMessage)
+		Log.Errorf("[database.database.go - init()]. ", logMessage)
+		panic(logMessage)
+	}
 
 	DB_CONNSTR = fmt.Sprintf("host=%s user=%s dbname=%s port=%s sslmode=disable password=%s", DB_HOST, DB_USER, DB_NAME, FORWARD_DB_PORT, DB_PASSWORD)
+	postgresSource := postgres.Open(DB_CONNSTR)
+	postgresReplica := postgres.Open(DB_CONNSTR)
 
-	Database.DB, err = gorm.Open(postgres.Open(DB_CONNSTR), &gorm.Config{})
+	Database.DB, err = gorm.Open(postgresSource, &gorm.Config{
+		Logger: logDBInfo(),
+	})
+
+	// Create connection pool
+	Database.Use(dbresolver.Register(dbresolver.Config{
+		Sources:           []gorm.Dialector{postgresSource},
+		Replicas:          []gorm.Dialector{postgresReplica},
+		Policy:            dbresolver.RandomPolicy{},
+		TraceResolverMode: true,
+	} /*, &migration.Chat{}*/))
+
 	dateFormat := time.Now()
 	now := dateFormat.Format("2006-01-02 15:04:05")
 	fmt.Println("New postgres conennection opened at ", now)
 	if err != nil {
 		panic(err)
 	}
-
 	model.SetGlobalDB(Database.DB)
+	fmt.Printf("Base Datos >>>>>>>>>>>>>. : %+v\n", model.GetGlobalDB())
+
 	fmt.Println("Max Connections: ", APP_MAX_CONNECTIONS, " CantX: ", APP_CANT_X)
 	sqlDB, _ := Database.DB.DB()
 	sqlDB.SetConnMaxLifetime(time.Minute * 2) // Make than last forever
@@ -74,7 +151,7 @@ func prepare_db() {
 	// 	DBName:          DB_NAME,
 	// 	RefreshInterval: 15,
 	// 	PushAddr:        fmt.Sprintf("%s:%s", HTTP_SERVER_HOST_METRICS, HTTP_SERVER_PORT_METRICS),
-	// 	StartServer:     false,
+	// 	StartServer:     false,E
 	// 	//MetricsCollector: []prometheus.MetricsCollector{},
 	// }))
 
@@ -89,14 +166,35 @@ func (db *DbInstance) Migrate() {
 	defer func() {
 		if r := recover(); r != nil {
 			logMessage = filepath.Base(os.Args[0]) + " :  Error initializing Migration in Database. " + ": Recovered from exception " + ". Interface in defer is: " + fmt.Sprintf("%+v", r) + ". DebugMessage is: " + debugMessage
-			Log.Infof("[database.database.go - Init()]. ", logMessage)
+			Log.Debugf("[database.database.go - Init()]. ", logMessage)
 			fmt.Println(logMessage)
 		}
 	}()
 
-	// if !db.DB.Migrator().HasTable(&migrations.WhatchDog{}) {
-	// 	db.DB.Migrator().CreateTable(&migrations.WhatchDog{})
-	// } else {
-	// 	db.DB.AutoMigrate(&migrations.WhatchDog{})
+	debugMessage = "2"
+
+	// db.DB.Migrator().DropTable(&migration.TestMigation{})
+	err := db.DB.AutoMigrate(
+		&migration.TestMigation{},
+	)
+
+	if err != nil {
+		fmt.Println("Error: ", err.Error())
+	}
+
+	// if db.DB.Migrator().HasTable(&migration.Application{}) {
+	// 	var v = migration.Application{}
+	// 	db.DB.Model(&v).
+	// 		Preload("WPAccounts").
+	// 		Order("id ASC").
+	// 		Find(&v)
+	// 	if c := len(v.WPAccounts); c != 0 {
+	// 		fmt.Printf("Existen \033[34m%d\033[0m activas WPAccounts asociados a la aplicacion\n", c)
+	// 		fmt.Println("Cantidad de cuentas asosciadas a la aplicacion: ", c)
+	// 		jsoN, _ := json.MarshalIndent(v, "", " ")
+	// 		fmt.Printf("AplicationData:\n%s\n", string(jsoN))
+	// 	} else {
+	// 		fmt.Println("No existen WPAccounts asociados a la aplicacion")
+	// 	}
 	// }
 }
