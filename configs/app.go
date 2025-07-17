@@ -2,6 +2,7 @@ package configs
 
 import (
 	"fmt"
+	"io"
 	"os"
 	"path"
 	"strconv"
@@ -54,10 +55,11 @@ func prepare_engine() {
 	if err != nil {
 		Log.Errorf("Error creating logger file in %s, error is: %s\n", APP_FILE_LOGGER, err.Error())
 	}
+	Log.Debugf("Configuring logger file in %s\n", APP_FILE_LOGGER)
+	gin.DefaultWriter = io.MultiWriter(f, os.Stdout)
+
 	gin.SetMode(gin.ReleaseMode)
 	routerApi = gin.Default()
-
-	gin.DefaultWriter = f
 	if IsX1() {
 		//TODO: Configurar el motor de Gin para metricas no esta implementada la logica aun
 		routerMetric = gin.Default()
