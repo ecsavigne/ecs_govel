@@ -13,19 +13,16 @@ import (
 )
 
 var (
-	routerApi                 *gin.Engine
-	routerMetric              *gin.Engine
-	routerDocApi              *gin.Engine
-	APP_MAX_CONNECTIONS       int
-	APP_CANT_X                int
-	APP_FILE_LOGGER           string
-	APP_SESSIONS              string
-	APP_MESSAJE_FILES         string
-	APP_AVATAR_FILES          string
-	APP_NAME                  string
-	APP_MODE                  string = "develop"
-	APP_NAME_X1               string
-	APP_PROCESS_EVENT_RECIVED bool
+	routerApi           *gin.Engine
+	routerMetric        *gin.Engine
+	routerDocApi        *gin.Engine
+	APP_MAX_CONNECTIONS int
+	APP_CANT_X          int
+	APP_FILE_LOGGER     string
+
+	APP_NAME    string
+	APP_MODE    string = "develop"
+	APP_NAME_X1 string
 )
 
 func init() {
@@ -53,8 +50,14 @@ func prepare_proxies() {
 
 // Configurar el motor de Gin
 func prepare_engine() {
+	f, err := os.OpenFile(APP_FILE_LOGGER, os.O_CREATE|os.O_WRONLY|os.O_APPEND, os.ModePerm)
+	if err != nil {
+		Log.Errorf("Error creating logger file in %s, error is: %s\n", APP_FILE_LOGGER, err.Error())
+	}
 	gin.SetMode(gin.ReleaseMode)
 	routerApi = gin.Default()
+
+	gin.DefaultWriter = f
 	if IsX1() {
 		//TODO: Configurar el motor de Gin para metricas no esta implementada la logica aun
 		routerMetric = gin.Default()
@@ -89,10 +92,7 @@ func prepare_env() {
 		APP_CANT_X = viper.GetInt("APP_CANT_X")
 		APP_FILE_LOGGER = viper.GetString("APP_FILE_LOGGER")
 		prepare_logger()
-		APP_PROCESS_EVENT_RECIVED = viper.GetBool("APP_PROCESS_EVENT_RECIVED")
-		APP_SESSIONS = viper.GetString("APP_SESSIONS")
-		APP_AVATAR_FILES = viper.GetString("APP_AVATAR_FILES")
-		APP_MESSAJE_FILES = viper.GetString("APP_MESSAJE_FILES")
+
 		APP_NAME_X1 = viper.GetString("APP_NAME_X1")
 		APP_NAME = viper.GetString("APP_NAME")
 		APP_MODE = viper.GetString("APP_MODE")

@@ -15,8 +15,8 @@ var (
 	HTTP_SERVER_HOST_DOC_API string
 	HTTP_SERVER_PORT_DOC_API string
 
-	StateInitDocApi bool = true // state for controller if server doc api is initialized or not
-	StateInitMetric bool = true // state for controller if server metric is initialized or not
+	StateInitDocApi bool = false // state for controller if server doc api is initialized or not
+	StateInitMetric bool = false // state for controller if server metric is initialized or not
 
 	HTTP_SERVER_HOST_METRICS string
 	HTTP_SERVER_PORT_METRICS string
