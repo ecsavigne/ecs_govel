@@ -19,7 +19,7 @@ func prepare_logger() {
 	})
 
 	folderLog := path.Dir(APP_FILE_LOGGER)
-	err := os.Mkdir(folderLog, os.ModePerm)
+	err := os.MkdirAll(folderLog, os.ModePerm)
 	if err != nil {
 		Log = LogTemp
 		LogTemp.Errorf("Error creating logger folder in %s, error is: %s\n", folderLog, err.Error())
