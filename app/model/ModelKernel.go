@@ -1,10 +1,14 @@
 package model
 
 import (
+	logecs "github.com/ecsavigne/logecs/log"
 	"gorm.io/gorm"
 )
 
-var db *gorm.DB
+var (
+	db  *gorm.DB
+	Log logecs.Logger
+)
 
 type ModelKernel interface {
 	Insert() *gorm.DB
