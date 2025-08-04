@@ -5,9 +5,9 @@ import (
 )
 
 func init() {
+	// webhookRoutes(c_.GetWebHookEngine())
 	loadApi(c_.GetEngine())
-	if c_.StateInitDocApi {
+	if c_.StateInitMetric {
 		// loadMetrics(c_.GetMetricEngine())
-		loadDocRoutes(c_.GetDocApiEngine())
 	}
 }

@@ -4,60 +4,83 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/gin-gonic/gin"
 	"golang.org/x/net/http2"
 	"golang.org/x/sync/errgroup"
 )
 
 var (
-	HTTP_SERVER_HOST         string
-	HTTP_SERVER_PORT         string
-	HTTP_SERVER_PORT_TEST    string
-	HTTP_SERVER_HOST_DOC_API string
-	HTTP_SERVER_PORT_DOC_API string
+	HTTP_SERVER_HOST string
+	HTTP_SERVER_PORT string
 
-	StateInitDocApi bool = false // state for controller if server doc api is initialized or not
-	StateInitMetric bool = false // state for controller if server metric is initialized or not
+	HTTP_SERVER_HOST_WEBHOOK string
+	HTTP_SERVER_PORT_WEBHOOK string
 
 	HTTP_SERVER_HOST_METRICS string
 	HTTP_SERVER_PORT_METRICS string
+
+	HTTP_SERVER_PORT_TEST    string
+	HTTP_SERVER_HOST_DOC_API string
+	HTTP_SERVER_PORT_DOC_API string
 	GROUP_WAIT               errgroup.Group
+
+	StateInitDocApi bool = true
+	StateInitMetric bool = true
 )
 
-func httpRun() {
-	if IsX1() {
-		GROUP_WAIT.Go(func() error {
-			Log.Infof("Run server Metrics in %s:%s\n", HTTP_SERVER_HOST_METRICS, HTTP_SERVER_PORT_METRICS)
-			return runServMetric()
-		})
+func secureServer(route *gin.Engine, expectHost string) {
+	route.Use(func(c *gin.Context) {
+		if c.Request.Host != expectHost {
+			c.AbortWithStatusJSON(http.StatusBadRequest, gin.H{"error": "Invalid host header"})
+			return
+		}
 
+		c.Header("X-Frame-Options", "DENY")
+		c.Header("Content-Security-Policy", "default-src 'self'; connect-src *; font-src *; script-src-elem * 'unsafe-inline'; img-src * data:; style-src * 'unsafe-inline';")
+		c.Header("X-XSS-Protection", "1; mode=block")
+		c.Header("Strict-Transport-Security", "max-age=31536000; includeSubDomains; preload")
+		c.Header("Referrer-Policy", "strict-origin")
+		c.Header("X-Content-Type-Options", "nosniff")
+		c.Header("Permissions-Policy", "geolocation=(),midi=(),sync-xhr=(),microphone=(),camera=(),magnetometer=(),gyroscope=(),fullscreen=(self),payment=()")
+		c.Next()
+	})
+}
+
+func httpRun() {
+	// ServerMetrics
+	if IsX1() { //metricEngine
 		GROUP_WAIT.Go(func() error {
-			Log.Infof("Run server Doc Api in %s:%s\n", HTTP_SERVER_HOST_DOC_API, HTTP_SERVER_PORT_DOC_API)
-			return runServerDocApi()
+			fmt.Printf("Server Metrics in %s:%s\n", HTTP_SERVER_HOST_METRICS, HTTP_SERVER_PORT_METRICS)
+			return servMetric()
 		})
 	}
 
 	// Servicio
+	host := fmt.Sprintf("%s:%s", HTTP_SERVER_HOST, HTTP_SERVER_PORT)
+	secureServer(engine, host)
 	server := &http.Server{
-		Addr:    HTTP_SERVER_HOST + ":" + HTTP_SERVER_PORT,
-		Handler: routerApi,
+		Addr:    host,
+		Handler: engine,
 	}
-	err := http2.ConfigureServer(server, &http2.Server{})
-	if err != nil {
-		Log.Errorf("Error configuring server Api error is: %s", err.Error())
-	}
+	http2.ConfigureServer(server, &http2.Server{})
 
 	GROUP_WAIT.Go(func() error {
-		Log.Infof("Run server Api in %s:%s", HTTP_SERVER_HOST, HTTP_SERVER_PORT)
+		fmt.Printf("Service Web in: %s:%s\n", HTTP_SERVER_HOST, HTTP_SERVER_PORT)
 		return server.ListenAndServe()
 	})
-	server.ListenAndServe()
+
+	// ServerWebhook
+	GROUP_WAIT.Go(func() error {
+		fmt.Printf("Service Webhook in %s:%s\n", HTTP_SERVER_HOST_WEBHOOK, HTTP_SERVER_PORT_WEBHOOK)
+		return servWebhook()
+	})
 
 	if err := GROUP_WAIT.Wait(); err != nil {
-		fmt.Printf("Ocurred one error with the sincronization of server error is: %s\n", err.Error())
+		fmt.Println("Ocurrio un error con la sincronizacion de server: ", err.Error())
 	}
 }
 
-func runServMetric() error {
+func servMetric() error {
 	if HTTP_SERVER_HOST_METRICS == "" && HTTP_SERVER_PORT_METRICS == "" {
 		return nil
 	} else {
@@ -69,52 +92,50 @@ func runServMetric() error {
 		}
 	}
 
-	// metricServer := &http.Server{
-	// 	Addr:    HTTP_SERVER_HOST_METRICS + ":" + HTTP_SERVER_PORT_METRICS,
-	// 	Handler: routerMetric,
+	host := fmt.Sprintf("%s:%s", HTTP_SERVER_HOST_METRICS, HTTP_SERVER_PORT_METRICS)
+	secureServer(metricEngine, host)
+	// serverMetric := &http.Server{
+	// 	Addr:    host,
+	// 	Handler: metricEngine,
 	// }
-
-	// err := http2.ConfigureServer(metricServer, &http2.Server{})
+	// err:= http2.ConfigureServer(serverMetric, &http2.Server{})
 	// if err != nil {
-	// 	Log.Errorf("Error configuring server Metrics error is: %s", err.Error())
+	// 	fmt.Println("Ocurrio un error con la configuring de server Metrics: ", err.Error())
 	// }
 
 	// go func() {
-	// err = metricServer.ListenAndServe()
+	// err := serverMetric.ListenAndServe()
 	// if err != nil {
-	// 	Log.Errorf("Error initializing server Metrics error is: %s", err.Error())
+	// 	fmt.Println("Ocurrio un error con la sincronizacion de server Metrics: ", err.Error())
 	// }
-	// }
+	// }()
 	return nil
 }
 
-func runServerDocApi() error {
-	if HTTP_SERVER_HOST_DOC_API == "" && HTTP_SERVER_PORT_DOC_API == "" {
+func servWebhook() error {
+	if HTTP_SERVER_HOST_WEBHOOK == "" && HTTP_SERVER_PORT_WEBHOOK == "" {
 		return nil
 	} else {
-		if HTTP_SERVER_HOST_DOC_API == "" {
-			HTTP_SERVER_HOST_DOC_API = HTTP_SERVER_HOST
+		if HTTP_SERVER_HOST_WEBHOOK == "" {
+			HTTP_SERVER_HOST_WEBHOOK = HTTP_SERVER_HOST
 		}
-		if HTTP_SERVER_PORT_DOC_API == "" {
-			HTTP_SERVER_PORT_DOC_API = "8082"
+		if HTTP_SERVER_PORT_WEBHOOK == "" {
+			HTTP_SERVER_PORT_WEBHOOK = "8083"
 		}
 	}
 
-	// serverDocApi := &http.Server{
-	// 	Addr:    HTTP_SERVER_HOST_DOC_API + ":" + HTTP_SERVER_PORT_DOC_API,
-	// 	Handler: routerDocApi,
+	// host := fmt.Sprintf("%s:%s", HTTP_SERVER_HOST_WEBHOOK, HTTP_SERVER_PORT_WEBHOOK)
+	// secureServer(metricEngine, host)
+	// serverWEBHOOK := &http.Server{
+	// 	Addr:    host,
+	// 	Handler: webHookEngine,
 	// }
 
-	// err := http2.ConfigureServer(serverDocApi, &http2.Server{})
+	// err := http2.ConfigureServer(serverWEBHOOK, &http2.Server{})
 	// if err != nil {
-	// 	Log.Errorf("Error configuring server Doc Api error is: %s", err.Error())
+	// 	fmt.Println("Ocurrio un error con la configuring de server WEBHOOK: ", err.Error())
 	// }
 
-	// go func() {
-	// err = serverDocApi.ListenAndServe()
-	// if err != nil {
-	// 	Log.Errorf("Error initializing server Doc Api error is: %s", err.Error())
-	// }
-	// }()
+	// return serverWEBHOOK.ListenAndServe()
 	return nil
 }
