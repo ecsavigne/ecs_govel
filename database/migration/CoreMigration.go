@@ -1,0 +1,75 @@
+/*
+1. Create migrate in path ./database/migration
+2. Load file .sql and execute. Execute function: ExecuteMigrationFromSql(db *gorm.DB, log logecs.Logger, ifViewImportMigrations ...bool)
+*/
+package migration
+
+import (
+	"fmt"
+	"os"
+	"path"
+
+	logecs "github.com/ecsavigne/logecs/log"
+
+	"gorm.io/gorm"
+)
+
+type coreMigration struct {
+	db *gorm.DB
+	logecs.Logger
+	ifViewImportMigrations bool
+	exec                   func(os.DirEntry)
+}
+
+func (c coreMigration) migrateSQL() {
+	str, _ := os.Getwd()
+	path_migrations := fmt.Sprintf("%s/database/migration/", str)
+	if c.Logger != nil {
+		c.Infof("\x1b[33mLoad migrations from path:\x1b[0m \x1b[34m%s\x1b[0m\n", path_migrations)
+	}
+
+	c.exec = func(f os.DirEntry) {
+		content, e := os.ReadFile(fmt.Sprintf("%s%s", path_migrations, f.Name()))
+		if e != nil && c.Logger != nil {
+			c.Errorf("Error read file migrations error is: \x1b[31m%s\x1b[0m\n", e.Error())
+		}
+
+		// c.Debugf("sql: \x1b[32m\n%s\x1b[0m\n\n", string(content))
+		if err := c.db.Exec(string(content)).Error; err != nil && c.Logger != nil {
+			c.Errorf("Error executing migration error is: %s\n", err.Error())
+		}
+	}
+
+	//  get all migrations from file.sql
+	dirEntry, e := os.ReadDir(path_migrations)
+	if e != nil && c.Logger != nil {
+		c.Errorf("Error read dir migrations error is: \x1b[31m%s\x1b[0m\n", e.Error())
+	}
+
+	for _, dir := range dirEntry {
+		if dir.IsDir() || path.Ext(dir.Name()) != ".sql" {
+			continue
+		}
+
+		if c.ifViewImportMigrations && c.Logger != nil {
+			c.Debugf("Found migration: \x1b[34m%s\x1b[0m\n", dir.Name())
+		}
+
+		c.exec(dir)
+	}
+}
+
+// ExecuteMigrationFromSql executes all migrations from path ./database/migration/*.sql
+// Log is a logger interface. If nil, no log will be printed.
+// db is a database connection.
+// Optional parameter ifViewImportMigrations if true, print all migrations found in the path.
+// If false, do not print anything.
+func ExecuteMigrationFromSql(db *gorm.DB, log logecs.Logger, ifViewImportMigrations ...bool) {
+	view := false
+	if len(ifViewImportMigrations) > 0 {
+		view = ifViewImportMigrations[0]
+	}
+	core := coreMigration{db, log, view, nil}
+
+	core.migrateSQL()
+}

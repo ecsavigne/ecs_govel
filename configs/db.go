@@ -182,19 +182,15 @@ func (db *DbInstance) Migrate() {
 		fmt.Println("Error: ", err.Error())
 	}
 
-	// if db.DB.Migrator().HasTable(&migration.Application{}) {
-	// 	var v = migration.Application{}
-	// 	db.DB.Model(&v).
-	// 		Preload("WPAccounts").
-	// 		Order("id ASC").
-	// 		Find(&v)
-	// 	if c := len(v.WPAccounts); c != 0 {
-	// 		fmt.Printf("Existen \033[34m%d\033[0m activas WPAccounts asociados a la aplicacion\n", c)
-	// 		fmt.Println("Cantidad de cuentas asosciadas a la aplicacion: ", c)
-	// 		jsoN, _ := json.MarshalIndent(v, "", " ")
-	// 		fmt.Printf("AplicationData:\n%s\n", string(jsoN))
-	// 	} else {
-	// 		fmt.Println("No existen WPAccounts asociados a la aplicacion")
-	// 	}
-	// }
+	// Load Migration from .sql
+	// migration.ExecuteMigrationFromSql(db.DB, Log, true)
+
+	// Load Seeders
+	// seeders.ExecuteSeeders(db.DB)
+
+	// execute trigger
+	// trigger.ExecuteTrigger(db.DB, trigger.TriggerDeleteMessageByCompanyWhatsapp())
+
+	// Execute Partition
+	// partition.ExecutePartition(db.DB, partition.OpenConversationPartition())
 }

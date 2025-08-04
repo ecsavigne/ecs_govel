@@ -85,3 +85,24 @@ HTTP_SERVER_PORT_DOC_API=2222
    air
 ```
 ### Saber más sobre [air](https://github.com/air-verse/air)
+
+### Load migration, seeder, partition, trigger
+```
+   // located in configs/Db.go 
+   func (db *DbInstance) Migrate() {}
+        func (db *DbInstance) Migrate() {
+            /* You can laod here seeder, migration *.sql, partition, trigger */
+
+            // Execute Partition
+	         partition.ExecutePartition(db.DB /*partition.OpenConversationPartition(),*/, partition.TemplatePartition())
+
+            // Migration 
+            db.DB.db.DB.AutoMigrate(&migration.Application{},.....n migration)
+
+            // migration from sql 
+            migration.ExecuteMigrationFromSql(db.DB, Log, true)
+
+            // Execute Seeders
+	         seeders.ExecuteSeeders(db.DB)
+   }
+```
