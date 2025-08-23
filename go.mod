@@ -6,6 +6,7 @@ require (
 	github.com/ecsavigne/logecs v1.26.202504061452
 	github.com/ecsavigne/proxy-reverse v1.1.3
 	github.com/gin-gonic/gin v1.10.0
+	github.com/lib/pq v1.10.9
 	github.com/prometheus/client_golang v1.21.1
 	github.com/spf13/viper v1.20.1
 	github.com/swaggo/files v1.0.1

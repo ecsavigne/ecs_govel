@@ -12,6 +12,7 @@ import (
 	"ecs_govel/app/model"
 	"ecs_govel/database/migration"
 
+	_ "github.com/lib/pq"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 	"gorm.io/gorm/logger"
