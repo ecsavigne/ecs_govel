@@ -5,7 +5,6 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
-	"golang.org/x/net/http2"
 	"golang.org/x/sync/errgroup"
 )
 
@@ -46,6 +45,14 @@ func secureServer(route *gin.Engine, expectHost string) {
 	})
 }
 
+func createProtoHTTP2NotTLS() *http.Protocols {
+	p := new(http.Protocols)
+	p.SetHTTP1(true)
+	p.SetUnencryptedHTTP2(true)
+
+	return p
+}
+
 func httpRun() {
 	// ServerMetrics
 	if IsX1() { //metricEngine
@@ -58,11 +65,13 @@ func httpRun() {
 	// Servicio
 	host := fmt.Sprintf("%s:%s", HTTP_SERVER_HOST, HTTP_SERVER_PORT)
 	secureServer(engine, host)
+
 	server := &http.Server{
-		Addr:    host,
-		Handler: engine,
+		Addr:      host,
+		Handler:   engine,
+		Protocols: createProtoHTTP2NotTLS(),
 	}
-	http2.ConfigureServer(server, &http2.Server{})
+	// http2.ConfigureServer(server, &http2.Server{})
 
 	GROUP_WAIT.Go(func() error {
 		fmt.Printf("Service Web in: %s:%s\n", HTTP_SERVER_HOST, HTTP_SERVER_PORT)
@@ -95,10 +104,11 @@ func servMetric() error {
 	host := fmt.Sprintf("%s:%s", HTTP_SERVER_HOST_METRICS, HTTP_SERVER_PORT_METRICS)
 	secureServer(metricEngine, host)
 	// serverMetric := &http.Server{
-	// 	Addr:    host,
-	// 	Handler: metricEngine,
+	// 	Addr:      host,
+	// 	Handler:   metricEngine,
+	// 	Protocols: createProtoHTTP2NotTLS(),
 	// }
-	// err:= http2.ConfigureServer(serverMetric, &http2.Server{})
+	// Not err:= http2.ConfigureServer(serverMetric, &http2.Server{})
 	// if err != nil {
 	// 	fmt.Println("Ocurrio un error con la configuring de server Metrics: ", err.Error())
 	// }
@@ -129,9 +139,10 @@ func servWebhook() error {
 	// serverWEBHOOK := &http.Server{
 	// 	Addr:    host,
 	// 	Handler: webHookEngine,
+	// Protocols: createProtoHTTP2NotTLS(),
 	// }
 
-	// err := http2.ConfigureServer(serverWEBHOOK, &http2.Server{})
+	//Not err := http2.ConfigureServer(serverWEBHOOK, &http2.Server{})
 	// if err != nil {
 	// 	fmt.Println("Ocurrio un error con la configuring de server WEBHOOK: ", err.Error())
 	// }
