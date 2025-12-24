@@ -15,7 +15,7 @@ import (
 var (
 	engine                    *gin.Engine
 	metricEngine              *gin.Engine
-	webHookEngine             *gin.Engine
+	docApiEngine              *gin.Engine
 	APP_MAX_CONNECTIONS       int
 	APP_CANT_X                int
 	APP_FILE_LOGGER           string
@@ -30,6 +30,7 @@ var (
 	APP_MODE                  string
 	APP_PORT_TEST             string
 	WEBHOOK_SOCKET            string
+	DOC_API_PATH              string
 )
 
 func init() {
@@ -45,8 +46,8 @@ func GetMetricEngine() *gin.Engine {
 	return metricEngine
 }
 
-func GetWebHookEngine() *gin.Engine {
-	return webHookEngine
+func GetDocApiEngine() *gin.Engine {
+	return docApiEngine
 }
 
 // Configurar el motor de Gin
@@ -56,13 +57,15 @@ func prepare_engine() {
 	gin.SetMode(gin.ReleaseMode)
 	if IsX1() {
 		//TODO: Configurar el motor de Gin para metricas no esta implementada la logica aun
+		// fmt.Println("Configurar el motor de Gin para metricas y documentacion")
+		Log.Sub("Configs").Infof("Configurar el motor de Gin para metricas y documentacion\n")
+		docApiEngine = gin.Default()
+
 		metricEngine = gin.Default()
 	}
 
 	engine = gin.Default()
 	engine.MaxMultipartMemory = 100 << 20
-
-	webHookEngine = gin.Default()
 }
 
 // Carga de varEnv
@@ -104,6 +107,7 @@ func prepare_env() {
 		APP_NAME_X1 = viper.GetString("APP_NAME_X1")
 		APP_NAME = viper.GetString("APP_NAME")
 		APP_MODE = viper.GetString("APP_MODE")
+		DOC_API_PATH = viper.GetString("DOC_API_PATH")
 
 		// Variables .env HTTP_SERVER
 		HTTP_SERVER_HOST = viper.GetString("HTTP_SERVER_HOST")
@@ -140,7 +144,7 @@ func prepare_app() {
 	fmt.Println("prepare_app")
 	prepare_env()
 	prepare_engine()
-	prepare_db()
+	// prepare_db()
 	// prepare_mime_exts()
 }
 

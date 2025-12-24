@@ -1,0 +1,28 @@
+edition="2023";
+
+package productpb.v1;
+
+// import "google/protobuf/go_features.proto";
+import "buf/validate/validate.proto";
+import "google/api/field_behavior.proto";
+
+// option features.(pb.go).api_level = API_OPAQUE;
+
+message Product {
+    string id = 1;
+
+    string name = 2 [(buf.validate.field).cel = {
+        id: "product.name"
+        message: "name must has at least 2 and max 150 characters long"
+        expression: "this.size() >= 2 && this.size() <= 150"
+    }, 
+    (google.api.field_behavior) = REQUIRED
+    ]; 
+
+    string description = 3 [(buf.validate.field).string = {
+        min_len: 2
+        max_len: 150
+    }];
+
+    double price = 4;
+}

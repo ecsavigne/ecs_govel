@@ -45,7 +45,7 @@ func secureServer(route *gin.Engine, expectHost string) {
 	})
 }
 
-func createProtoHTTP2NotTLS() *http.Protocols {
+func CreateProtoHTTP2NotTLS() *http.Protocols {
 	p := new(http.Protocols)
 	p.SetHTTP1(true)
 	p.SetUnencryptedHTTP2(true)
@@ -60,6 +60,12 @@ func httpRun() {
 			fmt.Printf("Server Metrics in %s:%s\n", HTTP_SERVER_HOST_METRICS, HTTP_SERVER_PORT_METRICS)
 			return servMetric()
 		})
+
+		// ServerDocsApi
+		GROUP_WAIT.Go(func() error {
+			fmt.Printf("Service Webhook in %s:%s\n", HTTP_SERVER_HOST_WEBHOOK, HTTP_SERVER_PORT_WEBHOOK)
+			return servDocApi()
+		})
 	}
 
 	// Servicio
@@ -69,7 +75,7 @@ func httpRun() {
 	server := &http.Server{
 		Addr:      host,
 		Handler:   engine,
-		Protocols: createProtoHTTP2NotTLS(),
+		Protocols: CreateProtoHTTP2NotTLS(),
 	}
 	// http2.ConfigureServer(server, &http2.Server{})
 
@@ -78,11 +84,11 @@ func httpRun() {
 		return server.ListenAndServe()
 	})
 
-	// ServerWebhook
-	GROUP_WAIT.Go(func() error {
-		fmt.Printf("Service Webhook in %s:%s\n", HTTP_SERVER_HOST_WEBHOOK, HTTP_SERVER_PORT_WEBHOOK)
-		return servWebhook()
-	})
+	// // ServerWebhook
+	// GROUP_WAIT.Go(func() error {
+	// 	fmt.Printf("Service Webhook in %s:%s\n", HTTP_SERVER_HOST_WEBHOOK, HTTP_SERVER_PORT_WEBHOOK)
+	// 	return servWebhook()
+	// })
 
 	if err := GROUP_WAIT.Wait(); err != nil {
 		fmt.Println("Ocurrio un error con la sincronizacion de server: ", err.Error())
@@ -106,7 +112,7 @@ func servMetric() error {
 	// serverMetric := &http.Server{
 	// 	Addr:      host,
 	// 	Handler:   metricEngine,
-	// 	Protocols: createProtoHTTP2NotTLS(),
+	// 	Protocols: CreateProtoHTTP2NotTLS(),
 	// }
 	// Not err:= http2.ConfigureServer(serverMetric, &http2.Server{})
 	// if err != nil {
@@ -123,23 +129,23 @@ func servMetric() error {
 }
 
 func servWebhook() error {
-	if HTTP_SERVER_HOST_WEBHOOK == "" && HTTP_SERVER_PORT_WEBHOOK == "" {
-		return nil
-	} else {
-		if HTTP_SERVER_HOST_WEBHOOK == "" {
-			HTTP_SERVER_HOST_WEBHOOK = HTTP_SERVER_HOST
-		}
-		if HTTP_SERVER_PORT_WEBHOOK == "" {
-			HTTP_SERVER_PORT_WEBHOOK = "8083"
-		}
-	}
+	// if HTTP_SERVER_HOST_WEBHOOK == "" && HTTP_SERVER_PORT_WEBHOOK == "" {
+	// 	return nil
+	// } else {
+	// 	if HTTP_SERVER_HOST_WEBHOOK == "" {
+	// 		HTTP_SERVER_HOST_WEBHOOK = HTTP_SERVER_HOST
+	// 	}
+	// 	if HTTP_SERVER_PORT_WEBHOOK == "" {
+	// 		HTTP_SERVER_PORT_WEBHOOK = "8083"
+	// 	}
+	// }
 
 	// host := fmt.Sprintf("%s:%s", HTTP_SERVER_HOST_WEBHOOK, HTTP_SERVER_PORT_WEBHOOK)
 	// secureServer(metricEngine, host)
 	// serverWEBHOOK := &http.Server{
 	// 	Addr:    host,
-	// 	Handler: webHookEngine,
-	// Protocols: createProtoHTTP2NotTLS(),
+	// 	Handler: docApiEngine,
+	// Protocols: CreateProtoHTTP2NotTLS(),
 	// }
 
 	//Not err := http2.ConfigureServer(serverWEBHOOK, &http2.Server{})
@@ -149,4 +155,34 @@ func servWebhook() error {
 
 	// return serverWEBHOOK.ListenAndServe()
 	return nil
+}
+
+func servDocApi() error {
+	if HTTP_SERVER_HOST_DOC_API == "" && HTTP_SERVER_PORT_DOC_API == "" {
+		return nil
+	} else {
+		if HTTP_SERVER_HOST_DOC_API == "" {
+			HTTP_SERVER_HOST_DOC_API = HTTP_SERVER_HOST
+		}
+		if HTTP_SERVER_PORT_DOC_API == "" {
+			HTTP_SERVER_PORT_DOC_API = "8083"
+		}
+	}
+
+	host := fmt.Sprintf("%s:%s", HTTP_SERVER_HOST_DOC_API, HTTP_SERVER_PORT_DOC_API)
+
+	secureServer(docApiEngine, host)
+
+	ServerDocsApi := &http.Server{
+		Addr:      host,
+		Handler:   docApiEngine,
+		Protocols: CreateProtoHTTP2NotTLS(),
+	}
+
+	// Not err := http2.ConfigureServer(ServerDocsApi, &http2.Server{})
+	// if err != nil {
+	// 	fmt.Println("Ocurrio un error con la configuring de server WEBHOOK: ", err.Error())
+	// }
+
+	return ServerDocsApi.ListenAndServe()
 }

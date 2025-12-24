@@ -1,0 +1,48 @@
+version: v2
+# Ver mais info about plugins: https://buf.build/plugins/protobuf
+# github use and docs: https://github.com/bufbuild
+plugins:
+  # Gera definição pra os mensagens proto para go
+  # github use and docs: https://github.com/protocolbuffers
+  # url plugin: https://buf.build/protocolbuffers/go
+  - remote: buf.build/protocolbuffers/go
+    # PATH := <dir>[/<dir>]* // relative to buf.yaml
+    out: grpcservice/gen
+    opt:
+      - paths=source_relative
+     # values: API_OPAQUE, API_HYBRID, API_OPEN  
+      - default_api_level=API_OPAQUE
+      - Mprotoc-gen-openapiv2/options/annotations.proto=github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2/options
+
+  # Gera definição pra os servicos (client/server connect-rpc para go)
+  # github use and docs: https://github.com/connectrpc/connect-go
+  # url plugin: https://buf.build/connectrpc/go
+  - remote: buf.build/connectrpc/go
+    out: grpcservice/gen
+    opt:
+      - paths=source_relative
+      - simple
+
+  # Genera los mensajes (clases de TS/JS y client/server connect-rpc) para el frontend
+  # github use and docs: https://github.com/bufbuild/protobuf-es
+  # url plugin: https://buf.build/bufbuild/es
+  - remote: buf.build/bufbuild/es
+    out: grpcservice/gen/frontend
+    # include_imports: true
+    opt: 
+      - target=ts # Puedes usar 'ts' o 'js'
+
+  # Documentacion openapi  url: https://github.com/google/gnostic/tree/main/cmd/protoc-gen-openapi
+  - remote: buf.build/grpc-ecosystem/openapiv2:v2.27.3
+    out:  grpcservice/gen/openapi
+    
+managed:
+  enabled: true
+  override:
+    - file_option: go_package_prefix
+      #  value: ./<name_module>/[out_plugin_protocolbuffers|out_plugin_connectrpc]
+      value: ./ecs_govel/grpcservice/gen
+  disable:
+    - file_option: go_package 
+      module: buf.build/bufbuild/protovalidate
+    - module: buf.build/googleapis/googleapis

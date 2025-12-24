@@ -6,5 +6,5 @@ import (
 
 // ReverseProxyApiDoc
 var (
-	ReverseProxyApi *proxy.ProxyReverse
+	ReverseProxyApi *proxy.ProxyReverse // = &proxy.ProxyReverse{}
 )

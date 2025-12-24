@@ -1,3 +1,9 @@
 {
-    "gitConfigUser.selectedProfile": "gitEcs"
+    "gitConfigUser.selectedProfile": "gitEcs",
+    "protoc": {
+        "path": "/usr/bin/protoc",
+        "options": [
+            "-I=/proto_type_google_github/googleapis"
+        ]
+    }
 }

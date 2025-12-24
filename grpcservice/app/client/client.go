@@ -1,0 +1,59 @@
+package main
+
+import (
+	"context"
+	pbProduct "ecs_govel/grpcservice/gen/productpb/v1"
+	pbService "ecs_govel/grpcservice/gen/services/v1"
+	conn "ecs_govel/grpcservice/gen/services/v1/servicesv1connect"
+	"fmt"
+	"log"
+	"net/http"
+
+	"connectrpc.com/connect"
+)
+
+func createProductServer(cl conn.ProductServiceClient, pR *pbService.CreateProductRequest) *pbService.CreateProductResponse {
+	resp, err := cl.CreateProduct(context.Background(), pR)
+	if err != nil {
+		log.Fatalln(err)
+	}
+
+	return resp
+}
+
+func createProductClient() conn.ProductServiceClient {
+	p := new(http.Protocols)
+	p.SetHTTP1(true)
+	p.SetUnencryptedHTTP2(true)
+
+	client := conn.NewProductServiceClient(
+		&http.Client{Transport: &http.Transport{
+			Protocols: p,
+		}},
+		"http://localhost:8080",
+		connect.WithGRPC(),
+		// connect.WithHTTPGet(),
+	)
+
+	return client
+}
+
+func main() {
+	fmt.Println("Init Client product")
+
+	cl := createProductClient()
+
+	p := &pbProduct.Product{}
+	p.SetId("1")
+	p.SetName("Edilberto Coello Savigne")
+	p.SetDescription("Edilberto Coello Savigne")
+	p.SetPrice(20000)
+
+	req := &pbService.CreateProductRequest{}
+	req.SetProduct(p)
+
+	fmt.Println("Call RPC with, 'ProductRequest' = ", req.GetProduct())
+
+	resp := createProductServer(cl, req)
+	fmt.Println("Response from derver RPC (ProductResponse): ", resp.GetMsg())
+}

@@ -10,4 +10,10 @@ func init() {
 	if c_.StateInitMetric {
 		// loadMetrics(c_.GetMetricEngine())
 	}
+
+	if c_.StateInitDocApi {
+		e := c_.GetDocApiEngine()
+		c_.Log.Infof("loadDocRoutes is: %v\n\n", e)
+		loadDocRoutes(e)
+	}
 }
