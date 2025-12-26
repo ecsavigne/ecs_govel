@@ -8,6 +8,8 @@ import "google/api/annotations.proto";
 // Necesario para la anotación openapiv2_operation (Swagger)
 import "protoc-gen-openapiv2/options/annotations.proto";
 import "google/api/field_behavior.proto";
+import "google/protobuf/empty.proto";
+import "buf/validate/validate.proto";
 
  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
    info: {
@@ -40,11 +42,21 @@ message CreateProductResponse {
 }
 
 message GetProductRequest {
-    int32 product_id = 1[(google.api.field_behavior) = REQUIRED];
+    string product_id = 1[
+    (google.api.field_behavior) = REQUIRED,
+    (buf.validate.field).cel = {
+      id: "product.id.format",
+      message: "The provided ID is not a valid MongoDB identifier. It should be a 24-character hexadecimal string (0-9, a-f).",
+      expression: "this.matches('^[0-9a-fA-F]{24}$')"
+    }];
 }
 
 message GetProductResponse {
     productpb.v1.Product product = 1;
+}
+
+message GetProductsResponse {
+    repeated productpb.v1.Product products = 1;
 }
 
 message UpdateProductRequest {
@@ -57,7 +69,13 @@ message UpdateProductResponse {
 }
 
 message DeleteProductRequest {
-    int32 product_id = 1[(google.api.field_behavior) = REQUIRED];
+    string product_id = 1[
+    (google.api.field_behavior) = REQUIRED,
+    (buf.validate.field).cel = {
+      id: "product.id.format",
+      message: "The provided ID is not a valid MongoDB identifier. It should be a 24-character hexadecimal string (0-9, a-f).",
+      expression: "this.matches('^[0-9a-fA-F]{24}$')"
+    }];
 }
 
 message DeleteProductResponse {
@@ -81,6 +99,17 @@ service ProductService {
         option idempotency_level = NO_SIDE_EFFECTS;
         option (google.api.http) = {
             get: "/productsapi/products/{product_id}"
+        };
+    }
+    
+    /*
+     * GetProducts obtene todos os produtos.
+     * Retorna uma lista com todos os produtos existentes.
+     */
+    rpc GetProducts(google.protobuf.Empty) returns (GetProductsResponse) {
+        option idempotency_level = NO_SIDE_EFFECTS;
+        option (google.api.http) = {
+            get: "/productsapi/products"
         };
     }
 

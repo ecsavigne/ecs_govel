@@ -7,11 +7,13 @@
 package servicesv1
 
 import (
+	_ "buf.build/gen/go/bufbuild/protovalidate/protocolbuffers/go/buf/validate"
 	v1 "ecs_govel/grpcservice/gen/productpb/v1"
 	_ "github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2/options"
 	_ "google.golang.org/genproto/googleapis/api/annotations"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
+	emptypb "google.golang.org/protobuf/types/known/emptypb"
 	reflect "reflect"
 	unsafe "unsafe"
 )
@@ -196,7 +198,7 @@ func (b0 CreateProductResponse_builder) Build() *CreateProductResponse {
 
 type GetProductRequest struct {
 	state                  protoimpl.MessageState `protogen:"opaque.v1"`
-	xxx_hidden_ProductId   int32                  `protobuf:"varint,1,opt,name=product_id,json=productId"`
+	xxx_hidden_ProductId   *string                `protobuf:"bytes,1,opt,name=product_id,json=productId"`
 	XXX_raceDetectHookData protoimpl.RaceDetectHookData
 	XXX_presence           [1]uint32
 	unknownFields          protoimpl.UnknownFields
@@ -228,15 +230,18 @@ func (x *GetProductRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-func (x *GetProductRequest) GetProductId() int32 {
+func (x *GetProductRequest) GetProductId() string {
 	if x != nil {
-		return x.xxx_hidden_ProductId
+		if x.xxx_hidden_ProductId != nil {
+			return *x.xxx_hidden_ProductId
+		}
+		return ""
 	}
-	return 0
+	return ""
 }
 
-func (x *GetProductRequest) SetProductId(v int32) {
-	x.xxx_hidden_ProductId = v
+func (x *GetProductRequest) SetProductId(v string) {
+	x.xxx_hidden_ProductId = &v
 	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 1)
 }
 
@@ -249,13 +254,13 @@ func (x *GetProductRequest) HasProductId() bool {
 
 func (x *GetProductRequest) ClearProductId() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 0)
-	x.xxx_hidden_ProductId = 0
+	x.xxx_hidden_ProductId = nil
 }
 
 type GetProductRequest_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
-	ProductId *int32
+	ProductId *string
 }
 
 func (b0 GetProductRequest_builder) Build() *GetProductRequest {
@@ -264,7 +269,7 @@ func (b0 GetProductRequest_builder) Build() *GetProductRequest {
 	_, _ = b, x
 	if b.ProductId != nil {
 		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 1)
-		x.xxx_hidden_ProductId = *b.ProductId
+		x.xxx_hidden_ProductId = b.ProductId
 	}
 	return m0
 }
@@ -337,6 +342,65 @@ func (b0 GetProductResponse_builder) Build() *GetProductResponse {
 	return m0
 }
 
+type GetProductsResponse struct {
+	state               protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Products *[]*v1.Product         `protobuf:"bytes,1,rep,name=products"`
+	unknownFields       protoimpl.UnknownFields
+	sizeCache           protoimpl.SizeCache
+}
+
+func (x *GetProductsResponse) Reset() {
+	*x = GetProductsResponse{}
+	mi := &file_services_v1_product_service_proto_msgTypes[4]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetProductsResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetProductsResponse) ProtoMessage() {}
+
+func (x *GetProductsResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_services_v1_product_service_proto_msgTypes[4]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+func (x *GetProductsResponse) GetProducts() []*v1.Product {
+	if x != nil {
+		if x.xxx_hidden_Products != nil {
+			return *x.xxx_hidden_Products
+		}
+	}
+	return nil
+}
+
+func (x *GetProductsResponse) SetProducts(v []*v1.Product) {
+	x.xxx_hidden_Products = &v
+}
+
+type GetProductsResponse_builder struct {
+	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
+
+	Products []*v1.Product
+}
+
+func (b0 GetProductsResponse_builder) Build() *GetProductsResponse {
+	m0 := &GetProductsResponse{}
+	b, x := &b0, m0
+	_, _ = b, x
+	x.xxx_hidden_Products = &b.Products
+	return m0
+}
+
 type UpdateProductRequest struct {
 	state              protoimpl.MessageState `protogen:"opaque.v1"`
 	xxx_hidden_Product *v1.Product            `protobuf:"bytes,1,opt,name=product"`
@@ -346,7 +410,7 @@ type UpdateProductRequest struct {
 
 func (x *UpdateProductRequest) Reset() {
 	*x = UpdateProductRequest{}
-	mi := &file_services_v1_product_service_proto_msgTypes[4]
+	mi := &file_services_v1_product_service_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -358,7 +422,7 @@ func (x *UpdateProductRequest) String() string {
 func (*UpdateProductRequest) ProtoMessage() {}
 
 func (x *UpdateProductRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_services_v1_product_service_proto_msgTypes[4]
+	mi := &file_services_v1_product_service_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -417,7 +481,7 @@ type UpdateProductResponse struct {
 
 func (x *UpdateProductResponse) Reset() {
 	*x = UpdateProductResponse{}
-	mi := &file_services_v1_product_service_proto_msgTypes[5]
+	mi := &file_services_v1_product_service_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -429,7 +493,7 @@ func (x *UpdateProductResponse) String() string {
 func (*UpdateProductResponse) ProtoMessage() {}
 
 func (x *UpdateProductResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_services_v1_product_service_proto_msgTypes[5]
+	mi := &file_services_v1_product_service_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -510,7 +574,7 @@ func (b0 UpdateProductResponse_builder) Build() *UpdateProductResponse {
 
 type DeleteProductRequest struct {
 	state                  protoimpl.MessageState `protogen:"opaque.v1"`
-	xxx_hidden_ProductId   int32                  `protobuf:"varint,1,opt,name=product_id,json=productId"`
+	xxx_hidden_ProductId   *string                `protobuf:"bytes,1,opt,name=product_id,json=productId"`
 	XXX_raceDetectHookData protoimpl.RaceDetectHookData
 	XXX_presence           [1]uint32
 	unknownFields          protoimpl.UnknownFields
@@ -519,7 +583,7 @@ type DeleteProductRequest struct {
 
 func (x *DeleteProductRequest) Reset() {
 	*x = DeleteProductRequest{}
-	mi := &file_services_v1_product_service_proto_msgTypes[6]
+	mi := &file_services_v1_product_service_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -531,7 +595,7 @@ func (x *DeleteProductRequest) String() string {
 func (*DeleteProductRequest) ProtoMessage() {}
 
 func (x *DeleteProductRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_services_v1_product_service_proto_msgTypes[6]
+	mi := &file_services_v1_product_service_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -542,15 +606,18 @@ func (x *DeleteProductRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-func (x *DeleteProductRequest) GetProductId() int32 {
+func (x *DeleteProductRequest) GetProductId() string {
 	if x != nil {
-		return x.xxx_hidden_ProductId
+		if x.xxx_hidden_ProductId != nil {
+			return *x.xxx_hidden_ProductId
+		}
+		return ""
 	}
-	return 0
+	return ""
 }
 
-func (x *DeleteProductRequest) SetProductId(v int32) {
-	x.xxx_hidden_ProductId = v
+func (x *DeleteProductRequest) SetProductId(v string) {
+	x.xxx_hidden_ProductId = &v
 	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 0, 1)
 }
 
@@ -563,13 +630,13 @@ func (x *DeleteProductRequest) HasProductId() bool {
 
 func (x *DeleteProductRequest) ClearProductId() {
 	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 0)
-	x.xxx_hidden_ProductId = 0
+	x.xxx_hidden_ProductId = nil
 }
 
 type DeleteProductRequest_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
-	ProductId *int32
+	ProductId *string
 }
 
 func (b0 DeleteProductRequest_builder) Build() *DeleteProductRequest {
@@ -578,7 +645,7 @@ func (b0 DeleteProductRequest_builder) Build() *DeleteProductRequest {
 	_, _ = b, x
 	if b.ProductId != nil {
 		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 0, 1)
-		x.xxx_hidden_ProductId = *b.ProductId
+		x.xxx_hidden_ProductId = b.ProductId
 	}
 	return m0
 }
@@ -594,7 +661,7 @@ type DeleteProductResponse struct {
 
 func (x *DeleteProductResponse) Reset() {
 	*x = DeleteProductResponse{}
-	mi := &file_services_v1_product_service_proto_msgTypes[7]
+	mi := &file_services_v1_product_service_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -606,7 +673,7 @@ func (x *DeleteProductResponse) String() string {
 func (*DeleteProductResponse) ProtoMessage() {}
 
 func (x *DeleteProductResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_services_v1_product_service_proto_msgTypes[7]
+	mi := &file_services_v1_product_service_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -665,31 +732,36 @@ var File_services_v1_product_service_proto protoreflect.FileDescriptor
 
 const file_services_v1_product_service_proto_rawDesc = "" +
 	"\n" +
-	"!services/v1/product_service.proto\x12\vservices.v1\x1a\x1aproductpb/v1/product.proto\x1a\x1cgoogle/api/annotations.proto\x1a.protoc-gen-openapiv2/options/annotations.proto\x1a\x1fgoogle/api/field_behavior.proto\"L\n" +
+	"!services/v1/product_service.proto\x12\vservices.v1\x1a\x1aproductpb/v1/product.proto\x1a\x1cgoogle/api/annotations.proto\x1a.protoc-gen-openapiv2/options/annotations.proto\x1a\x1fgoogle/api/field_behavior.proto\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1bbuf/validate/validate.proto\"L\n" +
 	"\x14CreateProductRequest\x124\n" +
 	"\aproduct\x18\x01 \x01(\v2\x15.productpb.v1.ProductB\x03\xe0A\x02R\aproduct\"Z\n" +
 	"\x15CreateProductResponse\x12/\n" +
 	"\aproduct\x18\x01 \x01(\v2\x15.productpb.v1.ProductR\aproduct\x12\x10\n" +
-	"\x03msg\x18\x02 \x01(\tR\x03msg\"7\n" +
-	"\x11GetProductRequest\x12\"\n" +
+	"\x03msg\x18\x02 \x01(\tR\x03msg\"\xe6\x01\n" +
+	"\x11GetProductRequest\x12\xd0\x01\n" +
 	"\n" +
-	"product_id\x18\x01 \x01(\x05B\x03\xe0A\x02R\tproductId\"E\n" +
+	"product_id\x18\x01 \x01(\tB\xb0\x01\xe0A\x02\xbaH\xa9\x01\xba\x01\xa5\x01\n" +
+	"\x11product.id.format\x12mThe provided ID is not a valid MongoDB identifier. It should be a 24-character hexadecimal string (0-9, a-f).\x1a!this.matches('^[0-9a-fA-F]{24}$')R\tproductId\"E\n" +
 	"\x12GetProductResponse\x12/\n" +
-	"\aproduct\x18\x01 \x01(\v2\x15.productpb.v1.ProductR\aproduct\"L\n" +
+	"\aproduct\x18\x01 \x01(\v2\x15.productpb.v1.ProductR\aproduct\"H\n" +
+	"\x13GetProductsResponse\x121\n" +
+	"\bproducts\x18\x01 \x03(\v2\x15.productpb.v1.ProductR\bproducts\"L\n" +
 	"\x14UpdateProductRequest\x124\n" +
 	"\aproduct\x18\x01 \x01(\v2\x15.productpb.v1.ProductB\x03\xe0A\x02R\aproduct\"Z\n" +
 	"\x15UpdateProductResponse\x12/\n" +
 	"\aproduct\x18\x01 \x01(\v2\x15.productpb.v1.ProductR\aproduct\x12\x10\n" +
-	"\x03msg\x18\x02 \x01(\tR\x03msg\":\n" +
-	"\x14DeleteProductRequest\x12\"\n" +
+	"\x03msg\x18\x02 \x01(\tR\x03msg\"\xe9\x01\n" +
+	"\x14DeleteProductRequest\x12\xd0\x01\n" +
 	"\n" +
-	"product_id\x18\x01 \x01(\x05B\x03\xe0A\x02R\tproductId\")\n" +
+	"product_id\x18\x01 \x01(\tB\xb0\x01\xe0A\x02\xbaH\xa9\x01\xba\x01\xa5\x01\n" +
+	"\x11product.id.format\x12mThe provided ID is not a valid MongoDB identifier. It should be a 24-character hexadecimal string (0-9, a-f).\x1a!this.matches('^[0-9a-fA-F]{24}$')R\tproductId\")\n" +
 	"\x15DeleteProductResponse\x12\x10\n" +
-	"\x03msg\x18\x01 \x01(\tR\x03msg2\x87\x04\n" +
+	"\x03msg\x18\x01 \x01(\tR\x03msg2\xf2\x04\n" +
 	"\x0eProductService\x12x\n" +
 	"\rCreateProduct\x12!.services.v1.CreateProductRequest\x1a\".services.v1.CreateProductResponse\" \x82\xd3\xe4\x93\x02\x1a:\x01*\"\x15/productsapi/products\x12|\n" +
 	"\n" +
-	"GetProduct\x12\x1e.services.v1.GetProductRequest\x1a\x1f.services.v1.GetProductResponse\"-\x82\xd3\xe4\x93\x02$\x12\"/productsapi/products/{product_id}\x90\x02\x01\x12x\n" +
+	"GetProduct\x12\x1e.services.v1.GetProductRequest\x1a\x1f.services.v1.GetProductResponse\"-\x82\xd3\xe4\x93\x02$\x12\"/productsapi/products/{product_id}\x90\x02\x01\x12i\n" +
+	"\vGetProducts\x12\x16.google.protobuf.Empty\x1a .services.v1.GetProductsResponse\" \x82\xd3\xe4\x93\x02\x17\x12\x15/productsapi/products\x90\x02\x01\x12x\n" +
 	"\rUpdateProduct\x12!.services.v1.UpdateProductRequest\x1a\".services.v1.UpdateProductResponse\" \x82\xd3\xe4\x93\x02\x1a:\x01*\x1a\x15/productsapi/products\x12\x82\x01\n" +
 	"\rDeleteProduct\x12!.services.v1.DeleteProductRequest\x1a\".services.v1.DeleteProductResponse\"*\x82\xd3\xe4\x93\x02$*\"/productsapi/products/{product_id}B\x97\x03\x92A\xee\x01\x12\xc3\x01\n" +
 	"\bEcho API\"X\n" +
@@ -697,37 +769,42 @@ const file_services_v1_product_service_proto_rawDesc = "" +
 	"\x14BSD 3-Clause License\x12@https://github.com/grpc-ecosystem/grpc-gateway/blob/main/LICENSE2\x031.0*\x02\x01\x022\x10application/json:\x10application/json\n" +
 	"\x0fcom.services.v1B\x13ProductServiceProtoP\x01Z0ecs_govel/grpcservice/gen/services/v1;servicesv1\xa2\x02\x03SXX\xaa\x02\vServices.V1\xca\x02\vServices\\V1\xe2\x02\x17Services\\V1\\GPBMetadata\xea\x02\fServices::V1b\beditionsp\xe8\a"
 
-var file_services_v1_product_service_proto_msgTypes = make([]protoimpl.MessageInfo, 8)
+var file_services_v1_product_service_proto_msgTypes = make([]protoimpl.MessageInfo, 9)
 var file_services_v1_product_service_proto_goTypes = []any{
 	(*CreateProductRequest)(nil),  // 0: services.v1.CreateProductRequest
 	(*CreateProductResponse)(nil), // 1: services.v1.CreateProductResponse
 	(*GetProductRequest)(nil),     // 2: services.v1.GetProductRequest
 	(*GetProductResponse)(nil),    // 3: services.v1.GetProductResponse
-	(*UpdateProductRequest)(nil),  // 4: services.v1.UpdateProductRequest
-	(*UpdateProductResponse)(nil), // 5: services.v1.UpdateProductResponse
-	(*DeleteProductRequest)(nil),  // 6: services.v1.DeleteProductRequest
-	(*DeleteProductResponse)(nil), // 7: services.v1.DeleteProductResponse
-	(*v1.Product)(nil),            // 8: productpb.v1.Product
+	(*GetProductsResponse)(nil),   // 4: services.v1.GetProductsResponse
+	(*UpdateProductRequest)(nil),  // 5: services.v1.UpdateProductRequest
+	(*UpdateProductResponse)(nil), // 6: services.v1.UpdateProductResponse
+	(*DeleteProductRequest)(nil),  // 7: services.v1.DeleteProductRequest
+	(*DeleteProductResponse)(nil), // 8: services.v1.DeleteProductResponse
+	(*v1.Product)(nil),            // 9: productpb.v1.Product
+	(*emptypb.Empty)(nil),         // 10: google.protobuf.Empty
 }
 var file_services_v1_product_service_proto_depIdxs = []int32{
-	8, // 0: services.v1.CreateProductRequest.product:type_name -> productpb.v1.Product
-	8, // 1: services.v1.CreateProductResponse.product:type_name -> productpb.v1.Product
-	8, // 2: services.v1.GetProductResponse.product:type_name -> productpb.v1.Product
-	8, // 3: services.v1.UpdateProductRequest.product:type_name -> productpb.v1.Product
-	8, // 4: services.v1.UpdateProductResponse.product:type_name -> productpb.v1.Product
-	0, // 5: services.v1.ProductService.CreateProduct:input_type -> services.v1.CreateProductRequest
-	2, // 6: services.v1.ProductService.GetProduct:input_type -> services.v1.GetProductRequest
-	4, // 7: services.v1.ProductService.UpdateProduct:input_type -> services.v1.UpdateProductRequest
-	6, // 8: services.v1.ProductService.DeleteProduct:input_type -> services.v1.DeleteProductRequest
-	1, // 9: services.v1.ProductService.CreateProduct:output_type -> services.v1.CreateProductResponse
-	3, // 10: services.v1.ProductService.GetProduct:output_type -> services.v1.GetProductResponse
-	5, // 11: services.v1.ProductService.UpdateProduct:output_type -> services.v1.UpdateProductResponse
-	7, // 12: services.v1.ProductService.DeleteProduct:output_type -> services.v1.DeleteProductResponse
-	9, // [9:13] is the sub-list for method output_type
-	5, // [5:9] is the sub-list for method input_type
-	5, // [5:5] is the sub-list for extension type_name
-	5, // [5:5] is the sub-list for extension extendee
-	0, // [0:5] is the sub-list for field type_name
+	9,  // 0: services.v1.CreateProductRequest.product:type_name -> productpb.v1.Product
+	9,  // 1: services.v1.CreateProductResponse.product:type_name -> productpb.v1.Product
+	9,  // 2: services.v1.GetProductResponse.product:type_name -> productpb.v1.Product
+	9,  // 3: services.v1.GetProductsResponse.products:type_name -> productpb.v1.Product
+	9,  // 4: services.v1.UpdateProductRequest.product:type_name -> productpb.v1.Product
+	9,  // 5: services.v1.UpdateProductResponse.product:type_name -> productpb.v1.Product
+	0,  // 6: services.v1.ProductService.CreateProduct:input_type -> services.v1.CreateProductRequest
+	2,  // 7: services.v1.ProductService.GetProduct:input_type -> services.v1.GetProductRequest
+	10, // 8: services.v1.ProductService.GetProducts:input_type -> google.protobuf.Empty
+	5,  // 9: services.v1.ProductService.UpdateProduct:input_type -> services.v1.UpdateProductRequest
+	7,  // 10: services.v1.ProductService.DeleteProduct:input_type -> services.v1.DeleteProductRequest
+	1,  // 11: services.v1.ProductService.CreateProduct:output_type -> services.v1.CreateProductResponse
+	3,  // 12: services.v1.ProductService.GetProduct:output_type -> services.v1.GetProductResponse
+	4,  // 13: services.v1.ProductService.GetProducts:output_type -> services.v1.GetProductsResponse
+	6,  // 14: services.v1.ProductService.UpdateProduct:output_type -> services.v1.UpdateProductResponse
+	8,  // 15: services.v1.ProductService.DeleteProduct:output_type -> services.v1.DeleteProductResponse
+	11, // [11:16] is the sub-list for method output_type
+	6,  // [6:11] is the sub-list for method input_type
+	6,  // [6:6] is the sub-list for extension type_name
+	6,  // [6:6] is the sub-list for extension extendee
+	0,  // [0:6] is the sub-list for field type_name
 }
 
 func init() { file_services_v1_product_service_proto_init() }
@@ -741,7 +818,7 @@ func file_services_v1_product_service_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_services_v1_product_service_proto_rawDesc), len(file_services_v1_product_service_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   8,
+			NumMessages:   9,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

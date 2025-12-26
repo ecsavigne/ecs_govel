@@ -30,6 +30,27 @@
   ],
   "paths": {
     "/productsapi/products": {
+      "get": {
+        "summary": "GetProducts obtene todos os produtos.\nRetorna uma lista com todos os produtos existentes.",
+        "operationId": "ProductService_GetProducts",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetProductsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "ProductService"
+        ]
+      },
       "post": {
         "summary": "CreateProduct cria um novo produto.\nRetorna o ID gerado e os detalhes do produto.",
         "operationId": "ProductService_CreateProduct",
@@ -116,8 +137,7 @@
             "name": "productId",
             "in": "path",
             "required": true,
-            "type": "integer",
-            "format": "int32"
+            "type": "string"
           }
         ],
         "tags": [
@@ -146,8 +166,7 @@
             "name": "productId",
             "in": "path",
             "required": true,
-            "type": "integer",
-            "format": "int32"
+            "type": "string"
           }
         ],
         "tags": [
@@ -220,6 +239,18 @@
       "properties": {
         "product": {
           "$ref": "#/definitions/v1Product"
+        }
+      }
+    },
+    "v1GetProductsResponse": {
+      "type": "object",
+      "properties": {
+        "products": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1Product"
+          }
         }
       }
     },

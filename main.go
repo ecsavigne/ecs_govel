@@ -6,6 +6,7 @@ import (
 	// "ecs_govel/app/webhooks"
 	config "ecs_govel/configs"
 	// grpcserverinit "ecs_govel/grpcservice/app/server"
+	// grpcserverinit "ecs_govel/grpcservice/app/server"
 	_ "ecs_govel/routes"
 )
 

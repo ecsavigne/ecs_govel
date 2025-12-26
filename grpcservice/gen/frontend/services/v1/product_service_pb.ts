@@ -9,13 +9,16 @@ import { file_productpb_v1_product } from "../../productpb/v1/product_pb";
 import { file_google_api_annotations } from "../../google/api/annotations_pb";
 import { file_protoc_gen_openapiv2_options_annotations } from "../../protoc-gen-openapiv2/options/annotations_pb";
 import { file_google_api_field_behavior } from "../../google/api/field_behavior_pb";
+import type { EmptySchema } from "@bufbuild/protobuf/wkt";
+import { file_google_protobuf_empty } from "@bufbuild/protobuf/wkt";
+import { file_buf_validate_validate } from "../../buf/validate/validate_pb";
 import type { Message } from "@bufbuild/protobuf";
 
 /**
  * Describes the file services/v1/product_service.proto.
  */
 export const file_services_v1_product_service: GenFile = /*@__PURE__*/
-  fileDesc("CiFzZXJ2aWNlcy92MS9wcm9kdWN0X3NlcnZpY2UucHJvdG8SC3NlcnZpY2VzLnYxIkMKFENyZWF0ZVByb2R1Y3RSZXF1ZXN0EisKB3Byb2R1Y3QYASABKAsyFS5wcm9kdWN0cGIudjEuUHJvZHVjdEID4EECIkwKFUNyZWF0ZVByb2R1Y3RSZXNwb25zZRImCgdwcm9kdWN0GAEgASgLMhUucHJvZHVjdHBiLnYxLlByb2R1Y3QSCwoDbXNnGAIgASgJIiwKEUdldFByb2R1Y3RSZXF1ZXN0EhcKCnByb2R1Y3RfaWQYASABKAVCA+BBAiI8ChJHZXRQcm9kdWN0UmVzcG9uc2USJgoHcHJvZHVjdBgBIAEoCzIVLnByb2R1Y3RwYi52MS5Qcm9kdWN0IkMKFFVwZGF0ZVByb2R1Y3RSZXF1ZXN0EisKB3Byb2R1Y3QYASABKAsyFS5wcm9kdWN0cGIudjEuUHJvZHVjdEID4EECIkwKFVVwZGF0ZVByb2R1Y3RSZXNwb25zZRImCgdwcm9kdWN0GAEgASgLMhUucHJvZHVjdHBiLnYxLlByb2R1Y3QSCwoDbXNnGAIgASgJIi8KFERlbGV0ZVByb2R1Y3RSZXF1ZXN0EhcKCnByb2R1Y3RfaWQYASABKAVCA+BBAiIkChVEZWxldGVQcm9kdWN0UmVzcG9uc2USCwoDbXNnGAEgASgJMocECg5Qcm9kdWN0U2VydmljZRJ4Cg1DcmVhdGVQcm9kdWN0EiEuc2VydmljZXMudjEuQ3JlYXRlUHJvZHVjdFJlcXVlc3QaIi5zZXJ2aWNlcy52MS5DcmVhdGVQcm9kdWN0UmVzcG9uc2UiIILT5JMCGjoBKiIVL3Byb2R1Y3RzYXBpL3Byb2R1Y3RzEnwKCkdldFByb2R1Y3QSHi5zZXJ2aWNlcy52MS5HZXRQcm9kdWN0UmVxdWVzdBofLnNlcnZpY2VzLnYxLkdldFByb2R1Y3RSZXNwb25zZSItkAIBgtPkkwIkEiIvcHJvZHVjdHNhcGkvcHJvZHVjdHMve3Byb2R1Y3RfaWR9EngKDVVwZGF0ZVByb2R1Y3QSIS5zZXJ2aWNlcy52MS5VcGRhdGVQcm9kdWN0UmVxdWVzdBoiLnNlcnZpY2VzLnYxLlVwZGF0ZVByb2R1Y3RSZXNwb25zZSIggtPkkwIaOgEqGhUvcHJvZHVjdHNhcGkvcHJvZHVjdHMSggEKDURlbGV0ZVByb2R1Y3QSIS5zZXJ2aWNlcy52MS5EZWxldGVQcm9kdWN0UmVxdWVzdBoiLnNlcnZpY2VzLnYxLkRlbGV0ZVByb2R1Y3RSZXNwb25zZSIqgtPkkwIkKiIvcHJvZHVjdHNhcGkvcHJvZHVjdHMve3Byb2R1Y3RfaWR9QpcDCg9jb20uc2VydmljZXMudjFCE1Byb2R1Y3RTZXJ2aWNlUHJvdG9QAVowZWNzX2dvdmVsL2dycGNzZXJ2aWNlL2dlbi9zZXJ2aWNlcy92MTtzZXJ2aWNlc3YxogIDU1hYqgILU2VydmljZXMuVjHKAgtTZXJ2aWNlc1xWMeICF1NlcnZpY2VzXFYxXEdQQk1ldGFkYXRh6gIMU2VydmljZXM6OlYxkkHuARLDAQoIRWNobyBBUEkiWAoUZ1JQQy1HYXRld2F5IHByb2plY3QSLmh0dHBzOi8vZ2l0aHViLmNvbS9ncnBjLWVjb3N5c3RlbS9ncnBjLWdhdGV3YXkaEG5vbmVAZXhhbXBsZS5jb20qWAoUQlNEIDMtQ2xhdXNlIExpY2Vuc2USQGh0dHBzOi8vZ2l0aHViLmNvbS9ncnBjLWVjb3N5c3RlbS9ncnBjLWdhdGV3YXkvYmxvYi9tYWluL0xJQ0VOU0UyAzEuMCoCAQIyEGFwcGxpY2F0aW9uL2pzb246EGFwcGxpY2F0aW9uL2pzb25iCGVkaXRpb25zcOgH", [file_productpb_v1_product, file_google_api_annotations, file_protoc_gen_openapiv2_options_annotations, file_google_api_field_behavior]);
+  fileDesc("CiFzZXJ2aWNlcy92MS9wcm9kdWN0X3NlcnZpY2UucHJvdG8SC3NlcnZpY2VzLnYxIkMKFENyZWF0ZVByb2R1Y3RSZXF1ZXN0EisKB3Byb2R1Y3QYASABKAsyFS5wcm9kdWN0cGIudjEuUHJvZHVjdEID4EECIkwKFUNyZWF0ZVByb2R1Y3RSZXNwb25zZRImCgdwcm9kdWN0GAEgASgLMhUucHJvZHVjdHBiLnYxLlByb2R1Y3QSCwoDbXNnGAIgASgJItsBChFHZXRQcm9kdWN0UmVxdWVzdBLFAQoKcHJvZHVjdF9pZBgBIAEoCUKwAeBBArpIqQG6AaUBChFwcm9kdWN0LmlkLmZvcm1hdBJtVGhlIHByb3ZpZGVkIElEIGlzIG5vdCBhIHZhbGlkIE1vbmdvREIgaWRlbnRpZmllci4gSXQgc2hvdWxkIGJlIGEgMjQtY2hhcmFjdGVyIGhleGFkZWNpbWFsIHN0cmluZyAoMC05LCBhLWYpLhohdGhpcy5tYXRjaGVzKCdeWzAtOWEtZkEtRl17MjR9JCcpIjwKEkdldFByb2R1Y3RSZXNwb25zZRImCgdwcm9kdWN0GAEgASgLMhUucHJvZHVjdHBiLnYxLlByb2R1Y3QiPgoTR2V0UHJvZHVjdHNSZXNwb25zZRInCghwcm9kdWN0cxgBIAMoCzIVLnByb2R1Y3RwYi52MS5Qcm9kdWN0IkMKFFVwZGF0ZVByb2R1Y3RSZXF1ZXN0EisKB3Byb2R1Y3QYASABKAsyFS5wcm9kdWN0cGIudjEuUHJvZHVjdEID4EECIkwKFVVwZGF0ZVByb2R1Y3RSZXNwb25zZRImCgdwcm9kdWN0GAEgASgLMhUucHJvZHVjdHBiLnYxLlByb2R1Y3QSCwoDbXNnGAIgASgJIt4BChREZWxldGVQcm9kdWN0UmVxdWVzdBLFAQoKcHJvZHVjdF9pZBgBIAEoCUKwAeBBArpIqQG6AaUBChFwcm9kdWN0LmlkLmZvcm1hdBJtVGhlIHByb3ZpZGVkIElEIGlzIG5vdCBhIHZhbGlkIE1vbmdvREIgaWRlbnRpZmllci4gSXQgc2hvdWxkIGJlIGEgMjQtY2hhcmFjdGVyIGhleGFkZWNpbWFsIHN0cmluZyAoMC05LCBhLWYpLhohdGhpcy5tYXRjaGVzKCdeWzAtOWEtZkEtRl17MjR9JCcpIiQKFURlbGV0ZVByb2R1Y3RSZXNwb25zZRILCgNtc2cYASABKAky8gQKDlByb2R1Y3RTZXJ2aWNlEngKDUNyZWF0ZVByb2R1Y3QSIS5zZXJ2aWNlcy52MS5DcmVhdGVQcm9kdWN0UmVxdWVzdBoiLnNlcnZpY2VzLnYxLkNyZWF0ZVByb2R1Y3RSZXNwb25zZSIggtPkkwIaOgEqIhUvcHJvZHVjdHNhcGkvcHJvZHVjdHMSfAoKR2V0UHJvZHVjdBIeLnNlcnZpY2VzLnYxLkdldFByb2R1Y3RSZXF1ZXN0Gh8uc2VydmljZXMudjEuR2V0UHJvZHVjdFJlc3BvbnNlIi2QAgGC0+STAiQSIi9wcm9kdWN0c2FwaS9wcm9kdWN0cy97cHJvZHVjdF9pZH0SaQoLR2V0UHJvZHVjdHMSFi5nb29nbGUucHJvdG9idWYuRW1wdHkaIC5zZXJ2aWNlcy52MS5HZXRQcm9kdWN0c1Jlc3BvbnNlIiCQAgGC0+STAhcSFS9wcm9kdWN0c2FwaS9wcm9kdWN0cxJ4Cg1VcGRhdGVQcm9kdWN0EiEuc2VydmljZXMudjEuVXBkYXRlUHJvZHVjdFJlcXVlc3QaIi5zZXJ2aWNlcy52MS5VcGRhdGVQcm9kdWN0UmVzcG9uc2UiIILT5JMCGjoBKhoVL3Byb2R1Y3RzYXBpL3Byb2R1Y3RzEoIBCg1EZWxldGVQcm9kdWN0EiEuc2VydmljZXMudjEuRGVsZXRlUHJvZHVjdFJlcXVlc3QaIi5zZXJ2aWNlcy52MS5EZWxldGVQcm9kdWN0UmVzcG9uc2UiKoLT5JMCJCoiL3Byb2R1Y3RzYXBpL3Byb2R1Y3RzL3twcm9kdWN0X2lkfUKXAwoPY29tLnNlcnZpY2VzLnYxQhNQcm9kdWN0U2VydmljZVByb3RvUAFaMGVjc19nb3ZlbC9ncnBjc2VydmljZS9nZW4vc2VydmljZXMvdjE7c2VydmljZXN2MaICA1NYWKoCC1NlcnZpY2VzLlYxygILU2VydmljZXNcVjHiAhdTZXJ2aWNlc1xWMVxHUEJNZXRhZGF0YeoCDFNlcnZpY2VzOjpWMZJB7gESwwEKCEVjaG8gQVBJIlgKFGdSUEMtR2F0ZXdheSBwcm9qZWN0Ei5odHRwczovL2dpdGh1Yi5jb20vZ3JwYy1lY29zeXN0ZW0vZ3JwYy1nYXRld2F5GhBub25lQGV4YW1wbGUuY29tKlgKFEJTRCAzLUNsYXVzZSBMaWNlbnNlEkBodHRwczovL2dpdGh1Yi5jb20vZ3JwYy1lY29zeXN0ZW0vZ3JwYy1nYXRld2F5L2Jsb2IvbWFpbi9MSUNFTlNFMgMxLjAqAgECMhBhcHBsaWNhdGlvbi9qc29uOhBhcHBsaWNhdGlvbi9qc29uYghlZGl0aW9uc3DoBw", [file_productpb_v1_product, file_google_api_annotations, file_protoc_gen_openapiv2_options_annotations, file_google_api_field_behavior, file_google_protobuf_empty, file_buf_validate_validate]);
 
 /**
  * @generated from message services.v1.CreateProductRequest
@@ -61,9 +64,9 @@ export const CreateProductResponseSchema: GenMessage<CreateProductResponse> = /*
  */
 export type GetProductRequest = Message<"services.v1.GetProductRequest"> & {
   /**
-   * @generated from field: int32 product_id = 1;
+   * @generated from field: string product_id = 1;
    */
-  productId: number;
+  productId: string;
 };
 
 /**
@@ -91,6 +94,23 @@ export const GetProductResponseSchema: GenMessage<GetProductResponse> = /*@__PUR
   messageDesc(file_services_v1_product_service, 3);
 
 /**
+ * @generated from message services.v1.GetProductsResponse
+ */
+export type GetProductsResponse = Message<"services.v1.GetProductsResponse"> & {
+  /**
+   * @generated from field: repeated productpb.v1.Product products = 1;
+   */
+  products: Product[];
+};
+
+/**
+ * Describes the message services.v1.GetProductsResponse.
+ * Use `create(GetProductsResponseSchema)` to create a new message.
+ */
+export const GetProductsResponseSchema: GenMessage<GetProductsResponse> = /*@__PURE__*/
+  messageDesc(file_services_v1_product_service, 4);
+
+/**
  * @generated from message services.v1.UpdateProductRequest
  */
 export type UpdateProductRequest = Message<"services.v1.UpdateProductRequest"> & {
@@ -105,7 +125,7 @@ export type UpdateProductRequest = Message<"services.v1.UpdateProductRequest"> &
  * Use `create(UpdateProductRequestSchema)` to create a new message.
  */
 export const UpdateProductRequestSchema: GenMessage<UpdateProductRequest> = /*@__PURE__*/
-  messageDesc(file_services_v1_product_service, 4);
+  messageDesc(file_services_v1_product_service, 5);
 
 /**
  * @generated from message services.v1.UpdateProductResponse
@@ -127,16 +147,16 @@ export type UpdateProductResponse = Message<"services.v1.UpdateProductResponse">
  * Use `create(UpdateProductResponseSchema)` to create a new message.
  */
 export const UpdateProductResponseSchema: GenMessage<UpdateProductResponse> = /*@__PURE__*/
-  messageDesc(file_services_v1_product_service, 5);
+  messageDesc(file_services_v1_product_service, 6);
 
 /**
  * @generated from message services.v1.DeleteProductRequest
  */
 export type DeleteProductRequest = Message<"services.v1.DeleteProductRequest"> & {
   /**
-   * @generated from field: int32 product_id = 1;
+   * @generated from field: string product_id = 1;
    */
-  productId: number;
+  productId: string;
 };
 
 /**
@@ -144,7 +164,7 @@ export type DeleteProductRequest = Message<"services.v1.DeleteProductRequest"> &
  * Use `create(DeleteProductRequestSchema)` to create a new message.
  */
 export const DeleteProductRequestSchema: GenMessage<DeleteProductRequest> = /*@__PURE__*/
-  messageDesc(file_services_v1_product_service, 6);
+  messageDesc(file_services_v1_product_service, 7);
 
 /**
  * @generated from message services.v1.DeleteProductResponse
@@ -161,7 +181,7 @@ export type DeleteProductResponse = Message<"services.v1.DeleteProductResponse">
  * Use `create(DeleteProductResponseSchema)` to create a new message.
  */
 export const DeleteProductResponseSchema: GenMessage<DeleteProductResponse> = /*@__PURE__*/
-  messageDesc(file_services_v1_product_service, 7);
+  messageDesc(file_services_v1_product_service, 8);
 
 /**
  * ProductService es el encargado de gestionar el inventario.
@@ -190,6 +210,18 @@ export const ProductService: GenService<{
     methodKind: "unary";
     input: typeof GetProductRequestSchema;
     output: typeof GetProductResponseSchema;
+  },
+  /**
+   *
+   * GetProducts obtene todos os produtos.
+   * Retorna uma lista com todos os produtos existentes.
+   *
+   * @generated from rpc services.v1.ProductService.GetProducts
+   */
+  getProducts: {
+    methodKind: "unary";
+    input: typeof EmptySchema;
+    output: typeof GetProductsResponseSchema;
   },
   /**
    *

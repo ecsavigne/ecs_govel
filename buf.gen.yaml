@@ -21,7 +21,7 @@ plugins:
     out: grpcservice/gen
     opt:
       - paths=source_relative
-      - simple
+      # - simple // gera codigo de grpc parecido ao compilador de grpc de google else definição de connectrpc
 
   # Genera los mensajes (clases de TS/JS y client/server connect-rpc) para el frontend
   # github use and docs: https://github.com/bufbuild/protobuf-es

@@ -10,10 +10,21 @@ import (
 	"net/http"
 
 	"connectrpc.com/connect"
+	"google.golang.org/protobuf/types/known/emptypb"
 )
 
-func createProductServer(cl conn.ProductServiceClient, pR *pbService.CreateProductRequest) *pbService.CreateProductResponse {
+func createProductServer(cl conn.ProductServiceClient, pR *connect.Request[pbService.CreateProductRequest]) *connect.Response[pbService.CreateProductResponse] {
 	resp, err := cl.CreateProduct(context.Background(), pR)
+	if err != nil {
+		log.Fatalln(err)
+	}
+
+	return resp
+}
+
+func getProducts(cl conn.ProductServiceClient, pR *connect.Request[emptypb.Empty]) *connect.Response[pbService.GetProductsResponse] {
+	pR.Header().Set("X-User-ID", "1342342342423")
+	resp, err := cl.GetProducts(context.Background(), pR)
 	if err != nil {
 		log.Fatalln(err)
 	}
@@ -54,6 +65,7 @@ func main() {
 
 	fmt.Println("Call RPC with, 'ProductRequest' = ", req.GetProduct())
 
-	resp := createProductServer(cl, req)
-	fmt.Println("Response from derver RPC (ProductResponse): ", resp.GetMsg())
+	// resp := createProductServer(cl, connect.NewRequest(req))
+	resp := getProducts(cl, connect.NewRequest(&emptypb.Empty{}))
+	fmt.Println("Response from derver RPC (ProductResponse): ", resp.Msg)
 }
