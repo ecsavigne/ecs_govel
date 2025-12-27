@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"time"
 
 	"connectrpc.com/connect"
 	"google.golang.org/protobuf/types/known/emptypb"
@@ -39,7 +40,10 @@ func createProductClient() conn.ProductServiceClient {
 
 	client := conn.NewProductServiceClient(
 		&http.Client{Transport: &http.Transport{
-			Protocols: p,
+			MaxIdleConns:        100,
+			MaxIdleConnsPerHost: 10,
+			IdleConnTimeout:     90 * time.Second,
+			Protocols:           p,
 		}},
 		"http://localhost:8080",
 		connect.WithGRPC(),
