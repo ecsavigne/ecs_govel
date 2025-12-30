@@ -1,8 +1,11 @@
 package configs
 
 import (
+	"context"
 	"fmt"
 	"net/http"
+	"os"
+	"strings"
 
 	"github.com/gin-gonic/gin"
 	"golang.org/x/sync/errgroup"
@@ -55,34 +58,47 @@ func CreateProtoHTTP2NotTLS() *http.Protocols {
 
 func httpRun() {
 	// ServerMetrics
+	GROUP_WAIT, ctx := errgroup.WithContext(context.Background()) // WithContext.
+	GROUP_WAIT.SetLimit(3)
 	if IsX1() { //metricEngine
 		GROUP_WAIT.Go(func() error {
-			fmt.Printf("Server Metrics in %s:%s\n", HTTP_SERVER_HOST_METRICS, HTTP_SERVER_PORT_METRICS)
-			return servMetric()
+			Log.Sub("Configs").Infof("Server Metrics in %s:%s\n", HTTP_SERVER_HOST_METRICS, HTTP_SERVER_PORT_METRICS)
+			return servMetric(ctx)
 		})
 
 		// ServerDocsApi
 		GROUP_WAIT.Go(func() error {
-			fmt.Printf("Service Webhook in %s:%s\n", HTTP_SERVER_HOST_WEBHOOK, HTTP_SERVER_PORT_WEBHOOK)
-			return servDocApi()
+			Log.Sub("Configs").Infof("Service DocsApi in %s:%s\n", HTTP_SERVER_HOST_DOC_API, HTTP_SERVER_PORT_DOC_API)
+			return servDocApi(ctx)
 		})
 	}
 
 	// Servicio
-	host := fmt.Sprintf("%s:%s", HTTP_SERVER_HOST, HTTP_SERVER_PORT)
-	secureServer(engine, host)
+	if strings.ToLower(TYPE_SERVICES) == "rest" {
+		host := fmt.Sprintf("%s:%s", HTTP_SERVER_HOST, HTTP_SERVER_PORT)
+		secureServer(engine, host)
 
-	server := &http.Server{
-		Addr:      host,
-		Handler:   engine,
-		Protocols: CreateProtoHTTP2NotTLS(),
+		server := &http.Server{
+			Addr:      host,
+			Handler:   engine,
+			Protocols: CreateProtoHTTP2NotTLS(),
+		}
+		// http2.ConfigureServer(server, &http2.Server{})
+
+		GROUP_WAIT.Go(func() error {
+			Log.Sub("Configs").Infof("Service Web in: %s:%s\n", HTTP_SERVER_HOST, HTTP_SERVER_PORT)
+			go func() {
+				<-ctx.Done()
+				server.Shutdown(ctx)
+			}()
+
+			if err := server.ListenAndServe(); err != nil {
+				return fmt.Errorf("server Web - %s", err.Error())
+			}
+
+			return nil
+		})
 	}
-	// http2.ConfigureServer(server, &http2.Server{})
-
-	GROUP_WAIT.Go(func() error {
-		fmt.Printf("Service Web in: %s:%s\n", HTTP_SERVER_HOST, HTTP_SERVER_PORT)
-		return server.ListenAndServe()
-	})
 
 	// // ServerWebhook
 	// GROUP_WAIT.Go(func() error {
@@ -91,40 +107,41 @@ func httpRun() {
 	// })
 
 	if err := GROUP_WAIT.Wait(); err != nil {
-		fmt.Println("Ocurrio un error con la sincronizacion de server: ", err.Error())
+		Log.Sub("Configs").Errorf("Ocurr one error sync: %s\n", err.Error())
+		os.Exit(2)
 	}
 }
 
-func servMetric() error {
+func servMetric(ctx context.Context) error {
 	if HTTP_SERVER_HOST_METRICS == "" && HTTP_SERVER_PORT_METRICS == "" {
 		return nil
 	} else {
-		if HTTP_SERVER_HOST_METRICS == "" {
-			HTTP_SERVER_HOST_METRICS = HTTP_SERVER_HOST
-		}
+		// if HTTP_SERVER_HOST_METRICS == "" {
+		// 	HTTP_SERVER_HOST_METRICS = HTTP_SERVER_HOST
+		// }
 		if HTTP_SERVER_PORT_METRICS == "" {
 			HTTP_SERVER_PORT_METRICS = "8081"
 		}
 	}
 
-	host := fmt.Sprintf("%s:%s", HTTP_SERVER_HOST_METRICS, HTTP_SERVER_PORT_METRICS)
+	host := fmt.Sprintf(":%s", HTTP_SERVER_PORT_METRICS)
 	secureServer(metricEngine, host)
-	// serverMetric := &http.Server{
-	// 	Addr:      host,
-	// 	Handler:   metricEngine,
-	// 	Protocols: CreateProtoHTTP2NotTLS(),
-	// }
-	// Not err:= http2.ConfigureServer(serverMetric, &http2.Server{})
-	// if err != nil {
-	// 	fmt.Println("Ocurrio un error con la configuring de server Metrics: ", err.Error())
-	// }
+	serverMetric := &http.Server{
+		Addr:      host,
+		Handler:   metricEngine,
+		Protocols: CreateProtoHTTP2NotTLS(),
+	}
 
-	// go func() {
-	// err := serverMetric.ListenAndServe()
-	// if err != nil {
-	// 	fmt.Println("Ocurrio un error con la sincronizacion de server Metrics: ", err.Error())
-	// }
-	// }()
+	go func() {
+		<-ctx.Done()
+		serverMetric.Shutdown(ctx)
+	}()
+
+	err := serverMetric.ListenAndServe()
+	if err != nil {
+		return fmt.Errorf("server Metric - %s", err.Error())
+	}
+
 	return nil
 }
 
@@ -157,7 +174,7 @@ func servWebhook() error {
 	return nil
 }
 
-func servDocApi() error {
+func servDocApi(ctx context.Context) error {
 	if HTTP_SERVER_HOST_DOC_API == "" && HTTP_SERVER_PORT_DOC_API == "" {
 		return nil
 	} else {
@@ -179,10 +196,15 @@ func servDocApi() error {
 		Protocols: CreateProtoHTTP2NotTLS(),
 	}
 
-	// Not err := http2.ConfigureServer(ServerDocsApi, &http2.Server{})
-	// if err != nil {
-	// 	fmt.Println("Ocurrio un error con la configuring de server WEBHOOK: ", err.Error())
-	// }
+	go func() {
+		<-ctx.Done()
+		ServerDocsApi.Shutdown(ctx)
+	}()
 
-	return ServerDocsApi.ListenAndServe()
+	err := ServerDocsApi.ListenAndServe()
+	if err != nil {
+		return fmt.Errorf("server DocApi - %s", err.Error())
+	}
+
+	return nil
 }

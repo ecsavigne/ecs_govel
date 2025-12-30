@@ -17,7 +17,7 @@ import "buf/validate/validate.proto";
      version: "1.0";
      description: "";
      contact: {
-       name: "gRPC-Gateway project";
+       name: "gRPC-Gateway && HTTP/json rest project with buf";
        url: "https://github.com/grpc-ecosystem/grpc-gateway";
        email: "none@example.com";
      };
@@ -131,6 +131,16 @@ service ProductService {
     rpc DeleteProduct(DeleteProductRequest) returns (DeleteProductResponse) {
         option (google.api.http) = {
             delete: "/productsapi/products/{product_id}"
+        };
+    }
+
+    /*
+     * DeleteProduct deleta um produto existente de Test con Robert.
+     * Retorna uma mensagem de sucesso ou erro.
+     */
+    rpc DeleteProduct2(DeleteProductRequest) returns (DeleteProductResponse) {
+        option (google.api.http) = {
+            delete: "/productsapi/products_reereererer/{product_id}"
         };
     }
 }

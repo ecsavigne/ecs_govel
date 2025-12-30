@@ -756,16 +756,17 @@ const file_services_v1_product_service_proto_rawDesc = "" +
 	"product_id\x18\x01 \x01(\tB\xb0\x01\xe0A\x02\xbaH\xa9\x01\xba\x01\xa5\x01\n" +
 	"\x11product.id.format\x12mThe provided ID is not a valid MongoDB identifier. It should be a 24-character hexadecimal string (0-9, a-f).\x1a!this.matches('^[0-9a-fA-F]{24}$')R\tproductId\")\n" +
 	"\x15DeleteProductResponse\x12\x10\n" +
-	"\x03msg\x18\x01 \x01(\tR\x03msg2\xf2\x04\n" +
+	"\x03msg\x18\x01 \x01(\tR\x03msg2\x84\x06\n" +
 	"\x0eProductService\x12x\n" +
 	"\rCreateProduct\x12!.services.v1.CreateProductRequest\x1a\".services.v1.CreateProductResponse\" \x82\xd3\xe4\x93\x02\x1a:\x01*\"\x15/productsapi/products\x12|\n" +
 	"\n" +
 	"GetProduct\x12\x1e.services.v1.GetProductRequest\x1a\x1f.services.v1.GetProductResponse\"-\x82\xd3\xe4\x93\x02$\x12\"/productsapi/products/{product_id}\x90\x02\x01\x12i\n" +
 	"\vGetProducts\x12\x16.google.protobuf.Empty\x1a .services.v1.GetProductsResponse\" \x82\xd3\xe4\x93\x02\x17\x12\x15/productsapi/products\x90\x02\x01\x12x\n" +
 	"\rUpdateProduct\x12!.services.v1.UpdateProductRequest\x1a\".services.v1.UpdateProductResponse\" \x82\xd3\xe4\x93\x02\x1a:\x01*\x1a\x15/productsapi/products\x12\x82\x01\n" +
-	"\rDeleteProduct\x12!.services.v1.DeleteProductRequest\x1a\".services.v1.DeleteProductResponse\"*\x82\xd3\xe4\x93\x02$*\"/productsapi/products/{product_id}B\x97\x03\x92A\xee\x01\x12\xc3\x01\n" +
-	"\bEcho API\"X\n" +
-	"\x14gRPC-Gateway project\x12.https://github.com/grpc-ecosystem/grpc-gateway\x1a\x10none@example.com*X\n" +
+	"\rDeleteProduct\x12!.services.v1.DeleteProductRequest\x1a\".services.v1.DeleteProductResponse\"*\x82\xd3\xe4\x93\x02$*\"/productsapi/products/{product_id}\x12\x8f\x01\n" +
+	"\x0eDeleteProduct2\x12!.services.v1.DeleteProductRequest\x1a\".services.v1.DeleteProductResponse\"6\x82\xd3\xe4\x93\x020*./productsapi/products_reereererer/{product_id}B\xb2\x03\x92A\x89\x02\x12\xde\x01\n" +
+	"\bEcho API\"s\n" +
+	"/gRPC-Gateway && HTTP/json rest project with buf\x12.https://github.com/grpc-ecosystem/grpc-gateway\x1a\x10none@example.com*X\n" +
 	"\x14BSD 3-Clause License\x12@https://github.com/grpc-ecosystem/grpc-gateway/blob/main/LICENSE2\x031.0*\x02\x01\x022\x10application/json:\x10application/json\n" +
 	"\x0fcom.services.v1B\x13ProductServiceProtoP\x01Z0ecs_govel/grpcservice/gen/services/v1;servicesv1\xa2\x02\x03SXX\xaa\x02\vServices.V1\xca\x02\vServices\\V1\xe2\x02\x17Services\\V1\\GPBMetadata\xea\x02\fServices::V1b\beditionsp\xe8\a"
 
@@ -795,13 +796,15 @@ var file_services_v1_product_service_proto_depIdxs = []int32{
 	10, // 8: services.v1.ProductService.GetProducts:input_type -> google.protobuf.Empty
 	5,  // 9: services.v1.ProductService.UpdateProduct:input_type -> services.v1.UpdateProductRequest
 	7,  // 10: services.v1.ProductService.DeleteProduct:input_type -> services.v1.DeleteProductRequest
-	1,  // 11: services.v1.ProductService.CreateProduct:output_type -> services.v1.CreateProductResponse
-	3,  // 12: services.v1.ProductService.GetProduct:output_type -> services.v1.GetProductResponse
-	4,  // 13: services.v1.ProductService.GetProducts:output_type -> services.v1.GetProductsResponse
-	6,  // 14: services.v1.ProductService.UpdateProduct:output_type -> services.v1.UpdateProductResponse
-	8,  // 15: services.v1.ProductService.DeleteProduct:output_type -> services.v1.DeleteProductResponse
-	11, // [11:16] is the sub-list for method output_type
-	6,  // [6:11] is the sub-list for method input_type
+	7,  // 11: services.v1.ProductService.DeleteProduct2:input_type -> services.v1.DeleteProductRequest
+	1,  // 12: services.v1.ProductService.CreateProduct:output_type -> services.v1.CreateProductResponse
+	3,  // 13: services.v1.ProductService.GetProduct:output_type -> services.v1.GetProductResponse
+	4,  // 14: services.v1.ProductService.GetProducts:output_type -> services.v1.GetProductsResponse
+	6,  // 15: services.v1.ProductService.UpdateProduct:output_type -> services.v1.UpdateProductResponse
+	8,  // 16: services.v1.ProductService.DeleteProduct:output_type -> services.v1.DeleteProductResponse
+	8,  // 17: services.v1.ProductService.DeleteProduct2:output_type -> services.v1.DeleteProductResponse
+	12, // [12:18] is the sub-list for method output_type
+	6,  // [6:12] is the sub-list for method input_type
 	6,  // [6:6] is the sub-list for extension type_name
 	6,  // [6:6] is the sub-list for extension extendee
 	0,  // [0:6] is the sub-list for field type_name

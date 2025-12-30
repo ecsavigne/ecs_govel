@@ -49,6 +49,9 @@ const (
 	// ProductServiceDeleteProductProcedure is the fully-qualified name of the ProductService's
 	// DeleteProduct RPC.
 	ProductServiceDeleteProductProcedure = "/services.v1.ProductService/DeleteProduct"
+	// ProductServiceDeleteProduct2Procedure is the fully-qualified name of the ProductService's
+	// DeleteProduct2 RPC.
+	ProductServiceDeleteProduct2Procedure = "/services.v1.ProductService/DeleteProduct2"
 )
 
 // ProductServiceClient is a client for the services.v1.ProductService service.
@@ -68,6 +71,9 @@ type ProductServiceClient interface {
 	// DeleteProduct deleta um produto existente.
 	// Retorna uma mensagem de sucesso ou erro.
 	DeleteProduct(context.Context, *connect.Request[v1.DeleteProductRequest]) (*connect.Response[v1.DeleteProductResponse], error)
+	// DeleteProduct deleta um produto existente de Test con Robert.
+	// Retorna uma mensagem de sucesso ou erro.
+	DeleteProduct2(context.Context, *connect.Request[v1.DeleteProductRequest]) (*connect.Response[v1.DeleteProductResponse], error)
 }
 
 // NewProductServiceClient constructs a client for the services.v1.ProductService service. By
@@ -113,16 +119,23 @@ func NewProductServiceClient(httpClient connect.HTTPClient, baseURL string, opts
 			connect.WithSchema(productServiceMethods.ByName("DeleteProduct")),
 			connect.WithClientOptions(opts...),
 		),
+		deleteProduct2: connect.NewClient[v1.DeleteProductRequest, v1.DeleteProductResponse](
+			httpClient,
+			baseURL+ProductServiceDeleteProduct2Procedure,
+			connect.WithSchema(productServiceMethods.ByName("DeleteProduct2")),
+			connect.WithClientOptions(opts...),
+		),
 	}
 }
 
 // productServiceClient implements ProductServiceClient.
 type productServiceClient struct {
-	createProduct *connect.Client[v1.CreateProductRequest, v1.CreateProductResponse]
-	getProduct    *connect.Client[v1.GetProductRequest, v1.GetProductResponse]
-	getProducts   *connect.Client[emptypb.Empty, v1.GetProductsResponse]
-	updateProduct *connect.Client[v1.UpdateProductRequest, v1.UpdateProductResponse]
-	deleteProduct *connect.Client[v1.DeleteProductRequest, v1.DeleteProductResponse]
+	createProduct  *connect.Client[v1.CreateProductRequest, v1.CreateProductResponse]
+	getProduct     *connect.Client[v1.GetProductRequest, v1.GetProductResponse]
+	getProducts    *connect.Client[emptypb.Empty, v1.GetProductsResponse]
+	updateProduct  *connect.Client[v1.UpdateProductRequest, v1.UpdateProductResponse]
+	deleteProduct  *connect.Client[v1.DeleteProductRequest, v1.DeleteProductResponse]
+	deleteProduct2 *connect.Client[v1.DeleteProductRequest, v1.DeleteProductResponse]
 }
 
 // CreateProduct calls services.v1.ProductService.CreateProduct.
@@ -150,6 +163,11 @@ func (c *productServiceClient) DeleteProduct(ctx context.Context, req *connect.R
 	return c.deleteProduct.CallUnary(ctx, req)
 }
 
+// DeleteProduct2 calls services.v1.ProductService.DeleteProduct2.
+func (c *productServiceClient) DeleteProduct2(ctx context.Context, req *connect.Request[v1.DeleteProductRequest]) (*connect.Response[v1.DeleteProductResponse], error) {
+	return c.deleteProduct2.CallUnary(ctx, req)
+}
+
 // ProductServiceHandler is an implementation of the services.v1.ProductService service.
 type ProductServiceHandler interface {
 	// CreateProduct cria um novo produto.
@@ -167,6 +185,9 @@ type ProductServiceHandler interface {
 	// DeleteProduct deleta um produto existente.
 	// Retorna uma mensagem de sucesso ou erro.
 	DeleteProduct(context.Context, *connect.Request[v1.DeleteProductRequest]) (*connect.Response[v1.DeleteProductResponse], error)
+	// DeleteProduct deleta um produto existente de Test con Robert.
+	// Retorna uma mensagem de sucesso ou erro.
+	DeleteProduct2(context.Context, *connect.Request[v1.DeleteProductRequest]) (*connect.Response[v1.DeleteProductResponse], error)
 }
 
 // NewProductServiceHandler builds an HTTP handler from the service implementation. It returns the
@@ -208,6 +229,12 @@ func NewProductServiceHandler(svc ProductServiceHandler, opts ...connect.Handler
 		connect.WithSchema(productServiceMethods.ByName("DeleteProduct")),
 		connect.WithHandlerOptions(opts...),
 	)
+	productServiceDeleteProduct2Handler := connect.NewUnaryHandler(
+		ProductServiceDeleteProduct2Procedure,
+		svc.DeleteProduct2,
+		connect.WithSchema(productServiceMethods.ByName("DeleteProduct2")),
+		connect.WithHandlerOptions(opts...),
+	)
 	return "/services.v1.ProductService/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		switch r.URL.Path {
 		case ProductServiceCreateProductProcedure:
@@ -220,6 +247,8 @@ func NewProductServiceHandler(svc ProductServiceHandler, opts ...connect.Handler
 			productServiceUpdateProductHandler.ServeHTTP(w, r)
 		case ProductServiceDeleteProductProcedure:
 			productServiceDeleteProductHandler.ServeHTTP(w, r)
+		case ProductServiceDeleteProduct2Procedure:
+			productServiceDeleteProduct2Handler.ServeHTTP(w, r)
 		default:
 			http.NotFound(w, r)
 		}
@@ -247,4 +276,8 @@ func (UnimplementedProductServiceHandler) UpdateProduct(context.Context, *connec
 
 func (UnimplementedProductServiceHandler) DeleteProduct(context.Context, *connect.Request[v1.DeleteProductRequest]) (*connect.Response[v1.DeleteProductResponse], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("services.v1.ProductService.DeleteProduct is not implemented"))
+}
+
+func (UnimplementedProductServiceHandler) DeleteProduct2(context.Context, *connect.Request[v1.DeleteProductRequest]) (*connect.Response[v1.DeleteProductResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("services.v1.ProductService.DeleteProduct2 is not implemented"))
 }

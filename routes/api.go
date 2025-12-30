@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/Cyprinus12138/otelgin"
 	"github.com/gin-gonic/gin"
 )
 
@@ -39,6 +40,7 @@ func RutaTestFunc1(c *gin.Context) {
 }
 
 func loadApi(g *gin.Engine) {
-	// Sin parametro 1
+	// Sin parametro
+	g.Use(otelgin.Middleware("productsapi"))
 	g.GET("/Test", middleware.CorsMiddleware(), RutaTestFunc)
 }

@@ -4,7 +4,7 @@
     "title": "Echo API",
     "version": "1.0",
     "contact": {
-      "name": "gRPC-Gateway project",
+      "name": "gRPC-Gateway \u0026\u0026 HTTP/json rest project with buf",
       "url": "https://github.com/grpc-ecosystem/grpc-gateway",
       "email": "none@example.com"
     },
@@ -147,6 +147,37 @@
       "delete": {
         "summary": "DeleteProduct deleta um produto existente.\nRetorna uma mensagem de sucesso ou erro.",
         "operationId": "ProductService_DeleteProduct",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1DeleteProductResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "productId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "ProductService"
+        ]
+      }
+    },
+    "/productsapi/products_reereererer/{productId}": {
+      "delete": {
+        "summary": "DeleteProduct deleta um produto existente de Test con Robert.\nRetorna uma mensagem de sucesso ou erro.",
+        "operationId": "ProductService_DeleteProduct2",
         "responses": {
           "200": {
             "description": "A successful response.",

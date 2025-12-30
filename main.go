@@ -5,18 +5,31 @@ import (
 
 	// "ecs_govel/app/webhooks"
 	config "ecs_govel/configs"
-	// grpcserverinit "ecs_govel/grpcservice/app/server"
-	// grpcserverinit "ecs_govel/grpcservice/app/server"
+	grpcserverinit "ecs_govel/grpcservice/app/server"
 	_ "ecs_govel/routes"
+	"os"
+	"os/signal"
+	"strings"
+	"syscall"
 )
 
-func main() {
+func run() {
 	//Test de Rutas
 	// config.RouterList(config.GetEngine())
 	//config.F_prepare_collection_postman("")
 
-	config.AppRun()
+	go config.AppRun()
 
 	// Init GrpcService
-	// grpcserverinit.InitGrpcService()
+	if strings.ToLower(config.TYPE_SERVICES) == "grpc" {
+		grpcserverinit.InitGrpcService()
+	} else {
+		wait := make(chan os.Signal, 1)
+		signal.Notify(wait, os.Interrupt, syscall.SIGTERM)
+		<-wait
+	}
+}
+
+func main() {
+	run()
 }

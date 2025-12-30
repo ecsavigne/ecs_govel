@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"ecs_govel/configs"
 	pbProduct "ecs_govel/grpcservice/gen/productpb/v1"
 	pbService "ecs_govel/grpcservice/gen/services/v1"
 	conn "ecs_govel/grpcservice/gen/services/v1/servicesv1connect"
@@ -47,6 +48,7 @@ func createProductClient() conn.ProductServiceClient {
 		}},
 		"http://localhost:8080",
 		connect.WithGRPC(),
+		connect.WithInterceptors(configs.GetOtelInterceptor()),
 		// connect.WithHTTPGet(),
 	)
 

@@ -20,3 +20,6 @@
 
     router.Run(":8080")
 ```
+
+# Metricas 
+1. Se o port Default = 8081, ele pode ser modificado em var ambiente

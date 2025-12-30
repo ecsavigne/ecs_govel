@@ -12,7 +12,7 @@ import (
 // log
 var (
 	Log, LogTemp logecs.Logger
-	f            *os.File
+	fileLogger   *os.File
 )
 
 func prepare_logger() {
@@ -36,7 +36,7 @@ func prepare_logger() {
 	}
 
 	// open file if not exists and append data or create
-	f, err = os.OpenFile(APP_FILE_LOGGER, os.O_CREATE|os.O_WRONLY|os.O_APPEND, os.ModePerm)
+	fileLogger, err = os.OpenFile(APP_FILE_LOGGER, os.O_CREATE|os.O_WRONLY|os.O_APPEND, os.ModePerm)
 	if err != nil {
 		Log.Errorf("Error creating logger file in %s, error is: %s\n", APP_FILE_LOGGER, err.Error())
 	}

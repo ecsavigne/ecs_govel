@@ -12,27 +12,6 @@ import (
 	"github.com/spf13/viper"
 )
 
-var (
-	engine                    *gin.Engine
-	metricEngine              *gin.Engine
-	docApiEngine              *gin.Engine
-	APP_MAX_CONNECTIONS       int
-	APP_CANT_X                int
-	APP_FILE_LOGGER           string
-	APP_URL_BASE_WEBHOOK      string
-	APP_URL_FILE_STORE        string
-	APP_SESSIONS              string
-	APP_MESSAJE_FILES         string
-	APP_AVATAR_FILES          string
-	APP_NAME                  string
-	APP_NAME_X1               string
-	APP_PROCESS_EVENT_RECIVED bool
-	APP_MODE                  string
-	APP_PORT_TEST             string
-	WEBHOOK_SOCKET            string
-	DOC_API_PATH              string
-)
-
 func init() {
 	fmt.Println("init Config package")
 	prepare_app()
@@ -52,9 +31,15 @@ func GetDocApiEngine() *gin.Engine {
 
 // Configurar el motor de Gin
 func prepare_engine() {
-	gin.DefaultWriter = io.MultiWriter(f, os.Stdout)
+	if strings.ToLower(APP_MODE) == "develop" {
+		fmt.Println("dEVELOP MODE")
+		gin.SetMode(gin.DebugMode)
+	} else {
+		fmt.Println("rELEASE MODE")
+		gin.SetMode(gin.ReleaseMode)
+		gin.DefaultWriter = io.MultiWriter(fileLogger, os.Stdout)
+	}
 
-	gin.SetMode(gin.ReleaseMode)
 	if IsX1() {
 		//TODO: Configurar el motor de Gin para metricas no esta implementada la logica aun
 		// fmt.Println("Configurar el motor de Gin para metricas y documentacion")
@@ -106,7 +91,6 @@ func prepare_env() {
 		APP_MESSAJE_FILES = viper.GetString("APP_MESSAJE_FILES")
 		APP_NAME_X1 = viper.GetString("APP_NAME_X1")
 		APP_NAME = viper.GetString("APP_NAME")
-		APP_MODE = viper.GetString("APP_MODE")
 		DOC_API_PATH = viper.GetString("DOC_API_PATH")
 
 		// Variables .env HTTP_SERVER
@@ -118,21 +102,49 @@ func prepare_env() {
 		HTTP_SERVER_PORT_DOC_API = viper.GetString("HTTP_SERVER_PORT_DOC_API")
 		HTTP_SERVER_PORT_METRICS = viper.GetString("HTTP_SERVER_PORT_METRICS")
 		HTTP_SERVER_PORT_WEBHOOK = viper.GetString("HTTP_SERVER_PORT_WEBHOOK")
+		TYPE_SERVICES = viper.GetString("TYPE_SERVICES")
 
-		port := "8080"
-		if strings.ToLower(APP_MODE) == "develop" {
-			if HTTP_SERVER_PORT_TEST != "" {
-				port = HTTP_SERVER_PORT_TEST
-			}
-		} else if strings.ToLower(APP_MODE) == "production" {
-			port = strings.TrimPrefix(path.Base(os.Args[0]), APP_NAME)
-			if _, e := strconv.Atoi(port); e != nil {
-				port = "8080"
+		if strings.ToLower(APP_MODE) != "develop" && strings.ToLower(APP_MODE) != "production" {
+			Log.Sub("configs").Errorf("APP_MODE is not valid in app.env, values possible: [develop, production] \n")
+			os.Exit(2)
+		}
+
+		if TYPE_SERVICES == "" {
+			Log.Sub("configs").Errorf("TYPE_SERVICES is empty in app.env, values possible: [grpc, rest] \n")
+			os.Exit(2)
+		} else {
+			switch strings.ToLower(TYPE_SERVICES) {
+			case "grpc":
+				GRPC_SERVER_PORT = viper.GetString("GRPC_SERVER_PORT")
+				if GRPC_SERVER_PORT == "" {
+					Log.Sub("configs").Errorf("GRPC_SERVER_PORT is empty in app.env\n")
+					os.Exit(2)
+				}
+
+				if _, e := strconv.Atoi(GRPC_SERVER_PORT); e != nil {
+					Log.Sub("configs").Errorf("GRPC_SERVER_PORT is not valid in app.env: error is: %s\n", e.Error())
+					os.Exit(2)
+				}
+
+			case "rest":
+				HTTP_SERVER_PORT = "8080"
+				if strings.ToLower(APP_MODE) == "develop" {
+					if HTTP_SERVER_PORT_TEST != "" {
+						HTTP_SERVER_PORT = HTTP_SERVER_PORT_TEST
+					}
+				} else if strings.ToLower(APP_MODE) == "production" {
+					HTTP_SERVER_PORT = strings.TrimPrefix(path.Base(os.Args[0]), APP_NAME)
+					if _, e := strconv.Atoi(HTTP_SERVER_PORT); e != nil {
+						HTTP_SERVER_PORT = "8080"
+					}
+				}
+				Log.Sub("configs").Debugf("prepare_env HTTP_SERVER_Port: %s\n", HTTP_SERVER_PORT)
+			default:
+				Log.Sub("configs").Errorf("TYPE_SERVICES is not valid view in app.env, values possible: [grpc, rest]. Actual value: %s\n", strings.ToLower(TYPE_SERVICES))
+				os.Exit(2)
 			}
 		}
-		Log.Debugf("prepare_env HTTP_SERVER_Port: %s\n", port)
 
-		HTTP_SERVER_PORT = port
 		if HTTP_SERVER_HOST_METRICS == "" && HTTP_SERVER_PORT_METRICS == "" {
 			StateInitMetric = false
 		}
@@ -144,6 +156,7 @@ func prepare_app() {
 	fmt.Println("prepare_app")
 	prepare_env()
 	prepare_engine()
+	prepare_interceptor()
 	// prepare_db()
 	// prepare_mime_exts()
 }
