@@ -1,14 +1,287 @@
 global:
-  scrape_interval: 10s # Cada cuánto tiempo pedirá métricas a tu app
-
+  scrape_interval: 10s
 scrape_configs:
-    # El campo job_name es la identificación única que Prometheus le asigna a tu aplicación dentro de su base de datos. Es como ponerle una etiqueta a una carpeta donde se guardarán todos los datos que vienen de esa dirección.
-    # Aquí te explico exactamente qué impacto tiene en tu flujo de trabajo:
-    # 1. Organización en la Base de Datos
-    # Prometheus guarda los datos como "Series Temporales". Cada métrica que recolecta de tu App (como rpc_server_duration) recibirá automáticamente una etiqueta llamada job.
-    # Si tu job_name es 'mi-app-connectrpc', en Prometheus la métrica se verá así: rpc_server_duration{job="mi-app-connectrpc", instance="host.docker.internal:9464"} 
-  - job_name: 'app-crud-mongo'
-    static_configs:
-      # IMPORTANTE: Usa 'host.docker.internal' para que el contenedor
-      # de Prometheus pueda salir a tu PC y leer el puerto 9464
-      - targets: ['my.host.local:1111']
+- job_name: app-crud-mongo
+  static_configs:
+  - targets:
+    - my.host.local:1111
+- job_name: servicex1
+  static_configs:
+  - targets:
+    - servicex1.socialhub.pro:13371
+- job_name: servicex2
+  static_configs:
+  - targets:
+    - servicex2.socialhub.pro:13372
+- job_name: servicex3
+  static_configs:
+  - targets:
+    - servicex3.socialhub.pro:13373
+- job_name: servicex4
+  static_configs:
+  - targets:
+    - servicex4.socialhub.pro:13374
+- job_name: servicex5
+  static_configs:
+  - targets:
+    - servicex5.socialhub.pro:13375
+- job_name: servicex6
+  static_configs:
+  - targets:
+    - servicex6.socialhub.pro:13376
+- job_name: servicex7
+  static_configs:
+  - targets:
+    - servicex7.socialhub.pro:13377
+- job_name: servicex8
+  static_configs:
+  - targets:
+    - servicex8.socialhub.pro:13378
+- job_name: servicex9
+  static_configs:
+  - targets:
+    - servicex9.socialhub.pro:13379
+- job_name: servicex10
+  static_configs:
+  - targets:
+    - servicex10.socialhub.pro:13310
+- job_name: servicex11
+  static_configs:
+  - targets:
+    - servicex11.socialhub.pro:13311
+- job_name: servicex12
+  static_configs:
+  - targets:
+    - servicex12.socialhub.pro:13312
+- job_name: servicex13
+  static_configs:
+  - targets:
+    - servicex13.socialhub.pro:13313
+- job_name: servicex14
+  static_configs:
+  - targets:
+    - servicex14.socialhub.pro:13314
+- job_name: servicex15
+  static_configs:
+  - targets:
+    - servicex15.socialhub.pro:13315
+- job_name: servicex16
+  static_configs:
+  - targets:
+    - servicex16.socialhub.pro:13316
+- job_name: servicex17
+  static_configs:
+  - targets:
+    - servicex17.socialhub.pro:13317
+- job_name: servicex18
+  static_configs:
+  - targets:
+    - servicex18.socialhub.pro:13318
+- job_name: servicex19
+  static_configs:
+  - targets:
+    - servicex19.socialhub.pro:13319
+- job_name: servicex20
+  static_configs:
+  - targets:
+    - servicex20.socialhub.pro:13320
+- job_name: servicex21
+  static_configs:
+  - targets:
+    - servicex21.socialhub.pro:13321
+- job_name: servicex22
+  static_configs:
+  - targets:
+    - servicex22.socialhub.pro:13322
+- job_name: servicex23
+  static_configs:
+  - targets:
+    - servicex23.socialhub.pro:13323
+- job_name: servicex24
+  static_configs:
+  - targets:
+    - servicex24.socialhub.pro:13324
+- job_name: servicex25
+  static_configs:
+  - targets:
+    - servicex25.socialhub.pro:13325
+- job_name: servicex26
+  static_configs:
+  - targets:
+    - servicex26.socialhub.pro:13326
+- job_name: servicex27
+  static_configs:
+  - targets:
+    - servicex27.socialhub.pro:13327
+- job_name: servicex28
+  static_configs:
+  - targets:
+    - servicex28.socialhub.pro:13328
+- job_name: servicex29
+  static_configs:
+  - targets:
+    - servicex29.socialhub.pro:13329
+- job_name: servicex30
+  static_configs:
+  - targets:
+    - servicex30.socialhub.pro:13330
+- job_name: servicex31
+  static_configs:
+  - targets:
+    - servicex31.socialhub.pro:13331
+- job_name: servicex32
+  static_configs:
+  - targets:
+    - servicex32.socialhub.pro:13332
+- job_name: servicex33
+  static_configs:
+  - targets:
+    - servicex33.socialhub.pro:13333
+- job_name: servicex34
+  static_configs:
+  - targets:
+    - servicex34.socialhub.pro:13334
+- job_name: servicex35
+  static_configs:
+  - targets:
+    - servicex35.socialhub.pro:13335
+- job_name: servicex36
+  static_configs:
+  - targets:
+    - servicex36.socialhub.pro:13336
+- job_name: servicex37
+  static_configs:
+  - targets:
+    - servicex37.socialhub.pro:13337
+- job_name: servicex38
+  static_configs:
+  - targets:
+    - servicex38.socialhub.pro:13338
+- job_name: servicex39
+  static_configs:
+  - targets:
+    - servicex39.socialhub.pro:13339
+- job_name: servicex40
+  static_configs:
+  - targets:
+    - servicex40.socialhub.pro:13340
+- job_name: servicex41
+  static_configs:
+  - targets:
+    - servicex41.socialhub.pro:13341
+- job_name: servicex42
+  static_configs:
+  - targets:
+    - servicex42.socialhub.pro:13342
+- job_name: servicex43
+  static_configs:
+  - targets:
+    - servicex43.socialhub.pro:13343
+- job_name: servicex44
+  static_configs:
+  - targets:
+    - servicex44.socialhub.pro:13344
+- job_name: servicex45
+  static_configs:
+  - targets:
+    - servicex45.socialhub.pro:13345
+- job_name: servicex46
+  static_configs:
+  - targets:
+    - servicex46.socialhub.pro:13346
+- job_name: servicex47
+  static_configs:
+  - targets:
+    - servicex47.socialhub.pro:13347
+- job_name: servicex48
+  static_configs:
+  - targets:
+    - servicex48.socialhub.pro:13348
+- job_name: servicex49
+  static_configs:
+  - targets:
+    - servicex49.socialhub.pro:13349
+- job_name: servicex50
+  static_configs:
+  - targets:
+    - servicex50.socialhub.pro:13350
+- job_name: servicex51
+  static_configs:
+  - targets:
+    - servicex51.socialhub.pro:13351
+- job_name: servicex52
+  static_configs:
+  - targets:
+    - servicex52.socialhub.pro:13352
+- job_name: servicex53
+  static_configs:
+  - targets:
+    - servicex53.socialhub.pro:13353
+- job_name: servicex54
+  static_configs:
+  - targets:
+    - servicex54.socialhub.pro:13354
+- job_name: servicex55
+  static_configs:
+  - targets:
+    - servicex55.socialhub.pro:13355
+- job_name: servicex56
+  static_configs:
+  - targets:
+    - servicex56.socialhub.pro:13356
+- job_name: servicex57
+  static_configs:
+  - targets:
+    - servicex57.socialhub.pro:13357
+- job_name: servicex58
+  static_configs:
+  - targets:
+    - servicex58.socialhub.pro:13358
+- job_name: servicex59
+  static_configs:
+  - targets:
+    - servicex59.socialhub.pro:13359
+- job_name: servicex60
+  static_configs:
+  - targets:
+    - servicex60.socialhub.pro:13360
+- job_name: servicex61
+  static_configs:
+  - targets:
+    - servicex61.socialhub.pro:13361
+- job_name: servicex62
+  static_configs:
+  - targets:
+    - servicex62.socialhub.pro:13362
+- job_name: servicex63
+  static_configs:
+  - targets:
+    - servicex63.socialhub.pro:13363
+- job_name: servicex64
+  static_configs:
+  - targets:
+    - servicex64.socialhub.pro:13364
+- job_name: servicex65
+  static_configs:
+  - targets:
+    - servicex65.socialhub.pro:13365
+- job_name: servicex66
+  static_configs:
+  - targets:
+    - servicex66.socialhub.pro:13366
+- job_name: servicex67
+  static_configs:
+  - targets:
+    - servicex67.socialhub.pro:13367
+- job_name: servicex68
+  static_configs:
+  - targets:
+    - servicex68.socialhub.pro:13368
+- job_name: servicex69
+  static_configs:
+  - targets:
+    - servicex69.socialhub.pro:13369
+- job_name: servicex70
+  static_configs:
+  - targets:
+    - servicex70.socialhub.pro:13370

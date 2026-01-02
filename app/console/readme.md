@@ -1,0 +1,1 @@
+ Pasta com implementação de comandos. Os comandos são função que executam em algum momento e resolvem uma tarefa do sistema, como um Script

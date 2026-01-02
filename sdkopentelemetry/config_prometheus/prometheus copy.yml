@@ -1,0 +1,21 @@
+global:
+  scrape_interval: 10s # Cada cuánto tiempo pedirá métricas a tu app
+
+scrape_configs:
+    # El campo job_name es la identificación única que Prometheus le asigna a tu aplicación dentro de su base de datos. Es como ponerle una etiqueta a una carpeta donde se guardarán todos los datos que vienen de esa dirección.
+    # Aquí te explico exactamente qué impacto tiene en tu flujo de trabajo:
+    # 1. Organización en la Base de Datos
+    # Prometheus guarda los datos como "Series Temporales". Cada métrica que recolecta de tu App (como rpc_server_duration) recibirá automáticamente una etiqueta llamada job.
+    # Si tu job_name es 'mi-app-connectrpc', en Prometheus la métrica se verá así: rpc_server_duration{job="mi-app-connectrpc", instance="host.docker.internal:9464"} 
+  - job_name: 'app-crud-mongo'
+    static_configs:
+      # IMPORTANTE: Usa 'host.docker.internal' para que el contenedor
+      # de Prometheus pueda salir a tu PC y leer el puerto 9464
+      - targets: ['my.host.local:1111']
+ 
+  - job_name: 'servicex1'
+    # scheme: https
+    static_configs:
+      # IMPORTANTE: Usa 'host.docker.internal' para que el contenedor
+      # de Prometheus pueda salir a tu PC y leer el puerto 9464
+      - targets: ['servicex1.socialhub.pro:13371']
