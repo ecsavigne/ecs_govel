@@ -8,6 +8,13 @@ import (
 	"github.com/goccy/go-yaml"
 )
 
+// CreateJobNameXserivePrometheus: Genera un archivo de configuración de Prometheus.
+// La configuración se divide en 4 secciones:
+// 1. Configuración Global
+// 2. Agregar jobs estáticos manualmente
+// 3. Generar jobs dinámicos mediante un ciclo
+// 4. Convertir a YAML
+// 5. Guardar en el archivo
 func CreateJobNameXserivePrometheus() {
 	pathConfigPrometheus := "sdkopentelemetry/config_prometheus/prometheus.yml"
 
