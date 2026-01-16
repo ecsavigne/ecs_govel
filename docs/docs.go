@@ -4,9 +4,11 @@ package docs
 import (
 	"io"
 	"os"
+	"strings"
 
 	c_ "ecs_govel/configs"
 
+	scalargo "github.com/bdpiprava/scalar-go"
 	"github.com/swaggo/swag"
 )
 
@@ -38,6 +40,11 @@ var SwaggerInfo = &swag.Spec{
 	RightDelim:       "}}",
 }
 
+var (
+	ScalarError error
+	ScalarHtml  string
+)
+
 func init() {
 	if c_.DOC_API_PATH != "" {
 		file, err := os.OpenFile(c_.DOC_API_PATH, os.O_RDONLY, os.ModePerm)
@@ -50,9 +57,16 @@ func init() {
 			panic(e)
 		}
 
-		SwaggerInfo.InfoInstanceName = "swagger"
-		SwaggerInfo.SwaggerTemplate = string(by)
-	}
+		switch strings.ToLower(c_.TYPE_DOCUMENTATION) {
+		case "swagger":
+			SwaggerInfo.InfoInstanceName = "swagger"
+			SwaggerInfo.SwaggerTemplate = string(by)
+			swag.Register(SwaggerInfo.InstanceName(), SwaggerInfo)
+		case "scalar":
+			ScalarHtml, ScalarError = scalargo.NewV2(
+				scalargo.WithSpecBytes(by),
+			)
 
-	swag.Register(SwaggerInfo.InstanceName(), SwaggerInfo)
+		}
+	}
 }

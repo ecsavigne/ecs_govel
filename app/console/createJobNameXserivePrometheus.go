@@ -24,6 +24,7 @@ func CreateJobNameXserivePrometheus() {
 	}
 
 	type StaticConfig struct {
+		// Targets []string `yaml:"targets,flow"`
 		Targets []string `yaml:"targets"`
 	}
 
@@ -48,7 +49,9 @@ func CreateJobNameXserivePrometheus() {
 	config.ScrapeConfigs = append(config.ScrapeConfigs, JobConfig{
 		JobName: "app-crud-mongo",
 		StaticConfigs: []StaticConfig{
-			{Targets: []string{"my.host.local:1111"}},
+			{
+				Targets: []string{"my.host.local:1111"},
+			},
 		},
 	})
 
@@ -57,17 +60,22 @@ func CreateJobNameXserivePrometheus() {
 		13320, 13321, 13322, 13323, 13324, 13325, 13326, 13327, 13328, 13329, 13330, 13331, 13332, 13333, 13334, 13335, 13336, 13337, 13338, 13339,
 		13340, 13341, 13342, 13343, 13344, 13345, 13346, 13347, 13348, 13349, 13350, 13351, 13352, 13353, 13354, 13355, 13356, 13357, 13358, 13359,
 		13360, 13361, 13362, 13363, 13364, 13365, 13366, 13367, 13368, 13369, 13370}
+
+	config.ScrapeConfigs = append(config.ScrapeConfigs, JobConfig{
+		JobName:       "Services",
+		StaticConfigs: make([]StaticConfig, 0),
+	})
+
+	services := make([]string, 0)
 	for i, p := range puertos {
-		job := JobConfig{
-			JobName: fmt.Sprintf("servicex%d", i+1), // Ejemplo: servicex1, servicex2...
-			StaticConfigs: []StaticConfig{
-				{
-					Targets: []string{fmt.Sprintf("servicex%d.socialhub.pro:%d", i+1, p)},
-				},
-			},
-		}
-		config.ScrapeConfigs = append(config.ScrapeConfigs, job)
+		serv := fmt.Sprintf("%s", fmt.Sprintf("servicex%d.socialhub.pro:%d", i+1, p))
+		services = append(services, serv)
 	}
+
+	config.ScrapeConfigs[1].StaticConfigs = make([]StaticConfig, 0)
+	config.ScrapeConfigs[1].StaticConfigs = append(config.ScrapeConfigs[1].StaticConfigs, StaticConfig{
+		Targets: services,
+	})
 
 	// 4. Convertir a YAML
 	data, err := yaml.Marshal(config)

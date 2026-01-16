@@ -32,4 +32,5 @@ var (
 	DOC_API_PATH              string
 	GRPC_SERVER_PORT          string
 	TYPE_SERVICES             string
+	TYPE_DOCUMENTATION        string
 )

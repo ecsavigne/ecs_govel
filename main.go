@@ -4,7 +4,7 @@ import (
 	//configs "ecs_govel/configs"
 
 	// "ecs_govel/app/webhooks"
-	// "ecs_govel/app/console"
+	"ecs_govel/app/console"
 	config "ecs_govel/configs"
 	grpcserverinit "ecs_govel/grpcservice/app/server"
 	_ "ecs_govel/routes"
@@ -16,7 +16,7 @@ import (
 
 func run() {
 	// commands
-	// go console.CreateJobNameXserivePrometheus()
+	go console.CreateJobNameXserivePrometheus()
 
 	//Test de Rutas
 	// config.RouterList(config.GetEngine())

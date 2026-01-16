@@ -1,0 +1,4 @@
+ecs_govel version 
+    
+    v2.0.0
+        - Add docs for scalar

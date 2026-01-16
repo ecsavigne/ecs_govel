@@ -9,9 +9,11 @@ require (
 	connectrpc.com/validate v0.6.0
 	connectrpc.com/vanguard v0.3.0
 	github.com/Cyprinus12138/otelgin v1.0.3
+	github.com/bdpiprava/scalar-go v0.13.0
 	github.com/ecsavigne/logecs v1.26.202511032017
 	github.com/ecsavigne/proxy-reverse v1.1.4
 	github.com/gin-gonic/gin v1.11.0
+	github.com/goccy/go-yaml v1.19.1
 	github.com/grpc-ecosystem/grpc-gateway/v2 v2.27.4
 	github.com/lib/pq v1.10.9
 	github.com/prometheus/client_golang v1.23.2
@@ -65,7 +67,6 @@ require (
 	github.com/go-playground/validator/v10 v10.30.1 // indirect
 	github.com/go-viper/mapstructure/v2 v2.4.0 // indirect
 	github.com/goccy/go-json v0.10.5 // indirect
-	github.com/goccy/go-yaml v1.19.1 // indirect
 	github.com/google/cel-go v0.26.1 // indirect
 	github.com/google/uuid v1.6.0 // indirect
 	github.com/jackc/pgpassfile v1.0.0 // indirect
@@ -114,4 +115,5 @@ require (
 	golang.org/x/text v0.32.0 // indirect
 	golang.org/x/tools v0.40.0 // indirect
 	google.golang.org/genproto/googleapis/rpc v0.0.0-20251222181119-0a764e51fe1b // indirect
+	gopkg.in/yaml.v3 v3.0.1 // indirect
 )

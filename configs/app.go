@@ -103,6 +103,7 @@ func prepare_env() {
 		HTTP_SERVER_PORT_METRICS = viper.GetString("HTTP_SERVER_PORT_METRICS")
 		HTTP_SERVER_PORT_WEBHOOK = viper.GetString("HTTP_SERVER_PORT_WEBHOOK")
 		TYPE_SERVICES = viper.GetString("TYPE_SERVICES")
+		TYPE_DOCUMENTATION = viper.GetString("TYPE_DOCUMENTATION")
 
 		if strings.ToLower(APP_MODE) != "develop" && strings.ToLower(APP_MODE) != "production" {
 			Log.Sub("configs").Errorf("APP_MODE is not valid in app.env, values possible: [develop, production] \n")

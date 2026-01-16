@@ -27,7 +27,7 @@ func globalsMiddleware(g *gin.Engine) {
 
 func InitGrpcService() {
 	if c_.GRPC_SERVER_PORT == "" {
-		return
+		panic("not is possible start server grpc, server port is empty")
 	}
 
 	interceptors := connect.WithInterceptors(
