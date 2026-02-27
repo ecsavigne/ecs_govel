@@ -4,4 +4,4 @@
 ./.vscode
 .air.toml
 /vendor
-/temp
+./temp
