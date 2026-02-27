@@ -1,6 +1,6 @@
 ./test.json
 ./logs
-./tmp
+./tmp/
 ./.vscode
 .air.toml
 /vendor
