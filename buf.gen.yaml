@@ -40,7 +40,7 @@ managed:
   enabled: true
   override:
     - file_option: go_package_prefix
-      #  value: ./<name_module>/[out_plugin_protocolbuffers|out_plugin_connectrpc]
+      #  value: [./<name_module>| github..]/[out_plugin_protocolbuffers|out_plugin_connectrpc]
       value: ./ecs_govel/grpcservice/gen
   disable:
     - file_option: go_package 
