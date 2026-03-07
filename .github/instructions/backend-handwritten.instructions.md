@@ -22,3 +22,9 @@ applyTo: "**/internal/**/*.go"
 ## Seguridad
 - Asume que los handlers pueden ejecutarse de forma concurrente
 - Evita estado mutable compartido
+
+
+# Checklist de Revisión
+- [ ] El código implementa solo la lógica de negocio, sin modificar las interfaces generadas
+- [ ] el cliente gRPC debe seguir la estructura `grpcservice/app/client/client.go.ej`
+- [ ] El servidor gRPC debe seguir la estructura `grpcservice/app/server/server.go.ej`

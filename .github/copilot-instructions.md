@@ -32,4 +32,7 @@ Eres un ingeniero de software senior trabajando en un servicio en producción.
 - Si el requisito no es claro, pide aclaraciones antes de proceder
 - Revisa el código generado para asegurarte de que cumple con los estándares de calidad y seguridad
 - No introduzcas cambios que no estén relacionados con el requisito específico
-- Documenta cualquier decisión importante o desviación de las convenciones del proyecto
+- Documenta cualquier decisión importante o desviación de las convenciones del proyecto.
+- solo genera la logica segun la variable ambiente `TYPE_SERVICES` ubicada en `app.env` si fuera grpc genera archivos en la carpeta `grpcservice` y si fuera rest genera archivos en la carpeta `app` segun la estructura de la misma
+- despues de cada correpcion debes volver a generar el codigo con `buf generate` para actualizar los archivos generados y evitar conflictos con el código generado previamente
+- Si el requisito implica cambios en la API, asegúrate de que los contratos de API se actualicen en consecuencia y que cualquier cambio sea compatible con versiones anteriores a menos que se indique lo contrario.

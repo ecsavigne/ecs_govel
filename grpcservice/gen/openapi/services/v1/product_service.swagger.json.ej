@@ -1,12 +1,12 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "Echo API",
+    "title": "{NombreService} API",
     "version": "1.0",
     "contact": {
-      "name": "gRPC-Gateway \u0026\u0026 HTTP/json rest project with buf",
-      "url": "https://github.com/grpc-ecosystem/grpc-gateway",
-      "email": "none@example.com"
+      "name": "Edilberto Coello Savigne",
+      "url": "",
+      "email": "ecsavigne@gmail.com"
     },
     "license": {
       "name": "BSD 3-Clause License",
@@ -15,7 +15,7 @@
   },
   "tags": [
     {
-      "name": "ProductService"
+      "name": "{NombreService}"
     }
   ],
   "schemes": [
