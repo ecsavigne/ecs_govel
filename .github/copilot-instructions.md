@@ -36,3 +36,14 @@ Eres un ingeniero de software senior trabajando en un servicio en producción.
 - solo genera la logica segun la variable ambiente `TYPE_SERVICES` ubicada en `app.env` si fuera grpc genera archivos en la carpeta `grpcservice` y si fuera rest genera archivos en la carpeta `app` segun la estructura de la misma
 - despues de cada correpcion debes volver a generar el codigo con `buf generate` para actualizar los archivos generados y evitar conflictos con el código generado previamente
 - Si el requisito implica cambios en la API, asegúrate de que los contratos de API se actualicen en consecuencia y que cualquier cambio sea compatible con versiones anteriores a menos que se indique lo contrario.
+- En `routes/doc_api.go` verificar que coincida con nombre de servicio ej:
+```go
+/*
+# ShortURLService ->  g.Any("/shorturl_service/*any", c_.ReverseProxyApi.RequestProxy())
+*/
+func loadDocRoutes(g *gin.Engine) {
+  // ...
+  g.Any("/shorturl_service/*any", c_.ReverseProxyApi.RequestProxy())
+  // ...
+}
+```
