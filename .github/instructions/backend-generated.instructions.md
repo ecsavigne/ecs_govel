@@ -17,7 +17,7 @@ applyTo: "**/gen/**"
 ## Regeneración
 - Asume que este directorio puede eliminarse y regenerarse en cualquier momento
 
-
+# Checklist de Revisión
 - [ ] El código implementa solo la lógica de negocio, sin modificar las interfaces generadas
 - [ ] el cliente gRPC debe seguir la estructura `grpcservice/app/client/client.go.ej`
 - [ ] El servidor gRPC debe seguir la estructura `grpcservice/app/server/server.go.ej`
@@ -70,6 +70,7 @@ part code
 
 y en el cliente gRPC ej:
 
+- [ ]  La llamada en el main debe seguir la estructura:
 ```go file: main.go
 
 // Init GrpcService
@@ -85,4 +86,18 @@ func run() {
 
   /*part code*/
 }  
+```
+- [ ] El código generado no debe tener errores de compilación ni advertencias
+- [ ] Solo debe existir una sola vez esto `routerGin.Any("/shorturl/*any", gin.WrapH(transcoder))` ej:
+```go file: grpcservice/app/server/server.go
+
+
+  routerGin.Any("/productsapi/*any", gin.WrapH(transcoder)) // Mal
+  routerGin.Any("/shorturl/*any", gin.WrapH(transcoder))
+```
+- [ ] El nombre del paquete `grpcservice/app/server` debe ser `server` y el nombre del paquete `grpcservice/app/client` debe ser `client`
+- [ ] la var ambiente `DOC_API_PATH` muestra la ruta correcta del archivo `name_service(no camel case).swagger.json` generado por buf ej:
+```bash
+  # ShortURLService -> shorturl_service.swagger.json
+  DOC_API_PATH=./grpcservice/gen/openapi/services/v1/shorturl_service.swagger.json
 ```

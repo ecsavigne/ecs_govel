@@ -22,3 +22,6 @@ applyTo: "**/internal/**/*.go"
 ## Seguridad
 - Asume que los handlers pueden ejecutarse de forma concurrente
 - Evita estado mutable compartido
+
+## Checklist de Revisión
+- [ ] Verifica que el código no tiene errores de go con `go run` y `go vet`
