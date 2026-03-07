@@ -111,6 +111,26 @@ en lugar de:
 - Usar idempotency_level cuando aplique
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🔌 ESTRUCTURA DE ARCHIVOS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+grpcservice/
+├── server/
+│   ├── server.go
+│   │── auth_procedure.go
+│   ├── link_procedure.go
+│   └── ...
+│  
+│  
+│
+├── grpcservice/
+│   ├── proto/
+│   │   ├──{otros}pb/v1/
+    │   │   └── otro.proto
+│   │   └── services/v1/
+│   │       └── short_url_service.proto  ✅
+│   └── gen/
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 📤 SALIDA ESPERADA
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
