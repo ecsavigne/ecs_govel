@@ -136,7 +136,8 @@ ANTES de escribir cualquier .proto:
 9. Los mensajes Response deben ser colocados en response.proto.
 10. asegurate de que los archivos los mensajes proto esten bien comentados al igual que cada campo 
 11. Asegurate de que las validaciones en los proto cumplan con exactamente con la funcion del campo validado
-12. Apoyate en el ejemplo para crear los archivos request, response que esta en `grpcservice/proto/productpb/v1/product.proto`
-13. Apoyate en el ejemplo para crear la definicion del servicio y los rpc que esta en `grpcservice/proto/services/v1/product_service.proto`
+12. Apoyate en el ejemplo para crear los archivos request, response que esta en `grpcservice/proto/productpb/v1/product.proto.ej`
+13. Apoyate en el ejemplo para crear la definicion del servicio y los rpc que esta en `grpcservice/proto/services/v1/product_service.proto.ej`
+14. en las instruciones de `option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger)` asegurate de que los campos tengan que ver con el nombre del servicio, y que tengan sentido 
 
 NO escribas código hasta completar este análisis.
