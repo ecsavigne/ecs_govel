@@ -18,3 +18,18 @@ applyTo: "**/{buf.yaml,buf.gen.yaml,buf.work.yaml}"
 ## Seguridad
 - No debilites las reglas de lint ni de breaking
 - Trata los fallos como problemas de diseño, no como obstáculos
+
+## Checklist
+
+- Cuando actualice dependencia de buf debe ser con `buf dep update`
+-  mostrar cuales son los mensajes a generar y las estructuras de golang antes de crear, luego usuario **decide**
+-  buf.gen.yaml no puede tener `include_imports: true`
+-  los archivos `buf.yaml y buf.gen.yaml` deben seguir estrictamente las instruciones dada aqui.
+-  Si se importa algun mensaje dentro de otro asegurase de que sea creadas correctamente las opciones del plugin de generacion para hacer la importacion correctamente.
+-  la session de 
+  ```manager  override:
+    - file_option: go_package_prefix
+    value: ...
+   ``` 
+   incluya el path obsoluto del modulo
+-  Asegurate de que cada checklist se cumpla antes de generar y crear codigos.

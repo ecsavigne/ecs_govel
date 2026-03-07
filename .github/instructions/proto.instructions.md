@@ -132,5 +132,11 @@ ANTES de escribir cualquier .proto:
 5. Definir contratos Request/Response
 6. Definir validaciones de entrada
 7. Definir endpoints REST (solo como adaptadores)
+8. Los messages Request deben ser colocados en request.proto cada uno con su nombre bien definidos.
+9. Los mensajes Response deben ser colocados en response.proto.
+10. asegurate de que los archivos los mensajes proto esten bien comentados al igual que cada campo 
+11. Asegurate de que las validaciones en los proto cumplan con exactamente con la funcion del campo validado
+12. Apoyate en el ejemplo para crear los archivos request, response que esta en `grpcservice/proto/productpb/v1/product.proto`
+13. Apoyate en el ejemplo para crear la definicion del servicio y los rpc que esta en `grpcservice/proto/services/v1/product_service.proto`
 
 NO escribas código hasta completar este análisis.
