@@ -114,20 +114,20 @@ en lugar de:
 🔌 ESTRUCTURA DE ARCHIVOS
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 grpcservice/
-├── server/
-│   ├── server.go
-│   │── auth_procedure.go
-│   ├── link_procedure.go
+├── app
+│   ├──  server/
+│         ├── server.go
+│         │── auth_procedure.go
+│         ├── link_procedure.go
 │   └── ...
 │  
 │  
 │
-├── grpcservice/
-│   ├── proto/
+├── ├── proto/
 │   │   ├──{otros}pb/v1/
-    │   │   └── otro.proto
+│   │   │    └── otro.proto
 │   │   └── services/v1/
-│   │       └── short_url_service.proto  ✅
+│   │        └── short_url_service.proto  ✅
 │   └── gen/
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━

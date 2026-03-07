@@ -1,5 +1,5 @@
 ---
-applyTo: "**/internal/**/*.go"
+applyTo: "**/grpcservice/app/server/**/*.go"
 ---
 
 # Instrucciones para Código Backend Escrito a Mano
@@ -25,3 +25,4 @@ applyTo: "**/internal/**/*.go"
 
 ## Checklist de Revisión
 - [ ] Verifica que el código no tiene errores de go con `go run` y `go vet`
+- [ ] archivos .go dentro de app/server implementan deben tener como `package server`

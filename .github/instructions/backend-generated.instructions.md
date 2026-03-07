@@ -96,8 +96,10 @@ func run() {
   routerGin.Any("/shorturl/*any", gin.WrapH(transcoder))
 ```
 - [ ] El nombre del paquete `grpcservice/app/server` debe ser `server` y el nombre del paquete `grpcservice/app/client` debe ser `client`
-- [ ] la var ambiente `DOC_API_PATH` muestra la ruta correcta del archivo `name_service(no camel case).swagger.json` generado por buf ej:
+
+- [ ] la var ambiente `DOC_API_PATH` y `APP_FILE_LOGGER` muestran la ruta correcta del archivo `name_service(no camel case).swagger.json` generado por buf ej:
 ```bash
   # ShortURLService -> shorturl_service.swagger.json
   DOC_API_PATH=./grpcservice/gen/openapi/services/v1/shorturl_service.swagger.json
+  APP_FILE_LOGGER=/var/log/shorturl_service/logs.log
 ```
