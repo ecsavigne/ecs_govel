@@ -5,13 +5,14 @@
 package servicesv1connect
 
 import (
-	connect "connectrpc.com/connect"
 	context "context"
 	v1 "ecs_govel/grpcservice/gen/services/v1"
 	errors "errors"
-	emptypb "google.golang.org/protobuf/types/known/emptypb"
 	http "net/http"
 	strings "strings"
+
+	connect "connectrpc.com/connect"
+	emptypb "google.golang.org/protobuf/types/known/emptypb"
 )
 
 // This is a compile-time assertion to ensure that this generated file and the connect package are

@@ -156,8 +156,8 @@ ANTES de escribir cualquier .proto:
 9. Los mensajes Response deben ser colocados en response.proto.
 10. asegurate de que los archivos los mensajes proto esten bien comentados al igual que cada campo 
 11. Asegurate de que las validaciones en los proto cumplan con exactamente con la funcion del campo validado
-12. Apoyate en el ejemplo para crear los archivos request, response que esta en `grpcservice/proto/productpb/v1/product.proto.ej`
-13. Apoyate en el ejemplo para crear la definicion del servicio y los rpc que esta en `grpcservice/proto/services/v1/product_service.proto.ej`
+12. Apoyate en el ejemplo para crear los archivos request, response que esta en `grpcservice/proto/productpb/v1/product.ej.proto`
+13. Apoyate en el ejemplo para crear la definicion del servicio y los rpc que esta en `grpcservice/proto/services/v1/product_service.ej.proto`
 14. en las instruciones de `option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger)` asegurate de que los campos tengan que ver con el nombre del servicio, y que tengan sentido
 15. `grpcservice/gen/openapi/services/v1/product_service.swagger.json.ej` es un ejemplo de como debe quedar el swagger generado despues de crear el proto y generar el codigo con `buf generate` asegurate de que tu swagger generado se parezca a ese ejemplo y que tenga toda la informacion necesaria para que un consumidor del API pueda entenderlo sin necesidad de leer el código. 
 16. Archivo .proto para generar openapi debe llamarse segun el servicio con notacion no camel case, ej:

@@ -12,7 +12,11 @@ import (
 	"ecs_govel/app/model"
 	"ecs_govel/database/migration"
 
+	"github.com/kamva/mgm/v3"
 	_ "github.com/lib/pq"
+	"go.mongodb.org/mongo-driver/bson"
+	"go.mongodb.org/mongo-driver/mongo"
+	"go.mongodb.org/mongo-driver/mongo/options"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 	"gorm.io/gorm/logger"
@@ -91,7 +95,73 @@ func logDBInfo() logger.Interface {
 	return newLogger
 }
 
-func prepare_db() {
+func index_test_mongo() []mongo.IndexModel {
+	indexUsr := []mongo.IndexModel{
+		{
+			Keys: bson.D{
+				{Key: "idx_test_mongo_id", Value: 1},
+			},
+			Options: options.Index().SetUnique(true),
+		},
+		{
+			Keys: bson.D{
+				{Key: "idx_test_mongo_created_at", Value: 1},
+			},
+		},
+	}
+
+	return indexUsr
+}
+
+func create_index_mongo() {
+	mgm.Coll(&model.TestMongoModel{}).Indexes().CreateMany(mgm.Ctx(), index_test_mongo())
+}
+
+func migrationMongoDB() {
+	tm := &model.TestMongoModel{}
+
+	mgm.Coll(tm).Create(tm)
+
+	create_index_mongo()
+}
+
+// Init : First Setup
+func (db *DbInstance) Migrate() {
+	logMessage := ""
+	debugMessage := "1"
+	defer func() {
+		if r := recover(); r != nil {
+			logMessage = filepath.Base(os.Args[0]) + " :  Error initializing Migration in Database. " + ": Recovered from exception " + ". Interface in defer is: " + fmt.Sprintf("%+v", r) + ". DebugMessage is: " + debugMessage
+			Log.Debugf("[database.database.go - Init()]. ", logMessage)
+			fmt.Println(logMessage)
+		}
+	}()
+
+	debugMessage = "2"
+
+	// db.DB.Migrator().DropTable(&migration.TestMigation{})
+	err := db.DB.AutoMigrate(
+		&migration.TestMigation{},
+	)
+
+	if err != nil {
+		fmt.Println("Error: ", err.Error())
+	}
+
+	// Load Migration from .sql
+	// migration.ExecuteMigrationFromSql(db.DB, Log, true)
+
+	// Load Seeders
+	// seeders.ExecuteSeeders(db.DB)
+
+	// execute trigger
+	// trigger.ExecuteTrigger(db.DB, trigger.TriggerDeleteMessageByCompanyWhatsapp())
+
+	// Execute Partition
+	// partition.ExecutePartition(db.DB, partition.OpenConversationPartition())
+}
+
+func postgresDB() {
 	var (
 		logMessage, debugMessage string
 		err                      error
@@ -160,38 +230,6 @@ func prepare_db() {
 	Database.Migrate()
 }
 
-// Init : First Setup
-func (db *DbInstance) Migrate() {
-	logMessage := ""
-	debugMessage := "1"
-	defer func() {
-		if r := recover(); r != nil {
-			logMessage = filepath.Base(os.Args[0]) + " :  Error initializing Migration in Database. " + ": Recovered from exception " + ". Interface in defer is: " + fmt.Sprintf("%+v", r) + ". DebugMessage is: " + debugMessage
-			Log.Debugf("[database.database.go - Init()]. ", logMessage)
-			fmt.Println(logMessage)
-		}
-	}()
-
-	debugMessage = "2"
-
-	// db.DB.Migrator().DropTable(&migration.TestMigation{})
-	err := db.DB.AutoMigrate(
-		&migration.TestMigation{},
-	)
-
-	if err != nil {
-		fmt.Println("Error: ", err.Error())
-	}
-
-	// Load Migration from .sql
-	// migration.ExecuteMigrationFromSql(db.DB, Log, true)
-
-	// Load Seeders
-	// seeders.ExecuteSeeders(db.DB)
-
-	// execute trigger
-	// trigger.ExecuteTrigger(db.DB, trigger.TriggerDeleteMessageByCompanyWhatsapp())
-
-	// Execute Partition
-	// partition.ExecutePartition(db.DB, partition.OpenConversationPartition())
+func prepare_db() {
+	postgresDB()
 }
