@@ -1,3 +1,5 @@
 ecs_govel version 
+    v2.7.5
+        - Add config MongoDB
     v2.7.4
         - Add docs for scalar
