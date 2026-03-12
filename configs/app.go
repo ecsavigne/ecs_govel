@@ -67,13 +67,48 @@ func prepare_env() {
 		fmt.Println("\033[32mEncontrado archivo tipo\033[0m \033[34m(env)\033[0m")
 
 		// variables .env DB
-		DB_HOST = viper.GetString("PG_DB_HOST")
-		DB_USER = viper.GetString("PG_DB_USERNAME")
-		DB_NAME = viper.GetString("PG_DB_DATABASE")
-		DB_PASSWORD = viper.GetString("PG_DB_PASSWORD")
-		DB_PORT = viper.GetString("PG_DB_PORT")
+		DB_TYPE = viper.GetString("DB_TYPE")
+		postgres := func() {
+			PG_DB_HOST = viper.GetString("PG_DB_HOST")
+			PG_DB_USER = viper.GetString("PG_DB_USERNAME")
+			PG_DB_NAME = viper.GetString("PG_DB_DATABASE")
+			PG_DB_PASSWORD = viper.GetString("PG_DB_PASSWORD")
+			PG_DB_PORT = viper.GetString("PG_DB_PORT")
+			PG_DNS_DB = viper.GetString("PG_DNS_LOCAL")
+			DB_TYPE = "postgres"
+		}
+
+		mongo := func() {
+			MONGO_DB_HOST = viper.GetString("MONGO_DB_HOST")
+			MONGO_DB_USER = viper.GetString("MONGO_DB_USERNAME")
+			MONGO_DB_NAME = viper.GetString("MONGO_DB_DATABASE")
+			MONGO_DB_PASSWORD = viper.GetString("MONGO_DB_PASSWORD")
+			MONGO_DB_PORT = viper.GetString("MONGO_DB_PORT")
+		}
+
+		switch DB_TYPE {
+		case "":
+			fallthrough
+		case "postgres":
+			postgres()
+		case "mongo":
+			mongo()
+		case "all":
+			postgres()
+			mongo()
+		}
 		FORWARD_DB_PORT = viper.GetString("PG_FORWARD_DB_PORT")
-		DNS_DB = viper.GetString("PG_DNS_LOCAL")
+
+		SSH_ENABLE, err = strconv.ParseBool(viper.GetString("SSH_ENABLE"))
+		if err != nil {
+			SSH_ENABLE = false
+		}
+		SSH_PORT = viper.GetString("SSH_PORT")
+		SSH_HOST = viper.GetString("SSH_HOST")
+		SSH_PASS = viper.GetString("SSH_PASS")
+		SSH_USER = viper.GetString("SSH_USER")
+
+		// Var webhook
 		WEBHOOK_SOCKET = viper.GetString("WEBHOOK_SOCKET")
 
 		// Var env APP

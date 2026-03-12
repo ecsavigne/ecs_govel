@@ -1,4 +1,8 @@
 ecs_govel version 
+    v2.7.7
+        - improve organization
+    v2.7.6
+        - Add config of conection ssh for database mongo
     v2.7.5
         - Add config MongoDB
     v2.7.4

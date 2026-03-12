@@ -12,11 +12,7 @@ import (
 	"ecs_govel/app/model"
 	"ecs_govel/database/migration"
 
-	"github.com/kamva/mgm/v3"
 	_ "github.com/lib/pq"
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/mongo"
-	"go.mongodb.org/mongo-driver/mongo/options"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 	"gorm.io/gorm/logger"
@@ -29,19 +25,31 @@ type DbInstance struct {
 }
 
 var (
-	DB_HOST         string
-	DB_USER         string
-	DB_NAME         string
-	DB_PASSWORD     string
-	DB_PORT         string
-	FORWARD_DB_PORT string
-	DB_CONNSTR      string
-	DNS_DB          string
-	Database        *DbInstance = new(DbInstance)
+	PG_DB_HOST        string
+	PG_DB_USER        string
+	PG_DB_NAME        string
+	PG_DB_PASSWORD    string
+	PG_DB_PORT        string
+	FORWARD_DB_PORT   string
+	PG_DNS_DB         string
+	PG_DB_CONNSTR     string
+	MONGO_DB_HOST     string
+	MONGO_DB_USER     string
+	MONGO_DB_NAME     string
+	MONGO_DB_PASSWORD string
+	MONGO_DB_PORT     string
+	MONGO_DB_CONNSTR  string
+	DB_TYPE           string
+	Database          *DbInstance = new(DbInstance)
+	SSH_ENABLE        bool
+	SSH_PORT          string
+	SSH_HOST          string
+	SSH_PASS          string
+	SSH_USER          string
 )
 
-func create_database() error {
-	db, err := sql.Open("postgres", DNS_DB)
+func create_database_postgres() error {
+	db, err := sql.Open("postgres", PG_DNS_DB)
 	if err != nil {
 		l := fmt.Sprintf("Error al conectar al servidor de PostgreSQL: %v", err)
 		return fmt.Errorf("%s", l)
@@ -49,7 +57,7 @@ func create_database() error {
 	defer db.Close()
 
 	var exists bool
-	query := fmt.Sprintf("SELECT EXISTS(SELECT datname FROM pg_catalog.pg_database WHERE datname = '%s')", DB_NAME)
+	query := fmt.Sprintf("SELECT EXISTS(SELECT datname FROM pg_catalog.pg_database WHERE datname = '%s')", PG_DB_NAME)
 	err = db.QueryRow(query).Scan(&exists)
 	if err != nil {
 		return fmt.Errorf("Error obtaining database existence status is: %s", err.Error())
@@ -57,20 +65,20 @@ func create_database() error {
 
 	if !exists {
 		fmt.Println("Creating database")
-		_, err = db.Exec(fmt.Sprintf("CREATE DATABASE %s;", DB_NAME))
+		_, err = db.Exec(fmt.Sprintf("CREATE DATABASE %s;", PG_DB_NAME))
 		if err != nil {
 			return fmt.Errorf("Error creating database is: %s", err.Error())
 		}
-		fmt.Printf("Database '%s' created successfully.\n", DB_NAME)
+		fmt.Printf("Database '%s' created successfully.\n", PG_DB_NAME)
 		// Grant access
 		fmt.Println("Granting access to database")
-		_, err = db.Exec(fmt.Sprintf("GRANT ALL ON DATABASE %s TO %s;", DB_NAME, DB_USER))
+		_, err = db.Exec(fmt.Sprintf("GRANT ALL ON DATABASE %s TO %s;", PG_DB_NAME, PG_DB_USER))
 		if err != nil {
 			return fmt.Errorf("Error granting database access is: %s", err.Error())
 		}
-		fmt.Printf("Access granted to database: '%s' by user: '%s'.\n", DB_NAME, DB_USER)
+		fmt.Printf("Access granted to database: '%s' by user: '%s'.\n", PG_DB_NAME, PG_DB_USER)
 	} else {
-		fmt.Printf("Database '%s' already exists.\n", DB_NAME)
+		fmt.Printf("Database '%s' already exists.\n", PG_DB_NAME)
 	}
 
 	return nil
@@ -95,38 +103,8 @@ func logDBInfo() logger.Interface {
 	return newLogger
 }
 
-func index_test_mongo() []mongo.IndexModel {
-	indexUsr := []mongo.IndexModel{
-		{
-			Keys: bson.D{
-				{Key: "idx_test_mongo_id", Value: 1},
-			},
-			Options: options.Index().SetUnique(true),
-		},
-		{
-			Keys: bson.D{
-				{Key: "idx_test_mongo_created_at", Value: 1},
-			},
-		},
-	}
-
-	return indexUsr
-}
-
-func create_index_mongo() {
-	mgm.Coll(&model.TestMongoModel{}).Indexes().CreateMany(mgm.Ctx(), index_test_mongo())
-}
-
-func migrationMongoDB() {
-	tm := &model.TestMongoModel{}
-
-	mgm.Coll(tm).Create(tm)
-
-	create_index_mongo()
-}
-
 // Init : First Setup
-func (db *DbInstance) Migrate() {
+func (db *DbInstance) MigratePG() {
 	logMessage := ""
 	debugMessage := "1"
 	defer func() {
@@ -177,16 +155,16 @@ func postgresDB() {
 	}()
 
 	// Create database si no existe
-	if err = create_database(); err != nil {
+	if err = create_database_postgres(); err != nil {
 		logMessage = filepath.Base(os.Args[0]) + " :  Error initializing Database. " + err.Error()
 		fmt.Println(logMessage)
 		Log.Errorf("[database.database.go - init()]. ", logMessage)
 		panic(logMessage)
 	}
 
-	DB_CONNSTR = fmt.Sprintf("host=%s user=%s dbname=%s port=%s sslmode=disable password=%s", DB_HOST, DB_USER, DB_NAME, FORWARD_DB_PORT, DB_PASSWORD)
-	postgresSource := postgres.Open(DB_CONNSTR)
-	postgresReplica := postgres.Open(DB_CONNSTR)
+	PG_DB_CONNSTR = fmt.Sprintf("host=%s user=%s dbname=%s port=%s sslmode=disable password=%s", PG_DB_HOST, PG_DB_USER, PG_DB_NAME, FORWARD_DB_PORT, PG_DB_PASSWORD)
+	postgresSource := postgres.Open(PG_DB_CONNSTR)
+	postgresReplica := postgres.Open(PG_DB_CONNSTR)
 
 	Database.DB, err = gorm.Open(postgresSource, &gorm.Config{
 		Logger: logDBInfo(),
@@ -227,9 +205,19 @@ func postgresDB() {
 	// }))
 
 	// Load Migration
-	Database.Migrate()
+	Database.MigratePG()
 }
 
 func prepare_db() {
-	postgresDB()
+	switch DB_TYPE {
+	case "postgres":
+		postgresDB()
+	case "mongo":
+		mongoDB()
+	case "all":
+		mongoDB()
+		postgresDB()
+	default:
+		postgresDB()
+	}
 }
