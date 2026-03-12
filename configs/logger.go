@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"os/exec"
 	"path"
 
 	logecs "github.com/ecsavigne/logecs/log"
@@ -14,6 +15,23 @@ var (
 	Log, LogTemp logecs.Logger
 	fileLogger   *os.File
 )
+
+func execCommand(cmds []string) error {
+	cmd := exec.Command(cmds[0], cmds[1:]...)
+	cmd.Stdout = os.Stdout
+	cmd.Stderr = os.Stderr
+	return cmd.Run()
+
+}
+
+func createFolder(folder string) []string {
+	cmd := fmt.Sprintf("sudo mkdir -p %s; sudo chmod -R 777 %s", folder, folder)
+	return []string{
+		"bash",
+		"-c",
+		cmd,
+	}
+}
 
 func prepare_logger() {
 	dir := path.Dir(APP_FILE_LOGGER)
@@ -30,7 +48,7 @@ func prepare_logger() {
 	}()
 
 	// create folder if not exists
-	err := os.MkdirAll(dir, os.ModePerm)
+	err := execCommand(createFolder(dir))
 	if err != nil {
 		fmt.Printf("Error creating logger file in %s, error is: %s\n", APP_FILE_LOGGER, err.Error())
 	}
