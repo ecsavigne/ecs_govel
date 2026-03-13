@@ -16,7 +16,7 @@ func index_test_mongo() []mongo.IndexModel {
 	indexUsr := []mongo.IndexModel{
 		{
 			Keys: bson.D{
-				{Key: "id", Value: 1},
+				{Key: "id", Value: 1}, // _id no se crea index why mongo create automaticaly
 			},
 			Options: options.Index().SetUnique(true).SetName("idx_test_mongo_id"),
 		},
@@ -36,10 +36,6 @@ func create_index_mongo() {
 }
 
 func migrationMongoDB() {
-	tm := &model.TestMongoModel{}
-
-	mgm.Coll(tm).Create(tm)
-
 	create_index_mongo()
 }
 
