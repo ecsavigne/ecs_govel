@@ -19,35 +19,6 @@ import (
 	"gorm.io/plugin/dbresolver"
 )
 
-type DbInstance struct {
-	*gorm.DB
-	AppID string
-}
-
-var (
-	PG_DB_HOST        string
-	PG_DB_USER        string
-	PG_DB_NAME        string
-	PG_DB_PASSWORD    string
-	PG_DB_PORT        string
-	FORWARD_DB_PORT   string
-	PG_DNS_DB         string
-	PG_DB_CONNSTR     string
-	MONGO_DB_HOST     string
-	MONGO_DB_USER     string
-	MONGO_DB_NAME     string
-	MONGO_DB_PASSWORD string
-	MONGO_DB_PORT     string
-	MONGO_DB_CONNSTR  string
-	DB_TYPE           string
-	Database          *DbInstance = new(DbInstance)
-	SSH_ENABLE        bool
-	SSH_PORT          string
-	SSH_HOST          string
-	SSH_PASS          string
-	SSH_USER          string
-)
-
 func create_database_postgres() error {
 	db, err := sql.Open("postgres", PG_DNS_DB)
 	if err != nil {

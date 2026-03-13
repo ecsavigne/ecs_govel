@@ -1,4 +1,6 @@
 ecs_govel version 
+    v2.7.9
+        - improve minors
     v2.7.8
         - improve creation of folder logs
     v2.7.7

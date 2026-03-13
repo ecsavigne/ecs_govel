@@ -10,12 +10,6 @@ import (
 	logecs "github.com/ecsavigne/logecs/log"
 )
 
-// log
-var (
-	Log, LogTemp logecs.Logger
-	fileLogger   *os.File
-)
-
 func execCommand(cmds []string) error {
 	cmd := exec.Command(cmds[0], cmds[1:]...)
 	cmd.Stdout = os.Stdout
@@ -26,6 +20,7 @@ func execCommand(cmds []string) error {
 
 func createFolder(folder string) []string {
 	cmd := fmt.Sprintf("sudo mkdir -p %s; sudo chmod -R 777 %s", folder, folder)
+	// cmd := fmt.Sprintf("mkdir -p %s; sudo chmod -R 777 %s", folder, folder) // for docker
 	return []string{
 		"bash",
 		"-c",
@@ -48,9 +43,12 @@ func prepare_logger() {
 	}()
 
 	// create folder if not exists
-	err := execCommand(createFolder(dir))
+	err := os.MkdirAll(dir, os.ModePerm)
 	if err != nil {
-		fmt.Printf("Error creating logger file in %s, error is: %s\n", APP_FILE_LOGGER, err.Error())
+		if err = execCommand(createFolder(dir)); err != nil {
+			fmt.Printf("Error creating logger file in %s, error is: %s\n", APP_FILE_LOGGER, err.Error())
+			os.Exit(1)
+		}
 	}
 
 	// open file if not exists and append data or create

@@ -13,7 +13,7 @@ import (
 	semconv "go.opentelemetry.io/otel/semconv/v1.37.0"
 
 	// "go.opentelemetry.io/otel/exporters/stdout/stdoutmetric"
-	prom "github.com/prometheus/client_golang/prometheus"
+
 	"go.opentelemetry.io/otel/exporters/prometheus"
 	"go.opentelemetry.io/otel/exporters/stdout/stdouttrace"
 	"go.opentelemetry.io/otel/propagation"
@@ -22,11 +22,6 @@ import (
 
 	"go.opentelemetry.io/otel/sdk/resource"
 	"go.opentelemetry.io/otel/sdk/trace"
-)
-
-var (
-	otelInterceptor *otelconnect.Interceptor
-	Register        *prom.Registry = prom.NewRegistry()
 )
 
 func GetOtelInterceptor() *otelconnect.Interceptor {

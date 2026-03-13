@@ -11,25 +11,6 @@ import (
 	"golang.org/x/sync/errgroup"
 )
 
-var (
-	HTTP_SERVER_HOST string
-	HTTP_SERVER_PORT string
-
-	HTTP_SERVER_HOST_WEBHOOK string
-	HTTP_SERVER_PORT_WEBHOOK string
-
-	HTTP_SERVER_HOST_METRICS string
-	HTTP_SERVER_PORT_METRICS string
-
-	HTTP_SERVER_PORT_TEST    string
-	HTTP_SERVER_HOST_DOC_API string
-	HTTP_SERVER_PORT_DOC_API string
-	GROUP_WAIT               errgroup.Group
-
-	StateInitDocApi bool = true
-	StateInitMetric bool = true
-)
-
 func secureServer(route *gin.Engine, expectHost string) {
 	route.Use(func(c *gin.Context) {
 		if c.Request.Host != expectHost {
