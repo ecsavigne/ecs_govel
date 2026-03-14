@@ -3,11 +3,11 @@
 
 services:
   # Servicio del proxy en Go
-  shortlink:
+  ${SERVICE_NAME}:
     build:
       context: ./gofiles
       dockerfile: Dockerfile
-    container_name: shortlink
+    container_name: ${SERVICE_NAME}_container
     ports:
       - "8003:8080"
     volumes:
@@ -19,7 +19,7 @@ services:
 networks:
     external-network: # <--- Nombre lógico para este archivo
         external: true
-        name: nomeservice_my_networks_dockers # <--- El nombre REAL que ves en 'docker network ls'
+        name: ${DOCKER_EXTERNAL_NETWORK} # <--- El nombre REAL que ves en 'docker network ls'
    
     # Red criada pode ser criada $ docker network create my_networks_dockers
     #     networks:
