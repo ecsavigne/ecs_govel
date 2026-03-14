@@ -7,9 +7,13 @@ services:
     build:
       context: ./gofiles
       dockerfile: Dockerfile
-    container_name: ${SERVICE_NAME}_container
+      args:
+        - SERVICE_NAME=${SERVICE_NAME}
+        - FOLDER_ALLOWED=${FOLDER_ALLOWED}
+        - EXECs=${EXECs}
+    container_name: ${SERVICE_NAME}
     ports:
-      - "8003:8080"
+       - "11301:11301"
     volumes:
       - ./gofiles/project_file:/app
     networks:
