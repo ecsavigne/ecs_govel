@@ -32,10 +32,10 @@ func GetDocApiEngine() *gin.Engine {
 // Configurar el motor de Gin
 func prepare_engine() {
 	if strings.ToLower(APP_MODE) == "develop" {
-		fmt.Println("dEVELOP MODE")
+		fmt.Println("DEVELOP MODE")
 		gin.SetMode(gin.DebugMode)
 	} else {
-		fmt.Println("rELEASE MODE")
+		fmt.Println("RELEASE MODE")
 		gin.SetMode(gin.ReleaseMode)
 		gin.DefaultWriter = io.MultiWriter(fileLogger, os.Stdout)
 	}
