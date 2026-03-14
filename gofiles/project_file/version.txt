@@ -1,6 +1,6 @@
 ecs_govel version 
     v2.8.0
-        - Create struct folder for docker files 
+        - Create struct folder for docker files
     v2.7.9
         - improve minors
     v2.7.8
