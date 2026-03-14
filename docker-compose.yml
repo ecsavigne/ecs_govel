@@ -1,39 +1,28 @@
+# Aqui los container se van a conectar a una red external llamada my_whatsmeow_whatsmeow que es la crfeada por el container de la base datos
+# se crea un extra host para los servicios asociado a un nombre de host local  my.host.local 
+
 services:
-    pgsql:
-        #image: 'postgres:14'
-        container_name: "test_pgsql"
-        image: 'postgres:latest'
-        shm_size: 500m
-        ports:
-            - '${FORWARD_DB_PORT:-5433}:5432'
-        command: ["postgres", "-c", "max_connections=3000", "-c", "shared_buffers=2048MB"]
-        # command: ["postgres", "-c", "log_statement=all", "-c", "log_destination=stderr", "-c", "max_connections=2500", "-c", "shared_buffers=2048MB"]
-        environment:
-            PGPASSWORD: '${PG_DB_PASSWORD:-secret}'
-            POSTGRES_DB: '${PG_DB_DATABASE}'
-            POSTGRES_USER: '${PG_DB_USERNAME}'
-            POSTGRES_PASSWORD: '${PG_DB_PASSWORD:-secret}'
-        volumes:
-            - 'whatsmeow-pgsql:/var/lib/postgresql/data'
-        networks:
-            - whatsmeow
-        healthcheck:
-            test: ["CMD", "pg_isready", "-q", "-d", "${PG_DB_DATABASE}", "-U", "${PG_DB_USERNAME}"]
-            retries: 3
-            timeout: 5s
-        restart: always
-        deploy:
-            resources:
-                limits:
-                    cpus: '0.50'
-                    memory: 16384M
-                reservations:
-                    cpus: '0.35'
-                    memory: 12288M
+  # Servicio del proxy en Go
+  shortlink:
+    build:
+      context: ./gofiles
+      dockerfile: Dockerfile
+    container_name: shortlink
+    ports:
+      - "8003:8080"
+    volumes:
+      - ./gofiles/project_file:/app
+    networks:
+      - my_networks_dockers # <--- Usamos el nombre lógico definido abajo
+    restart: always
 
 networks:
-    whatsmeow:
-        driver: bridge
-volumes:
-    whatsmeow-pgsql:
-        driver: local
+    external-network: # <--- Nombre lógico para este archivo
+        external: true
+        name: nomeservice_my_networks_dockers # <--- El nombre REAL que ves en 'docker network ls'
+   
+    # Red criada pode ser criada $ docker network create my_networks_dockers
+    #     networks:
+    # mongodb_enterprise:
+    #     name: nomeservice_my_networks_dockers
+    #     driver: bridge

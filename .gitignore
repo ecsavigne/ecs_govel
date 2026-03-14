@@ -1,7 +1,7 @@
-./test.json
-./logs
-./tmp/
-./.vscode
-.air.toml
-/vendor
-./temp
+./gofiles/project_file/test.json
+./gofiles/project_file/logs
+./gofiles/project_file/tmp/
+./gofiles/project_file/.vscode
+./gofiles/project_file/air.toml
+./gofiles/project_file/vendor
+./gofiles/project_file/temp
