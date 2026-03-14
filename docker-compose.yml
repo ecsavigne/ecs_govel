@@ -13,7 +13,7 @@ services:
     volumes:
       - ./gofiles/project_file:/app
     networks:
-      - my_networks_dockers # <--- Usamos el nombre lógico definido abajo
+      - ${DOCKER_EXTERNAL_NETWORK} # <--- Usamos el nombre lógico definido abajo
     restart: always
 
 networks:
