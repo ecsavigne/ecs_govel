@@ -1,7 +1,7 @@
 package partition
 
 import (
-	"ecs_govel/app/model"
+	"ecs_govel/rest/app/model"
 
 	"gorm.io/gorm"
 )

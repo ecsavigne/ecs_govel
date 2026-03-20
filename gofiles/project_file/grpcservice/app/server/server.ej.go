@@ -65,7 +65,8 @@ func InitGrpcService() {
 	// routes for anotations proto
 	routerGin.Any("/productsapi/*any", gin.WrapH(transcoder))
 
-	addr := fmt.Sprintf("localhost:%s", c_.GRPC_SERVER_PORT)
+	// addr := fmt.Sprintf("localhost:%s", c_.GRPC_SERVER_PORT) // comunicacion cerrada entre docker en la red de docker
+	addr := fmt.Sprintf(":%s", c_.GRPC_SERVER_PORT) // external comunica con red de docker
 	s := http.Server{
 		Addr:      addr,
 		Handler:   routerGin,

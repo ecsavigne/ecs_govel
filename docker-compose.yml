@@ -7,15 +7,13 @@ services:
     build:
       context: ./gofiles
       dockerfile: Dockerfile
-      args:
-        - SERVICE_NAME=${SERVICE_NAME}
-        - FOLDER_ALLOWED=${FOLDER_ALLOWED}
-        - EXECs=${EXECs}
     container_name: ${SERVICE_NAME}
+    command: ["sh", "-c", "${MY_CMD}"]
     ports:
        - "11301:11301"
     volumes:
       - ./gofiles/project_file:/app
+      - /var/log/${SERVICE_NAME}:/var/log/${SERVICE_NAME}
     networks:
       - external-network # <--- Usamos el nombre lógico definido abajo
     restart: always

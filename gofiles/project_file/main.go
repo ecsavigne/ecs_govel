@@ -3,10 +3,10 @@ package main
 import (
 	//configs "ecs_govel/configs"
 
-	// "ecs_govel/app/webhooks"
-	"ecs_govel/app/console"
+	// "ecs_govel/rest/app/webhooks"
 	config "ecs_govel/configs"
 	grpcserverinit "ecs_govel/grpcservice/app/server"
+	"ecs_govel/rest/app/console"
 	_ "ecs_govel/routes"
 	"os"
 	"os/signal"

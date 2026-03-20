@@ -42,10 +42,10 @@ func httpRun() {
 	GROUP_WAIT, ctx := errgroup.WithContext(context.Background()) // WithContext.
 	GROUP_WAIT.SetLimit(3)
 	if IsX1() { //metricEngine
-		// GROUP_WAIT.Go(func() error {
-		// 	Log.Sub("Configs").Infof("Server Metrics in %s:%s\n", HTTP_SERVER_HOST_METRICS, HTTP_SERVER_PORT_METRICS)
-		// 	return servMetric(ctx)
-		// })
+		GROUP_WAIT.Go(func() error {
+			Log.Sub("Configs").Infof("Server Metrics in %s:%s\n", HTTP_SERVER_HOST_METRICS, HTTP_SERVER_PORT_METRICS)
+			return servMetric(ctx)
+		})
 
 		// ServerDocsApi
 		GROUP_WAIT.Go(func() error {

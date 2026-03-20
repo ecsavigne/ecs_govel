@@ -9,8 +9,8 @@ import (
 	"path/filepath"
 	"time"
 
-	"ecs_govel/app/model"
 	"ecs_govel/database/migration"
+	"ecs_govel/rest/app/model"
 
 	_ "github.com/lib/pq"
 	"gorm.io/driver/postgres"

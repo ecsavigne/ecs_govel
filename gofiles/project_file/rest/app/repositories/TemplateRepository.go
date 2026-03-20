@@ -1,6 +1,6 @@
 package repositories
 
-import "ecs_govel/app/model"
+import "ecs_govel/rest/app/model"
 
 type TestRepository struct {
 	*KernelRepository

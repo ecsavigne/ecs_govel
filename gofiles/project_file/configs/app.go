@@ -199,7 +199,7 @@ func prepare_app() {
 
 func IsX1() bool {
 	name := path.Base(os.Args[0])
-	if name == APP_NAME_X1 || strings.ToLower(APP_MODE) == "develop" || "ecs_govel" == name {
+	if name == APP_NAME_X1 || strings.ToLower(APP_MODE) == "develop" {
 		return true
 	}
 	return false

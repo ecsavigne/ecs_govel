@@ -1,4 +1,7 @@
 ecs_govel version 
+    v2.8.1
+        - Fix error loadin server metric and apiDoc
+        - create folder rest for apir rest
     v2.8.0
         - Create struct folder for docker files
     v2.7.9

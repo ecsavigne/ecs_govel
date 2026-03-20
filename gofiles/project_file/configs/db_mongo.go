@@ -1,7 +1,7 @@
 package configs
 
 import (
-	"ecs_govel/app/model"
+	"ecs_govel/rest/app/model"
 	"fmt"
 	"time"
 

@@ -1,7 +1,7 @@
 package seeders
 
 import (
-	model "ecs_govel/app/model"
+	model "ecs_govel/rest/app/model"
 	"fmt"
 )
 

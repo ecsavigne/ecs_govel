@@ -3,7 +3,7 @@ FROM amd64/ubuntu:noble
 # FROM golang:latest
 
 #Instalacion de
-RUN apt update && apt install -y curl wget tar
+RUN apt update && apt install -y curl wget tar grep
 
 # # Preparar diretório de trabajo
 WORKDIR /app
@@ -25,4 +25,3 @@ ENV PATH="/usr/local/go/bin:${PATH}"
 COPY project_file/* .
 
 # Executar
-CMD ["sh","-c", "ls -la /app & tail -f /dev/null"]
