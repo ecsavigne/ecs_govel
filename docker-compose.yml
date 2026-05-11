@@ -13,15 +13,15 @@ services:
        - "11301:11301"
     volumes:
       - ./gofiles/project_file:/app
-      - /var/log/${SERVICE_NAME}:/var/log/${SERVICE_NAME}
     networks:
-      - external-network # <--- Usamos el nombre lógico definido abajo
+      external-network: # <--- Usamos el nombre lógico definido abajo
+        ipv4_address: 192.168.40.10
     restart: always
 
 networks:
     external-network: # <--- Nombre lógico para este archivo
         external: true
-        name: ${DOCKER_EXTERNAL_NETWORK} # <--- El nombre REAL que ves en 'docker network ls'
+        name: ${DOCKER_EXTERNAL_NETWORK} # <--- El nombre REAL que ves en 'docker network ls', tiene que tener subnet 192.168.40.0/24. ex: docker network create --driver bridge --subnet 192.168.10.0/24 my_red, donde DOCKER_EXTERNAL_NETWORK=my_red 
    
     # Red criada pode ser criada $ docker network create my_networks_dockers
     #     networks:

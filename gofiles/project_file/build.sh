@@ -7,13 +7,20 @@ path="./"
 
 main_file="$APP_NAME"
 
+module_name=ecs_govel
+
+go mod init ${module_name} || echo "Módulo ya inicializado"
+go mod tidy
+
 echo "go build main.go"
 go build -o $main_file
 sleep 1
 
 permision=$(stat -c "%a" "$path")
 if [ $permision -ne 777 ]; then
-    sudo chmod -R 777 $path
+    # for docker
+    chmod -R 777 $path
+    # sudo chmod -R 777 $path
 fi
 
 if [ ! -d $path"Binary" ]; then
@@ -23,14 +30,18 @@ fi
 
 permision=$(stat -c "%a" $path"Binary")
 if [ $permision -ne 777 ]; then
-    sudo chmod -R 777 $path"Binary"
+    # for docker
+    chmod -R 777 $path"Binary"
+    # sudo chmod -R 777 $path"Binary"
 fi
 
 # Convertir la cadena en un arreglo
 echo "$PORTS" | awk 'BEGIN {FS=","} {for (i=1; i<=NF; i++) print $i}' | while read -r port; do
     echo "$port"
     echo "killing $main_file$port"
-    sudo pkill -f "$main_file$port"
+    # for docker
+    pkill -f "$main_file$port"
+    # sudo pkill -f "$main_file$port"
     echo "copying $main_file to ${path}Binary/$main_file$port"
     #cp $main_file $path"Binary/$main_file$port"
     rsync -av --inplace $main_file $path"Binary/$main_file$port"

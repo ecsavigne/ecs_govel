@@ -20,7 +20,7 @@ func loadDocRoutes(g *gin.Engine) {
 		Host: "localhost",
 		Port: c_.GRPC_SERVER_PORT,
 	})
-	g.Any("/productsapi/*any", c_.ReverseProxyApi.RequestProxy())
+	g.Any("/name_api/*any", c_.ReverseProxyApi.RequestProxy())
 
 	// docs types
 	switch strings.ToLower(c_.TYPE_DOCUMENTATION) {

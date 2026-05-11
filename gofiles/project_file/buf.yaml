@@ -14,7 +14,10 @@ lint:
     # - PACKAGE_DIRECTORY_MATCH    # Ignora que la carpeta no coincida
     # - PACKAGE_VERSION_SUFFIX      # Ignora que no tenga .v1
     # - RPC_REQUEST_STANDARD_NAME   # Ignora el nombre de los mensajes Request
-    # - RPC_RESPONSE_STANDARD_NAME  # Ignora el nombre de los mensajes Response  
+    # # - RPC_RESPONSE_STANDARD_NAME  # Ignora el nombre de los mensajes Response  
+    # - ENUM_ZERO_VALUE_SUFFIX      # Ignora que el valor 0 no termine en _UNSPECIFIED
+    # - ENUM_VALUE_PREFIX           # Ignora que los valores no empiecen con el nombre del Enum
+    # - ENUM_ZERO_VALUE_NAME_PREFIX # Ignora prefijos específicos en el valor cero
 breaking:
   use:
     - FILE

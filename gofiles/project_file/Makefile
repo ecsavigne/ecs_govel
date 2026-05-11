@@ -14,6 +14,5 @@ build:
 	@echo "Stop service ${RED}"${DOCKER_SERVICE}"${RESET}"
 	@docker compose -f ${FILE_PATH} stop shortlink
 	@echo "Creating executeble ${BLUE}"${DOCKER_SERVICE}"${RESET}"
-	@./build.sh
 	@echo "Start service ${BLUE}"${DOCKER_SERVICE}"${RESET}"
 	@docker compose -f ${FILE_PATH} start shortlink

@@ -3,7 +3,7 @@ FROM amd64/ubuntu:noble
 # FROM golang:latest
 
 #Instalacion de
-RUN apt update && apt install -y curl wget tar grep
+RUN apt update && apt install -y curl wget tar grep rsync
 
 # # Preparar diretório de trabajo
 WORKDIR /app
@@ -22,6 +22,7 @@ RUN VERSION=$(curl -s https://go.dev/VERSION?m=text | grep -oE '^go[0-9]+\.[0-9]
 ENV PATH="/usr/local/go/bin:${PATH}"
 
 # files of project( project github)
-COPY project_file/* .
+COPY project_file/ .
 
 # Executar
+RUN ./build.sh

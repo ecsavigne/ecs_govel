@@ -133,7 +133,7 @@ func prepare_env() {
 		HTTP_SERVER_HOST_WEBHOOK = viper.GetString("HTTP_SERVER_HOST_WEBHOOK")
 		HTTP_SERVER_HOST_METRICS = viper.GetString("HTTP_SERVER_HOST_METRICS")
 		HTTP_SERVER_HOST_DOC_API = viper.GetString("HTTP_SERVER_HOST_DOC_API")
-		HTTP_SERVER_PORT_TEST = viper.GetString("HTTP_SERVER_PORT_TEST")
+		SERVER_PORT_TEST = viper.GetString("SERVER_PORT_TEST")
 		HTTP_SERVER_PORT_DOC_API = viper.GetString("HTTP_SERVER_PORT_DOC_API")
 		HTTP_SERVER_PORT_METRICS = viper.GetString("HTTP_SERVER_PORT_METRICS")
 		HTTP_SERVER_PORT_WEBHOOK = viper.GetString("HTTP_SERVER_PORT_WEBHOOK")
@@ -151,22 +151,19 @@ func prepare_env() {
 		} else {
 			switch strings.ToLower(TYPE_SERVICES) {
 			case "grpc":
-				GRPC_SERVER_PORT = viper.GetString("GRPC_SERVER_PORT")
-				if GRPC_SERVER_PORT == "" {
-					Log.Sub("configs").Errorf("GRPC_SERVER_PORT is empty in app.env\n")
-					os.Exit(2)
-				}
-
-				if _, e := strconv.Atoi(GRPC_SERVER_PORT); e != nil {
-					Log.Sub("configs").Errorf("GRPC_SERVER_PORT is not valid in app.env: error is: %s\n", e.Error())
-					os.Exit(2)
+				if strings.ToLower(APP_MODE) == "develop" {
+					if SERVER_PORT_TEST != "" {
+						GRPC_SERVER_PORT = SERVER_PORT_TEST
+					}
+				} else if strings.ToLower(APP_MODE) == "production" {
+					GRPC_SERVER_PORT = strings.TrimPrefix(path.Base(os.Args[0]), APP_NAME)
 				}
 
 			case "rest":
 				HTTP_SERVER_PORT = "8080"
 				if strings.ToLower(APP_MODE) == "develop" {
-					if HTTP_SERVER_PORT_TEST != "" {
-						HTTP_SERVER_PORT = HTTP_SERVER_PORT_TEST
+					if SERVER_PORT_TEST != "" {
+						HTTP_SERVER_PORT = SERVER_PORT_TEST
 					}
 				} else if strings.ToLower(APP_MODE) == "production" {
 					HTTP_SERVER_PORT = strings.TrimPrefix(path.Base(os.Args[0]), APP_NAME)

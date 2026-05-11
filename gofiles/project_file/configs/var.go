@@ -79,7 +79,7 @@ var (
 	HTTP_SERVER_HOST_METRICS string
 	HTTP_SERVER_PORT_METRICS string
 
-	HTTP_SERVER_PORT_TEST    string
+	SERVER_PORT_TEST         string
 	HTTP_SERVER_HOST_DOC_API string
 	HTTP_SERVER_PORT_DOC_API string
 	GROUP_WAIT               errgroup.Group
