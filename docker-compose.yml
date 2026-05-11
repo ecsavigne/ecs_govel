@@ -16,6 +16,8 @@ services:
     networks:
       external-network: # <--- Usamos el nombre lógico definido abajo
         ipv4_address: 192.168.40.10
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
     restart: always
 
 networks:
