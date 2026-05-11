@@ -1,4 +1,6 @@
 ecs_govel version 
+    v2.9.1
+        - Now the project is build, run from start docker compose up
     v2.8.1
         - Fix error loadin server metric and apiDoc
         - create folder rest for apir rest
