@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"io"
 	"os"
-	"path"
+	path "path/filepath"
 	"strconv"
 	"strings"
 
@@ -56,6 +56,7 @@ func prepare_engine() {
 // Carga de varEnv
 func prepare_env() {
 	pathDir, _ := os.Getwd()
+	pathDir = path.Dir(pathDir)
 	viper.AddConfigPath(pathDir)
 	viper.SetConfigType("env")
 	viper.SetConfigName("app.env")
