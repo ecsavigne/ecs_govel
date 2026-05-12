@@ -10,7 +10,10 @@ main_file="$APP_NAME"
 module_name=ecs_govel
 
 go mod init ${module_name} || echo "Módulo ya inicializado"
-go mod tidy
+if [ ! -d "vendor" ]; then
+    go mod tidy
+    go mod vendor
+fi 
 
 echo "go build main.go"
 go build -o $main_file
