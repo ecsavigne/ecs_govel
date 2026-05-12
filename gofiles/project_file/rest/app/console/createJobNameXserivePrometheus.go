@@ -5,6 +5,8 @@ import (
 	"log"
 	"os"
 
+	c_ "ecs_govel/configs"
+
 	"github.com/goccy/go-yaml"
 )
 
@@ -16,7 +18,7 @@ import (
 // 4. Convertir a YAML
 // 5. Guardar en el archivo
 func CreateJobNameXserivePrometheus() {
-	pathConfigPrometheus := "sdkopentelemetry/config_prometheus/prometheus.yml"
+	pathConfigPrometheus := c_.PROMETHEUS_CONFIG_PATH
 
 	// Estructura raíz del archivo Prometheus
 	type GlobalConfig struct {

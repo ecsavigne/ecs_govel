@@ -139,6 +139,8 @@ func prepare_env() {
 		HTTP_SERVER_PORT_WEBHOOK = viper.GetString("HTTP_SERVER_PORT_WEBHOOK")
 		TYPE_SERVICES = viper.GetString("TYPE_SERVICES")
 		TYPE_DOCUMENTATION = viper.GetString("TYPE_DOCUMENTATION")
+		PROMETHEUS_CONFIG_PATH = viper.GetString("PROMETHEUS_CONFIG_PATH")
+		GRAFANA_CONFIG_PATH = viper.GetString("GRAFANA_CONFIG_PATH")
 
 		if strings.ToLower(APP_MODE) != "develop" && strings.ToLower(APP_MODE) != "production" {
 			Log.Sub("configs").Errorf("APP_MODE is not valid in app.env, values possible: [develop, production] \n")

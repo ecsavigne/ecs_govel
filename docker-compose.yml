@@ -8,11 +8,12 @@ services:
       context: ./gofiles
       dockerfile: Dockerfile
     container_name: ${SERVICE_NAME}
-    command: ["sh", "-c", "${MY_CMD}"]
+    entrypoint: ["sh", "-c", "${MY_CMD}"]
     ports:
-       - "11301:11301"
+       - "11301:8080"
     volumes:
       - ./gofiles/project_file:/app
+      - ./ig_service_official.conf:/etc/supervisor/conf.d/ig_service_official.conf
     networks:
       external-network: # <--- Usamos el nombre lógico definido abajo
         ipv4_address: 192.168.40.10

@@ -96,6 +96,8 @@ var (
 
 // Telemetry
 var (
-	otelInterceptor *otelconnect.Interceptor
-	Register        *prom.Registry = prom.NewRegistry()
+	otelInterceptor        *otelconnect.Interceptor
+	Register               *prom.Registry = prom.NewRegistry()
+	PROMETHEUS_CONFIG_PATH string
+	GRAFANA_CONFIG_PATH    string
 )
