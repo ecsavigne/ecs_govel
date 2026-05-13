@@ -56,7 +56,7 @@ func create_database_postgres() error {
 }
 
 func logDBInfo() logger.Interface {
-	logDataBaseFile, err := os.Create("database.log")
+	logDataBaseFile, err := os.Create(filepath.Join(PATH_BASE, "database.log"))
 	if err != nil {
 		fmt.Println("Error creating Database log file, is: ", err)
 	}

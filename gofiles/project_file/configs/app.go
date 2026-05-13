@@ -56,8 +56,8 @@ func prepare_engine() {
 // Carga de varEnv
 func prepare_env() {
 	pathDir, _ := os.Getwd()
-	pathDir = path.Dir(pathDir)
-	viper.AddConfigPath(pathDir)
+	PATH_BASE = path.Dir(pathDir)
+	viper.AddConfigPath(PATH_BASE)
 	viper.SetConfigType("env")
 	viper.SetConfigName("app.env")
 	if err := viper.ReadInConfig(); err != nil {

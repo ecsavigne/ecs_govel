@@ -40,6 +40,7 @@ var (
 	GRPC_SERVER_PORT          string
 	TYPE_SERVICES             string
 	TYPE_DOCUMENTATION        string
+	PATH_BASE                 string
 )
 
 // DB
