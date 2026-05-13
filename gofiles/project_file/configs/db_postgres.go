@@ -119,9 +119,9 @@ func postgresDB() {
 	defer func() {
 		if r := recover(); r != nil {
 			logMessage = filepath.Base(os.Args[0]) + " :  Error initializing Database. " + ": Recovered from exception " + ". Interface in defer is: " + fmt.Sprintf("%+v", r) + ". DebugMessage is: " + debugMessage
-			Log.Errorf("[database.database.go - init()]. ", logMessage)
+			Log.Errorf("[database.database.go - init()]. %s\n", logMessage)
 			//TODO: Quitar el Exit(2)
-			os.Exit(2)
+			// os.Exit(2)
 		}
 	}()
 
