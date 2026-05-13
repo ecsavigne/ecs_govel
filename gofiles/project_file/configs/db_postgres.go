@@ -108,6 +108,11 @@ func (db *DbInstance) MigratePG() {
 
 	// Execute Partition
 	// partition.ExecutePartition(db.DB, partition.OpenConversationPartition())
+
+	//  Execute script
+	// script.ExecuteScript(db.DB,
+	// script.CreateChatsPartitionYear()
+	// )
 }
 
 func postgresDB() {
@@ -129,7 +134,7 @@ func postgresDB() {
 	if err = create_database_postgres(); err != nil {
 		logMessage = filepath.Base(os.Args[0]) + " :  Error initializing Database. " + err.Error()
 		fmt.Println(logMessage)
-		Log.Errorf("[database.database.go - init()]. ", logMessage)
+		Log.Errorf("[database.database.go - init()]. %s\n", logMessage)
 		panic(logMessage)
 	}
 
@@ -156,9 +161,8 @@ func postgresDB() {
 		panic(err)
 	}
 	model.SetGlobalDB(Database.DB)
-	fmt.Printf("Base Datos >>>>>>>>>>>>>. : %+v\n", model.GetGlobalDB())
 
-	fmt.Println("Max Connections: ", APP_MAX_CONNECTIONS, " CantX: ", APP_CANT_X)
+	Log.Debugf("Max Connections: ", APP_MAX_CONNECTIONS, " CantX: ", APP_CANT_X)
 	sqlDB, _ := Database.DB.DB()
 	sqlDB.SetConnMaxLifetime(time.Minute * 2) // Make than last forever
 	sqlDB.SetMaxIdleConns((APP_MAX_CONNECTIONS / APP_CANT_X) - 7)

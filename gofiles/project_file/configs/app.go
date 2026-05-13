@@ -64,6 +64,9 @@ func prepare_env() {
 		fmt.Printf("\033[31mError: No encontrado archivo app.env ni .cobraToml de tipo (toml) en\033[30m %s\n", pathDir)
 		os.Exit(2)
 	} else {
+		APP_FILE_LOGGER = viper.GetString("APP_FILE_LOGGER")
+		prepare_logger()
+
 		fmt.Println("-----------------------------------------------------------")
 		fmt.Println("\033[32mEncontrado archivo tipo\033[0m \033[34m(env)\033[0m")
 
@@ -117,10 +120,8 @@ func prepare_env() {
 		APP_PORT_TEST = viper.GetString("APP_PORT_TEST")
 		APP_MAX_CONNECTIONS = viper.GetInt("APP_MAX_CONNECTIONS")
 		APP_CANT_X = viper.GetInt("APP_CANT_X")
-		APP_FILE_LOGGER = viper.GetString("APP_FILE_LOGGER")
 		APP_URL_FILE_STORE = viper.GetString("APP_URL_FILE_STORE")
 		APP_URL_BASE_WEBHOOK = viper.GetString("APP_URL_BASE_WEBHOOK")
-		prepare_logger()
 		APP_PROCESS_EVENT_RECIVED = viper.GetBool("APP_PROCESS_EVENT_RECIVED")
 		APP_SESSIONS = viper.GetString("APP_SESSIONS")
 		APP_AVATAR_FILES = viper.GetString("APP_AVATAR_FILES")
