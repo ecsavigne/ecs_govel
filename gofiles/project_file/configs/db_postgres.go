@@ -9,7 +9,7 @@ import (
 	"path/filepath"
 	"time"
 
-	"ecs_govel/database/migration"
+	"ecs_govel/database/script"
 	"ecs_govel/rest/app/model"
 
 	_ "github.com/lib/pq"
@@ -89,12 +89,22 @@ func (db *DbInstance) MigratePG() {
 	debugMessage = "2"
 
 	// db.DB.Migrator().DropTable(&migration.TestMigation{})
+	// db.DB.Migrator().DropTable(&migration.TestMigation{})
+	// Execute Script
+	script.ExecuteScript(db.DB,
+		script.CreateConversationsPartitionYear(),
+	)
 	err := db.DB.AutoMigrate(
-		&migration.TestMigation{},
+	// &migration.AllowCompany{},
+	// &migration.Company{},
+	// &migration.IGAccount{},
+	// new(migration.Message),
 	)
 
 	if err != nil {
-		fmt.Println("Error: ", err.Error())
+		Log.Errorf("Error in migration: %s\n", err.Error())
+	} else {
+		Log.Infof("Load migration successfully. \n")
 	}
 
 	// Load Migration from .sql
@@ -106,13 +116,7 @@ func (db *DbInstance) MigratePG() {
 	// execute trigger
 	// trigger.ExecuteTrigger(db.DB, trigger.TriggerDeleteMessageByCompanyWhatsapp())
 
-	// Execute Partition
 	// partition.ExecutePartition(db.DB, partition.OpenConversationPartition())
-
-	//  Execute script
-	// script.ExecuteScript(db.DB,
-	// script.CreateChatsPartitionYear()
-	// )
 }
 
 func postgresDB() {
@@ -124,9 +128,7 @@ func postgresDB() {
 	defer func() {
 		if r := recover(); r != nil {
 			logMessage = filepath.Base(os.Args[0]) + " :  Error initializing Database. " + ": Recovered from exception " + ". Interface in defer is: " + fmt.Sprintf("%+v", r) + ". DebugMessage is: " + debugMessage
-			Log.Errorf("[database.database.go - init()]. %s\n", logMessage)
-			//TODO: Quitar el Exit(2)
-			// os.Exit(2)
+			Log.Sub("DbInstance").Debugf(`MigratePG {panic: "%s" }. %s`, logMessage, "\n")
 		}
 	}()
 
