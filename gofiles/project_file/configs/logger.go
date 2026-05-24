@@ -1,6 +1,7 @@
 package configs
 
 import (
+	"ecs_govel/command"
 	"fmt"
 	"log"
 	"os"
@@ -61,6 +62,7 @@ func prepare_logger() {
 		Mod: logAPi, Color: true,
 		Path: APP_FILE_LOGGER, OutPut: true,
 	})
+	command.SetLogger(Log)
 
 	Log.Infof("\x1b[34mConfiguring logger file in %s\x1b[0m\n", APP_FILE_LOGGER)
 }

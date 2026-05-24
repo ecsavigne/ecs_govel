@@ -6,9 +6,11 @@ import (
 	"time"
 
 	"github.com/kamva/mgm/v3"
-	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
-	"go.mongodb.org/mongo-driver/mongo/options"
+	optionsv1 "go.mongodb.org/mongo-driver/mongo/options"
+	"go.mongodb.org/mongo-driver/v2/bson"
+
+	// optionsv1 "go.mongodb.org/mongo-driver/v2/mongo/options"
 	"golang.org/x/crypto/ssh"
 )
 
@@ -18,13 +20,13 @@ func index_test_mongo() []mongo.IndexModel {
 			Keys: bson.D{
 				{Key: "id", Value: 1}, // _id no se crea index why mongo create automaticaly
 			},
-			Options: options.Index().SetUnique(true).SetName("idx_test_mongo_id"),
+			Options: optionsv1.Index().SetUnique(true).SetName("idx_test_mongo_id"),
 		},
 		{
 			Keys: bson.D{
 				{Key: "created_at", Value: 1},
 			},
-			Options: options.Index().SetName("idx_test_mongo_created_at"),
+			Options: optionsv1.Index().SetName("idx_test_mongo_created_at"),
 		},
 	}
 
@@ -40,7 +42,7 @@ func migrationMongoDB() {
 }
 
 func mongoDB() {
-	clientOpts := &options.ClientOptions{}
+	clientOpts := &optionsv1.ClientOptions{}
 	var (
 		err       error
 		sshClient *ssh.Client
@@ -65,7 +67,7 @@ func mongoDB() {
 	}
 
 	MONGO_DB_CONNSTR := fmt.Sprintf("mongodb://%s:%s@%s:%s/?compressors=snappy,zlib,MONGO_zstd", MONGO_DB_USER, MONGO_DB_PASSWORD, MONGO_DB_HOST, MONGO_DB_PORT)
-	clientOpts = options.Client().ApplyURI(MONGO_DB_CONNSTR)
+	clientOpts = optionsv1.Client().ApplyURI(MONGO_DB_CONNSTR)
 
 	err = mgm.SetDefaultConfig(nil, MONGO_DB_NAME, clientOpts)
 	if err != nil {

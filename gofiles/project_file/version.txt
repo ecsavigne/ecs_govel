@@ -1,4 +1,6 @@
 ecs_govel version
+    v2.9.5
+       - implement estruct command
     v2.9.4
        - improve comand build.sh
     v2.9.3
