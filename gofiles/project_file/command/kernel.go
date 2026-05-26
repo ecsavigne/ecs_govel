@@ -43,7 +43,7 @@ func isProcessPrincipal(processNumber string) bool {
 	return false
 }
 
-func DateValidForInitial(date time.Time) bool {
+func dateValidForInitial(date time.Time) bool {
 	yP, mP, dP := date.Date()
 	hP, minP, _ := date.Clock()
 
@@ -83,7 +83,7 @@ func (*command) createCmd(keyJob, interval, dateBeginCmd string, cmd func()) {
 			}
 		}
 	} else {
-		if DateValidForInitial(dateBegin) {
+		if dateValidForInitial(dateBegin) || dateBeginCmd == "" {
 			id, e := cron_.AddFunc(fmt.Sprintf("@every %s", interval), cmd)
 			if e != nil {
 				logs.Sub("Command").Errorf("Error adding job: %s with time: %s, error: %v\n", keyJob, interval, e)
