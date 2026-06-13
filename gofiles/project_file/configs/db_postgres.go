@@ -55,6 +55,30 @@ func create_database_postgres() error {
 	return nil
 }
 
+// create connection postgres
+func connectDBPostgres(nameConnect, dns string) *gorm.DB {
+	sqlDB, err := sql.Open("pgx", dns)
+	if err != nil {
+		Log.Sub("Db").Infof("\033[31mError connecting to %s using sql package, error is: %s\033[0m\n", nameConnect, err.Error())
+	}
+
+	dialectorPostgress := postgres.New(postgres.Config{
+		Conn: sqlDB,
+	})
+	db, err := gorm.Open(dialectorPostgress, &gorm.Config{})
+	if err != nil {
+		Log.Sub("Db").Errorf("\033[31mError connecting to %s: error is: %s\033[0m\n", nameConnect, err.Error())
+	} else {
+		Log.Sub("Db").Infof("\033[34mLoaded " + nameConnect + " db\033[0m\n")
+	}
+
+	dateFormat := time.Now()
+	now := dateFormat.Format("2006-01-02 15:04:05")
+	Log.Sub("Db").Infof("New postgres conennection %s opened at %s\n", nameConnect, now)
+
+	return db
+}
+
 func logDBInfo() logger.Interface {
 	logDataBaseFile, err := os.Create(filepath.Join(PATH_BASE, "database.log"))
 	if err != nil {
