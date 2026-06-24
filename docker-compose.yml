@@ -10,7 +10,7 @@ services:
     container_name: ${SERVICE_NAME}
     entrypoint: ["sh", "-c", "${MY_CMD}"]
     ports:
-       - "11301:8080"
+       - "${PORT_EXEC}:8080"
     volumes:
       - ./gofiles/project_file:/app
       - ./ig_service_official.conf:/etc/supervisor/conf.d/ig_service_official.conf
