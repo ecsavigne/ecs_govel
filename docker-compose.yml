@@ -10,10 +10,10 @@ services:
     container_name: ${SERVICE_NAME}
     entrypoint: ["sh", "-c", "${MY_CMD}"]
     ports:
-       - "${PORT_EXEC}:8080"
+       - "${PORT_EXEC}:port_PORTS_in_app.env"
     volumes:
       - ./gofiles/project_file:/app
-      - ./ig_service_official.conf:/etc/supervisor/conf.d/ig_service_official.conf
+      - ./name_service.conf:/etc/supervisor/conf.d/name_service.conf # nombre del archivo config para el supervisor del servicio
     networks:
       external-network: # <--- Usamos el nombre lógico definido abajo
         ipv4_address: 192.168.40.10
