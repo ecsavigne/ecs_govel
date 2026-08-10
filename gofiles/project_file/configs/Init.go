@@ -14,26 +14,21 @@ import (
 // Carga de varEnv
 func init() {
 	var err error
+	viper.AutomaticEnv()
 
-	isLoadConfig := true
-	pathDir, _ := os.Getwd()
-	PATH_BASE = path.Dir(pathDir)
-
-	fmt.Println("pathDir: ", pathDir)
-	fmt.Println("pathBase: ", PATH_BASE)
-
-	viper.AddConfigPath(PATH_BASE)
-	viper.SetConfigType("env")
-	viper.SetConfigName("app.env")
-	if err = viper.ReadInConfig(); err != nil {
+	testLocalGo := true
+	if testLocalGo {
+		pathDir, _ := os.Getwd()
 		viper.AddConfigPath(pathDir)
+		viper.SetConfigType("env")
+		viper.SetConfigName("app.env")
 		if err = viper.ReadInConfig(); err != nil {
-			isLoadConfig = false
 			fmt.Printf("\033[31mError: load app.env in: \033[30m %s, error: %s\n", pathDir, err.Error())
 			os.Exit(2)
 		}
 	}
-	if isLoadConfig {
+
+	{
 		// try charge APP_FILE_LOGGER from .env of system
 		APP_FILE_LOGGER = viper.GetString("APP_FILE_LOGGER")
 		createFileLogInSystem()

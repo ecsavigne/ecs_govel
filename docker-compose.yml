@@ -3,7 +3,7 @@
 
 services:
   # Servicio del proxy en Go
-  service_name:
+  $$SERVICE_NAME$$: # <-- $$SERVICE_NAME$$
     build:
       context: ./gofiles
       # context: .
