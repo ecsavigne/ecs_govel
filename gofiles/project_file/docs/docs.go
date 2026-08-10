@@ -2,6 +2,7 @@
 package docs
 
 import (
+	"fmt"
 	"io"
 	"os"
 	"strings"
@@ -46,6 +47,8 @@ var (
 )
 
 func init() {
+	str, _ := os.Getwd()
+	fmt.Printf("init int: %s, ::::::\n ", str)
 	if c_.DOC_API_PATH != "" {
 		file, err := os.OpenFile(c_.DOC_API_PATH, os.O_RDONLY, os.ModePerm)
 		if err != nil {

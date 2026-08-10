@@ -1,5 +1,5 @@
 ---
-applyTo: "**/gen/**"
+applyTo: "**/grpcservice/gen/**"
 ---
 
 # Instrucciones para Código Backend Generado

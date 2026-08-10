@@ -3,20 +3,25 @@
 
 services:
   # Servicio del proxy en Go
-  ${SERVICE_NAME}:
+  service_name:
     build:
       context: ./gofiles
-      dockerfile: Dockerfile
+      # context: .
+      dockerfile: service.dockerfile
+    env_file:
+      - ./gofiles/project_file/app.env  
     container_name: ${SERVICE_NAME}
-    entrypoint: ["sh", "-c", "${MY_CMD}"]
+    entrypoint: ["sh"]
+    command: ["-c", "${MY_CMD}"]
     ports:
-       - "${PORT_EXEC}:port_PORTS_in_app.env"
+       - "${PORT_IN_HOST}:${PORTS}"
     volumes:
       - ./gofiles/project_file:/app
       - ./name_service.conf:/etc/supervisor/conf.d/name_service.conf # nombre del archivo config para el supervisor del servicio
     networks:
       external-network: # <--- Usamos el nombre lógico definido abajo
-        ipv4_address: 192.168.40.10
+        ipv4_address: ${IP_CONTAINER}
+        # ipv4_address: 192.168.40.10
     extra_hosts:
       - "host.docker.internal:host-gateway"
     restart: always

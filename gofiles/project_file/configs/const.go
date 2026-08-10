@@ -23,5 +23,5 @@ const (
 )
 
 const (
-	logAPi TYPE_LOG_MESSAGE = "API"
+	LOG_APi TYPE_LOG_MESSAGE = "API"
 )

@@ -116,7 +116,7 @@ func RunJobs() {
 		}
 	}()
 
-	logs.Sub("Command").Debugf("Starting cron jobs... : %s \n", viper.GetString("APP_NAME_X1"))
+	logs.Sub("Command").Debugf("Starting cron jobs in : %s ... \n", viper.GetString("APP_NAME_X1"))
 	processName := filepath.Base(os.Args[0])
 	if !isProcessPrincipal(processName) {
 		return

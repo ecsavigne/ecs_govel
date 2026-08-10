@@ -1,7 +1,7 @@
 package partition
 
 import (
-	"ecs_govel/rest/app/model"
+	"ecs_govel/pkg/pkglog"
 
 	"gorm.io/gorm"
 )
@@ -9,7 +9,7 @@ import (
 func ExecutePartition(db *gorm.DB, partition ...string) {
 	for _, sql := range partition {
 		if res := db.Exec(sql); res.Error != nil {
-			model.Log.Errorf("Error executing partition: %v\n", res.Error)
+			pkglog.Log.Errorf("Error executing partition: %v\n", res.Error)
 		}
 	}
 }

@@ -3,25 +3,13 @@ package configs
 import (
 	"os"
 
-	"connectrpc.com/otelconnect"
-	"github.com/ecsavigne/proxy-reverse/proxy"
-	"github.com/gin-gonic/gin"
-	prom "github.com/prometheus/client_golang/prometheus"
 	"golang.org/x/sync/errgroup"
 
 	logecs "github.com/ecsavigne/logecs/log"
 )
 
-// ReverseProxyApiDoc
-var (
-	ReverseProxyApi *proxy.ProxyReverse // = &proxy.ProxyReverse{}
-)
-
 // App
 var (
-	engine                    *gin.Engine
-	metricEngine              *gin.Engine
-	docApiEngine              *gin.Engine
 	APP_MAX_CONNECTIONS       int
 	APP_CANT_X                int
 	APP_FILE_LOGGER           string
@@ -53,7 +41,6 @@ var (
 	PG_DB_PORT        string
 	FORWARD_DB_PORT   string
 	PG_DNS_DB         string
-	PG_DB_CONNSTR     string
 	MONGO_DB_HOST     string
 	MONGO_DB_USER     string
 	MONGO_DB_NAME     string
@@ -61,7 +48,6 @@ var (
 	MONGO_DB_PORT     string
 	MONGO_DB_CONNSTR  string
 	DB_TYPE           string
-	Database          *DbInstance = new(DbInstance)
 	SSH_ENABLE        bool
 	SSH_PORT          string
 	SSH_HOST          string
@@ -91,14 +77,12 @@ var (
 
 // log
 var (
-	Log, LogTemp logecs.Logger
-	fileLogger   *os.File
+	configlog  logecs.Logger
+	fileLogger *os.File
 )
 
 // Telemetry
 var (
-	otelInterceptor        *otelconnect.Interceptor
-	Register               *prom.Registry = prom.NewRegistry()
 	PROMETHEUS_CONFIG_PATH string
 	GRAFANA_CONFIG_PATH    string
 )

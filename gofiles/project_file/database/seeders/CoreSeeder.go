@@ -1,7 +1,7 @@
 package seeders
 
 import (
-	"ecs_govel/rest/app/model"
+	"ecs_govel/pkg/pkglog"
 
 	"gorm.io/gorm"
 )
@@ -22,7 +22,7 @@ func NewSeeders(dBase ...*gorm.DB) *Seeders {
 
 func (s *Seeders) run() {
 	if s.DB == nil {
-		model.Log.Errorf("Not must run seeders, DB is nil.\n")
+		pkglog.Log.Errorf("Not must run seeders, DB is nil.\n")
 		return
 	}
 	// s.applicationSeeder()
