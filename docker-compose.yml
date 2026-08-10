@@ -6,7 +6,6 @@ services:
   $$SERVICE_NAME$$: # <-- $$SERVICE_NAME$$
     build:
       context: ./gofiles
-      # context: .
       dockerfile: service.dockerfile
     env_file:
       - ./gofiles/project_file/app.env  
