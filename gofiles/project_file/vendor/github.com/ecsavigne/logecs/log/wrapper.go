@@ -93,6 +93,7 @@ type EcsLogger struct {
 }
 
 var colors = map[string]string{
+	// "INFO":  string(Blue),
 	"INFO":  string(Blue),
 	"WARN":  string(Yellow),
 	"ERROR": string(Red),
@@ -125,20 +126,20 @@ func (s *EcsLogger) outputf(level, msg string, args ...any) {
 		tracert = fmt.Sprintf(" %s:%d", file, line)
 	}
 
-	layout := "2006/01/02 15:04:05"
+	layout := "2006/01/02 - 15:04:05"
 	if s.Mod == "" {
 		if s.logger != nil {
-			s.logger.Printf("%s%s%s [%s] %s%s", time.Now().Format(layout), tracert, colorStart, level, colorReset, fmt.Sprintf(msg, args...))
+			s.logger.Printf("%s[%s]%s\t%s\t| %s  |  %s", colorStart, level, colorReset, time.Now().Format(layout), tracert, fmt.Sprintf(msg, args...))
 		}
 		if !s.NotStandardPut {
-			fmt.Printf("%s%s%s [%s] %s%s", time.Now().Format(layout), tracert, colorStart, level, colorReset, fmt.Sprintf(msg, args...))
+			fmt.Printf("%s[%s]%s\t%s\t| %s  |  %s", colorStart, level, colorReset, time.Now().Format(layout), tracert, fmt.Sprintf(msg, args...))
 		}
 	} else {
 		if s.logger != nil {
-			s.logger.Printf("%s%s%s [%s %s] %s%s", time.Now().Format(layout), tracert, colorStart, s.Mod, level, colorReset, fmt.Sprintf(msg, args...))
+			s.logger.Printf("%s[%s\t-  %s]%s	%s	| %s  |  %s", colorStart, level, s.Mod, colorReset, time.Now().Format(layout), tracert, fmt.Sprintf(msg, args...))
 		}
 		if !s.NotStandardPut {
-			fmt.Printf("%s%s%s [%s %s] %s%s", time.Now().Format(layout), tracert, colorStart, s.Mod, level, colorReset, fmt.Sprintf(msg, args...))
+			fmt.Printf("%s[%s\t-  %s]%s	%s	| %s  |  %s", colorStart, level, s.Mod, colorReset, time.Now().Format(layout), tracert, fmt.Sprintf(msg, args...))
 		}
 	}
 }
@@ -186,7 +187,8 @@ type InfoLog struct {
 func content(info InfoLog) string {
 	cont := info.Content
 	str := &strings.Builder{}
-	str.WriteString(info.Name + " {")
+	str.WriteString(info.Name)
+	str.WriteString(" {")
 	count := 1
 	length := len(info.Content)
 

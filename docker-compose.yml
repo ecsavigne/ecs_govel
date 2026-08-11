@@ -3,7 +3,7 @@
 
 services:
   # Servicio del proxy en Go
-  $$SERVICE_NAME$$: # <-- $$SERVICE_NAME$$
+  $$SERVICE_NAME$$: # <-- service_name
     build:
       context: ./gofiles
       dockerfile: service.dockerfile
@@ -16,7 +16,7 @@ services:
        - "${PORT_IN_HOST}:${PORTS}"
     volumes:
       - ./gofiles/project_file:/app
-      - ./name_service.conf:/etc/supervisor/conf.d/name_service.conf # nombre del archivo config para el supervisor del servicio
+      - ./name_service.conf:/etc/supervisor/conf.d/name_service.conf #(name_service_.conf) nombre del archivo config para el supervisor del servicio
     networks:
       external-network: # <--- Usamos el nombre lógico definido abajo
         ipv4_address: ${IP_CONTAINER}
