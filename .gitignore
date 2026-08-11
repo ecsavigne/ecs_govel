@@ -5,3 +5,4 @@
 ./gofiles/project_file/air.toml
 ./gofiles/project_file/vendor
 ./gofiles/project_file/temp
+./gofiles/project_file/cmd/*
