@@ -19,8 +19,8 @@ applyTo: "**/grpcservice/gen/**"
 
 # Checklist de Revisión
 - [ ] El código implementa solo la lógica de negocio, sin modificar las interfaces generadas
-- [ ] el cliente gRPC debe seguir la estructura `grpcservice/app/client/client.ej.go`
-- [ ] El servidor gRPC debe seguir la estructura `grpcservice/app/server/server.ej.go`
+- [ ] el cliente gRPC debe seguir la estructura `internal/grpcservice/app/client/client.ej.go`
+- [ ] El servidor gRPC debe seguir la estructura `internal/grpcservice/app/server/server.ej.go`
 - [ ] A la hora de crear `g.Use(otelgin.Middleware("nombre-del-servicio"))` en el servidor gRPC ej:
 
 ```proto
