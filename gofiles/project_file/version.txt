@@ -1,4 +1,6 @@
 ecs_govel version
+    v2.11.1
+       - improve struct of start of service 
     v2.10.0
        - improve files for generation
     v2.9.5
