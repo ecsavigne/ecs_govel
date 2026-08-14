@@ -31,7 +31,7 @@ breaking:
 
 ### Parámetros principales:
 
-- **modules**: Directorio donde se encuentran los archivos proto (`grpcservice/proto`)
+- **modules**: Directorio donde se encuentran los archivos proto (`internal/grpcservice/proto/**/*`)
 - **deps**: Dependencias de protobuf que se utilizan
 - **lint**: Linter estándar para validar los archivos proto
 - **breaking**: Verificación de cambios incompatibles en la API

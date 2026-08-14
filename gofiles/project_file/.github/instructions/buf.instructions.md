@@ -3,6 +3,7 @@ applyTo: "**/{buf.yaml,buf.gen.yaml,buf.work.yaml}"
 ---
 
 # Instrucciones de Buf
+- Para preparar el ambiente si no esta instalado vas usar las instruciones del archivo `buf.prepeare.md`
 
 ## Buf como Autoridad
 - Asume que `buf` gestiona la generación, el linting y las verificaciones de cambios incompatibles
