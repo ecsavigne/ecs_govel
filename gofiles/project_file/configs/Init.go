@@ -127,6 +127,10 @@ func init() {
 					}
 				} else if strings.ToLower(APP_MODE) == "production" {
 					GRPC_SERVER_PORT = strings.TrimPrefix(path.Base(os.Args[0]), APP_NAME)
+
+					if _, e := strconv.Atoi(GRPC_SERVER_PORT); e != nil {
+						GRPC_SERVER_PORT = viper.GetString("PORTS")
+					}
 				}
 
 			case "rest":

@@ -109,3 +109,6 @@ As configurations are at "<i><b>./gofiles/project_file</b><i>"
 - <b>SERVICE_NAME</b>
 
 ## Configurations for service
+
+# Code errors
+- exit status 125: TYPE_SERVICES is empty

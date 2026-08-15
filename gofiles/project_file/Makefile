@@ -45,12 +45,12 @@ not_update_dependencies:=${MAKE} set_env KEY=UPDATE_DEPENDENCIES VALUE=false
 help: ## Show this help
 	@echo "${YELLOW}Usage:${RESET}"
 	@echo "    make [build|restart|restart_test||]"
-	@echo "    make init			\t- Init service ${SERVICE_NAME}"
-	@echo "    make restart			- Restart service ${SERVICE_NAME} not build not update dependencies"
-	@echo "    make start_build	\t\t- Start service ${SERVICE_NAME} build exec not update dependencies"
-	@echo "    make start_all	\t\t- Start service ${SERVICE_NAME} build exec and update dependencies"
-	@echo "    make set_name_service	- Set name service in env vars run before init"
-	@echo "    make set_env			- Set value in env vars"
+	@echo "    make ${BLUE}init${RESET}			\t- Init service ${SERVICE_NAME}"
+	@echo "    make ${BLUE}restart${RESET}			- Restart service ${SERVICE_NAME} not build not update dependencies"
+	@echo "    make ${BLUE}start_build${RESET}	\t\t- Start service ${SERVICE_NAME} build exec not update dependencies"
+	@echo "    make ${BLUE}start_all${RESET}	\t\t- Start service ${SERVICE_NAME} build exec and update dependencies"
+	@echo "    make ${BLUE}set_name_service${RESET}	- Set name service in env vars run before init"
+	@echo "    make ${BLUE}set_env${RESET}			- Set value in env vars"
 
 test:
 	@${update_dependencies}
