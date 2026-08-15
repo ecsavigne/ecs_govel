@@ -16,6 +16,8 @@ func init() {
 		Mod: c_.LOG_APi, Color: true,
 		Path: c_.APP_FILE_LOGGER, OutPut: true,
 	})
+
+	// set logger
 	command.SetLogger(Log)
 
 	Log.Infof("\x1b[34mConfiguring logger file in %s\x1b[0m\n", c_.APP_FILE_LOGGER)

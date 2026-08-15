@@ -14,6 +14,7 @@ import (
 	"strings"
 	"time"
 
+	logecs "github.com/ecsavigne/logecs/log"
 	"github.com/gin-gonic/gin"
 )
 
@@ -165,6 +166,11 @@ func createFileLogInSystem() {
 	if err != nil {
 		configlog.Errorf("Error creating logger file in %s, error is: %s\n", APP_FILE_LOGGER, err.Error())
 	}
+
+	configlog = logecs.NewLoggerEcs(logecs.EcsLogger{
+		Mod: LOG_CONFIG, Color: true,
+		Path: APP_FILE_LOGGER, OutPut: true,
+	})
 }
 
 func IsX1() bool {
