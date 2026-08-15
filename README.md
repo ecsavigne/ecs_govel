@@ -1,9 +1,101 @@
+# All enviorment vars
+ ```env 
+  # Config exec ######################################################################################
+  # Database
+  # localhost for host.docker.internal for comunication betwen container
+  FORWARD_DB_PORT=5432
+  PG_DB_PORT=${FORWARD_DB_PORT}
+  PG_DB_HOST=host.docker.internal
+  PG_DB_DATABASE=postgres
+  PG_DB_USERNAME=postgres
+  PG_DB_PASSWORD=password
+  PG_DNS_LOCAL=host=$PG_DB_HOST port=$PG_DB_PORT user=$PG_DB_USERNAME password=$PG_DB_PASSWORD sslmode=disable
+
+  # MongoDB
+  MONGO_DB_HOST=host.docker.internal
+  MONGO_DB_PORT=27017
+  MONGO_DB_DATABASE=slink
+  MONGO_DB_USERNAME=ecs
+  MONGO_DB_PASSWORD=mongorootroot
+
+  DB_TYPE=postgres # Set to "postgres", "mongo", "mysql", all. Default is "postgres"
+
+  # SSH
+  SSH_PORT=22
+  SSH_HOST=savcoe-services.com
+  SSH_USER=ecs
+  SSH_PASS=ecs861218
+  SSH_ENABLE=true
+
+  # Set to "production" or "develop" mode. Default is "develop"
+  APP_MODE=production
+  SERVICE_NAME=ig_service_official
+  APP_NAME_X1=main1
+  # Ports to be used by the application separated by commas. It is used to generate the port for the microservices in case off scaling
+  PORTS=8080
+
+  #APP
+  APP_MAX_CONNECTIONS=15
+  APP_CANT_X=1
+  APP_FILE_LOGGER=/var/log/${SERVICE_NAME}/logs.log
+
+  #server http
+  HOST=localhost
+  HTTP_SERVER_HOST=${HOST}
+  HTTP_SERVER_HOST_METRICS=${HOST}
+  HTTP_SERVER_HOST_DOC_API=${HOST}
+  HTTP_SERVER_PORT_METRICS=1111
+  HTTP_SERVER_PORT_DOC_API=2222
+
+  # Documentation 
+  DOC_API_PATH=./internal/grpcservice/gen/openapi/services/v1/ig_service.swagger.json
+  SERVER_PORT_TEST=8080
+
+  # "rest" for Api/Rest or "grpc" for grpc | http/json rest default 
+  TYPE_SERVICES=grpc
+  # swagger or scalar
+  TYPE_DOCUMENTATION=scalar
+  # Metrics
+  PROMETHEUS_CONFIG_PATH=../pkg/pkgmetrics/sdkopentelemetry/config_prometheus/prometheus.yml
+  GRAFANA_CONFIG_PATH=../pkg/pkgmetrics/grafana/provisioning/datasources/datasource.yml
+
+  # Time per job for app shedule 
+  TEST_JOB_INTERVAL=0h0m3s
+  TEST_JOB_DATE="2026-05-24 06:23:05"
+
+  # creation bin
+  UPDATE_DEPENDENCIES=true
+  BUILD_EXEC=true
+
+
+  # Var for construction of docker-compose ######################################################################################
+  # port bin is gofiles/project_file/app.env -> PORTS
+  # Port host of the docker  that match with port of service
+  PORT_IN_HOST=11301
+  # name of service
+
+  # ip container
+  IP_CONTAINER=192.168.1.10
+
+  SUBNET_CONTAINER=192.168.1.0/24
+  GATEWAY_CONTAINER=192.168.1.1
+  CREATE_NETWORK=false # true for create network, false or whitout value. Firt initial set in true after set in dalse
+  # name of external net
+  DOCKER_EXTERNAL_NETWORK=test_network
+
+  SCRIPT_BATCH=./build.sh
+
+  FOLDER_EXEC=cmd
+  EXECs="/app/${FOLDER_EXEC}/${SERVICE_NAME}${PORTS}"
+
+  MY_CMD=${SCRIPT_BATCH}
+```
 ## Nota:
   *  After of clone repository
   *  cd gofiles/project_file
   *  Exuctue make
           
-          make build
+          make init
 # Configuration
 As configurations are at "<i><b>./gofiles/project_file</b><i>"
 ## Configurations for initial the container
