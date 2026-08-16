@@ -124,8 +124,8 @@ start_all_prod:
 
 
 init:
-	@${build_exec}
-	@${update_dependencies}
+# 	@${build_exec}
+# 	@${update_dependencies}
 	@echo "Set name supervisor_config file ....."
 	@${RENAME_SUPERVISOR_CONFIG}
 	@echo "Replace str in supervisor.config file ......."

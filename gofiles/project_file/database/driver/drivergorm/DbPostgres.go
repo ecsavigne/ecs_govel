@@ -14,6 +14,7 @@ import (
 	"ecs_govel/database/shared"
 	"ecs_govel/pkg/pkglog"
 
+	logecs "github.com/ecsavigne/logecs/log"
 	_ "github.com/lib/pq"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
@@ -61,7 +62,7 @@ func create_database_postgres() error {
 func connectDBPostgres(nameConnect, dns string) *gorm.DB {
 	sqlDB, err := sql.Open("pgx", dns)
 	if err != nil {
-		pkglog.Log.Sub("Db").Infof("\033[31mError connecting to %s using sql package, error is: %s\033[0m\n", nameConnect, err.Error())
+		pkglog.Log.Create(logecs.InfoLog{Type: logecs.Error, Sub: "drivergorm.connectDBPostgres", Name: "connect_db_open", Content: map[string]any{"date_time": time.Now().Format("2006-01-02 15:04:05"), "type_db": c_.DB_TYPE, "error": fmt.Sprintf("%s%s%s", "\033[31m", err.Error(), "\033[0m")}})
 	}
 
 	dialectorPostgress := postgres.New(postgres.Config{
@@ -69,14 +70,15 @@ func connectDBPostgres(nameConnect, dns string) *gorm.DB {
 	})
 	db, err := gorm.Open(dialectorPostgress, &gorm.Config{})
 	if err != nil {
-		pkglog.Log.Sub("Db").Errorf("\033[31mError connecting to %s: error is: %s\033[0m\n", nameConnect, err.Error())
+		pkglog.Log.Create(logecs.InfoLog{Type: logecs.Error, Sub: "drivergorm.connectDBPostgres", Name: "connect_db_postgres", Content: map[string]any{"date_time": time.Now().Format("2006-01-02 15:04:05"), "type_db": c_.DB_TYPE, "error": fmt.Sprintf("%s%s%s", "\033[31m", err.Error(), "\033[0m")}})
 	} else {
-		pkglog.Log.Sub("Db").Infof("\033[34mLoaded " + nameConnect + " db\033[0m\n")
+		pkglog.Log.Create(logecs.InfoLog{Type: logecs.Info, Sub: "drivergorm.connectDBPostgres", Name: "connect_db_postgres", Content: map[string]any{"date_time": time.Now().Format("2006-01-02 15:04:05"), "type_db": c_.DB_TYPE}})
 	}
 
 	dateFormat := time.Now()
 	now := dateFormat.Format("2006-01-02 15:04:05")
-	pkglog.Log.Sub("Db").Infof("New postgres conennection %s opened at %s\n", nameConnect, now)
+
+	pkglog.Log.Create(logecs.InfoLog{Type: logecs.Info, Sub: "drivergorm.connectDBPostgres", Name: "connect_db_postgres_exit", Content: map[string]any{"date_time": now, "type_db": c_.DB_TYPE, "name_connect": nameConnect}})
 
 	return db
 }
@@ -84,7 +86,7 @@ func connectDBPostgres(nameConnect, dns string) *gorm.DB {
 func logDBInfo() logger.Interface {
 	logDataBaseFile, err := os.Create(filepath.Join(c_.PATH_BASE, "database.log"))
 	if err != nil {
-		fmt.Println("Error creating Database log file, is: ", err)
+		pkglog.Log.Create(logecs.InfoLog{Type: logecs.Error, Sub: "drivergorm.logDBInfo", Name: "log_db_info", Content: map[string]any{"date_time": time.Now().Format("2006-01-02 15:04:05"), "type_db": c_.DB_TYPE, "error": err.Error()}})
 	}
 
 	newLogger := logger.New(
@@ -102,13 +104,10 @@ func logDBInfo() logger.Interface {
 
 // for run migration, script, seeder in db postgres principal
 func migratePG(dbManager *shared.DBManager) {
-	logMessage := ""
 	debugMessage := "1"
 	defer func() {
 		if r := recover(); r != nil {
-			logMessage = filepath.Base(os.Args[0]) + " :  Error initializing Migration in managerGormDB. " + ": Recovered from exception " + ". Interface in defer is: " + fmt.Sprintf("%+v", r) + ". DebugMessage is: " + debugMessage
-			pkglog.Log.Debugf("[database.database.go - Init()]. ", logMessage)
-			fmt.Println(logMessage)
+			pkglog.Log.Create(logecs.InfoLog{Type: logecs.Error, Sub: "drivergorm.migratePG", Name: "migrate_pg__recovery_error", Content: map[string]any{"date_time": time.Now().Format("2006-01-02 15:04:05"), "type_db": c_.DB_TYPE, "error": fmt.Sprintf("%+v", r), "debug_message": debugMessage}})
 		}
 	}()
 
@@ -128,9 +127,9 @@ func migratePG(dbManager *shared.DBManager) {
 	)
 
 	if err != nil {
-		pkglog.Log.Errorf("Error in migration: %s\n", err.Error())
+		pkglog.Log.Create(logecs.InfoLog{Type: logecs.Error, Sub: "drivergorm.migratePG", Name: "migrate_pg_auto_migrate", Content: map[string]any{"date_time": time.Now().Format("2006-01-02 15:04:05"), "type_db": c_.DB_TYPE, "error": err.Error()}})
 	} else {
-		pkglog.Log.Infof("Load migration successfully. \n")
+		pkglog.Log.Create(logecs.InfoLog{Type: logecs.Info, Sub: "drivergorm.migratePG", Name: "migrate_pg_auto_migrate", Content: map[string]any{"date_time": time.Now().Format("2006-01-02 15:04:05"), "type_db": c_.DB_TYPE, "msg": "Load migration successfully"}})
 	}
 
 	// Load Migration from .sql
@@ -148,25 +147,23 @@ func migratePG(dbManager *shared.DBManager) {
 // db postgres principal
 func PostgresDB(managerGormDB *shared.DBManager) {
 	var (
-		logMessage, debugMessage string
-		err                      error
+		debugMessage string = "1"
+		err          error
 	)
 
 	defer func() {
 		if r := recover(); r != nil {
-			logMessage = filepath.Base(os.Args[0]) + " :  Error initializing managerGormDB. " + ": Recovered from exception " + ". Interface in defer is: " + fmt.Sprintf("%+v", r) + ". DebugMessage is: " + debugMessage
-			pkglog.Log.Sub("DbInstance").Debugf(`MigratePG {panic: "%s" }. %s`, logMessage, "\n")
+			pkglog.Log.Create(logecs.InfoLog{Type: logecs.Error, Sub: "drivergorm.connectDBPostgres", Name: "connect_db_open", Content: map[string]any{"date_time": time.Now().Format("2006-01-02 15:04:05"), "type_db": c_.DB_TYPE, "error": fmt.Sprintf("%s%s%s", "\033[31m", fmt.Sprintf("%+v", r), "\033[0m"), "debug_message": debugMessage}})
 		}
 	}()
 
 	// Create database si no existe
 	if err = create_database_postgres(); err != nil {
-		logMessage = filepath.Base(os.Args[0]) + " :  Error initializing managerGormDB. " + err.Error()
-		fmt.Println(logMessage)
-		pkglog.Log.Errorf("[database.database.go - init()]. %s\n", logMessage)
-		panic(logMessage)
+		debugMessage = "2"
+		panic(err.Error())
 	}
 
+	debugMessage = "3"
 	PG_DB_CONNSTR := fmt.Sprintf("host=%s user=%s dbname=%s port=%s sslmode=disable password=%s", c_.PG_DB_HOST, c_.PG_DB_USER, c_.PG_DB_NAME, c_.FORWARD_DB_PORT, c_.PG_DB_PASSWORD)
 	postgresSource := postgres.Open(PG_DB_CONNSTR)
 	postgresReplica := postgres.Open(PG_DB_CONNSTR)
