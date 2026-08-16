@@ -6,3 +6,4 @@
 ./gofiles/project_file/vendor
 ./gofiles/project_file/temp
 ./gofiles/project_file/cmd/*
+gofiles/project_file/vendor/*
