@@ -1,5 +1,12 @@
 #!/bin/bash
 
+# Colors
+RED=[31m
+GREEN=[32m
+YELLOW=[33m
+BLUE=[34m
+RESET=[0m
+
 path="./"
 
 # Cargar las variables desde app.env (. -> carga variables ambiente)
@@ -17,13 +24,15 @@ if [ ! -d "vendor" ]; then
 fi 
 
 if [ ${UPDATE_DEPENDENCIES} == true ]; then
+    echo "${GREEN}start update dependencies...${RESET}"
     go get -u
     go mod vendor
-    echo "update dependencies..."
+    echo "${GREEN}end update dependencies...${RESET}"
 fi
 
+port=${PORTS}
 if [ ${BUILD_EXEC} == true ]; then
-    echo "go build file: '${main_file}'"
+    echo "${GREEN}go build file: ${RESET}'${main_file}'"
     go build -o ${main_file}
     sleep 1
 
@@ -65,4 +74,8 @@ if [ ${BUILD_EXEC} == true ]; then
 fi
 
 supervisord -c /etc/supervisor/supervisord.conf
-./cmd/${main_file}${port}
+#  ./cmd/${main_file}${port}
+
+sleep 2
+
+tail -f ${APP_FILE_LOGGER}

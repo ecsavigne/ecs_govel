@@ -62,7 +62,37 @@ set_env:
 set_name_service:
 	@make set_env KEY=SERVICE_NAME VALUE=${NAME}
 
-restart:
+restart_dev:
+	@${not_update_dependencies}
+	@${not_build_exec}
+	@echo "Restart service ${RED}${SERVICE_NAME}${RESET}"
+	@echo "Stop service ${RED}${SERVICE_NAME}${RESET}"
+	@docker compose -f ${DOCKER_COMPOSE_PATH} stop ${SERVICE_NAME}
+	@echo "Creating executeble ${BLUE}${SERVICE_NAME}${RESET}"
+	@echo "Start service ${BLUE}${SERVICE_NAME}${RESET}"
+	@docker compose -f ${DOCKER_COMPOSE_PATH} --env-file ${PATH_ENV} up ${SERVICE_NAME}
+
+start_build_dev:
+	@${build_exec}
+	@${not_update_dependencies}
+	@echo "Restart for test service ${RED}${SERVICE_NAME}${RESET}"
+	@echo "Stop service ${RED}${SERVICE_NAME}${RESET}"
+	@docker compose -f ${DOCKER_COMPOSE_PATH} stop ${SERVICE_NAME}
+	@echo "Creating executeble ${BLUE}${SERVICE_NAME}${RESET}"
+	@echo "Start service ${BLUE}${SERVICE_NAME}${RESET}"
+	@docker compose -f ${DOCKER_COMPOSE_PATH} --env-file ${PATH_ENV} up ${SERVICE_NAME}
+
+start_all_dev:
+	@${build_exec}
+	@${update_dependencies}
+	@echo "Restart for test service ${RED}${SERVICE_NAME}${RESET}"
+	@echo "Stop service ${RED}${SERVICE_NAME}${RESET}"
+	@docker compose -f ${DOCKER_COMPOSE_PATH} stop ${SERVICE_NAME}
+	@echo "Creating executeble ${BLUE}${SERVICE_NAME}${RESET}"
+	@echo "Start service ${BLUE}${SERVICE_NAME}${RESET}"
+	@docker compose -f ${DOCKER_COMPOSE_PATH} --env-file ${PATH_ENV} up ${SERVICE_NAME}
+
+restart_prod:
 	@${not_update_dependencies}
 	@${not_build_exec}
 	@echo "Restart service ${RED}${SERVICE_NAME}${RESET}"
@@ -72,7 +102,7 @@ restart:
 	@echo "Start service ${BLUE}${SERVICE_NAME}${RESET}"
 	@docker compose -f ${DOCKER_COMPOSE_PATH} --env-file ${PATH_ENV} up -d ${SERVICE_NAME}
 
-start_build:
+start_build_prod:
 	@${build_exec}
 	@${not_update_dependencies}
 	@echo "Restart for test service ${RED}${SERVICE_NAME}${RESET}"
@@ -80,19 +110,22 @@ start_build:
 	@docker compose -f ${DOCKER_COMPOSE_PATH} stop ${SERVICE_NAME}
 	@echo "Creating executeble ${BLUE}${SERVICE_NAME}${RESET}"
 	@echo "Start service ${BLUE}${SERVICE_NAME}${RESET}"
-	@docker compose -f ${DOCKER_COMPOSE_PATH} --env-file ${PATH_ENV} up ${SERVICE_NAME}
+	@docker compose -f ${DOCKER_COMPOSE_PATH} --env-file ${PATH_ENV} up -d ${SERVICE_NAME}
 
-start_all:
+start_all_prod:
 	@${build_exec}
-	@${not_update_dependencies}
+	@${update_dependencies}
 	@echo "Restart for test service ${RED}${SERVICE_NAME}${RESET}"
 	@echo "Stop service ${RED}${SERVICE_NAME}${RESET}"
 	@docker compose -f ${DOCKER_COMPOSE_PATH} stop ${SERVICE_NAME}
 	@echo "Creating executeble ${BLUE}${SERVICE_NAME}${RESET}"
 	@echo "Start service ${BLUE}${SERVICE_NAME}${RESET}"
-	@docker compose -f ${DOCKER_COMPOSE_PATH} --env-file ${PATH_ENV} up ${SERVICE_NAME}
+	@docker compose -f ${DOCKER_COMPOSE_PATH} --env-file ${PATH_ENV} up -d ${SERVICE_NAME}
+
 
 init:
+	@${build_exec}
+	@${update_dependencies}
 	@echo "Set name supervisor_config file ....."
 	@${RENAME_SUPERVISOR_CONFIG}
 	@echo "Replace str in supervisor.config file ......."
@@ -114,4 +147,4 @@ init:
 		fi	\
 	fi;
 	@echo "Building image service: ${GREEN}${SERVICE_NAME}${RESET}"
-	docker compose -f ${DOCKER_COMPOSE_PATH} --env-file ${PATH_ENV} up -d --build ${SERVICE_NAME}
+	docker compose -f ${DOCKER_COMPOSE_PATH} --env-file ${PATH_ENV} up --build ${SERVICE_NAME}

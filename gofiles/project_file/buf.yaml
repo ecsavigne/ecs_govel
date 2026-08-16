@@ -1,7 +1,7 @@
 # For details on buf.yaml configuration, visit https://buf.build/docs/configuration/v2/buf-yaml
 version: v2
 modules: # agrega dir de modulos por defecto donde se van a buscar los protos
-    - path: grpcservice/proto
+    - path: internal/grpcservice/proto
 # Dependenças dos protos que vão se utilizar. ver: https://buf.build/explore
 deps: 
   - buf.build/bufbuild/protovalidate
