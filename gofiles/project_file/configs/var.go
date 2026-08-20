@@ -29,6 +29,7 @@ var (
 	TYPE_SERVICES             string
 	TYPE_DOCUMENTATION        string
 	PATH_BASE                 string
+	HASH_ROUTE                string
 )
 
 // DB

@@ -28,9 +28,10 @@ func run() {
 
 	// Init GrpcService
 	if strings.ToLower(config.TYPE_SERVICES) == "grpc" {
-		fmt.Println("StartInfoRoute")
 		restroute.LoadInfoHandlers()
+
 		go pkggin.HttpRun()
+
 		fmt.Println("InitGrpcService")
 		grpcserverinit.InitGrpcService()
 	} else {

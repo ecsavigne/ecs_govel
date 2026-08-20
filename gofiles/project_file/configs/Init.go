@@ -3,6 +3,7 @@ package configs
 
 import (
 	"fmt"
+	"log"
 	"os"
 	path "path/filepath"
 	"strconv"
@@ -31,6 +32,7 @@ func init() {
 	{
 		// try charge APP_FILE_LOGGER from .env of system
 		APP_FILE_LOGGER = viper.GetString("APP_FILE_LOGGER")
+		log.Println("FileLog path: ", APP_FILE_LOGGER)
 		createFileLogInSystem()
 
 		fmt.Println("-----------------------------------------------------------")
@@ -44,6 +46,7 @@ func init() {
 			PG_DB_NAME = viper.GetString("PG_DB_DATABASE")
 			PG_DB_PASSWORD = viper.GetString("PG_DB_PASSWORD")
 			PG_DB_PORT = viper.GetString("PG_DB_PORT")
+			FORWARD_DB_PORT = viper.GetString("FORWARD_DB_PORT")
 			PG_DNS_DB = viper.GetString("PG_DNS_LOCAL")
 			DB_TYPE = "postgres"
 		}
@@ -56,6 +59,15 @@ func init() {
 			MONGO_DB_PORT = viper.GetString("MONGO_DB_PORT")
 		}
 
+		SSH_ENABLE, err = strconv.ParseBool(viper.GetString("SSH_ENABLE"))
+		if err != nil {
+			SSH_ENABLE = false
+		}
+		SSH_PORT = viper.GetString("SSH_PORT")
+		SSH_HOST = viper.GetString("SSH_HOST")
+		SSH_PASS = viper.GetString("SSH_PASS")
+		SSH_USER = viper.GetString("SSH_USER")
+
 		switch DB_TYPE {
 		case "":
 			fallthrough
@@ -67,16 +79,6 @@ func init() {
 			postgres()
 			mongo()
 		}
-		FORWARD_DB_PORT = viper.GetString("PG_FORWARD_DB_PORT")
-
-		SSH_ENABLE, err = strconv.ParseBool(viper.GetString("SSH_ENABLE"))
-		if err != nil {
-			SSH_ENABLE = false
-		}
-		SSH_PORT = viper.GetString("SSH_PORT")
-		SSH_HOST = viper.GetString("SSH_HOST")
-		SSH_PASS = viper.GetString("SSH_PASS")
-		SSH_USER = viper.GetString("SSH_USER")
 
 		// Var webhook
 		WEBHOOK_SOCKET = viper.GetString("WEBHOOK_SOCKET")
@@ -109,6 +111,7 @@ func init() {
 		TYPE_DOCUMENTATION = viper.GetString("TYPE_DOCUMENTATION")
 		PROMETHEUS_CONFIG_PATH = viper.GetString("PROMETHEUS_CONFIG_PATH")
 		GRAFANA_CONFIG_PATH = viper.GetString("GRAFANA_CONFIG_PATH")
+		HASH_ROUTE = viper.GetString("HASH_ROUTE")
 
 		if strings.ToLower(APP_MODE) != "develop" && strings.ToLower(APP_MODE) != "production" {
 			configlog.Sub("configs").Errorf("APP_MODE is not valid in app.env, values possible: [develop, production] \n")
@@ -117,7 +120,7 @@ func init() {
 
 		if TYPE_SERVICES == "" {
 			configlog.Sub("configs").Errorf("TYPE_SERVICES is empty in app.env, values possible: [grpc, rest] \n")
-			os.Exit(2)
+			os.Exit(125)
 		} else {
 			switch strings.ToLower(TYPE_SERVICES) {
 			case "grpc":

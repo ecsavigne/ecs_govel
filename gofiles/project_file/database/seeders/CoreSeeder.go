@@ -1,36 +1,28 @@
 package seeders
 
 import (
-	"ecs_govel/pkg/pkglog"
+	"reflect"
 
 	"gorm.io/gorm"
 )
 
-type Seeders struct {
+type seeders struct {
 	*gorm.DB
 }
 
-func NewSeeders(dBase ...*gorm.DB) *Seeders {
-	db := &gorm.DB{}
-	if len(dBase) != 0 {
-		db = dBase[0]
-	}
-	s := new(Seeders)
-	s.DB = db
-	return s
-}
+var seeder = &seeders{}
 
-func (s *Seeders) run() {
-	if s.DB == nil {
-		pkglog.Log.Errorf("Not must run seeders, DB is nil.\n")
-		return
-	}
-	// s.applicationSeeder()
-	// s.companyWhatsappSeeder()
-	s.TestSeeder()
-}
+func ExecuteSeeders(dBase *gorm.DB) {
+	seeder.DB = &gorm.DB{}
 
-func ExecuteSeeders(db *gorm.DB) {
-	seed := NewSeeders(db)
-	seed.run()
+	// Executa seeder
+	typ := reflect.TypeFor[*seeders]() // information of struct
+	value := reflect.ValueOf(&seeder)  // value of struct
+
+	for method := range typ.Methods() {
+		// if method.Name == "TestSeeder" {
+		// 	continue
+		// }
+		value.MethodByName(method.Name).Call([]reflect.Value{})
+	}
 }

@@ -2,6 +2,7 @@ package seeders
 
 import (
 	"ecs_govel/database/migration"
+	"ecs_govel/pkg/pkglog"
 	"fmt"
 )
 
@@ -12,11 +13,13 @@ func (s *Seeders) NameSeeder() {
 }
 */
 // Ejemplo de agregar un seeder de prueba de aplicacion
-func (s *Seeders) TestSeeder() {
+func (s *seeders) TestSeeder() {
 	test := &migration.TestMigation{}
+	_ = test
 
 	if res := s.DB.FirstOrCreate(test); res.Error != nil {
 		fmt.Println("Error creating test ", test, ". Error is: ", res.Error.Error())
 		return
 	}
+	pkglog.Log.Warnf("executed TestSeeder: %+v\n", s.DB)
 }

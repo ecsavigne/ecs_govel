@@ -11,6 +11,7 @@ import (
 
 	c_ "ecs_govel/configs"
 	"ecs_govel/database/script"
+	"ecs_govel/database/seeders"
 	"ecs_govel/database/shared"
 	"ecs_govel/pkg/pkglog"
 
@@ -136,7 +137,7 @@ func migratePG(dbManager *shared.DBManager) {
 	// migration.ExecuteMigrationFromSql(dbManager.DB, Log, true)
 
 	// Load Seeders
-	// seeders.ExecuteSeeders(dbManager.DB)
+	seeders.ExecuteSeeders(dbManager.DB)
 
 	// execute trigger
 	// trigger.ExecuteTrigger(dbManager.DB, trigger.TriggerDeleteMessageByCompanyWhatsapp())
@@ -153,7 +154,7 @@ func PostgresDB(managerGormDB *shared.DBManager) {
 
 	defer func() {
 		if r := recover(); r != nil {
-			pkglog.Log.Create(logecs.InfoLog{Type: logecs.Error, Sub: "drivergorm.connectDBPostgres", Name: "connect_db_open", Content: map[string]any{"date_time": time.Now().Format("2006-01-02 15:04:05"), "type_db": c_.DB_TYPE, "error": fmt.Sprintf("%s%s%s", "\033[31m", fmt.Sprintf("%+v", r), "\033[0m"), "debug_message": debugMessage}})
+			pkglog.Log.Create(logecs.InfoLog{Type: logecs.Error, Sub: "drivergorm.connectDBPostgres", Name: "connect_db_open", Content: map[string]any{"date_time": time.Now().Format("2006-01-02 15:04:05"), "type_db": c_.DB_TYPE, "error": fmt.Sprintf("%+v", r), "debug_message": debugMessage}})
 		}
 	}()
 
@@ -168,26 +169,30 @@ func PostgresDB(managerGormDB *shared.DBManager) {
 	postgresSource := postgres.Open(PG_DB_CONNSTR)
 	postgresReplica := postgres.Open(PG_DB_CONNSTR)
 
+	fmt.Println("PG_DB_CONNSTR: ", PG_DB_CONNSTR)
 	managerGormDB.DB, err = gorm.Open(postgresSource, &gorm.Config{
 		Logger: logDBInfo(),
 	})
+	if err != nil {
+		panic(err)
+	}
 
 	// Create connection pool
-	managerGormDB.Use(dbresolver.Register(dbresolver.Config{
+	err = managerGormDB.Use(dbresolver.Register(dbresolver.Config{
 		Sources:           []gorm.Dialector{postgresSource},
 		Replicas:          []gorm.Dialector{postgresReplica},
 		Policy:            dbresolver.RandomPolicy{},
 		TraceResolverMode: true,
 	} /*, &migration.Chat{}*/))
-
-	dateFormat := time.Now()
-	now := dateFormat.Format("2006-01-02 15:04:05")
-	fmt.Println("New postgres conennection opened at ", now)
 	if err != nil {
 		panic(err)
 	}
 
-	pkglog.Log.Debugf("Max Connections: ", c_.APP_MAX_CONNECTIONS, " CantX: ", c_.APP_CANT_X)
+	dateFormat := time.Now()
+	now := dateFormat.Format("2006-01-02 15:04:05")
+	fmt.Println("New postgres conennection opened at ", now)
+
+	pkglog.Log.Debugf("Max Connections: %d, CantX: %d", c_.APP_MAX_CONNECTIONS, c_.APP_CANT_X)
 	sqlDB, _ := managerGormDB.DB.DB()
 	sqlDB.SetConnMaxLifetime(time.Minute * 2) // Make than last forever
 	sqlDB.SetMaxIdleConns((c_.APP_MAX_CONNECTIONS / c_.APP_CANT_X) - 7)
