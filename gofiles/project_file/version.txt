@@ -1,4 +1,7 @@
 ecs_govel version
+    v2.11.4
+       - improve load seeder 
+       - fix minors bugs
     v2.11.3
        - fix minors bugs
     v2.11.1
