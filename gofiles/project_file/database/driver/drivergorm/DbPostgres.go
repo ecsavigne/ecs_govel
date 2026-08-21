@@ -169,7 +169,6 @@ func PostgresDB(managerGormDB *shared.DBManager) {
 	postgresSource := postgres.Open(PG_DB_CONNSTR)
 	postgresReplica := postgres.Open(PG_DB_CONNSTR)
 
-	fmt.Println("PG_DB_CONNSTR: ", PG_DB_CONNSTR)
 	managerGormDB.DB, err = gorm.Open(postgresSource, &gorm.Config{
 		Logger: logDBInfo(),
 	})
@@ -177,6 +176,7 @@ func PostgresDB(managerGormDB *shared.DBManager) {
 		panic(err)
 	}
 
+	debugMessage = "4"
 	// Create connection pool
 	err = managerGormDB.Use(dbresolver.Register(dbresolver.Config{
 		Sources:           []gorm.Dialector{postgresSource},
@@ -188,15 +188,18 @@ func PostgresDB(managerGormDB *shared.DBManager) {
 		panic(err)
 	}
 
+	debugMessage = "5"
 	dateFormat := time.Now()
 	now := dateFormat.Format("2006-01-02 15:04:05")
-	fmt.Println("New postgres conennection opened at ", now)
+	pkglog.Log.Warnf("New postgres conennection opened at: %s\n", now)
 
-	pkglog.Log.Debugf("Max Connections: %d, CantX: %d", c_.APP_MAX_CONNECTIONS, c_.APP_CANT_X)
 	sqlDB, _ := managerGormDB.DB.DB()
+	debugMessage = "6"
 	sqlDB.SetConnMaxLifetime(time.Minute * 2) // Make than last forever
 	sqlDB.SetMaxIdleConns((c_.APP_MAX_CONNECTIONS / c_.APP_CANT_X) - 7)
 	sqlDB.SetMaxOpenConns((c_.APP_MAX_CONNECTIONS / c_.APP_CANT_X) - 5)
+	debugMessage = "7"
+	pkglog.Log.Infof("Max Connections: %d, CantX: %d\n", c_.APP_MAX_CONNECTIONS, c_.APP_CANT_X)
 
 	rand.New(rand.NewSource(time.Now().UnixNano()))
 	// Agregar plugin para prometeus
@@ -210,5 +213,6 @@ func PostgresDB(managerGormDB *shared.DBManager) {
 	// }))
 
 	// Load Migration
+	debugMessage = "8"
 	migratePG(managerGormDB)
 }
