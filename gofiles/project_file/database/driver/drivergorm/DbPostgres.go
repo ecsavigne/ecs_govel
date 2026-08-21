@@ -11,7 +11,7 @@ import (
 
 	c_ "ecs_govel/configs"
 	"ecs_govel/database/script"
-	"ecs_govel/database/seeders"
+	"ecs_govel/database/seeder"
 	"ecs_govel/database/shared"
 	"ecs_govel/pkg/pkglog"
 
@@ -137,7 +137,7 @@ func migratePG(dbManager *shared.DBManager) {
 	// migration.ExecuteMigrationFromSql(dbManager.DB, Log, true)
 
 	// Load Seeders
-	seeders.ExecuteSeeders(dbManager.DB)
+	seeder.ExecuteSeeders(dbManager.DB)
 
 	// execute trigger
 	// trigger.ExecuteTrigger(dbManager.DB, trigger.TriggerDeleteMessageByCompanyWhatsapp())

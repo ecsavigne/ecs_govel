@@ -1,4 +1,4 @@
-package seeders
+package seeder
 
 import (
 	"ecs_govel/database/migration"
