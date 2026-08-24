@@ -47,12 +47,12 @@ help: ## Show this help
 	@echo "    make [restart_dev|start_build_dev|start_all_dev|restart_prod|start_build_prod|start_all_prod|init]"
 	@echo "    make ${BLUE}init${RESET}			\t- Init service ${SERVICE_NAME}. build exec and update dependencies"
 	@echo "    make ${BLUE}restart_dev${RESET}			- Restart service ${SERVICE_NAME} not build not update dependencies"
-	@echo "    make ${BLUE}start_build_dev${RESET}	\t\t- Start service ${SERVICE_NAME} build exec not update dependencies"
+	@echo "    make ${BLUE}start_build_dev${RESET}	\t- Start service ${SERVICE_NAME} build exec not update dependencies"
 	@echo "    make ${BLUE}start_all_dev${RESET}	\t\t- Start service ${SERVICE_NAME} build exec and update dependencies"
 	@echo "    make ${BLUE}restart_prod${RESET}	\t\t- Start service ${SERVICE_NAME} not build exec and not update dependencies"
-	@echo "    make ${BLUE}start_build_prod${RESET}	\t\t- Start service ${SERVICE_NAME} build exec and not update dependencies"
+	@echo "    make ${BLUE}start_build_prod${RESET}	\t- Start service ${SERVICE_NAME} build exec and not update dependencies"
 	@echo "    make ${BLUE}start_all_prod${RESET}	\t\t- Start service ${SERVICE_NAME} build exec and update dependencies"
-	@echo "    make ${BLUE}set_name_service${RESET}	- Set name service in env vars run before init"
+	@echo "    make ${BLUE}set_name_service${RESET}	\t- Set name service in env vars run before init"
 	@echo "    make ${BLUE}set_env${RESET}			- Set value in env vars"
 
 test:
