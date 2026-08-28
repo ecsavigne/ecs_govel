@@ -10,7 +10,7 @@ import (
 	"time"
 
 	c_ "ecs_govel/configs"
-	"ecs_govel/database/script"
+	"ecs_govel/database/partition"
 	"ecs_govel/database/seeder"
 	"ecs_govel/database/shared"
 	"ecs_govel/pkg/pkglog"
@@ -117,9 +117,8 @@ func migratePG(dbManager *shared.DBManager) {
 	// dbManager.DB.Migrator().DropTable(&migration.TestMigation{})
 	// dbManager.DB.Migrator().DropTable(&migration.TestMigation{})
 	// Execute Script
-	script.ExecuteScript(dbManager.DB,
-		script.CreateConversationsPartitionYear(),
-	)
+	partition.New(dbManager.DB).Run()
+
 	err := dbManager.DB.AutoMigrate(
 	// &migration.AllowCompany{},
 	// &migration.Company{},
