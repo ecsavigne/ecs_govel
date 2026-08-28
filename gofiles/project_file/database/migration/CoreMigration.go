@@ -35,7 +35,7 @@ func (self coreMigration) Run() error {
 	for method := range typ.Methods() {
 		methodValue := value.MethodByName(method.Name)
 
-		if method.Name == "Migrate" {
+		if method.Name == "Run" {
 			continue
 		}
 
