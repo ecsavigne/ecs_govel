@@ -2,47 +2,69 @@ package migration
 
 func (self *coreMigration) createIndexMessage() error {
 	if !self.db.Migrator().HasIndex(&Message{}, "ConversationID") {
-		return self.db.Migrator().CreateIndex(&Message{}, "ConversationID")
+		if e := self.db.Migrator().CreateIndex(&Message{}, "ConversationID"); e != nil {
+			return e
+		}
 	}
 
 	if !self.db.Migrator().HasIndex(&Message{}, "TypeID") {
-		return self.db.Migrator().CreateIndex(&Message{}, "TypeID")
+		if e := self.db.Migrator().CreateIndex(&Message{}, "TypeID"); e != nil {
+			return e
+		}
 	}
 
 	if !self.db.Migrator().HasIndex(&Message{}, "StatusID") {
-		return self.db.Migrator().CreateIndex(&Message{}, "StatusID")
+		if e := self.db.Migrator().CreateIndex(&Message{}, "StatusID"); e != nil {
+			return e
+		}
 	}
 
 	if !self.db.Migrator().HasIndex(&Message{}, "UserID") {
-		return self.db.Migrator().CreateIndex(&Message{}, "UserID")
+		if e := self.db.Migrator().CreateIndex(&Message{}, "UserID"); e != nil {
+			return e
+		}
 	}
 
 	if !self.db.Migrator().HasIndex(&Message{}, "CreatedAt") {
-		return self.db.Migrator().CreateIndex(&Message{}, "CreatedAt")
+		if e := self.db.Migrator().CreateIndex(&Message{}, "CreatedAt"); e != nil {
+			return e
+		}
 	}
 
 	if !self.db.Migrator().HasIndex(&Message{}, "UpdatedAt") {
-		return self.db.Migrator().CreateIndex(&Message{}, "UpdatedAt")
+		if e := self.db.Migrator().CreateIndex(&Message{}, "UpdatedAt"); e != nil {
+			return e
+		}
 	}
 
 	if !self.db.Migrator().HasIndex(&Message{}, "DeletedAt") {
-		return self.db.Migrator().CreateIndex(&Message{}, "DeletedAt")
+		if e := self.db.Migrator().CreateIndex(&Message{}, "DeletedAt"); e != nil {
+			return e
+		}
 	}
 
 	if !self.db.Migrator().HasIndex(&Message{}, "SenderAt") {
-		return self.db.Migrator().CreateIndex(&Message{}, "SenderAt")
+		if e := self.db.Migrator().CreateIndex(&Message{}, "SenderAt"); e != nil {
+			return e
+		}
 	}
 
 	if !self.db.Migrator().HasIndex(&Message{}, "ConversationCreatedAt") {
-		return self.db.Migrator().CreateIndex(&Message{}, "ConversationCreatedAt")
+		if e := self.db.Migrator().CreateIndex(&Message{}, "ConversationCreatedAt"); e != nil {
+			return e
+		}
 	}
 
 	if !self.db.Migrator().HasIndex(&Message{}, "SenderID") {
-		return self.db.Migrator().CreateIndex(&Message{}, "SenderID")
+		if e := self.db.Migrator().CreateIndex(&Message{}, "SenderID"); e != nil {
+			return e
+		}
 	}
 
 	if !self.db.Migrator().HasIndex(&Message{}, "ExternalID") {
-		return self.db.Migrator().CreateIndex(&Message{}, "ExternalID")
+		if e := self.db.Migrator().CreateIndex(&Message{}, "ExternalID"); e != nil {
+			return e
+		}
 	}
 
 	return nil

@@ -10,6 +10,7 @@ import (
 	"time"
 
 	c_ "ecs_govel/configs"
+	"ecs_govel/database/migration"
 	"ecs_govel/database/partition"
 	"ecs_govel/database/seeder"
 	"ecs_govel/database/shared"
@@ -133,7 +134,7 @@ func migratePG(dbManager *shared.DBManager) {
 	}
 
 	// Load Migration from .sql
-	// migration.ExecuteMigrationFromSql(dbManager.DB, Log, true)
+	migration.New(dbManager.DB).Run()
 
 	// Load Seeders
 	seeder.ExecuteSeeders(dbManager.DB)
