@@ -14,6 +14,7 @@ import (
 	"ecs_govel/database/partition"
 	"ecs_govel/database/seeder"
 	"ecs_govel/database/shared"
+	"ecs_govel/internal/rest/app/model"
 	"ecs_govel/pkg/pkglog"
 
 	logecs "github.com/ecsavigne/logecs/log"
@@ -214,5 +215,7 @@ func PostgresDB(managerGormDB *shared.DBManager) {
 
 	// Load Migration
 	debugMessage = "8"
+
+	model.SetDB(managerGormDB.DB)
 	migratePG(managerGormDB)
 }

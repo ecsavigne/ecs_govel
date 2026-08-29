@@ -1,16 +1,18 @@
 package model
 
 import (
-	"ecs_govel/database"
-
 	logecs "github.com/ecsavigne/logecs/log"
 	"gorm.io/gorm"
 )
 
 var (
-	db  *gorm.DB = database.GetGormDB().DB
+	db  *gorm.DB
 	Log logecs.Logger
 )
+
+func SetDB(db_ *gorm.DB) {
+	db = db_
+}
 
 type ModelKernel interface {
 	Insert() *gorm.DB
