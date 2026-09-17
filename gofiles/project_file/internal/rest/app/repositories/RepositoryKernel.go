@@ -10,6 +10,10 @@ const (
 	// Asi crear el resto
 )
 
+var (
+	testRepo *TestRepository
+)
+
 type Repository interface {
 	// Funciones comunes para todos los repositorios que embeben Repository y se implementan en KernelRepositoryssss
 	GetType() string
@@ -33,3 +37,9 @@ func (r *KernelRepository) GetRepository() Repository {
 func (r *KernelRepository) GetModel() model.ModelKernel {
 	return r._model
 }
+
+func init() {
+	testRepo = NewTestRepository()
+}
+
+func GetTestRepository() *TestRepository { return testRepo }
