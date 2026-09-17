@@ -6,7 +6,7 @@ type TestRepository struct {
 	*KernelRepository
 }
 
-func NewRepositoryTemplate() *TestRepository {
+func NewTestRepository() *TestRepository {
 	r := new(TestRepository)
 
 	kernel := &KernelRepository{
