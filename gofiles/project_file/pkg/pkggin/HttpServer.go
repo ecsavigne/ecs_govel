@@ -112,13 +112,15 @@ func HttpRun() {
 	// ServerMetrics
 	GROUP_WAIT, ctx := errgroup.WithContext(context.Background()) // WithContext.
 	GROUP_WAIT.SetLimit(3)
-	if c_.IsX1() { //metricEngine
+	if c_.StateInitMetric { //metricEngine
 		GROUP_WAIT.Go(func() error {
 			pkglog.Log.Sub("Configs").Infof("Server Metrics in %s:%s\n", c_.HTTP_SERVER_PORT, c_.HTTP_SERVER_PORT_METRICS)
 			return servMetric(ctx)
 		})
+	}
 
-		// ServerDocsApi
+	// ServerDocsApi
+	if c_.StateInitDocApi {
 		GROUP_WAIT.Go(func() error {
 			pkglog.Log.Sub("Configs").Infof("Service DocsApi in %s:%s/docs\n", c_.HTTP_SERVER_HOST_DOC_API, c_.HTTP_SERVER_PORT_DOC_API)
 			return servDocApi(ctx)

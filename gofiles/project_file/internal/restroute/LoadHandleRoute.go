@@ -11,14 +11,14 @@ func loadHandlerApiRoute() {
 }
 
 func loadHandlerDocRoute() {
-	if c_.StateInitDocApi && c_.IsX1() {
+	if c_.StateInitDocApi || c_.IsX1() {
 		e := pkggin.GetDocApiEngine()
 		loadDocRoutes(e)
 	}
 }
 
 func loadHandlerMetricsRoute() {
-	if c_.StateInitMetric && c_.IsX1() {
+	if c_.StateInitMetric || c_.IsX1() {
 		loadMetrics(pkggin.GetMetricEngine())
 	}
 }
