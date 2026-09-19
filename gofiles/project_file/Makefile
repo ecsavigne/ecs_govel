@@ -52,7 +52,7 @@ help: ## Show this help
 	@echo "    make ${BLUE}restart_prod${RESET}	\t\t- Start service ${SERVICE_NAME} not build exec and not update dependencies"
 	@echo "    make ${BLUE}start_build_prod${RESET}	\t- Start service ${SERVICE_NAME} build exec and not update dependencies"
 	@echo "    make ${BLUE}start_all_prod${RESET}	\t\t- Start service ${SERVICE_NAME} build exec and update dependencies"
-	@echo "    make ${BLUE}set_name_service${RESET}	\t- Set name service in env vars run before init"
+	@echo "    make ${BLUE}set_name_service${RESET}	\t- Set name service in env vars run before init. Ex: make set_name_service NAME=name_service"
 	@echo "    make ${BLUE}set_env${RESET}			- Set value in env vars"
 
 test:

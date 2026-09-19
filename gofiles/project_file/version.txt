@@ -1,4 +1,7 @@
 ecs_govel version
+    v2.11.5
+       - improve load and generation of doc 
+       - fix minors bugs
     v2.11.4
        - improve load seeder 
        - fix minors bugs
