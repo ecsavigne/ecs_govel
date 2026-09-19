@@ -1,9 +1,15 @@
 ecs_govel version
+<<<<<<< HEAD
     v2.12.2
         - improve engine db postgress
     v2.12.1
         - implement method Run for load all migration from coreMigration
         - implement method Run for load all partition from corePartition
+=======
+    v2.11.5
+       - improve load and generation of doc 
+       - fix minors bugs
+>>>>>>> at450f053
     v2.11.4
        - improve load seeder 
        - fix minors bugs
