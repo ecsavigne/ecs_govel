@@ -45,19 +45,6 @@ not_update_dependencies:=${MAKE} set_env KEY=UPDATE_DEPENDENCIES VALUE=false
 help: ## Show this help
 	@echo "${YELLOW}Usage:${RESET}"
 	@echo "    make [restart_dev|start_build_dev|start_all_dev|restart_prod|start_build_prod|start_all_prod|init]"
-<<<<<<< HEAD
-	@echo "    make ${BLUE}init${RESET}			\t\t- Init service ${SERVICE_NAME}. build exec and update dependencies"
-	@echo "    make ${BLUE}restart_dev${RESET}			\t- Restart service ${SERVICE_NAME} not build not update dependencies"
-	@echo "    make ${BLUE}start_build_dev${RESET}	\t\t- Start service ${SERVICE_NAME} build exec not update dependencies"
-	@echo "    make ${BLUE}start_build_img_dev_build_exec${RESET}	\t- Start service ${SERVICE_NAME} build exec and rebuild image not update dependencies"
-	@echo "    make ${BLUE}start_b_img_dev_build_exec_deps${RESET}\t- Start service ${SERVICE_NAME} build exec and rebuild image not update dependencies"
-	@echo "    make ${BLUE}start_all_dev${RESET}	\t\t\t- Start service ${SERVICE_NAME} build exec and update dependencies"
-	@echo "    make ${BLUE}restart_prod${RESET}	\t\t\t- Start service ${SERVICE_NAME} not build exec and not update dependencies"
-	@echo "    make ${BLUE}start_build_prod${RESET}	\t\t- Start service ${SERVICE_NAME} build exec and not update dependencies"
-	@echo "    make ${BLUE}start_all_prod${RESET}	\t\t\t- Start service ${SERVICE_NAME} build exec and update dependencies"
-	@echo "    make ${BLUE}set_name_service${RESET}	\t\t- Set name service in env vars run before init"
-	@echo "    make ${BLUE}set_env${RESET}			\t- Set value in env vars"
-=======
 	@echo "    make ${BLUE}init${RESET}			\t- Init service ${SERVICE_NAME}. build exec and update dependencies"
 	@echo "    make ${BLUE}restart_dev${RESET}			- Restart service ${SERVICE_NAME} not build not update dependencies"
 	@echo "    make ${BLUE}start_build_dev${RESET}	\t- Start service ${SERVICE_NAME} build exec not update dependencies"
@@ -67,7 +54,6 @@ help: ## Show this help
 	@echo "    make ${BLUE}start_all_prod${RESET}	\t\t- Start service ${SERVICE_NAME} build exec and update dependencies"
 	@echo "    make ${BLUE}set_name_service${RESET}	\t- Set name service in env vars run before init. Ex: make set_name_service NAME=name_service"
 	@echo "    make ${BLUE}set_env${RESET}			- Set value in env vars"
->>>>>>> at450f053
 
 test:
 	@${update_dependencies}
