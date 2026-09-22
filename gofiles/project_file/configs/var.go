@@ -73,7 +73,7 @@ var (
 	GROUP_WAIT               errgroup.Group
 
 	StateInitDocApi bool = true
-	StateInitMetric bool = true
+	StateInitMetric bool = false
 )
 
 // log
