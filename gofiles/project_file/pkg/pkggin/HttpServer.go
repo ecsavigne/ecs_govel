@@ -119,8 +119,15 @@ func HttpRun() {
 		})
 	}
 
+<<<<<<< HEAD
 	// ServerDocsApi
 	if c_.StateInitDocApi {
+=======
+	}
+
+	if c_.StateInitDocApi {
+		// ServerDocsApi
+>>>>>>> 450f053
 		GROUP_WAIT.Go(func() error {
 			pkglog.Log.Sub("Configs").Infof("Service DocsApi in %s:%s/docs\n", c_.HTTP_SERVER_HOST_DOC_API, c_.HTTP_SERVER_PORT_DOC_API)
 			return servDocApi(ctx)

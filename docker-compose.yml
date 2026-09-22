@@ -14,7 +14,11 @@ services:
     command: ["-c", "${MY_CMD}"]
     ports:
        - "${PORT_IN_HOST}:${PORTS}"
+<<<<<<< HEAD
        - "${HTTP_SERVER_PORT_DOC_API_HOST}:${HTTP_SERVER_PORT_DOC_API_HOST}"
+=======
+       - "${HTTP_SERVER_PORT_DOC_API_HOST}:${HTTP_SERVER_PORT_DOC_API}"
+>>>>>>> 450f053
     volumes:
       - ./gofiles/project_file:/app
       - ./name_service.conf:/etc/supervisor/conf.d/name_service.conf #(name_service_.conf) nombre del archivo config para el supervisor del servicio

@@ -26,7 +26,6 @@ func loadDocRoutes(g *gin.Engine) {
 	// docs types
 	switch strings.ToLower(c_.TYPE_DOCUMENTATION) {
 	case "swagger":
-
 		// Servir rutas swagger
 		g.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerfiles.Handler))
 		g.GET("/docs", func(gc *gin.Context) {

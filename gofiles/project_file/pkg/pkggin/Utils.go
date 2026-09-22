@@ -62,13 +62,18 @@ func prepare_engine() {
 		gin.DefaultWriter = io.MultiWriter(c_.GetFileLogger(), os.Stdout)
 	}
 
-	if c_.IsX1() {
+	if c_.StateInitMetric {
 		//TODO: Configurar el motor de Gin para metricas no esta implementada la logica aun
 		// fmt.Println("Configurar el motor de Gin para metricas y documentacion")
-		pkglog.Log.Sub("Configs").Infof("Configurar el motor de Gin para metricas y documentacion\n")
-		docApiEngine = gin.Default()
-
+		pkglog.Log.Sub("Configs").Infof("Begin the engine of Gin for metricas\n")
 		metricEngine = gin.Default()
+	}
+
+	if c_.StateInitDocApi {
+		//TODO: Configurar el motor de Gin para metricas no esta implementada la logica aun
+		// fmt.Println("Configurar el motor de Gin para metricas y documentacion")
+		pkglog.Log.Sub("Configs").Infof("Begin the engine of Gin for Documents\n")
+		docApiEngine = gin.Default()
 	}
 
 	engine = gin.Default()
