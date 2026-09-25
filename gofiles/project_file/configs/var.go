@@ -24,10 +24,8 @@ var (
 	APP_MODE                  string
 	APP_PORT_TEST             string
 	WEBHOOK_SOCKET            string
-	DOC_API_PATH              string
 	GRPC_SERVER_PORT          string
 	TYPE_SERVICES             string
-	TYPE_DOCUMENTATION        string
 	PATH_BASE                 string
 	HASH_ROUTE                string
 )

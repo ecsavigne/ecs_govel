@@ -15,19 +15,6 @@ import (
 // Carga de varEnv
 func init() {
 	var err error
-	viper.AutomaticEnv()
-
-	testLocalGo := true
-	if testLocalGo {
-		pathDir, _ := os.Getwd()
-		viper.AddConfigPath(pathDir)
-		viper.SetConfigType("env")
-		viper.SetConfigName("app.env")
-		if err = viper.ReadInConfig(); err != nil {
-			fmt.Printf("\033[31mError: load app.env in: \033[30m %s, error: %s\n", pathDir, err.Error())
-			os.Exit(2)
-		}
-	}
 
 	{
 		// try charge APP_FILE_LOGGER from .env of system
@@ -96,7 +83,6 @@ func init() {
 		APP_MESSAJE_FILES = viper.GetString("APP_MESSAJE_FILES")
 		APP_NAME_X1 = viper.GetString("APP_NAME_X1")
 		APP_NAME = viper.GetString("SERVICE_NAME")
-		DOC_API_PATH = viper.GetString("DOC_API_PATH")
 
 		// Variables .env HTTP_SERVER
 		HTTP_SERVER_HOST = viper.GetString("HTTP_SERVER_HOST")
@@ -108,7 +94,6 @@ func init() {
 		HTTP_SERVER_PORT_METRICS = viper.GetString("HTTP_SERVER_PORT_METRICS")
 		HTTP_SERVER_PORT_WEBHOOK = viper.GetString("HTTP_SERVER_PORT_WEBHOOK")
 		TYPE_SERVICES = viper.GetString("TYPE_SERVICES")
-		TYPE_DOCUMENTATION = viper.GetString("TYPE_DOCUMENTATION")
 		PROMETHEUS_CONFIG_PATH = viper.GetString("PROMETHEUS_CONFIG_PATH")
 		GRAFANA_CONFIG_PATH = viper.GetString("GRAFANA_CONFIG_PATH")
 		HASH_ROUTE = viper.GetString("HASH_ROUTE")

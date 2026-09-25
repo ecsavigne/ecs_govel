@@ -2,11 +2,13 @@
 package docs
 
 import (
+	"fmt"
 	"os"
 	"path/filepath"
 	"strings"
 
 	specui "github.com/oaswrap/spec-ui"
+	"github.com/spf13/viper"
 
 	"github.com/oaswrap/spec-ui/config"
 	"github.com/oaswrap/spec-ui/rapidoc"
@@ -14,25 +16,55 @@ import (
 	"github.com/oaswrap/spec-ui/scalar"
 	"github.com/oaswrap/spec-ui/stoplight"
 	"github.com/oaswrap/spec-ui/swaggerui"
-
-	c_ "ecs_govel/configs"
 )
 
 var (
-	DocHandler *specui.Handler
+	DocHandler         *specui.Handler
+	TITLE_DOCS         string
+	DOC_API_PATH       string
+	TYPE_DOCUMENTATION string
 )
 
+func loadViper() {
+	var err error
+	viper.AutomaticEnv()
+
+	logName := viper.GetString("LOGNAME")
+	if logName != "" {
+		pathDir, _ := os.Getwd()
+		viper.AddConfigPath(pathDir)
+		viper.SetConfigType("env")
+		viper.SetConfigName("app")
+		if err = viper.ReadInConfig(); err != nil {
+			fmt.Printf("\033[31mError: load app.env in: \033[30m %s, error: %s\n", pathDir, err.Error())
+			os.Exit(100)
+		}
+
+		viper.SetConfigName("meta_config")
+		if err = viper.MergeInConfig(); err != nil {
+			fmt.Printf("\033[31mError: load meta_config.env in: \033[30m %s, error: %s\n", pathDir, err.Error())
+			os.Exit(100)
+		}
+	}
+
+	TITLE_DOCS = viper.GetString("TITLE_DOCS")
+	DOC_API_PATH = viper.GetString("DOC_API_PATH")
+	TYPE_DOCUMENTATION = viper.GetString("TYPE_DOCUMENTATION")
+}
+
 func init() {
-	dir, file := filepath.Split(c_.DOC_API_PATH)
+	loadViper()
+
+	dir, file := filepath.Split(DOC_API_PATH)
 	// _ = dir
 	// specPath := fmt.Sprintf("/docs/%s", file)
-	specPath := filepath.Join("docs", file)
-	// assetsPath := filepath.Join("docs", "assets")
+	specPath := filepath.Join("/docs", file)
+	assetsPath := filepath.Join("/docs", "assets")
 
-	switch strings.TrimSpace(strings.ToLower(c_.TYPE_DOCUMENTATION)) {
+	switch strings.TrimSpace(strings.ToLower(TYPE_DOCUMENTATION)) {
 	case "swagger":
 		DocHandler = specui.NewHandler(
-			specui.WithTitle("My API"),
+			specui.WithTitle(TITLE_DOCS),
 			specui.WithDocsPath("/docs"),
 			specui.WithSpecPath(specPath),
 			specui.WithSpecIOFS("docs.swagger.json", os.DirFS(dir)),
@@ -52,7 +84,7 @@ func init() {
 			))
 	case "scalar":
 		DocHandler = specui.NewHandler(
-			specui.WithTitle("My API"),
+			specui.WithTitle(TITLE_DOCS),
 			specui.WithDocsPath("/docs"),
 			specui.WithSpecPath(specPath),
 			specui.WithSpecIOFS("docs.swagger.json", os.DirFS(dir)),
@@ -72,10 +104,10 @@ func init() {
 			))
 	case "stoplight":
 		DocHandler = specui.NewHandler(
-			specui.WithTitle("My API"),
+			specui.WithTitle(TITLE_DOCS),
 			specui.WithDocsPath("/docs"),
 			specui.WithSpecPath(specPath),
-			// specui.WithAssetsPath(assetsPath),
+			specui.WithAssetsPath(assetsPath),
 			specui.WithSpecIOFS("docs.swagger.json", os.DirFS(dir)),
 			stoplight.WithUI(config.StoplightElements{
 				HideExport:     true,
@@ -83,13 +115,13 @@ func init() {
 				HideTryIt:      true,
 				HideTryItPanel: false,
 				Layout:         "responsive",
-				Logo:           "/assets/logo.png",
-				Router:         "hash",
+				// Logo:           "/assets/logo.png",
+				Router: "hash",
 			}),
 		)
 	case "redoc":
 		DocHandler = specui.NewHandler(
-			specui.WithTitle("My API"),
+			specui.WithTitle(TITLE_DOCS),
 			specui.WithDocsPath("/docs"),
 			specui.WithSpecPath(specPath),
 			specui.WithSpecIOFS("docs.swagger.json", os.DirFS(dir)),
@@ -101,11 +133,11 @@ func init() {
 		)
 	case "rapidoc":
 		DocHandler = specui.NewHandler(
-			specui.WithTitle("My API"),
+			specui.WithTitle(TITLE_DOCS),
 			specui.WithDocsPath("/docs"),
 			specui.WithSpecPath(specPath),
 			specui.WithSpecIOFS("docs.swagger.json", os.DirFS(dir)),
-			// specui.WithAssetsPath(assetsPath),
+			specui.WithAssetsPath(assetsPath),
 			rapidoc.WithUI(config.RapiDoc{
 				Theme:       config.RapiDocThemeLight,       // RapiDocTheme,                  // Theme style, "light" or "dark"
 				Layout:      config.RapiDocLayoutColumn,     // Layout type, "row" or "column"
