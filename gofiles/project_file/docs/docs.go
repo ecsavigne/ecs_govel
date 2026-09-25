@@ -2,74 +2,126 @@
 package docs
 
 import (
-	"fmt"
-	"io"
 	"os"
+	"path/filepath"
 	"strings"
 
-	c_ "ecs_govel/configs"
+	specui "github.com/oaswrap/spec-ui"
 
-	scalargo "github.com/bdpiprava/scalar-go"
-	"github.com/swaggo/swag"
+	"github.com/oaswrap/spec-ui/config"
+	"github.com/oaswrap/spec-ui/rapidoc"
+	"github.com/oaswrap/spec-ui/redoc"
+	"github.com/oaswrap/spec-ui/scalar"
+	"github.com/oaswrap/spec-ui/stoplight"
+	"github.com/oaswrap/spec-ui/swaggerui"
+
+	c_ "ecs_govel/configs"
 )
 
-const docTemplate = `{
-    "schemes": {{ marshal .Schemes }},
-    "swagger": "2.0",
-    "info": {
-        "description": "{{escape .Description}}",
-        "title": "{{.Title}}",
-        "contact": {},
-        "version": "{{.Version}}"
-    },
-    "host": "{{.Host}}",
-    "basePath": "{{.BasePath}}",
-    "paths": {}
-}`
-
-// SwaggerInfo holds exported Swagger Info so clients can modify it
-var SwaggerInfo = &swag.Spec{
-	Version:          "",
-	Host:             "",
-	BasePath:         "",
-	Schemes:          []string{},
-	Title:            "",
-	Description:      "",
-	InfoInstanceName: "swagger",
-	SwaggerTemplate:  docTemplate,
-	LeftDelim:        "{{",
-	RightDelim:       "}}",
-}
-
 var (
-	ScalarError error
-	ScalarHtml  string
+	DocHandler *specui.Handler
 )
 
 func init() {
-	str, _ := os.Getwd()
-	fmt.Printf("init int: %s, ::::::\n ", str)
-	if c_.DOC_API_PATH != "" {
-		file, err := os.OpenFile(c_.DOC_API_PATH, os.O_RDONLY, os.ModePerm)
-		if err != nil {
-			panic(err)
-		}
+	dir, file := filepath.Split(c_.DOC_API_PATH)
+	// _ = dir
+	// specPath := fmt.Sprintf("/docs/%s", file)
+	specPath := filepath.Join("docs", file)
+	// assetsPath := filepath.Join("docs", "assets")
 
-		by, e := io.ReadAll(file)
-		if e != nil {
-			panic(e)
-		}
+	switch strings.TrimSpace(strings.ToLower(c_.TYPE_DOCUMENTATION)) {
+	case "swagger":
+		DocHandler = specui.NewHandler(
+			specui.WithTitle("My API"),
+			specui.WithDocsPath("/docs"),
+			specui.WithSpecPath(specPath),
+			specui.WithSpecIOFS("docs.swagger.json", os.DirFS(dir)),
+			swaggerui.WithUI(
+				config.SwaggerUI{
+					HideCurl:                 true,
+					JsonEditor:               false,
+					Layout:                   config.SwaggerLayoutBase,
+					DefaultModelsExpandDepth: 1,
 
-		switch strings.ToLower(c_.TYPE_DOCUMENTATION) {
-		case "swagger":
-			SwaggerInfo.InfoInstanceName = "swagger"
-			SwaggerInfo.SwaggerTemplate = string(by)
-			swag.Register(SwaggerInfo.InstanceName(), SwaggerInfo)
-		case "scalar":
-			ScalarHtml, ScalarError = scalargo.NewV2(
-				scalargo.WithSpecBytes(by),
-			)
-
-		}
+					// UIConfig specifies additional SwaggerUIBundle config object properties.
+					// See https://swagger.io/docs/open-source-tools/swagger-ui/usage/configuration/ for available options.
+					// UIConfig: map[string]string{
+					// 	"filter": "true",
+					// },
+				},
+			))
+	case "scalar":
+		DocHandler = specui.NewHandler(
+			specui.WithTitle("My API"),
+			specui.WithDocsPath("/docs"),
+			specui.WithSpecPath(specPath),
+			specui.WithSpecIOFS("docs.swagger.json", os.DirFS(dir)),
+			scalar.WithUI(
+				config.Scalar{
+					// ProxyURL:              "https://proxy.scalar.com", // Set Proxy URL to making API requests
+					HideSidebar:           false,
+					HideModels:            false,
+					DocumentDownloadType:  "json",
+					HideTestRequestButton: true,
+					HideSearch:            false,
+					HideDeveloperTools:    false,
+					DarkMode:              false,
+					Layout:                "modern",
+					Theme:                 "default",
+				},
+			))
+	case "stoplight":
+		DocHandler = specui.NewHandler(
+			specui.WithTitle("My API"),
+			specui.WithDocsPath("/docs"),
+			specui.WithSpecPath(specPath),
+			// specui.WithAssetsPath(assetsPath),
+			specui.WithSpecIOFS("docs.swagger.json", os.DirFS(dir)),
+			stoplight.WithUI(config.StoplightElements{
+				HideExport:     true,
+				HideSchemas:    false,
+				HideTryIt:      true,
+				HideTryItPanel: false,
+				Layout:         "responsive",
+				Logo:           "/assets/logo.png",
+				Router:         "hash",
+			}),
+		)
+	case "redoc":
+		DocHandler = specui.NewHandler(
+			specui.WithTitle("My API"),
+			specui.WithDocsPath("/docs"),
+			specui.WithSpecPath(specPath),
+			specui.WithSpecIOFS("docs.swagger.json", os.DirFS(dir)),
+			redoc.WithUI(config.ReDoc{
+				HideSearch:          false, // Hide the search bar.
+				HideDownloadButtons: false, // Hides the "Download" button for saving the API definition source file.
+				HideSchemaTitles:    true,  // Hide
+			}),
+		)
+	case "rapidoc":
+		DocHandler = specui.NewHandler(
+			specui.WithTitle("My API"),
+			specui.WithDocsPath("/docs"),
+			specui.WithSpecPath(specPath),
+			specui.WithSpecIOFS("docs.swagger.json", os.DirFS(dir)),
+			// specui.WithAssetsPath(assetsPath),
+			rapidoc.WithUI(config.RapiDoc{
+				Theme:       config.RapiDocThemeLight,       // RapiDocTheme,                  // Theme style, "light" or "dark"
+				Layout:      config.RapiDocLayoutColumn,     // Layout type, "row" or "column"
+				RenderStyle: config.RapiDocRenderStyleRead,  // Render style, "read", "view", or "focused"
+				SchemaStyle: config.RapiDocSchemaStyleTable, // Schema style, "table" or "tree"
+				// BgColor:            string,             // Background color, e.g. "#fff"
+				// TextColor:          string,             // Text color, e.g. "#444"
+				// HeaderColor:        string,             // Header color, e.g. "#444444"
+				// PrimaryColor:       string,             // Primary color, e.g. "#FF791A"
+				HideInfo:           false,              // Hide the info section
+				HideHeader:         false,              // Hide the header section
+				HideSearch:         true,               // Hide the search bar
+				HideAdvancedSearch: false,              // Hide the advanced search bar
+				HideTryIt:          true,               // Hide the "Try" feature
+				Logo:               "/assets/logo.png", // Logo URL
+			}),
+		)
 	}
 }

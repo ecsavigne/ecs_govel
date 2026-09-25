@@ -33,7 +33,7 @@ plugins:
       - target=ts # Puedes usar 'ts' o 'js'
 
   # Documentacion openapi  url: https://github.com/google/gnostic/tree/main/cmd/protoc-gen-openapi
-  - remote: buf.build/grpc-ecosystem/openapiv2:v2.27.3
+  - remote: buf.build/grpc-ecosystem/openapiv2
     out:  internal/grpcservice/gen/openapi
     opt:
     - allow_merge=true

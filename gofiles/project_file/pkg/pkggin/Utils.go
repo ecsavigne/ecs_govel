@@ -3,7 +3,9 @@ package pkggin
 import (
 	"fmt"
 	"io"
+	"net/http"
 	"os"
+	"slices"
 	"strings"
 
 	c_ "ecs_govel/configs"
@@ -51,6 +53,30 @@ func GetDocApiEngine() *gin.Engine {
 	return docApiEngine
 }
 
+func secureServer(route *gin.Engine, expectHost []string) {
+	route.Use(func(c *gin.Context) {
+		if _, ok := slices.BinarySearch(expectHost, c.Request.Host); !ok {
+			c.AbortWithStatusJSON(http.StatusBadRequest, gin.H{"error": fmt.Sprintf("invalid host expected: %s, received: %s", expectHost, c.Request.Host)})
+			return
+		}
+
+		c.Header("X-Frame-Options", "DENY")
+		c.Header("Content-Security-Policy", "default-src 'self'; connect-src *; font-src *; script-src-elem * 'unsafe-inline'; img-src * data:; style-src * 'unsafe-inline';")
+		c.Header("X-XSS-Protection", "1; mode=block")
+		c.Header("Strict-Transport-Security", "max-age=31536000; includeSubDomains; preload")
+		c.Header("Referrer-Policy", "strict-origin")
+		c.Header("X-Content-Type-Options", "nosniff")
+		c.Header("Permissions-Policy", "geolocation=(),midi=(),sync-xhr=(),microphone=(),camera=(),magnetometer=(),gyroscope=(),fullscreen=(self),payment=()")
+		c.Next()
+	})
+}
+
+var host = []string{
+	fmt.Sprintf("localhost:%s", c_.HTTP_SERVER_PORT_METRICS),
+	fmt.Sprintf("localhost:%s", c_.HTTP_SERVER_PORT_DOC_API),
+	fmt.Sprintf("localhost:%s", c_.HTTP_SERVER_PORT),
+}
+
 // Configurar el motor de Gin
 func prepare_engine() {
 	if strings.ToLower(c_.APP_MODE) == "develop" {
@@ -67,6 +93,7 @@ func prepare_engine() {
 		// fmt.Println("Configurar el motor de Gin para metricas y documentacion")
 		pkglog.Log.Sub("Configs").Infof("Begin the engine of Gin for metricas\n")
 		metricEngine = gin.Default()
+		secureServer(metricEngine, host)
 	}
 
 	if c_.StateInitDocApi {
@@ -74,8 +101,13 @@ func prepare_engine() {
 		// fmt.Println("Configurar el motor de Gin para metricas y documentacion")
 		pkglog.Log.Sub("Configs").Infof("Begin the engine of Gin for Documents\n")
 		docApiEngine = gin.Default()
+		secureServer(docApiEngine, host)
 	}
 
-	engine = gin.Default()
+	engine = gin.New()
+	secureServer(engine, host)
+
+	gin.ForceConsoleColor()
+	engine.Use(gin.Recovery(), gin.Logger())
 	engine.MaxMultipartMemory = 100 << 20
 }

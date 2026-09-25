@@ -1,4 +1,8 @@
 ecs_govel version
+    v2.11.6
+        - fix minors bugs
+        - improve load routers
+        - add documentations  ReDoc, RapiDoc and Stoplight
     v2.11.5
        - improve load and generation of doc 
        - fix minors bugs

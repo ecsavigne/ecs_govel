@@ -1,7 +1,12 @@
 package interceptor
 
 import (
+	"ecs_govel/configs"
+	"maps"
+	"net/http"
 	"path"
+	"path/filepath"
+	"slices"
 	"strings"
 
 	"github.com/gin-gonic/gin"
@@ -26,15 +31,27 @@ var routeMap = map[string]string{
 // Midleware que resolve routes
 func AdapterMiddleware() gin.HandlerFunc {
 	return func(g *gin.Context) {
-		dirUrl, pathKey := path.Split(g.Request.URL.Path)
+		keys := slices.Collect(maps.Keys(routeMap))
 
-		if newPath, ok := routeMap[pathKey]; ok {
-			param_user_id := path.Base(dirUrl)
-			newPath = strings.ReplaceAll(newPath, "{ig_user_id}", param_user_id)
+		switch {
+		case slices.Contains(keys, filepath.Base(g.Request.URL.Path)):
+			if b := strings.Split(g.Request.URL.Path, "/"); b[1] != configs.HASH_ROUTE {
+				g.AbortWithStatusJSON(http.StatusUnauthorized, gin.H{"error": "route not authorized"})
+				return
+			}
 
-			g.Request.URL.Path = newPath
-		} else {
-			g.AbortWithStatus(404)
+			dirUrl, pathKey := filepath.Split(g.Request.URL.Path)
+
+			if newPath, ok := routeMap[pathKey]; ok {
+				param_account_id := path.Base(dirUrl)
+				newPath = strings.Replace(newPath, "{ig_account_id}", param_account_id, 1)
+				g.Request.URL.Path = newPath
+			}
+		case strings.Contains(g.Request.URL.Path, configs.HASH_ROUTE):
+			g.Request.URL.Path = strings.TrimPrefix(g.Request.URL.Path, configs.HASH_ROUTE)
+		default:
+			g.AbortWithStatusJSON(http.StatusUnauthorized, gin.H{"error": "route not authorized"})
+			return
 		}
 
 		g.Next()

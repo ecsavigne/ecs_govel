@@ -69,14 +69,15 @@ func InitGrpcService() {
 	routerGin := pkggin.GetEngine()
 
 	globalsMiddleware(routerGin)
-	// routes ServiceHandler connectrpc
+	// routes ServiceHandler connectrpc, grpc and grpc-WEB
 	routerGin.Any(path+"/*any", gin.WrapH(handler))
 	// routes for anotations proto
-	// routerGin.Any("/"+c_.HASH_ROUTE+"/*any", interceptor.AdapterMiddleware(), gin.WrapH(transcoder))
-	routerGin.Any("/productsapi/*any", gin.WrapH(transcoder))
+
+	// route rest with hash
+	routerGin.Any("/"+c_.HASH_ROUTE+"/*any" /*interceptor.AdapterMiddleware(), */, gin.WrapH(transcoder))
 
 	// addr := fmt.Sprintf("localhost:%s", c_.GRPC_SERVER_PORT) // comunicacion cerrada entre docker en la red de docker
-	addr := fmt.Sprintf("0.0.0.0:%s", c_.GRPC_SERVER_PORT) // external comunica con red de docker
+	addr := fmt.Sprintf("%s:%s", c_.HTTP_SERVER_HOST, c_.GRPC_SERVER_PORT) // external comunica con red de docker
 	s := http.Server{
 		Addr:      addr,
 		Handler:   routerGin,
