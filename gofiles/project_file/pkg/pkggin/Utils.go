@@ -54,6 +54,7 @@ func GetDocApiEngine() *gin.Engine {
 }
 
 func secureServer(route *gin.Engine, expectHost []string) {
+	slices.Sort(expectHost)
 	route.Use(func(c *gin.Context) {
 		if _, ok := slices.BinarySearch(expectHost, c.Request.Host); !ok {
 			c.AbortWithStatusJSON(http.StatusBadRequest, gin.H{"error": fmt.Sprintf("invalid host expected: %s, received: %s", expectHost, c.Request.Host)})
@@ -75,6 +76,7 @@ var host = []string{
 	fmt.Sprintf("localhost:%s", c_.HTTP_SERVER_PORT_METRICS),
 	fmt.Sprintf("localhost:%s", c_.HTTP_SERVER_PORT_DOC_API),
 	fmt.Sprintf("localhost:%s", c_.HTTP_SERVER_PORT),
+	// "Actual domain ex: docsgateway.savcoe-services.com"
 }
 
 // Configurar el motor de Gin
