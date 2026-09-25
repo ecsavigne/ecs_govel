@@ -112,3 +112,32 @@ As configurations are at "<i><b>./gofiles/project_file</b><i>"
 
 # Code errors
 - exit status 125: TYPE_SERVICES is empty
+
+# Costumize Title page
+
+1. Clona el repositorio:
+  ```shell
+  git clone https://github.com/oaswrap/spec-ui.git path/spec-ui-custom
+  ```
+2. Busca dónde se genera el título:
+```shell
+  grep -RInE \
+    --include='*.go' \
+    --include='*.html' \
+    --include='*.tpl' \
+    'Scalar|<title>' ./
+  ```
+3. En la plantilla de Scalar, cambia algo parecido a:
+   ```html
+   <title>{{ .Title }} - Scalar</title>
+   ```
+   for
+   ```html
+   <title>{{ .Title }}</title>
+   ```
+4. La ruta exacta depende de la versión; por eso el comando busca el texto en los archivos del repositorio.
+Desde tu proyecto, apunta la dependencia al fork local:
+  ```shell
+  go mod edit -replace=github.com/oaswrap/spec-ui=path/spec-ui-custom
+  go mod tidy
+  ```
