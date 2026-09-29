@@ -141,3 +141,23 @@ Desde tu proyecto, apunta la dependencia al fork local:
   go mod edit -replace=github.com/oaswrap/spec-ui=path/spec-ui-custom
   go mod tidy
   ```
+# Use service client and server in node
+1. generate files
+2. copy in project folder of node
+3. install dependencies:
+   ```shell
+   npm install @connectrpc/connect @connectrpc/connect-node @bufbuild/protobuf
+   ```
+4. Creating client
+   ```typescript
+    import { createClient } from "@connectrpc/connect";
+    import { createConnectTransport } from "@connectrpc/connect-node";
+    import { MiServicio } from "./ruta/al/servicio_connect";
+
+    const transport = createConnectTransport({
+      baseUrl: "http://localhost:8080",
+    });
+
+    const client = createClient(MiServicio, transport);
+    const resultado = await client.miMetodo({ /* campos del request */ });
+   ```
