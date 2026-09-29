@@ -146,12 +146,12 @@ Desde tu proyecto, apunta la dependencia al fork local:
 2. copy in project folder of node
 3. install dependencies:
    ```shell
-   npm install @connectrpc/connect @connectrpc/connect-node @bufbuild/protobuf
+   npm install @connectrpc/connect @connectrpc/connect-web @bufbuild/protobuf
    ```
 4. Creating client
    ```typescript
     import { createClient } from "@connectrpc/connect";
-    import { createConnectTransport } from "@connectrpc/connect-node";
+    import { createConnectTransport } from "@connectrpc/connect-web";
     import { MiServicio } from "./ruta/al/servicio_connect";
 
     const transport = createConnectTransport({
