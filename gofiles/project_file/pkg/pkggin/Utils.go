@@ -53,8 +53,8 @@ func GetDocApiEngine() *gin.Engine {
 	return docApiEngine
 }
 
-func secureServer(route *gin.Engine, expectHost []string) {
-	slices.Sort(expectHost)
+func secureServer(route *gin.Engine) {
+	expectHost := HostAllow()
 	route.Use(func(c *gin.Context) {
 		if _, ok := slices.BinarySearch(expectHost, c.Request.Host); !ok {
 			c.AbortWithStatusJSON(http.StatusBadRequest, gin.H{"error": fmt.Sprintf("invalid host expected: %s, received: %s", expectHost, c.Request.Host)})
@@ -70,13 +70,6 @@ func secureServer(route *gin.Engine, expectHost []string) {
 		c.Header("Permissions-Policy", "geolocation=(),midi=(),sync-xhr=(),microphone=(),camera=(),magnetometer=(),gyroscope=(),fullscreen=(self),payment=()")
 		c.Next()
 	})
-}
-
-var host = []string{
-	fmt.Sprintf("localhost:%s", c_.HTTP_SERVER_PORT_METRICS),
-	fmt.Sprintf("localhost:%s", c_.HTTP_SERVER_PORT_DOC_API),
-	fmt.Sprintf("localhost:%s", c_.HTTP_SERVER_PORT),
-	// "Actual domain ex: docsgateway.savcoe-services.com"
 }
 
 // Configurar el motor de Gin
@@ -95,7 +88,7 @@ func prepare_engine() {
 		// fmt.Println("Configurar el motor de Gin para metricas y documentacion")
 		pkglog.Log.Sub("Configs").Infof("Begin the engine of Gin for metricas\n")
 		metricEngine = gin.Default()
-		secureServer(metricEngine, host)
+		secureServer(metricEngine)
 	}
 
 	if c_.StateInitDocApi {
@@ -103,11 +96,11 @@ func prepare_engine() {
 		// fmt.Println("Configurar el motor de Gin para metricas y documentacion")
 		pkglog.Log.Sub("Configs").Infof("Begin the engine of Gin for Documents\n")
 		docApiEngine = gin.Default()
-		secureServer(docApiEngine, host)
+		secureServer(docApiEngine)
 	}
 
 	engine = gin.New()
-	secureServer(engine, host)
+	secureServer(engine)
 
 	gin.ForceConsoleColor()
 	engine.Use(gin.Recovery(), gin.Logger())

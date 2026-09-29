@@ -11,6 +11,8 @@ import (
 
 	c_ "ecs_govel/configs"
 
+	midleware "ecs_govel/internal/grpcservice/app/server/interceptor"
+
 	"connectrpc.com/connect"
 	"connectrpc.com/validate"
 	"connectrpc.com/vanguard"
@@ -70,7 +72,7 @@ func InitGrpcService() {
 
 	globalsMiddleware(routerGin)
 	// routes ServiceHandler connectrpc, grpc and grpc-WEB
-	routerGin.Any(path+"/*any", gin.WrapH(handler))
+	routerGin.Any(path+"/*any", midleware.CorsReq(), gin.WrapH(handler))
 	// routes for anotations proto
 
 	// route rest with hash
