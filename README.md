@@ -141,7 +141,7 @@ Desde tu proyecto, apunta la dependencia al fork local:
   go mod edit -replace=github.com/oaswrap/spec-ui=path/spec-ui-custom
   go mod tidy
   ```
-# Use service client and server in node
+# Use service client and server in node <a href="https://connectrpc.com/docs/node/getting-started/">ref</a>
 1. generate files
 2. copy in project folder of node
 3. install dependencies:
@@ -156,8 +156,10 @@ Desde tu proyecto, apunta la dependencia al fork local:
 
     const transport = createConnectTransport({
       baseUrl: "http://localhost:8080",
+      httpVersion: "1.1"
     });
 
     const client = createClient(MiServicio, transport);
     const resultado = await client.miMetodo({ /* campos del request */ });
+    console.log(resultado)
    ```
