@@ -35,7 +35,7 @@ func AdapterMiddleware() gin.HandlerFunc {
 
 		switch {
 		case slices.Contains(keys, filepath.Base(g.Request.URL.Path)):
-			if b := strings.Split(g.Request.URL.Path, "/"); b[1] != configs.HASH_ROUTE {
+			if !strings.HasPrefix(g.Request.URL.Path, "/"+configs.HASH_ROUTE) {
 				g.AbortWithStatusJSON(http.StatusUnauthorized, gin.H{"error": "route not authorized"})
 				return
 			}
@@ -47,8 +47,8 @@ func AdapterMiddleware() gin.HandlerFunc {
 				newPath = strings.Replace(newPath, "{ig_account_id}", param_account_id, 1)
 				g.Request.URL.Path = newPath
 			}
-		case strings.Contains(g.Request.URL.Path, configs.HASH_ROUTE):
-			g.Request.URL.Path = strings.TrimPrefix(g.Request.URL.Path, configs.HASH_ROUTE)
+		case strings.HasPrefix(g.Request.URL.Path, "/"+configs.HASH_ROUTE):
+			g.Request.URL.Path = strings.TrimPrefix(g.Request.URL.Path, "/"+configs.HASH_ROUTE)
 		default:
 			g.AbortWithStatusJSON(http.StatusUnauthorized, gin.H{"error": "route not authorized"})
 			return
