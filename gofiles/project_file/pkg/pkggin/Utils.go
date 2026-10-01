@@ -53,11 +53,19 @@ func GetDocApiEngine() *gin.Engine {
 	return docApiEngine
 }
 
+func parseHost(host string) string {
+	host, _, _ = strings.Cut(strings.NewReplacer("https://", "", "http://", "").Replace(host), ":")
+
+	return host
+}
+
 func secureServer(route *gin.Engine) {
 	expectHost := HostAllow()
+
 	route.Use(func(c *gin.Context) {
-		if _, ok := slices.BinarySearch(expectHost, c.Request.Host); !ok {
-			c.AbortWithStatusJSON(http.StatusBadRequest, gin.H{"error": fmt.Sprintf("invalid host expected: %s, received: %s", expectHost, c.Request.Host)})
+		host := parseHost(c.Request.Host)
+		if _, ok := slices.BinarySearch(expectHost, host); !ok {
+			c.AbortWithStatusJSON(http.StatusUnauthorized, gin.H{"error": fmt.Sprintf("invalid host expected: %s, received: %s", expectHost, c.Request.Host)})
 			return
 		}
 

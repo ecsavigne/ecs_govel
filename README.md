@@ -162,4 +162,9 @@ Desde tu proyecto, apunta la dependencia al fork local:
     const client = createClient(MiServicio, transport);
     const resultado = await client.miMetodo({ /* campos del request */ });
     console.log(resultado)
+
+    // streaming server
+    for await (const stream = client.iGWatchAuthentication(data) ) {
+      console.log(stream)
+    }
    ```
