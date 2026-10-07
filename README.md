@@ -163,8 +163,33 @@ Desde tu proyecto, apunta la dependencia al fork local:
     const resultado = await client.miMetodo({ /* campos del request */ });
     console.log(resultado)
 
-    // streaming server
+    // ex 1. streaming server
     for await (const stream = client.iGWatchAuthentication(data) ) {
       console.log(stream)
     }
+
+    // ex 2. stream server with canceled from client
+    let iterator: AsyncIterator<WatchAuthenticationResponse> | undefined
+    let watcherController: AbortController | undefined
+
+    const stopWatcher = async () => {
+      console.log('Button Cancell 1111')
+      watcherController?.abort()
+      await iterator?.return?.()
+    }
+
+    async function processStream() {
+       watcherController = new AbortController()
+        const stream = client.getIgWatchAuth({ sessionId: sessionID } as WatchAuthenticationRequest, { signal: watcherController.signal })
+        iterator = stream[Symbol.asyncIterator]()
+
+          for await (const evt of { [Symbol.asyncIterator]: () => iterator! }) {
+            // process value evt from stream
+          }
+    }
+
+    //cancell call 
+    await stopWatcher()
+
+    // ex 3.
    ```
