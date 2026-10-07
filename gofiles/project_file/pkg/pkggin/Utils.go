@@ -10,6 +10,7 @@ import (
 
 	c_ "ecs_govel/configs"
 	"ecs_govel/pkg/pkglog"
+	"ecs_govel/pkg/pkgutil"
 
 	"github.com/gin-gonic/gin"
 )
@@ -53,17 +54,11 @@ func GetDocApiEngine() *gin.Engine {
 	return docApiEngine
 }
 
-func parseHost(host string) string {
-	host, _, _ = strings.Cut(strings.NewReplacer("https://", "", "http://", "").Replace(host), ":")
-
-	return host
-}
-
 func secureServer(route *gin.Engine) {
 	expectHost := HostAllow()
 
 	route.Use(func(c *gin.Context) {
-		host := parseHost(c.Request.Host)
+		host := pkgutil.ParseHost(c.Request.Host)
 		if _, ok := slices.BinarySearch(expectHost, host); !ok {
 			c.AbortWithStatusJSON(http.StatusUnauthorized, gin.H{"error": fmt.Sprintf("invalid host expected: %s, received: %s", expectHost, c.Request.Host)})
 			return

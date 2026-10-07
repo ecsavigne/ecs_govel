@@ -2,8 +2,8 @@ package interceptor
 
 import (
 	"ecs_govel/pkg/pkggin"
+	"ecs_govel/pkg/pkgutil"
 	"slices"
-	"strings"
 	"time"
 
 	"github.com/gin-contrib/cors"
@@ -13,7 +13,7 @@ import (
 func CorsReq() gin.HandlerFunc {
 	return cors.New(cors.Config{
 		AllowOriginFunc: func(origin string) bool {
-			origin = strings.TrimPrefix(strings.Split(origin, ":")[1], "//")
+			origin = pkgutil.ParseHost(origin)
 			_, ok := slices.BinarySearch(pkggin.HostAllow(), origin)
 			return ok
 		},
