@@ -6,6 +6,7 @@ import (
 	_log "log"
 	"time"
 
+	"connectrpc.com/connect/v2"
 	"connectrpc.com/otelconnect"
 	prom "github.com/prometheus/client_golang/prometheus"
 	"go.opentelemetry.io/otel"
@@ -27,26 +28,26 @@ import (
 
 // Telemetry
 var (
-	otelInterceptor        *otelconnect.Interceptor
+	otelInterceptor        connect.ServerInterceptor
 	Register               *prom.Registry = prom.NewRegistry()
 	PROMETHEUS_CONFIG_PATH string
 	GRAFANA_CONFIG_PATH    string
 )
 
 func init() {
-	prepare_interceptor()
+	prepareOpenTelemetry()
 }
 
-func GetOtelInterceptor() *otelconnect.Interceptor {
+func GetOtelInterceptor() connect.ServerInterceptor {
 	return otelInterceptor
 }
 
-func prepare_interceptor() {
+func prepareOpenTelemetry() {
 	var err error
 
 	if otelInterceptor == nil {
 		setupOTelSDK(context.Background())
-		otelInterceptor, err = otelconnect.NewInterceptor()
+		otelInterceptor, err = otelconnect.NewServerInterceptor()
 		if err != nil {
 			_log.Fatal(err)
 		}

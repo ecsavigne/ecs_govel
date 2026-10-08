@@ -13,7 +13,8 @@ import (
 
 	midleware "ecs_govel/internal/grpcservice/app/server/interceptor"
 
-	"connectrpc.com/connect"
+	"connectrpc.com/connect/v2"
+	"connectrpc.com/connect/v2/connecthttp"
 	"connectrpc.com/validate"
 	"connectrpc.com/vanguard"
 	"github.com/Cyprinus12138/otelgin"
@@ -43,18 +44,19 @@ func InitGrpcService() {
 		panic("not is possible start server grpc, server port is empty")
 	}
 
-	interceptors := connect.WithInterceptors(
-		validate.NewInterceptor(),
+	srvConnect := connect.NewServer(
+		validate.NewServerInterceptor(),
 		sdkopentelemetry.GetOtelInterceptor(),
 	)
-	path, handler := conn.NewProductServiceHandler(
-		new(ProductService),
-		// Validation via Protovalidate is almost always recommended
-		interceptors,
-	)
+
+	conn.RegisterProductServiceHandler(srvConnect, new(ProductService))
+	router := http.NewServeMux()
+	connecthttp.Mount(router, srvConnect)
+
+	path := fmt.Sprintf("/%s/", conn.ProductServiceName)
 
 	// Traqnscodificador
-	serviceVanguard := vanguard.NewService(path, handler)
+	serviceVanguard := vanguard.NewService(path, router)
 	transcoder, err := vanguard.NewTranscoder([]*vanguard.Service{
 		serviceVanguard,
 	})
@@ -72,7 +74,7 @@ func InitGrpcService() {
 
 	globalsMiddleware(routerGin)
 	// routes ServiceHandler connectrpc, grpc and grpc-WEB
-	routerGin.Any(path+"/*any", midleware.CorsReq(), gin.WrapH(handler))
+	routerGin.Any(path+"/*any", midleware.CorsReq(), gin.WrapH(router))
 	// routes for anotations proto
 
 	// route rest with hash

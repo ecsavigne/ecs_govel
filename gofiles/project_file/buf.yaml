@@ -18,6 +18,10 @@ lint:
     # - ENUM_ZERO_VALUE_SUFFIX      # Ignora que el valor 0 no termine en _UNSPECIFIED
     # - ENUM_VALUE_PREFIX           # Ignora que los valores no empiecen con el nombre del Enum
     # - ENUM_ZERO_VALUE_NAME_PREFIX # Ignora prefijos específicos en el valor cero
+  except:
+    - RPC_REQUEST_RESPONSE_UNIQUE
+    - RPC_RESPONSE_STANDARD_NAME
+    - RPC_REQUEST_STANDARD_NAME
 breaking:
   use:
     - FILE

@@ -28,7 +28,7 @@ plugins:
   # url plugin: https://buf.build/bufbuild/es
   - remote: buf.build/bufbuild/es
     out: internal/grpcservice/gen/frontend
-    # include_imports: true
+    # include_imports: true # generate all files of importations 
     opt: 
       - target=ts # Puedes usar 'ts' o 'js'
 
