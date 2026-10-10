@@ -98,7 +98,29 @@ Los comentarios deben servir directamente para Swagger UI.
 🔌 SERVICIOS gRPC = CASOS DE USO
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-- Cada método representa una acción del negocio
+- Cada método representa una acción del negocio ej:
+  ```
+  // Update --> put
+  proto rpc UpdateWelcomeMessageFlowsADS(XxxxxRequest) returns (XxxxResponse) {
+      option (google.api.http) = {
+      put: "/ig/{ig_account_id}/update_welcome_message_flows_ads"
+      body: "*"
+    };
+
+  // Get --> get
+   proto rpc GetNameRpc(XxxxxRequest) returns (XxxxResponse) {
+      option (google.api.http) = {
+      get: "/ig/{ig_account_id}/route"
+      body: "*"
+    };
+
+  // Delete --> delete
+   proto rpc GetNameRpc(XxxxxRequest) returns (XxxxResponse) {
+      option (google.api.http) = {
+      delete: "/ig/{ig_account_id}/route"
+      body: "*"
+    };
+    ``` 
 - Evitar CRUD genérico si no expresa intención
 - Preferir:
   - RegisterProduct
