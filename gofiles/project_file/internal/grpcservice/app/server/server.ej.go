@@ -44,22 +44,16 @@ func InitGrpcService() {
 		panic("not is possible start server grpc, server port is empty")
 	}
 
-	srvConnect := connect.NewServer(
-		validate.NewServerInterceptor(),
-		sdkopentelemetry.GetOtelInterceptor(),
-	)
+	srvConnect := connect.NewServer(validate.NewServerInterceptor(), sdkopentelemetry.GetOtelInterceptor())
 
 	conn.RegisterProductServiceHandler(srvConnect, new(ProductService))
 	router := http.NewServeMux()
-	connecthttp.Mount(router, srvConnect)
+	connecthttp.Mount(router, srvConnect) // Connect, gRPC-Web, gRPC
 
 	path := fmt.Sprintf("/%s/", conn.ProductServiceName)
 
 	// Traqnscodificador
-	serviceVanguard := vanguard.NewService(path, router)
-	transcoder, err := vanguard.NewTranscoder([]*vanguard.Service{
-		serviceVanguard,
-	})
+	err := vanguard.Mount(router, srvConnect) // google.api.http (REST)
 	if err != nil {
 		panic(fmt.Sprintf("failed to create transcoder: %v", err))
 	}
@@ -78,7 +72,7 @@ func InitGrpcService() {
 	// routes for anotations proto
 
 	// route rest with hash
-	routerGin.Any("/"+c_.HASH_ROUTE+"/*any" /*interceptor.AdapterMiddleware(), */, gin.WrapH(transcoder))
+	routerGin.Any("/"+c_.HASH_ROUTE+"/*any" /*interceptor.AdapterMiddleware(), */, gin.WrapH(router))
 
 	// addr := fmt.Sprintf("localhost:%s", c_.GRPC_SERVER_PORT) // comunicacion cerrada entre docker en la red de docker
 	addr := fmt.Sprintf("%s:%s", c_.HTTP_SERVER_HOST, c_.GRPC_SERVER_PORT) // external comunica con red de docker
