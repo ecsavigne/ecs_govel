@@ -7,7 +7,7 @@ import (
 	"runtime/debug"
 	"strings"
 
-	"connectrpc.com/connect"
+	"connectrpc.com/connect/v2"
 	logecs "github.com/ecsavigne/logecs/log"
 )
 
