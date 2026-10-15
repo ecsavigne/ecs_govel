@@ -7,6 +7,7 @@ import (
 	"runtime/debug"
 	"strings"
 
+	"connectrpc.com/connect"
 	logecs "github.com/ecsavigne/logecs/log"
 )
 
@@ -34,7 +35,10 @@ func TryGRPC(err_return *error, debugs ...*string) {
 			return
 		}
 
-		*err_return = fmt.Errorf("recovery from panic: Debug info is: %+v, recovery value is: %+v", d, r)
+		pkglog.Log.Create(logecs.InfoLog{Type: logecs.Error, Sub: "configs.TryGRPC", Name: "TryGRPC", Content: map[string]any{"action": "panic", "recovery_value": logecs.Str(fmt.Sprintf("%+v", r)).Yellow().Bold().Italics().String()}})
+
+		*err_return = connect.NewError(connect.CodeAborted, fmt.Sprintf("recovery from panic: Debug info is: %+v, recovery value is: %+v", d, r))
+
 		return
 	}
 }
