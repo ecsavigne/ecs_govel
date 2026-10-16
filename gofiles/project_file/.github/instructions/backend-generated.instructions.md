@@ -1,5 +1,5 @@
 ---
-applyTo: "**/grpcservice/gen/**"
+applyTo: "**/gen/**"
 ---
 
 # Instrucciones para Código Backend Generado
@@ -19,9 +19,8 @@ applyTo: "**/grpcservice/gen/**"
 
 # Checklist de Revisión
 - [ ] El código implementa solo la lógica de negocio, sin modificar las interfaces generadas
-- [ ] el cliente gRPC debe seguir la estructura `internal/grpcservice/app/client/client.ej.go`
-- [ ] El servidor gRPC debe seguir la estructura `internal/grpcservice/app/server/server.ej.go`
-- [ ] Los RPC implementados debe seguir la estructura `internal/grpcservice/app/server/call_rpc_producto.ej.go` donde es la implementacion de la interface definida por el ServerGRPC representado en `internal/grpcservice/app/server/server.ej.go`
+- [ ] el cliente gRPC debe seguir la estructura `grpcservice/app/client/client.ej.go`
+- [ ] El servidor gRPC debe seguir la estructura `grpcservice/app/server/server.ej.go`
 - [ ] A la hora de crear `g.Use(otelgin.Middleware("nombre-del-servicio"))` en el servidor gRPC ej:
 
 ```proto
@@ -54,18 +53,25 @@ func InitGrpcService() {
 part code
 */
 
-path, handler := conn.NewShortURLServiceHandler(
-		new(ShortURLServiceImpl),
-		// Validation via Protovalidate is almost always recommended
-		interceptors,
-	)
+rpcServerConnect := connect.NewServer(validate.NewServerInterceptor(), sdkopentelemetry.GetOtelInterceptor())
+	conn.RegisterIGServiceHandler(rpcServerConnect, newIGService())
+
+	router := http.NewServeMux()
+	connecthttp.Mount(router, rpcServerConnect)
+
+	path := fmt.Sprintf("/%s/", conn.ShortUrlServiceName)
+
+	err := vanguard.Mount(router, rpcServerConnect)
+	if err != nil {
+		panic(fmt.Sprintf("failed to create transcoder: %v", err))
+	}
 
   /*
 part code
 */
 
-// routes for anotations proto
-	routerGin.Any("/shorturl/*any", gin.WrapH(transcoder))
+	// routes grpc, connect, gRPC-Web
+	routerGin.Any(path+"*any", middleware.CorsReq(), gin.WrapH(router))
 }
   ```
 
