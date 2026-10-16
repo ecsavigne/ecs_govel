@@ -18,6 +18,7 @@ services:
     volumes:
       - ./gofiles/project_file:/app
       - ./name_service.conf:/etc/supervisor/conf.d/name_service.conf #(name_service_.conf) nombre del archivo config para el supervisor del servicio
+      - ${APP_FILE_LOGGER}:${APP_FILE_LOGGER}
     networks:
       external-network: # <--- Usamos el nombre lógico definido abajo
         ipv4_address: ${IP_CONTAINER}

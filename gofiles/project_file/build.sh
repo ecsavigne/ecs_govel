@@ -15,6 +15,8 @@ path="./"
 main_file=${SERVICE_NAME}
 folder_exec=${FOLDER_EXEC}
 
+mkdir -p ${folder_exec}
+
 module_name=ecs_govel
 
 go mod init ${module_name} || echo "Módulo ya inicializado"
